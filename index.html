@@ -69,164 +69,62 @@
             100% { transform: translate(70px, 70px); }
         }
 
-        /* Header */
+        /* Header - Full Width Banner */
         header {
-            background: linear-gradient(135deg, #1a1c20 0%, var(--primary-dark) 100%);
+            background: var(--primary-dark);
             padding: 0;
             position: relative;
             overflow: hidden;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
 
-        header::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 60%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(249, 157, 34, 0.1) 0%, transparent 70%);
+        .banner-container {
+            width: 100%;
+            height: 120px;
+            background: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @media (min-width: 640px) {
+            .banner-container {
+                height: 150px;
+            }
         }
         
         @media (min-width: 769px) {
-            header::after {
-                animation: pulse 8s ease-in-out infinite;
+            .banner-container {
+                height: 180px;
             }
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
+        .banner-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .header-content {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 2rem 1.5rem;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            align-items: center;
+            padding: 1.5rem 1.5rem;
+            text-align: center;
             position: relative;
             z-index: 1;
-            text-align: center;
         }
         
         @media (min-width: 769px) {
             .header-content {
-                grid-template-columns: auto 1fr;
-                gap: 3rem;
-                padding: 3rem 2rem;
-                text-align: left;
-            }
-        }
-
-        .logo-container {
-            margin: 0 auto;
-        }
-        
-        @media (min-width: 769px) {
-            .logo-container {
-                margin: 0;
-                animation: fadeInLeft 1s ease-out;
-            }
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .logo-container img {
-            max-width: 140px;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            border: 4px solid var(--accent-orange);
-            transition: transform 0.3s ease;
-        }
-        
-        @media (min-width: 769px) {
-            .logo-container img {
-                max-width: 220px;
-            }
-        }
-
-        .logo-container img:active {
-            transform: scale(0.98);
-        }
-        
-        @media (min-width: 769px) {
-            .logo-container img:hover {
-                transform: scale(1.05) rotate(2deg);
-            }
-        }
-
-        .header-text {
-            animation: fadeInRight 1s ease-out 0.3s both;
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        h1 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--cream);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-        }
-        
-        @media (min-width: 640px) {
-            h1 {
-                font-size: 3rem;
-                letter-spacing: 3px;
-            }
-        }
-        
-        @media (min-width: 769px) {
-            h1 {
-                font-size: 4rem;
-            }
-        }
-
-        .tagline {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.1rem;
-            color: var(--accent-orange);
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        @media (min-width: 640px) {
-            .tagline {
-                font-size: 1.3rem;
-                letter-spacing: 2px;
-            }
-        }
-        
-        @media (min-width: 769px) {
-            .tagline {
-                font-size: 1.5rem;
+                padding: 2rem 2rem;
             }
         }
 
@@ -339,7 +237,7 @@
             position: relative;
             font-weight: 500;
             opacity: 0;
-            animation: fadeIn 0.5s ease-out forwards;
+            animation: fadeInSlide 0.5s ease-out forwards;
             line-height: 1.6;
         }
         
@@ -359,7 +257,7 @@
         .credentials-list li:nth-child(1) { animation-delay: 0.9s; }
         .credentials-list li:nth-child(2) { animation-delay: 1.1s; }
 
-        @keyframes fadeIn {
+        @keyframes fadeInSlide {
             from { opacity: 0; transform: translateX(-20px); }
             to { opacity: 1; transform: translateX(0); }
         }
@@ -530,8 +428,7 @@
 
         /* Linktree Link - Optimized for mobile touch */
         .linktree-link {
-            margin-top: 1rem;
-            animation: fadeInRight 1s ease-out 0.5s both;
+            animation: fadeIn 1s ease-out 0.5s both;
             text-align: center;
         }
 
@@ -581,24 +478,19 @@
         }
         
         /* Improve text rendering on iOS */
-        body, h1, h2, p, a, li {
+        body, h2, p, a, li {
             text-rendering: optimizeLegibility;
         }
     </style>
 </head>
 <body>
     <header>
+        <div class="banner-container">
+            <img src="banner.png" alt="Marcus Armed - Professional Firearms Training">
+        </div>
         <div class="header-content">
-            <div class="logo-container">
-                <img src="logo.png" alt="Marcus Armed Logo">
-            </div>
-            <div class="header-text">
-                <div class="linktree-link">
-                    <a href="https://linktr.ee/MarcUsArmed" target="_blank" rel="noopener noreferrer">MY LINK HUB</a>
-                </div>
-                </div>
-                <h1>Marcus Armed</h1>
-                <p class="tagline">Professional Firearms Training</p>
+            <div class="linktree-link">
+                <a href="https://linktr.ee/MarcUsArmed" target="_blank" rel="noopener noreferrer">MY LINK HUB</a>
             </div>
         </div>
     </header>
