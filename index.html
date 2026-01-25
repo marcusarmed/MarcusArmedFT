@@ -8,6 +8,8 @@
     <meta name="format-detection" content="telephone=no">
     <title>Marcus Armed - NRA Certified Firearms Training</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Zuume Rough Bold Font -->
+    <link href="https://fonts.cdnfonts.com/css/zuume-rough" rel="stylesheet">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Marcus Armed">
     <style>
@@ -69,9 +71,9 @@
             100% { transform: translate(70px, 70px); }
         }
 
-        /* Header - Full Width Banner */
+        /* Header - Full Width Interactive Banner */
         header {
-            background: var(--primary-dark);
+            background: #3a3d42;
             padding: 0;
             position: relative;
             overflow: hidden;
@@ -80,32 +82,99 @@
 
         .banner-container {
             width: 100%;
-            height: 120px;
-            background: var(--primary-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            background: #3a3d42;
+            padding: 1.5rem 1.5rem;
+            text-align: center;
             animation: fadeIn 1s ease-out;
         }
         
         @media (min-width: 640px) {
             .banner-container {
-                height: 150px;
+                padding: 2rem 2rem;
             }
         }
         
         @media (min-width: 769px) {
             .banner-container {
-                height: 180px;
+                padding: 2.5rem 2rem;
             }
         }
 
-        .banner-container img {
+        .banner-image {
+            max-width: 100%;
+            height: auto;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            display: block;
+        }
+
+        .banner-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .banner-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #f99d22;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 4px;
+            min-height: 44px;
+        }
+        
+        @media (min-width: 640px) {
+            .banner-contact-item {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .banner-contact-item {
+                font-size: 1.1rem;
+            }
+        }
+
+        .banner-contact-item:active {
+            background: rgba(249, 157, 34, 0.2);
+            transform: scale(0.98);
+        }
+        
+        @media (min-width: 769px) {
+            .banner-contact-item:hover {
+                color: #faa83a;
+                background: rgba(249, 157, 34, 0.1);
+                transform: translateY(-2px);
+            }
+        }
+
+        .banner-contact-icon {
+            width: 20px;
+            height: 20px;
+            background: #f99d22;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3a3d42;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+        
+        @media (min-width: 769px) {
+            .banner-contact-icon {
+                width: 24px;
+                height: 24px;
+                font-size: 0.8rem;
+            }
         }
 
         @keyframes fadeIn {
@@ -465,6 +534,76 @@
             }
         }
 
+        /* Armstrong's Armory CTA */
+        .armory-cta {
+            background: linear-gradient(135deg, #fff 0%, #f5f2eb 100%);
+            padding: 3rem 1.5rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 4px solid var(--accent-red);
+            animation: slideUp 0.8s ease-out 1.5s both;
+        }
+        
+        @media (min-width: 769px) {
+            .armory-cta {
+                padding: 4rem 2rem;
+            }
+        }
+
+        .armory-cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .armory-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-red) 0%, #c23618 100%);
+            color: #fff;
+            padding: 1.2rem 2.5rem;
+            border-radius: 35px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 6px 20px rgba(226, 66, 32, 0.4);
+            transition: all 0.3s ease;
+            min-height: 44px;
+            min-width: 44px;
+            line-height: 1.4;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .armory-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .armory-btn:active {
+            transform: translateY(-1px) scale(0.98);
+            box-shadow: 0 8px 25px rgba(226, 66, 32, 0.5);
+        }
+        
+        @media (min-width: 769px) {
+            .armory-btn:hover {
+                background: linear-gradient(135deg, #f74d2a 0%, var(--accent-red) 100%);
+                transform: translateY(-3px);
+                box-shadow: 0 10px 30px rgba(226, 66, 32, 0.6);
+            }
+            
+            .armory-btn:hover::before {
+                left: 100%;
+            }
+        }
+
         /* Scroll fade-in effect */
         .fade-in-section {
             opacity: 0;
@@ -486,7 +625,21 @@
 <body>
     <header>
         <div class="banner-container">
-            <img src="banner.png" alt="Marcus Armed - Professional Firearms Training">
+            <img src="banner.png" alt="Marcus Armed - Professional Firearms Training" class="banner-image">
+            <div class="banner-contact">
+                <a href="tel:+17163528622" class="banner-contact-item">
+                    <span class="banner-contact-icon">📞</span>
+                    <span>+1 716.352.8622</span>
+                </a>
+                <a href="mailto:marcusarms@marcusarmed.com" class="banner-contact-item">
+                    <span class="banner-contact-icon">✉</span>
+                    <span>marcusarms@marcusarmed.com</span>
+                </a>
+                <a href="https://www.marcusarmed.com" class="banner-contact-item" target="_blank" rel="noopener noreferrer">
+                    <span class="banner-contact-icon">🌐</span>
+                    <span>www.marcusarmed.com</span>
+                </a>
+            </div>
         </div>
         <div class="header-content">
             <div class="linktree-link">
@@ -535,6 +688,14 @@
             </div>
         </section>
     </main>
+
+    <section class="armory-cta">
+        <div class="armory-cta-content">
+            <a href="https://armstrongsarmory.com/" target="_blank" rel="noopener noreferrer" class="armory-btn">
+                Looking for New Pistol?
+            </a>
+        </div>
+    </section>
 
     <footer>
         <p>&copy; 2025 Marcus Armed | Professional Firearms Training | NRA Certified Instructor</p>
