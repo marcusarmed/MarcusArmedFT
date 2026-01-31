@@ -339,6 +339,115 @@
             font-size: 0.9rem;
         }
 
+        /* Grip Tutorial Section */
+        .grip-tutorial-section {
+            background: linear-gradient(135deg, var(--accent-orange) 0%, #faa83a 100%);
+            padding: 2.5rem 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(249, 157, 34, 0.3);
+            text-align: center;
+            animation: slideUp 0.8s ease-out 0.8s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 769px) {
+            .grip-tutorial-section {
+                padding: 3rem;
+                margin-bottom: 3rem;
+            }
+        }
+
+        .grip-tutorial-section::before {
+            content: '🎯';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 80px;
+            opacity: 0.1;
+        }
+
+        @media (min-width: 769px) {
+            .grip-tutorial-section::before {
+                font-size: 120px;
+                top: -20px;
+                right: 20px;
+            }
+        }
+
+        .grip-tutorial-section h2 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .grip-tutorial-section h2::after {
+            background: linear-gradient(90deg, var(--primary-dark), transparent);
+        }
+
+        .grip-tutorial-section p {
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        @media (min-width: 769px) {
+            .grip-tutorial-section p {
+                font-size: 1.2rem;
+            }
+        }
+
+        .grip-tutorial-btn {
+            display: inline-block;
+            background: var(--primary-dark);
+            color: var(--cream);
+            padding: 1.2rem 2.5rem;
+            border-radius: 35px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 6px 20px rgba(41, 44, 51, 0.4);
+            transition: all 0.3s ease;
+            min-height: 44px;
+            min-width: 44px;
+            line-height: 1.4;
+            position: relative;
+        }
+
+        @media (min-width: 640px) {
+            .grip-tutorial-btn {
+                font-size: 1.2rem;
+            }
+        }
+
+        .grip-tutorial-btn::before {
+            content: '→';
+            margin-right: 0.5rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .grip-tutorial-btn:active {
+            transform: translateY(-1px) scale(0.98);
+            box-shadow: 0 8px 25px rgba(41, 44, 51, 0.5);
+        }
+
+        @media (min-width: 769px) {
+            .grip-tutorial-btn:hover {
+                background: #1a1c20;
+                transform: translateY(-3px);
+                box-shadow: 0 10px 30px rgba(41, 44, 51, 0.6);
+            }
+
+            .grip-tutorial-btn:hover::before {
+                transform: translateX(5px);
+            }
+        }
+
         /* Contact Section */
         .contact-section {
             background: linear-gradient(135deg, var(--primary-dark), #1a1c20);
@@ -655,6 +764,15 @@
                 <li><strong>NRA Certified Firearms Trainer</strong> - Authorized to provide comprehensive firearms safety and marksmanship instruction</li>
                 <li><strong>Class A USPSA Shooter</strong> - TY160440 </li>
             </ul>
+        </section>
+
+        <section class="grip-tutorial-section">
+            <h2>Master Your Grip Technique</h2>
+            <p>
+                Learn the step-by-step process for building a proper competitive shooting grip. 
+                This comprehensive visual guide will help you improve your accuracy and recoil management.
+            </p>
+            <a href="grip.html" class="grip-tutorial-btn">View Grip Tutorial</a>
         </section>
 
         <section class="contact-section">
