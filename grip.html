@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Your Grip - Marcus Armed</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #292c33;
+            --accent-orange: #f99d22;
+            --accent-red: #e24220;
+            --cream: #e8ddc9;
+            --text-dark: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(41, 44, 51, 0.03) 35px, rgba(41, 44, 51, 0.03) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(249, 157, 34, 0.02) 35px, rgba(249, 157, 34, 0.02) 70px);
+            z-index: -1;
+            animation: slidePattern 30s linear infinite;
+        }
+
+        @keyframes slidePattern {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(70px, 70px); }
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a1c20 0%, var(--primary-dark) 100%);
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 60%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(249, 157, 34, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        nav {
+            margin-bottom: 1.5rem;
+        }
+
+        nav a {
+            color: var(--cream);
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--accent-orange);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            background-color: var(--accent-orange);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(249, 157, 34, 0.4);
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--cream);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            color: var(--accent-orange);
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Main content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .intro-section {
+            background: linear-gradient(135deg, #fff 0%, #f5f2eb 100%);
+            border-left: 8px solid var(--accent-red);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-section h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* Grip Steps Grid */
+        .grip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .grip-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid var(--accent-orange);
+        }
+
+        .grip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .grip-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: var(--cream);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            font-family: 'Barlow', sans-serif;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .grip-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            main {
+                padding: 2rem 1rem;
+            }
+
+            .intro-section {
+                padding: 1.5rem;
+            }
+        }
+
+        /* iOS optimizations */
+        @supports (-webkit-touch-callout: none) {
+            .grip-card img {
+                -webkit-tap-highlight-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <nav>
+                <a href="index.html">← Back to Home</a>
+            </nav>
+            <h1>Building Your Grip</h1>
+            <p class="subtitle">Proper Grip Technique for Competitive Shooting</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="intro-section">
+            <h2>Mastering the Fundamentals</h2>
+            <p>
+                A proper grip is the foundation of accurate shooting and effective recoil management. 
+                Follow these step-by-step instructions to build a consistent, high-performance grip that 
+                will improve your accuracy and control. Each image below demonstrates a critical component 
+                of the proper grip technique used in competitive shooting.
+            </p>
+        </section>
+
+        <div class="grip-grid">
+            <div class="grip-card">
+                <img src="slide_01.jpeg" alt="High Strong Hand Grip - Step 1">
+            </div>
+
+            <div class="grip-card">
+                <img src="slide_03.png" alt="Fill the Empty Space - Step 2">
+            </div>
+
+            <div class="grip-card">
+                <img src="slide_04.png" alt="Grip Technique - Step 3">
+            </div>
+
+            <div class="grip-card">
+                <img src="slide_05.png" alt="Grip Technique - Step 4">
+            </div>
+
+            <div class="grip-card">
+                <img src="slide_07.png" alt="Grip Technique - Step 5">
+            </div>
+
+            <div class="grip-card">
+                <img src="slide_08.png" alt="Grip Technique - Step 6">
+            </div>
+
+            <div class="grip-card">
+                <img src="Photoroom_20260131_164638.png" alt="Grip Technique - Step 7">
+            </div>
+
+            <div class="grip-card">
+                <img src="Photoroom_20260131_165023.png" alt="Grip Technique - Step 8">
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Marcus Armed - Professional Firearms Training</p>
+        <p>NRA Certified Firearms Trainer | Class A USPSA Shooter</p>
+    </footer>
+</body>
+</html>
