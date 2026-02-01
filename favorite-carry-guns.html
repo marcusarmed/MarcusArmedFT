@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcus Armed - Favorite Carry Guns</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0f0f0f;
+            --secondary-bg: #1a1a1a;
+            --card-bg: #222;
+            --accent: #ff8c00;
+            --accent-glow: rgba(255, 140, 0, 0.3);
+            --text-primary: #e8e8e8;
+            --text-secondary: #a8a8a8;
+            --border: rgba(255, 140, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated background effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 140, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 140, 0, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            font-weight: 500;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            perspective: 1000px;
+        }
+
+        .card-container {
+            position: relative;
+            height: 500px;
+            cursor: pointer;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .card-container:nth-child(1) { animation-delay: 0.1s; }
+        .card-container:nth-child(2) { animation-delay: 0.2s; }
+        .card-container:nth-child(3) { animation-delay: 0.3s; }
+        .card-container:nth-child(4) { animation-delay: 0.4s; }
+        .card-container:nth-child(5) { animation-delay: 0.5s; }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .card-container.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.5),
+                0 0 0 1px var(--border);
+        }
+
+        .card-front {
+            background: var(--card-bg);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .card-back {
+            background: var(--secondary-bg);
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card-back img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .card-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 20px;
+            background: linear-gradient(180deg, rgba(26, 26, 26, 0.95) 0%, transparent 100%);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .card-title .gun-name {
+            display: block;
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        .card-image {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 30px 30px;
+            position: relative;
+        }
+
+        .card-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+            transition: transform 0.3s ease;
+        }
+
+        .card-container:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .click-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            opacity: 0.6;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Decorative corner accents */
+        .card-front::before,
+        .card-front::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--accent);
+            z-index: 3;
+            opacity: 0.6;
+        }
+
+        .card-front::before {
+            top: 15px;
+            left: 15px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .card-front::after {
+            bottom: 15px;
+            right: 15px;
+            border-left: none;
+            border-top: none;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .card-container {
+                height: 450px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+                letter-spacing: 0.2em;
+            }
+        }
+
+        /* Hover effect glow */
+        .card-container:hover .card-face {
+            box-shadow: 
+                0 15px 50px rgba(0, 0, 0, 0.6),
+                0 0 0 1px var(--accent),
+                0 0 30px var(--accent-glow);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Favorite Carry Guns</h1>
+            <p class="subtitle">Marcus Armed Collection</p>
+        </header>
+
+        <div class="grid">
+            <!-- Card 1: Glock -->
+            <div class="card-container" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-face card-front">
+                        <div class="card-title">
+                            Old Faithful
+                            <span class="gun-name">Glock 19 Gen 6</span>
+                        </div>
+                        <div class="card-image">
+                            <img src="/mnt/user-data/uploads/GLOCK19GNE6.PNG" alt="Glock 19 Gen 6">
+                        </div>
+                        <div class="click-hint">Click for specs</div>
+                    </div>
+                    <div class="card-face card-back">
+                        <img src="/mnt/user-data/uploads/01_Glock_19_Gen6.png" alt="Glock 19 Gen 6 Specs">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Sig Sauer -->
+            <div class="card-container" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-face card-front">
+                        <div class="card-title">
+                            Slim Carry
+                            <span class="gun-name">SIG P365 XMACRO</span>
+                        </div>
+                        <div class="card-image">
+                            <img src="/mnt/user-data/uploads/SIGSAUERXMACRO.PNG" alt="SIG P365 XMACRO">
+                        </div>
+                        <div class="click-hint">Click for specs</div>
+                    </div>
+                    <div class="card-face card-back">
+                        <img src="/mnt/user-data/uploads/02_SIG_P365_XMACRO.png" alt="SIG P365 XMACRO Specs">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: M&P -->
+            <div class="card-container" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-face card-front">
+                        <div class="card-title">
+                            Don't Call it a come back
+                            <span class="gun-name">M&P CARRY X</span>
+                        </div>
+                        <div class="card-image">
+                            <img src="/mnt/user-data/uploads/M_PCARRYX.PNG" alt="M&P CARRY X">
+                        </div>
+                        <div class="click-hint">Click for specs</div>
+                    </div>
+                    <div class="card-face card-back">
+                        <img src="/mnt/user-data/uploads/03_M_P_CARRY_X.png" alt="M&P CARRY X Specs">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Staccato -->
+            <div class="card-container" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-face card-front">
+                        <div class="card-title">
+                            Oh you Fancy Huh?
+                            <span class="gun-name">STACCATO P4</span>
+                        </div>
+                        <div class="card-image">
+                            <img src="/mnt/user-data/uploads/STACCATOP4.PNG" alt="STACCATO P4">
+                        </div>
+                        <div class="click-hint">Click for specs</div>
+                    </div>
+                    <div class="card-face card-back">
+                        <img src="/mnt/user-data/uploads/04_STACCATO_P4.png" alt="STACCATO P4 Specs">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: Atlas -->
+            <div class="card-container" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-face card-front">
+                        <div class="card-title">
+                            Prince Akeem
+                            <span class="gun-name">ATLAS EOS</span>
+                        </div>
+                        <div class="card-image">
+                            <img src="/mnt/user-data/uploads/ATLAS_EOS.PNG" alt="ATLAS EOS">
+                        </div>
+                        <div class="click-hint">Click for specs</div>
+                    </div>
+                    <div class="card-face card-back">
+                        <img src="/mnt/user-data/uploads/05_ATLAS_EOS.png" alt="ATLAS EOS Specs">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
