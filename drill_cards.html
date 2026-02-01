@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firearms Training Drill Cards - Marcus Armed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #292c33 0%, #1a1d22 100%);
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .filter-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #f99d22;
+            background: white;
+            color: #292c33;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover {
+            background: #f99d22;
+            color: white;
+        }
+
+        .filter-btn.active {
+            background: #f99d22;
+            color: white;
+        }
+
+        .drill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .drill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #f99d22;
+        }
+
+        .drill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .drill-card h2 {
+            color: #292c33;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .badge-qualification {
+            background: #e24220;
+            color: white;
+        }
+
+        .badge-scoring {
+            background: #292c33;
+            color: white;
+        }
+
+        .badge-tc {
+            background: #f99d22;
+            color: white;
+        }
+
+        .badge-fundamentals {
+            background: #e24220;
+            color: white;
+        }
+
+        .badge-leatham {
+            background: #5a5e66;
+            color: white;
+        }
+
+        .badge-movement {
+            background: #a67c52;
+            color: white;
+        }
+
+        .badge-speed {
+            background: #c9511e;
+            color: white;
+        }
+
+        .badge-hackathorn {
+            background: #292c33;
+            color: white;
+        }
+
+        .badge-spaulding {
+            background: #d17a1a;
+            color: white;
+        }
+
+        .badge-vickers {
+            background: #8a6f4d;
+            color: white;
+        }
+
+        .badge-standards {
+            background: #b88544;
+            color: white;
+        }
+
+        .badge-malfunction {
+            background: #e24220;
+            color: white;
+        }
+
+        .badge-scenario {
+            background: #f99d22;
+            color: white;
+        }
+
+        .description {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .section {
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-weight: 700;
+            color: #f99d22;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title::before {
+            content: '▸';
+            font-size: 1.2em;
+        }
+
+        .section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section li {
+            padding: 8px 0 8px 20px;
+            border-left: 3px solid #e0e0e0;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .section li::before {
+            content: '•';
+            position: absolute;
+            left: 8px;
+            color: #f99d22;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .drill-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            .filter-buttons {
+                flex-direction: column;
+            }
+
+            .filter-btn {
+                width: 100%;
+            }
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 1em;
+            border: 2px solid #f99d22;
+            border-radius: 25px;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        .search-box:focus {
+            border-color: #e24220;
+            box-shadow: 0 0 8px rgba(249, 157, 34, 0.3);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: white;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Firearms Training Drill Cards</h1>
+            <p>Marcus Armed Professional Training Reference</p>
+        </header>
+
+        <div class="filter-section">
+            <input type="text" class="search-box" id="searchBox" placeholder="Search drills...">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">All Drills</button>
+                <button class="filter-btn" data-category="qualification">Qualifications</button>
+                <button class="filter-btn" data-category="scoring">Scoring/Rules</button>
+                <button class="filter-btn" data-category="tc">TC Drills</button>
+                <button class="filter-btn" data-category="fundamentals">Fundamentals</button>
+                <button class="filter-btn" data-category="leatham">Leatham Series</button>
+                <button class="filter-btn" data-category="movement">Movement/Work</button>
+                <button class="filter-btn" data-category="speed">Speed/Accuracy</button>
+                <button class="filter-btn" data-category="hackathorn">Hackathorn</button>
+                <button class="filter-btn" data-category="spaulding">Spaulding</button>
+                <button class="filter-btn" data-category="vickers">Vickers</button>
+                <button class="filter-btn" data-category="standards">Standards</button>
+                <button class="filter-btn" data-category="malfunction">Malfunctions</button>
+                <button class="filter-btn" data-category="scenario">Scenarios</button>
+            </div>
+        </div>
+
+        <div class="drill-grid" id="drillGrid"></div>
+
+        <footer>
+            <p>&copy; 2025 Marcus Armed | NRA Certified Firearms Training | Class A USPSA</p>
+        </footer>
+    </div>
+
+    <script>
+        const drillCards = [
+            {
+                title: "NEW YORK QUALIFICATION (DCJS Standard)",
+                category: "qualification",
+                description: "New York State's standard DCJS handgun qualification: 50-round course on silhouette target. Passing score: 70% using factory ammunition.",
+                run: [
+                    "3 YARDS – 12 rounds total:",
+                    "  Phase 1: 6 rounds fired in 2-round strings, no time limit.",
+                    "  Phase 2: 6 rounds in 6 seconds.",
+                    "7 YARDS – 18 rounds total:",
+                    "  Phase 1: 6 rounds fired in 2-round strings, no time limit.",
+                    "  Phase 2: 12 rounds in 25 seconds with one reload.",
+                    "15 YARDS – 12 rounds:",
+                    "  12 rounds in 40 seconds with one reload.",
+                    "25 YARDS – 8 rounds:",
+                    "  8 rounds in 40 seconds with one reload."
+                ],
+                scoring: [
+                    "Passing score: 35 of 50 rounds (70%).",
+                    "Must use factory ammunition."
+                ],
+                notes: [
+                    "Originally designed for 6-shot revolver (speedloaders recommended but not required).",
+                    "Semi-auto shooters: have at least two magazines.",
+                    "Different NY agencies and civilian trainers may adapt this course, but this is the standard DCJS 50-round qual.",
+                    "Sight picture cue: Hard sight picture from 10–12 yards and out; soft sight picture from contact distance to ~8–10 yards."
+                ]
+            },
+            {
+                title: "U.S. BORDER PATROL QUALIFICATION",
+                category: "qualification",
+                description: "50-round course from 1.5 to 25 yards on silhouette target. Passing: 40 of 50 hits minimum.",
+                run: [
+                    "STRUCTURE:",
+                    "  Total: 50 rounds on silhouette-style target",
+                    "  Distances: 1.5, 5, 7, 10, 15, and 25 yards",
+                    "POSITIONS & TECHNIQUES:",
+                    "  Positions: Standing and kneeling",
+                    "  Grip variations: Two-handed, strong-hand only, weak-hand only, and strong-hand with bent elbow",
+                    "  Start positions: From holster and ready-pistol position",
+                    "SKILLS EVALUATED:",
+                    "  Target engagement: Center-mass and alternate aiming points required",
+                    "  Gun-handling: Emergency reloads demonstrated during qual",
+                    "  Movement: Moving offline during engagements to simulate defensive tactics"
+                ],
+                scoring: [
+                    "Passing standard: At least 40 of 50 rounds must hit target.",
+                    "Exact round counts and time limits per string are law-enforcement-sensitive and not fully published."
+                ],
+                notes: [
+                    "This is the general public overview of the Border Patrol pistol qual.",
+                    "Official detailed course of fire is LE-sensitive.",
+                    "Sight picture cue: Hard sight picture from 10–12 yards and out; soft from contact to ~8–10 yards."
+                ]
+            },
+            {
+                title: "FBI QUALIFICATION (2019 Standard)",
+                category: "qualification",
+                description: "50-round course on QIT-99 target. Hits inside the 'bottle' = 2 points each (max 100). Passing: 80/100 for agents (40 hits), 90/100 for instructors (45 hits).",
+                run: [
+                    "STAGE 1 – 3 yards:",
+                    "  Draw, fire 3 rounds strong-hand only, then 3 weak-hand only (6 total) in 6 seconds.",
+                    "STAGE 2 – 5 yards:",
+                    "  Draw, fire 3 rounds in 3 seconds.",
+                    "STAGE 3 – 5 yards:",
+                    "  Low ready, fire 3 rounds in 2 seconds.",
+                    "STAGE 4 – 5 yards:",
+                    "  Low ready, fire 6 rounds in 4 seconds.",
+                    "STAGE 5 – 7 yards:",
+                    "  Draw, fire 5 rounds in 5 seconds.",
+                    "STAGE 6 – 7 yards:",
+                    "  Low ready, fire 4 rounds, reload, fire 4 more (8 total) in 8 seconds.",
+                    "STAGE 7 – 7 yards:",
+                    "  Low ready, fire 5 rounds in 4 seconds.",
+                    "STAGE 8 – 15 yards:",
+                    "  Draw, fire 3 rounds in 6 seconds.",
+                    "STAGE 9 – 15 yards:",
+                    "  Low ready, fire 3 rounds in 5 seconds.",
+                    "STAGE 10 – 25 yards:",
+                    "  Draw, fire 4 rounds standing, drop to kneeling, fire 4 more (8 total) in 20 seconds."
+                ],
+                scoring: [
+                    "Target: QIT-99 silhouette",
+                    "Scoring: Hits inside the bottle = 2 points each",
+                    "Agent passing: 80/100 points (40 hits minimum)",
+                    "Instructor passing: 90/100 points (45 hits minimum)"
+                ],
+                notes: [
+                    "Total: 50 rounds across 10 stages",
+                    "Distances: 3, 5, 7, 15, and 25 yards",
+                    "Uses draws from concealment and low-ready starts",
+                    "Stage 6 includes mandatory reload under time",
+                    "Stage 10 includes standing-to-kneeling position change"
+                ]
+            },
+            {
+                title: "FEDERAL AIR MARSHAL QUALIFICATION (TPC)",
+                category: "qualification",
+                description: "Tactical Pistol Course (TPC): demanding 30-round course fired entirely at 7 yards on QIT-99 target. Emphasizes fast, accurate hits from concealment with tight par times.",
+                run: [
+                    "STAGE 1 – Draw to single shots (from concealment):",
+                    "  From concealment, hands at sides, draw and fire 1 round; repeat once (2 rounds). Par: 3.3 sec total (~1.65 sec per shot).",
+                    "STAGE 2 – Pairs from ready:",
+                    "  From low/modified high ready, fire 2 rounds; repeat once (4 rounds). Par: 2.7 sec total (~1.35 sec per pair).",
+                    "STAGE 3 – Six-round string:",
+                    "  From low/modified high ready, fire 6 rounds in one continuous string. Par: 3.0 sec (~0.5 sec per shot).",
+                    "STAGE 4 – Slide-lock reload drill:",
+                    "  Gun loaded with 2+2 (or 1+1). Fire 1, slide-lock reload, fire 1 more; repeat (4 rounds). Par: 6.5 sec total (~3.25 sec each).",
+                    "STAGE 5 – Two targets:",
+                    "  Two targets 3 yards apart. Fire 1 into each; repeat once (4 rounds). Par: 3.3 sec total (~1.65 sec per string).",
+                    "STAGE 6 – 180° turn, three targets:",
+                    "  Three targets 3 yards apart, start back to targets. Turn, draw from concealment, fire 1 each; repeat opposite direction (6 rounds). Par: 7.0 sec total.",
+                    "STAGE 7 – Kneeling reload:",
+                    "  Gun loaded with 1 round. Fire to slide-lock, drop to knee while reloading, fire 1 more; repeat (4 rounds). Par: 8.0 sec each string."
+                ],
+                scoring: [
+                    "Target: QIT-99 or similar silhouette with bottle scoring zone",
+                    "Scoring: Typically 5 points for inner bottle hits, 2 points elsewhere on target",
+                    "Common passing: 135/150 points with all stages passed individually",
+                    "Total: 30 rounds across 7 stages, all at 7 yards"
+                ],
+                notes: [
+                    "Skills tested: Fast draws, rapid controlled strings, slide-lock reloads, target transitions, 180° turns, kneeling reload",
+                    "Start positions: Mix of concealment and low/modified high ready",
+                    "This is the widely published older TPC; exact official times may vary in current internal use",
+                    "Adapt for range limitations (no 180° turns) as needed while practicing core skills"
+                ]
+            },
+            {
+                title: "IDPA SCORING",
+                category: "scoring",
+                description: "Time-plus scoring reference for training drills.",
+                run: [
+                    "Run the drill, record raw time.",
+                    "Apply penalties based on hits and errors below."
+                ],
+                scoring: [
+                    "A Zone hit: +0 sec",
+                    "B Zone hit: +1 sec",
+                    "C Zone hit: +3 sec",
+                    "Miss: +5 sec",
+                    "Hit a no-shoot: +5 sec"
+                ],
+                notes: [
+                    "Use hard sight picture from 10–12 yards and out.",
+                    "Use a soft sight picture from contact distance to ~8–10 yards."
+                ]
+            },
+            {
+                title: "TC T-DRILL",
+                category: "tc",
+                description: "Sprint in, engage three bullseye targets with lateral movement and a return to center. Great blend of movement + accuracy.",
+                run: [
+                    "Setup: 3× 50 ft bullseye targets spaced 5 yards apart (left/center/right).",
+                    "Start: at 12 yards, gun in hand (per your range rules).",
+                    "On signal: run to 7-yard line → fire 1 shot on center.",
+                    "Move laterally left → fire 3 shots on left.",
+                    "Move laterally right → fire 3 shots on right.",
+                    "Return to center → fire 1 shot on center.",
+                    "Option: you may move forward to the 5-yard line to engage the final center target (use consistently if you're scoring/benchmarking)."
+                ],
+                scoring: [
+                    "Score: total time + 1 sec for any hit outside the outer ring."
+                ],
+                notes: [
+                    "Finger off trigger and muzzle downrange while moving.",
+                    "Keep footwork clean—don't outrun your ability to call shots."
+                ]
+            },
+            {
+                title: "TC ESOTERIC DRILL",
+                category: "tc",
+                description: "Card placeholder—add your Esoteric drill details (targets, distance, strings, par/scoring).",
+                run: [
+                    "Add: target type, distance(s), start position, strings of fire, reload points, and time standard.",
+                    "Once added, run exactly as written for consistency."
+                ],
+                scoring: ["Add: scoring method (time-plus, points, pass/fail)."],
+                notes: ["If you paste the course of fire, I can rewrite this into a clean, fully specified card."]
+            },
+            {
+                title: "TC PIZZA DRILL CHALLENGE 2",
+                category: "tc",
+                description: "Fast transitions + reload under pressure using two printed targets.",
+                run: [
+                    "Setup: two printed targets (left and larger right).",
+                    "On signal: fire 2 shots on the left target.",
+                    "Reload.",
+                    "Fire 5 shots on the larger right target."
+                ],
+                scoring: ["Goal: 5.0 seconds (raw time)."],
+                notes: [
+                    "Prioritize a clean reload—fumbled reloads destroy the run.",
+                    "Call your shots; don't spray to chase the timer."
+                ]
+            },
+            {
+                title: "TC THE BILLY DRILL",
+                category: "tc",
+                description: "Three Bill Drill-style strings at increasing closeness—tests recoil control as distance shrinks.",
+                run: [
+                    "Target: IDPA target.",
+                    "String 1: 25 yards, 6 shots (as one string).",
+                    "String 2: 15 yards, 6 shots.",
+                    "String 3: 10 yards, 6 shots.",
+                    "Add all three times together."
+                ],
+                scoring: ["Score: total time for all 3 strings (track hits too)."],
+                notes: ["If accuracy falls apart at 25, slow down—make the first string honest."]
+            },
+            {
+                title: "5 SHOT GRIP DRILL",
+                category: "fundamentals",
+                description: "Pure recoil management check—if your grip is right, you won't need to re-grip mid-string.",
+                run: [
+                    "Distance: 3 yards.",
+                    "On signal: fire 5 shots as fast as the gun returns to the target (no waiting, no slapping)."
+                ],
+                scoring: ["Score: group quality + whether you had to re-adjust grip."],
+                notes: ["If the dot/sights 'bounce' predictably back to center, you're on track."]
+            },
+            {
+                title: "LEATHAM 1 TO 5 DRILL",
+                category: "leatham",
+                description: "Escalating round-count draws—forces consistent presentation and recoil control.",
+                run: [
+                    "Target: Transtar at 5 yards.",
+                    "Par: 3.0 seconds (per your note).",
+                    "Run 5 mini-strings:",
+                    "1) Draw, fire 1, holster.",
+                    "2) Draw, fire 2, holster.",
+                    "3) Draw, fire 3, holster.",
+                    "4) Draw, fire 4, holster.",
+                    "5) Draw, fire 5, holster."
+                ],
+                scoring: ["Score: pass strings that meet par with acceptable hits; track which string breaks down."],
+                notes: ["Don't rush the re-holster—reset safely and deliberately."]
+            },
+            {
+                title: "LEATHAM BARRICADE DRILL",
+                category: "leatham",
+                description: "Alternating targets from behind cover under a fixed par—great for cadence discipline.",
+                run: [
+                    "Setup: 2 targets at 7 yards, spaced 9 feet apart.",
+                    "Start: behind barricade.",
+                    "On signal: draw and fire 1 on right, 1 on left, alternating until timer beeps."
+                ],
+                scoring: ["Par: 10 seconds. Score: number of acceptable hits within par."],
+                notes: ["Use the barricade correctly—don't crowd it; keep muzzle discipline tight."]
+            },
+            {
+                title: "LEATHAM DRILL 3",
+                category: "leatham",
+                description: "Two-hands → strong hand → support hand transition under par.",
+                run: [
+                    "Target: 5 yards.",
+                    "Start: close ready.",
+                    "On signal: extend with both hands and fire 1.",
+                    "Transition to strong-hand only: fire 2.",
+                    "Transition to support-hand only: fire 3."
+                ],
+                scoring: ["Par: 5 seconds (per your note). Score: hits + time."],
+                notes: ["Move your support hand safely out of the way before going one-handed."]
+            },
+            {
+                title: "FARMER'S WALK (SEAL DRILL)",
+                category: "movement",
+                description: "Adds stress and movement with a sandbag while maintaining IDPA scoring discipline.",
+                run: [
+                    "Start: 15 yards holding a sandbag; target downrange.",
+                    "On signal: draw and fire 2 shots.",
+                    "Move to 10-yard line: fire 2.",
+                    "Move to 5-yard line: fire 2.",
+                    "Return to 15-yard line: fire 2 more."
+                ],
+                scoring: ["Use IDPA scoring (time-plus)."],
+                notes: ["Move safely with the bag—don't let fatigue wreck muzzle discipline."]
+            },
+            {
+                title: "WALK BACK DRILL",
+                category: "movement",
+                description: "Confidence ladder—only move back when the hit is good.",
+                run: [
+                    "Target: 3 yards to start. Par: 2.5 seconds for each rep.",
+                    "On signal: draw, fire 1 head shot, holster.",
+                    "If hit is good: step back 1 yard and repeat.",
+                    "Continue until you miss."
+                ],
+                scoring: ["Score: furthest distance you can keep a good head hit inside par."],
+                notes: ["Make your 'good hit' standard explicit (e.g., head box only)."]
+            },
+            {
+                title: "SHOOT / RELOAD DRILL",
+                category: "movement",
+                description: "Slide-lock reload repetition without wasted rounds.",
+                run: [
+                    "Load pistol with 1 round. Spare mag full on belt.",
+                    "Distance: 5 yards on IDPA/IPSC target.",
+                    "On signal: draw, fire 1, reload, fire 1, scan, holster.",
+                    "Repeat until spare mag is empty."
+                ],
+                scoring: ["Score: consistency of reloads + hits; track average rep time."],
+                notes: ["Keep the gun in your workspace—don't 'fish' for the magwell."]
+            },
+            {
+                title: "15 ALPHA DRILL",
+                category: "speed",
+                description: "Three distances, same demand: all A-zone hits at speed.",
+                run: [
+                    "Target: IPSC.",
+                    "Distance blocks: 5, 10, 15 yards.",
+                    "At each distance: on signal, draw and fire 5 rounds into A-zone."
+                ],
+                scoring: ["Score: time for each distance (and whether all hits were A)."],
+                notes: ["If you drop charlies/deltas, slow down until A's are repeatable."]
+            },
+            {
+                title: "THE ELEANOR DRILL (Sage Dynamics)",
+                category: "speed",
+                description: "Precision head shot + cadence body shots on a reduced vital zone.",
+                run: [
+                    "Target: IDPA with reduced chest vital (3×4) + 1-inch head zone.",
+                    "Distance: 3 yards (rifle: 5 yards).",
+                    "On signal: draw and fire 1 precise shot to head, then 3 cadence shots to body."
+                ],
+                scoring: ["Time standard: 2.5 seconds."],
+                notes: ["This is a 'no excuse' visual discipline drill—watch the sights/dot lift and return."]
+            },
+            {
+                title: "90% DRILL (Sage Dynamics)",
+                category: "speed",
+                description: "Teaches you to press when the sights are acceptable—without freezing.",
+                run: [
+                    "Target: B-8 (or equivalent) at 50 ft.",
+                    "Fire 10 well-aimed shots in 15 seconds.",
+                    "Rule: anytime the sights/dot are on target, press the shot."
+                ],
+                scoring: ["Score: keep most shots within the scoring area (aim for 90%+ acceptable hits)."],
+                notes: ["Expect the group to open—your job is to keep it 'inside the problem.'"]
+            },
+            {
+                title: "THE 10 IN 8 DRILL (Dave Spaulding)",
+                category: "speed",
+                description: "Lateral movement + shooting on the move with a small aiming point.",
+                run: [
+                    "Target: 3.5×5 card at 5 yards.",
+                    "Markers: two lateral markers spaced so you move to the opposite marker (~3 yards apart per your note).",
+                    "On signal: move laterally to opposite marker and fire 5 rounds.",
+                    "Move back to start marker and fire 5 more rounds."
+                ],
+                scoring: ["Goal: 8 seconds or less."],
+                notes: ["Keep your upper body quiet—move your hips/feet, not the gun."]
+            },
+            {
+                title: "15 TO THE 3RD (Dave Spaulding)",
+                category: "speed",
+                description: "High round count with lateral movement and reload—great for match pace.",
+                run: [
+                    "Target: IDPA with vitals at 15 feet.",
+                    "Load: 5 rounds per mag.",
+                    "On signal: draw and fire 5.",
+                    "Move laterally left 15 ft: fire 5.",
+                    "Move back right while reloading: fire final 5."
+                ],
+                scoring: ["Benchmark: under 12 seconds (with acceptable hits)."],
+                notes: ["Reload while moving—don't stop your feet to feed the gun."]
+            },
+            {
+                title: "5 IN 5 DRILL (Modified) (D. Spaulding)",
+                category: "spaulding",
+                description: "Escalating distance strings with consistent 5-in-5 standard.",
+                run: [
+                    "Target: IDPA with vitals.",
+                    "Each string: 5 rounds in 5 seconds from holster.",
+                    "Distances: 3, 5, 7, 10, and 15 yards.",
+                    "Can be modified to 3 rounds in 4 seconds."
+                ],
+                scoring: ["Pass: all rounds in vitals within time limit at each distance."],
+                notes: ["Track which distance causes breakdown in speed/accuracy balance."]
+            },
+            {
+                title: "5 AND 5 DRILL",
+                category: "spaulding",
+                description: "Lateral movement drill with position changes.",
+                run: [
+                    "Target: IDPA with vitals at 5 yards.",
+                    "Start: 3.5 ft left of center.",
+                    "On signal: draw and move 7 ft right, fire 5 shots.",
+                    "Move left to start position: fire 5 more rounds."
+                ],
+                scoring: ["Goal: keep all shots in vitals target."],
+                notes: ["Maintain good footwork during transitions."]
+            },
+            {
+                title: "THE RIP OFF DRILL (D. Spaulding)",
+                category: "spaulding",
+                description: "Turn-and-engage with strong/support hand transitions.",
+                run: [
+                    "Setup: 3 IDPA targets at 10 yards, 3 ft apart.",
+                    "Start: back to targets, hands at shoulder height.",
+                    "On beep: turn and fire 2 shots on each target.",
+                    "Reload: fire 1 shot strong hand only to each target.",
+                    "Change hands: fire 1 shot support hand only to each target."
+                ],
+                scoring: ["Goal: 15 seconds or less."],
+                notes: ["Smooth transitions between two-handed and one-handed shooting."]
+            },
+            {
+                title: "THE 2 SECOND DRILL (D. Spaulding)",
+                category: "spaulding",
+                description: "Compressed ready precision under tight time constraint.",
+                run: [
+                    "Target: silhouette at 7 yards with Spaulding Vitals Target in upper chest.",
+                    "Start: compressed ready position.",
+                    "On signal: aim and fire 4 shots in under 2 seconds."
+                ],
+                scoring: ["All shots must be in Vitals Target to pass."],
+                notes: ["This is pure sight discipline—no slack in the trigger press."]
+            },
+            {
+                title: "10-20-30 DRILL (D. Spaulding)",
+                category: "spaulding",
+                description: "Movement with precision on a small target.",
+                run: [
+                    "Target: 25 yard NRA Bullseye at 10 yards.",
+                    "Start: holstered, hands in startled position.",
+                    "On signal: draw, fire 1 shot.",
+                    "Move laterally 20 ft: fire another round.",
+                    "Move back to first position: fire again.",
+                    "Continue until 10 rounds are fired."
+                ],
+                scoring: ["Goal: keep all rounds on target within 30 seconds."],
+                notes: ["Don't rush—precision at distance requires patience."]
+            },
+            {
+                title: "THE DIAMOND DRILL (D. Spaulding)",
+                category: "spaulding",
+                description: "Movement drill around diamond-shaped cone pattern.",
+                run: [
+                    "Setup: 4 orange cones forming diamond at 7 yards. IDPA target with vitals.",
+                    "Start: left cone.",
+                    "On signal: draw, fire 2 shots.",
+                    "Move to front cone: fire 2.",
+                    "Move to right cone: fire 2.",
+                    "Move to rear cone: fire 2.",
+                    "Return to start: fire 2 final shots."
+                ],
+                scoring: ["Track time and hits in vitals."],
+                notes: ["Keep muzzle discipline tight during movement."]
+            },
+            {
+                title: "15 IN 10 DRILL (Dave Spaulding)",
+                category: "spaulding",
+                description: "Three distance blocks with cumulative time goal.",
+                run: [
+                    "Setup: 3 IPSC targets at 20, 10, and 5 yards.",
+                    "Draw and fire 5 rounds at 15 yards—record time.",
+                    "Draw and fire 5 rounds at 10 yards—record time.",
+                    "Draw and fire 5 rounds at 5 yards—record time.",
+                    "Add all 3 times together."
+                ],
+                scoring: ["Goal: 3 runs in under 10 seconds total. All shots in A zone (one C-zone miss per stage allowed)."],
+                notes: ["Balance speed with accuracy—don't blow the close strings."]
+            },
+            {
+                title: "NO FAIL BOX DRILL",
+                category: "speed",
+                description: "Precision head shots with alpha zone shots under time pressure.",
+                run: [
+                    "Setup: 2 IPSC targets at 5 yards, 6 ft apart. Put 1-inch square in center of head on each.",
+                    "Draw and fire 2 shots to alpha zone in each target.",
+                    "Then 1 shot to head of each target—must line break the 1-inch square to pass."
+                ],
+                scoring: ["Goal: 6 seconds or less."],
+                notes: ["The head shot is the deciding factor—call it before you press."]
+            },
+            {
+                title: "NO FAIL SHOT DRILL (D. Spaulding)",
+                category: "spaulding",
+                description: "Escalating distances with consistent precision time limit.",
+                run: [
+                    "Target: hostage target with 5-inch circle on bad guy's head.",
+                    "Start: close ready retention position.",
+                    "Fire 1 shot into 5-inch circle within 3.5 seconds at 5 yards.",
+                    "Move back to 7 yards and repeat, then 10 yards, 12 yards, and 50 ft.",
+                    "You are allowed one shot over the 3.5 second time limit."
+                ],
+                scoring: ["Pass/fail based on hits and time."],
+                notes: ["Don't waste your one 'slow' shot—save it for the longest distance."]
+            },
+            {
+                title: "9 SHOT CLOSE SPEED DRILL",
+                category: "speed",
+                description: "Quick transitions across three close targets.",
+                run: [
+                    "Setup: 3 IDPA targets at 3 yards, 1 yard apart.",
+                    "On signal: draw and fire 1 shot on each target left to right.",
+                    "Fire back right to left.",
+                    "Finish with head shots left to right."
+                ],
+                scoring: ["Goal: 5 seconds or less."],
+                notes: ["Watch your transitions—keep the gun moving smoothly."]
+            },
+            {
+                title: "THE ORANGE DOT DRILL",
+                category: "fundamentals",
+                description: "Visual patience drill—don't chase the sights.",
+                run: [
+                    "Target: 2-inch orange dot on white background at 5 yards.",
+                    "Draw and fire 1 shot. If you miss, tape the hole and try again.",
+                    "When you hit the dot: fire 2 shots.",
+                    "When you can hit with 2 shots: fire 3 shots."
+                ],
+                scoring: ["Objective: bring gun on target without chasing sights/dot."],
+                notes: ["If you're 'hunting' for the dot, slow your draw stroke."]
+            },
+            {
+                title: "WIZARD DRILL (Ken Hackathorn)",
+                category: "hackathorn",
+                description: "Head shot standards at escalating distances.",
+                run: [
+                    "All stages from concealment holster. Max time: 2.5 seconds per stage.",
+                    "Stage 1: 3 yards, 1 head shot strong hand only.",
+                    "Stage 2: 5 yards, 1 head shot both hands.",
+                    "Stage 3: 7 yards, 1 head shot both hands.",
+                    "Stage 4: 10 yards, 2 body shots both hands."
+                ],
+                scoring: ["Pass: all stages within 2.5 seconds with good hits."],
+                notes: ["The 3-yard strong-hand-only is the hardest for most shooters."]
+            },
+            {
+                title: "1-2-3 DRILL (Ken Hackathorn)",
+                category: "hackathorn",
+                description: "Head shot precision across three targets with varying sequences.",
+                run: [
+                    "Setup: 3 IPSC targets at 5 yards, 1 meter apart.",
+                    "Par: 3.5 seconds (concealment) or 3.0 seconds (open holster).",
+                    "Run 1: draw, fire 1 head shot on each target left to right.",
+                    "Run 2: start right, go left.",
+                    "Run 3: center first, then your choice of left or right next.",
+                    "To pass: minimum 7 head shots total."
+                ],
+                scoring: ["7+ head shots to pass."],
+                notes: ["Plan your transitions—don't let the timer force bad shots."]
+            },
+            {
+                title: "JOHN WICK'S DRILL (Hackathorn)",
+                category: "hackathorn",
+                description: "Complex round count distribution across three targets.",
+                run: [
+                    "Setup: 3 IDPA targets—7 yards, 5 yards (1 pace right), 3 yards (1 pace left).",
+                    "All strings start at low ready.",
+                    "String 1: 2 shots on each target.",
+                    "String 2: 3 shots on left, 2 shots on right, 1 shot on center.",
+                    "String 3: 1 shot on left, 2 shots on right, 3 shots on center. Must be a head shot on target one."
+                ],
+                scoring: ["Excellent: under 8 sec. Good: 8-9 sec. Fair: 9-10 sec. Poor: over 10 sec."],
+                notes: ["Track which string breaks down—usually String 3 with the head shot."]
+            },
+            {
+                title: "THE 1 TO 5 DRILL (Ken Hackathorn)",
+                category: "hackathorn",
+                description: "Escalating round count across three targets with reload.",
+                run: [
+                    "Setup: 3 IDPA targets at 10 yards, 6 ft apart.",
+                    "Load: 8-11 rounds in pistol.",
+                    "On signal: fire 1 shot at left, 2 at center, 3 at right.",
+                    "Move back to center: fire 4 shots.",
+                    "Move to left: fire 5 shots.",
+                    "When gun runs dry, reload and continue."
+                ],
+                scoring: ["20 seconds pass/fail. Add 1 sec for C zone hits, 3 sec for D zone hits."],
+                notes: ["Manage your reload timing—don't let it catch you mid-string."]
+            },
+            {
+                title: "BFM DRILL (Ken Hackathorn)",
+                category: "hackathorn",
+                description: "Combined Bill Drill, FAST Drill, and Mozambique sequence.",
+                run: [
+                    "Setup: 3 IDPA targets at 7 yards, 7 ft apart. Load 8 rounds.",
+                    "Start: Bill Drill—6 rounds to body on center target.",
+                    "Fire 2 rounds to head on left target.",
+                    "Reload: fire 4 rounds to body (FAST Drill).",
+                    "Finish: Mozambique on right target."
+                ],
+                scoring: ["20 seconds pass/fail."],
+                notes: ["The reload is the crux—don't fumble it after a clean Bill Drill."]
+            },
+            {
+                title: "OLD SCHOOL NEW SCHOOL (Ken Hackathorn)",
+                category: "hackathorn",
+                description: "Three eras of shooting technique in one drill.",
+                run: [
+                    "Setup: 3 IDPA targets at 10 yards, 2 yards apart.",
+                    "Run 1 (Pre-WWII): draw, fire 2 shots per target strong hand, single action only. Record time.",
+                    "Run 2 (Post War): draw, fire 2 shots per target strong hand, double action. Record time.",
+                    "Run 3 (Modern): draw, fire 2 shots per target two hands, double action. Record and total times."
+                ],
+                scoring: ["Compare times across eras."],
+                notes: ["This drill shows why modern technique evolved."]
+            },
+            {
+                title: "TRI PRESIDENTE (Ken Hackathorn)",
+                category: "hackathorn",
+                description: "El Presidente variant with unknown round count.",
+                run: [
+                    "Setup: 3 IDPA targets at 10 yards, 7 ft apart.",
+                    "Partner loads magazine with 1-10 rounds (shooter doesn't know count).",
+                    "Start: back to targets.",
+                    "On signal: turn, fire 3 shots to body on each target, then 1 head shot to each.",
+                    "When gun runs dry, reload and continue."
+                ],
+                scoring: ["Passing: 20 seconds or less."],
+                notes: ["The surprise reload is the challenge—stay in the fight."]
+            },
+            {
+                title: "THE MODIFIED FBI DRILL (Ken Hackathorn)",
+                category: "hackathorn",
+                description: "Precision standard at escalating distances with decreasing time.",
+                run: [
+                    "Target: IDPA or IPSC.",
+                    "Par 1: 2.5 seconds—draw and fire 1 shot at 5, 10, and 12 yards.",
+                    "Par 2: 2.0 seconds—repeat.",
+                    "Par 3: 1.5 seconds—repeat."
+                ],
+                scoring: ["Shots must be within C zone to pass."],
+                notes: ["The 1.5-second standard at 12 yards is the crux."]
+            },
+            {
+                title: "2-2-2 SKILL DRILL (Hackathorn)",
+                category: "hackathorn",
+                description: "Two-handed, strong-hand, support-hand sequence on small target.",
+                run: [
+                    "Target: 7-inch circle at 10 yards.",
+                    "On signal: draw and fire 2 shots both hands, 2 shots strong hand, 2 shots weak hand."
+                ],
+                scoring: ["Performance standard: 9 seconds with all shots in circle. +2 sec if outside circle but on paper. +5 sec if off paper."],
+                notes: ["The support-hand string usually breaks most shooters."]
+            },
+            {
+                title: "THE 9 IN 9 SKILL DRILL (Ken Hackathorn)",
+                category: "hackathorn",
+                description: "Movement and precision at 9 yards.",
+                run: [
+                    "Target: IDPA with 3×5 file card. Two markers at 9 yards from target.",
+                    "On signal: draw, fire 3 shots.",
+                    "Move to marker: fire 3 more rounds.",
+                    "Move back to original position: fire 3 final shots."
+                ],
+                scoring: ["Excellent: 9 seconds or less."],
+                notes: ["Keep the file card honest—don't let hits spray off it."]
+            },
+            {
+                title: "HACKATHORN POCKET PISTOL DRILL",
+                category: "hackathorn",
+                description: "Compact gun standard.",
+                run: [
+                    "Target: 6-inch circle at 6 yards.",
+                    "From pocket: 6 shots in 6 seconds.",
+                    "If using 5-shot snub nose revolver: reduce time to 5 seconds."
+                ],
+                scoring: ["All shots in circle to pass."],
+                notes: ["Don't fight the pocket draw—practice it slowly first."]
+            },
+            {
+                title: "RETENTION SHOOTING DRILL",
+                category: "fundamentals",
+                description: "Close-quarters shooting from retention position.",
+                run: [
+                    "Distance: 1-3 yards.",
+                    "Practice drawing and firing one-handed while keeping gun close to body.",
+                    "Index elbow against side, align gun with head (bring gun to center or move head over gun).",
+                    "Bring gun to chest high rather than waist level.",
+                    "Keep support hand near body for safety.",
+                    "Begin with single rounds, then increase to 2 and 3 shots."
+                ],
+                scoring: ["Focus on consistent hits while maintaining safe support hand position."],
+                notes: ["This is for extreme close quarters—practice the draw slowly first."]
+            },
+            {
+                title: "THE BLIND SWORDSMAN'S DRILL",
+                category: "fundamentals",
+                description: "Natural point of aim check.",
+                run: [
+                    "Distance: 5 yards.",
+                    "Bring gun up and align sights, then close eyes and fire 1 shot.",
+                    "Open eyes and check hit.",
+                    "If right of target: rotate slightly left. If left: adjust slightly right."
+                ],
+                scoring: ["Goal: find your natural point of aim."],
+                notes: ["This reveals stance/grip issues—don't force the sights."]
+            },
+            {
+                title: "5-5-5 DRILL (Larry Vickers)",
+                category: "vickers",
+                description: "Escalating round count from low ready.",
+                run: [
+                    "Target: IDPA at 5 yards.",
+                    "All strings from low ready within 5 seconds total.",
+                    "Fire 1 shot, then 2, then 3, 4, and 5 shots."
+                ],
+                scoring: ["All shots must be inside A zone to pass."],
+                notes: ["Don't blow the easy ones—5 shots is where accuracy falls apart."]
+            },
+            {
+                title: "THE TEST (Larry Vickers)",
+                category: "vickers",
+                description: "Precision and speed combined.",
+                run: [
+                    "Target: 25-yard NRA bullseye on IPSC target at 10 yards.",
+                    "Fire 10 shots in 10 seconds."
+                ],
+                scoring: ["Final score: 90 points or more, or all shots within black area of bullseye."],
+                notes: ["This is a pace drill—find your rhythm."]
+            },
+            {
+                title: "THE DEVIL DRILL",
+                category: "speed",
+                description: "Surprise reload under time pressure.",
+                run: [
+                    "Target: 5.5×7 inch rectangle on IPSC target at 6 yards.",
+                    "Chamber 1 round, then have partner load 1-4 rounds in magazine.",
+                    "Spare loaded mag in pouch.",
+                    "On signal: draw, fire until gun goes dry, continue shooting until total of 6 rounds fired.",
+                    "Goal: 6 rounds in 6 seconds at 6 yards."
+                ],
+                scoring: ["All hits in rectangle to pass."],
+                notes: ["The surprise reload tests your flow under stress."]
+            },
+            {
+                title: "2 YARD TORTURE",
+                category: "speed",
+                description: "Escalating distance with consistent precision standard.",
+                run: [
+                    "Target: 25-yard NRA bullseye.",
+                    "Start at 2 yards, close ready. Fire 2 shots in 3 seconds.",
+                    "Move back 2 yards and repeat.",
+                    "Continue in 2-yard increments to 10 yards."
+                ],
+                scoring: ["Track how far back you can keep acceptable hits."],
+                notes: ["The bullseye gets optically smaller as you move back."]
+            },
+            {
+                title: "666 DRILL",
+                category: "speed",
+                description: "Classic reload drill.",
+                run: [
+                    "Distance: 6 yards.",
+                    "6 shots from holster with mandatory slide lock reload in between.",
+                    "Goal: 6 seconds."
+                ],
+                scoring: ["Track time and hits."],
+                notes: ["The reload is everything—practice the mechanics."]
+            },
+            {
+                title: "EL POLLO DIABLO (Kyle Lamb)",
+                category: "standards",
+                description: "Two-handed, strong-hand, support-hand on six targets.",
+                run: [
+                    "Setup: 6 IPSC targets at 10 yards, 1 yard apart.",
+                    "On signal: draw, fire 1 shot per target two hands.",
+                    "Reload: fire 1 shot per target strong hand.",
+                    "Reload: fire 1 shot per target weak hand."
+                ],
+                scoring: ["Under 20 seconds including penalties is excellent. +0.5 sec for C zone, +1 sec for D zone."],
+                notes: ["The support-hand string will humble you."]
+            },
+            {
+                title: "THE BILL DRILL",
+                category: "speed",
+                description: "Classic recoil management standard.",
+                run: [
+                    "Target: IPSC at 7 yards.",
+                    "On signal: draw and fire 6 shots from open holster.",
+                    "Goal: 3 seconds or less."
+                ],
+                scoring: ["All shots must be in A zone to pass."],
+                notes: ["If shots spray into C/D, slow down—the drill demands A's."]
+            },
+            {
+                title: "25 ROUND BILL WILSON DRILL",
+                category: "standards",
+                description: "Precision drill across four strings.",
+                run: [
+                    "Target: IDPA at 10 yards. All strings from holster.",
+                    "String 1: draw, fire 5 shots into A zone.",
+                    "String 2: draw, fire 5 shots strong hand only.",
+                    "String 3: draw, fire 5 shots, reload, fire 5 more.",
+                    "String 4: draw, fire 4 shots to A zone and 1 shot to head box."
+                ],
+                scoring: ["This is a precision drill, not a speed drill."],
+                notes: ["Take your time—Wilson designed this for fundamentals."]
+            },
+            {
+                title: "THE FIVES",
+                category: "speed",
+                description: "Escalating distance with cumulative time additions.",
+                run: [
+                    "Target: IPSC.",
+                    "At 3 yards: draw, fire 5 shots into A zone—record time.",
+                    "At 7 yards: add 1 second to par, fire 5 shots.",
+                    "At 10 yards: add 1 second to par, fire 5 rounds.",
+                    "At 50 ft: add 1 second to par, fire 5 rounds."
+                ],
+                scoring: ["Meet par at each distance."],
+                notes: ["Don't give away time at close range—bank it for distance."]
+            },
+            {
+                title: "MODIFIED DEFOOR DRILL",
+                category: "standards",
+                description: "Sprint back, engage at multiple distances.",
+                run: [
+                    "Start: gun holstered, both hands placed on IDPA target.",
+                    "On beep: run back to 15 yard line, turn, draw, fire 2 rounds to body.",
+                    "Run to 10 yard line: fire 2 to body.",
+                    "Move to 7 yard line: fire 2 to head.",
+                    "Move to 3 yard line: fire 2 to head.",
+                    "Passing: 16 points plus 4 head shots. 2 shots must be in eye box. 1 minute par time."
+                ],
+                scoring: ["Scoring: A=5, C=3, D=2 points."],
+                notes: ["Manage your breathing after the sprint."]
+            },
+            {
+                title: "THE 5×5 SKILL TEST",
+                category: "standards",
+                description: "Comprehensive standard with graded performance levels.",
+                run: [
+                    "Target: IDPA at 10 yards. Start: hands at side.",
+                    "String 1: draw, fire 5 to body.",
+                    "String 2: draw, fire 5 to body strong hand only.",
+                    "String 3: draw, fire 5 to body, slide lock reload, fire 5 more to body.",
+                    "String 4: draw, fire 4 to body and 1 to head."
+                ],
+                scoring: [
+                    "Add total time for all stages + 0.5 sec penalty per point down.",
+                    "Grandmaster: 15 sec or less",
+                    "Master: 15.1-20 sec",
+                    "Expert: 20.1-25 sec",
+                    "Sharpshooter: 25.1-32 sec",
+                    "Marksman: 32.1-41 sec",
+                    "Novice: 41.1-50 sec",
+                    "Needs work: 50.1+ sec"
+                ],
+                notes: ["This is a benchmark—run it quarterly to track progress."]
+            },
+            {
+                title: "3 & 2 DRILL",
+                category: "speed",
+                description: "Fast body-to-head transition.",
+                run: [
+                    "Target: IPSC at 3 yards with 3×5 file card on head.",
+                    "On signal: draw, fire 3 rounds into A zone, followed by 2 rounds into file card."
+                ],
+                scoring: ["Goal: 3 seconds or less."],
+                notes: ["The head shots are the test—call them."]
+            },
+            {
+                title: "JAMES TARR DRILL",
+                category: "speed",
+                description: "Speed vs precision comparison.",
+                run: [
+                    "Setup: 2 IPSC targets at 5 yards.",
+                    "At beep: shoot left target as fast as you can place hits anywhere on target.",
+                    "On signal: shoot right target, but slow down to use front sight for A zone hits.",
+                    "Compare times between the two targets."
+                ],
+                scoring: ["Aim small, miss small."],
+                notes: ["This shows the cost of precision—usually 0.5-1 second per shot."]
+            },
+            {
+                title: "CQB DRILL",
+                category: "scenario",
+                description: "Contact distance scenario.",
+                run: [
+                    "Start: contact distance.",
+                    "Using support hand (open palm): hit assailant once in head.",
+                    "Draw: fire 2-3 shots into lower extremities from speed rock position.",
+                    "Step back to barrier: fire 2-3 more shots from close ready retention stance."
+                ],
+                scoring: ["Pass/fail based on safe execution."],
+                notes: ["This is about creating space—don't skip the palm strike."]
+            },
+            {
+                title: "MIKE SEEKLANDER DRILL",
+                category: "scenario",
+                description: "Gun retrieval and barricade engagement.",
+                run: [
+                    "Start: 10 yards to left of box with gun placed inside.",
+                    "Retrieve gun, move back to barricade at start line.",
+                    "Engage target with 3-4 shots."
+                ],
+                scoring: ["Track time and hits."],
+                notes: ["Treat the gun retrieval as a real scenario—check status."]
+            },
+            {
+                title: "MULTI-MALFUNCTION DRILL",
+                category: "malfunction",
+                description: "Practice clearing various malfunctions.",
+                run: [
+                    "Tap, rack, reassess is the immediate reaction technique.",
+                    "Types of malfunctions to practice:",
+                    "1) Magazine not fully seated",
+                    "2) Failure to eject (stove pipe)",
+                    "3) Fired casing stuck in chamber with fresh round trying to chamber",
+                    "4) Empty magazine in gun (start with empty mag and gun in slide lock)",
+                    "5) Bad first round in magazine (use 9mm with inert round on top, live round below)",
+                    "6) Revolver with empty chamber"
+                ],
+                scoring: ["Practice until clearances are automatic."],
+                notes: ["Run these with multiple firearms for muscle memory."]
+            },
+            {
+                title: "ACTIVE SHOOTER DRILL",
+                category: "scenario",
+                description: "Dynamic scenario with multiple balloons.",
+                run: [
+                    "Setup: 3 balloons—first on left of partition, two on right side.",
+                    "Active shooter engages first balloon.",
+                    "Active shooter moves to right, engages balloon 2.",
+                    "After breaking balloon 2, active shooter tries to break balloon 3 before defensive shooter.",
+                    "Defensive shooter: gun holstered/concealed, facing 90 degrees to target.",
+                    "At sound of first shot: defensive shooter draws and attempts to break balloon."
+                ],
+                scoring: ["Who breaks balloon 3 first?"],
+                notes: ["This teaches recognition and reaction speed."]
+            },
+            {
+                title: "EL PRESIDENTE DRILL",
+                category: "standards",
+                description: "Classic turn-and-engage with reload.",
+                run: [
+                    "Setup: 3 IPSC targets at 10 yards, 3 ft apart.",
+                    "Start: back to targets, hands above shoulders.",
+                    "On signal: turn, engage each target with 2 shots.",
+                    "Perform mandatory reload.",
+                    "Re-engage 3 targets with 2 shots each (total 12 rounds)."
+                ],
+                scoring: ["Ideal: perfect score within 10 seconds."],
+                notes: ["This is THE classic—if you run one drill, run this."]
+            },
+            {
+                title: "ELEANOR DRILL (Sage Dynamics)",
+                category: "speed",
+                description: "Red dot precision drill.",
+                run: [
+                    "Target: Eleanor target (1-inch dot).",
+                    "From 3 yards: draw, fire 1 shot into dot in 2 seconds or less.",
+                    "Repeat at 5 yards.",
+                    "Mainly designed for red dot sight."
+                ],
+                scoring: ["Hit the dot within time limit."],
+                notes: ["This is for RDS users—confirms your zero and visual discipline."]
+            },
+            {
+                title: "SIG SAUER ANTICIPATION DRILL",
+                category: "malfunction",
+                description: "Flinch diagnostic drill.",
+                run: [
+                    "Load 1 round in chamber, remove magazine, holster pistol.",
+                    "Draw and 'fire' 2 shots.",
+                    "First round fires, slide drops on empty chamber.",
+                    "Second 'shot' is dry fire.",
+                    "Repeat until magazine is empty."
+                ],
+                scoring: ["Spot and correct any flinching."],
+                notes: ["Watch for the gun dipping on the dry fire—that's a flinch."]
+            },
+            {
+                title: "RIEKERT RELAY",
+                category: "scenario",
+                description: "Team competition drill.",
+                run: [
+                    "Setup: dozen squares numbered 1-12 on blank side of 2 targets.",
+                    "Form 2 teams.",
+                    "First shooter from each team fires 1 shot at #1, holsters, moves back.",
+                    "If square is hit: next shooter fires at #2.",
+                    "If previous square missed: next shooter must hit the missed square.",
+                    "Team that hits all 12 squares first wins."
+                ],
+                scoring: ["Team competition."],
+                notes: ["Great for match prep—adds social pressure."]
+            },
+            {
+                title: "RON AVERY DRILL 1",
+                category: "malfunction",
+                description: "Controlled dry fire diagnostic.",
+                run: [
+                    "Load chamber from fully loaded magazine, then remove magazine.",
+                    "From close ready: fire 1 shot, return to close ready momentarily.",
+                    "Fire gun again (dry fire).",
+                    "Check for any movement or flinch.",
+                    "Repeat until magazine runs dry."
+                ],
+                scoring: ["Diagnose any anticipation."],
+                notes: ["If the gun moves on the dry fire, you're anticipating."]
+            },
+            {
+                title: "SEAL TEAM PISTOL STANDARDS",
+                category: "standards",
+                description: "Multi-stage qualification standard.",
+                run: [
+                    "Target: IPSC or IDPA.",
+                    "3 yards - Stage 1: 1 head shot in 1.5 sec. Stage 2: 2 shots to body in 1.5 sec.",
+                    "7 yards - Stage 3: 2 shots to body, reload, 2 more shots in 5 sec. Stage 4: 2 shots to body, 1 to head in 2.5 sec. Stage 5: 6 shots strong hand only, reload, 6 shots weak hand only in 12 sec. Stage 6: double feed, clear, 2 shots to body in 5 sec.",
+                    "25 yards - Stage 7: 2 rounds to body, reload, 2 more to body in 7.5 sec."
+                ],
+                scoring: ["Pass all stages to qualify."],
+                notes: ["The support hand string (Stage 5) is brutal."]
+            },
+            {
+                title: "F.A.S.T. DRILL (Todd Green)",
+                category: "standards",
+                description: "Classic head-to-body with reload.",
+                run: [
+                    "Target: IPSC at 7 yards.",
+                    "Load: first mag with 2 rounds, second mag with 4 rounds.",
+                    "On signal: draw, fire 2 head shots into 3×5 card.",
+                    "Reload: fire 4 rounds to chest."
+                ],
+                scoring: [
+                    "10+ seconds: novice",
+                    "5.0-9.9 seconds: good",
+                    "Under 5 seconds: pro"
+                ],
+                notes: ["The reload under time pressure is the deciding factor."]
+            },
+            {
+                title: "FIGURE EIGHT DRILL (Rob Pincus)",
+                category: "scenario",
+                description: "Random number callout while moving.",
+                run: [
+                    "Setup: 4 FBI Q-35 targets with large random numbers 1-9. Set up 2 obstacles for figure-eight pattern.",
+                    "Range officer calls out random numbers.",
+                    "Shooter must turn, locate, draw, fire multiple shots at respective target.",
+                    "Re-holster and continue walking until another number is called.",
+                    "If gun goes into slide lock: emergency reload and fire if necessary.",
+                    "RO may call non-existent number to confuse shooter."
+                ],
+                scoring: ["Pass/fail based on safe execution and hits."],
+                notes: ["This is pure decision-making under pressure."]
+            },
+            {
+                title: "THE DOZIER DRILL (Jeff Cooper)",
+                category: "scenario",
+                description: "Competitive speed drill.",
+                run: [
+                    "Setup: 4 targets at 10 yards.",
+                    "Shooter 1: on signal, draw and fire 1 round per target as fast as possible.",
+                    "Shooter 2 (standing well off to side): starts with unloaded pistol.",
+                    "Shooter 2 must load firearm and put 1 shot into another target downrange."
+                ],
+                scoring: ["Who finishes first?"],
+                notes: ["Adds pressure—don't let the other shooter rattle you."]
+            },
+            {
+                title: "50 RD. SHOOTING DRILL",
+                category: "standards",
+                description: "Multi-string volume drill.",
+                run: [
+                    "Setup: 3 targets at 7 yards, 2 yards apart. Run at 50% speed, focus on good hits.",
+                    "String 1: draw, fire 1 shot, holster. Repeat 5 times (5 rounds total).",
+                    "String 2: draw, fire 3 head shots (1 per target). Repeat 3 times (9 rounds total).",
+                    "String 3: draw, fire double tap on each of 3 targets. Repeat 3 times (18 rounds total).",
+                    "String 4: draw, fire 6 rounds on left target, holster. Fire 6 on center, holster. Fire 6 on right. Run at 75% speed."
+                ],
+                scoring: ["Track hits and time."],
+                notes: ["This is about consistency over volume."]
+            },
+            {
+                title: "REVOLVER BALL & DUMMY DRILL",
+                category: "malfunction",
+                description: "Flinch check for revolvers.",
+                run: [
+                    "Target: IDPA at 7 yards. Time: 3 seconds for all stages.",
+                    "Load 1 round in gun. From low ready: at beep, fire 1 round.",
+                    "Load 2 rounds skipping one chamber. Fire both rounds within 3 seconds.",
+                    "Load 3 rounds skipping a chamber between each. Fire all 3 within 3 seconds."
+                ],
+                scoring: ["Pass if all rounds fired within time with good hits."],
+                notes: ["The empty chambers will reveal any flinching."]
+            },
+            {
+                title: "FIVE YARD ROUNDUP",
+                category: "standards",
+                description: "Four-string standard at 5 yards.",
+                run: [
+                    "Target: B-8 Repair Center at 5 yards. Time limit: 2.5 sec per string.",
+                    "String 1: draw, fire 1 round.",
+                    "String 2: low ready, fire 4 rounds.",
+                    "String 3: strong hand only, low ready, fire 3 rounds.",
+                    "String 4: support hand only, low ready, fire 2 rounds."
+                ],
+                scoring: ["Pass all strings within time with acceptable hits."],
+                notes: ["String 4 (support hand) usually breaks most shooters."]
+            },
+            {
+                title: "BALL & DUMMY ROUND",
+                category: "malfunction",
+                description: "Flinch diagnostic drill.",
+                run: [
+                    "Instructor loads either live or dummy round in gun (shooter doesn't know).",
+                    "Shooter draws and fires, noting any flinching.",
+                    "Repeat up to 10 times.",
+                    "Then: load magazine alternating live and dummy rounds—shooter will know which is which."
+                ],
+                scoring: ["Diagnostic only."],
+                notes: ["The dummy rounds reveal the truth about your trigger press."]
+            },
+            {
+                title: "LINE DRILL",
+                category: "fundamentals",
+                description: "Alignment diagnostic.",
+                run: [
+                    "Target: 1-inch wide vertical line (top to bottom) at 3 yards.",
+                    "Draw and fire 1 shot, repeat.",
+                    "Objective: keep shots inside the line.",
+                    "If shots are to the left: move right foot back slightly (and vice versa)."
+                ],
+                scoring: ["Track how many shots stay on the line."],
+                notes: ["This reveals stance/grip alignment issues."]
+            },
+            {
+                title: "THE COLLATERAL DRILL",
+                category: "speed",
+                description: "Based on Tom Cruise movie Collateral.",
+                run: [
+                    "Setup: 2 targets at 5 yards, 3 yards apart.",
+                    "On signal: fire 2 shots into chest of left target.",
+                    "Fire 2 shots into chest of right target.",
+                    "Fire 1 shot to head."
+                ],
+                scoring: ["Goal: 2.5 seconds or less."],
+                notes: ["The head shot is the crux—call it."]
+            },
+            {
+                title: "THE X DRILL",
+                category: "speed",
+                description: "Diagonal transition pattern.",
+                run: [
+                    "Setup: 2 targets at 5 yards, 3 yards apart.",
+                    "On signal: draw, fire 2 shots into head of left target.",
+                    "Transition to right: fire 2 shots into body.",
+                    "Back to left: fire 2 shots into body.",
+                    "Back to right: fire 2 shots into head."
+                ],
+                scoring: ["Goal: 7 seconds or less."],
+                notes: ["Track the X pattern—head left, body right, body left, head right."]
+            },
+            {
+                title: "TEXAS CHURCH SHOOTING",
+                category: "scenario",
+                description: "Scenario-based precision drill.",
+                run: [
+                    "Setup: bad guy target at 50 ft. Place no-shoot targets at varying distances, one blocking active shooter (requires one step to side for clear shot to head).",
+                    "Start: gun holstered and concealed.",
+                    "Time limit: 6 seconds."
+                ],
+                scoring: ["Head shot within time, no hits on no-shoots."],
+                notes: ["This simulates a real incident—pressure is intense."]
+            },
+            {
+                title: "BAER STANDARDS DRILL",
+                category: "standards",
+                description: "Baer target multi-zone drill.",
+                run: [
+                    "Target: Baer target at 5 yards (may also shoot at 3 yards).",
+                    "Draw and fire 5 shots into each rectangle.",
+                    "Reload from slide lock: fire 3 rounds into circle.",
+                    "Time limit: 9 seconds."
+                ],
+                scoring: ["All hits in zones within time."],
+                notes: ["The reload timing is critical—don't waste time."]
+            },
+            {
+                title: "ELI DICKEN DRILL",
+                category: "scenario",
+                description: "Movement with distance engagement.",
+                run: [
+                    "Target: B-27 at 40 yards.",
+                    "On signal: move 10 yards forward, engage target with 10 rounds in 15 seconds.",
+                    "Alternative (Wincrest): use 50% reduced target at 50 ft. On signal: move laterally 10 ft, then engage."
+                ],
+                scoring: ["10 hits within time."],
+                notes: ["This simulates a real defensive shooting—movement + distance."]
+            },
+            {
+                title: "AARON SALTER DRILL",
+                category: "scenario",
+                description: "Cover utilization with head shot.",
+                run: [
+                    "Target: full-size color target at 10 yards.",
+                    "Start: behind barricade with pistol already drawn in hand.",
+                    "On timer beep: using cover, fire 1 shot to head in 2.0 seconds or less."
+                ],
+                scoring: ["Head hit within time."],
+                notes: ["Use the barricade correctly—don't expose yourself."]
+            }
+        ];
+
+        function getCategoryBadge(category) {
+            const badges = {
+                qualification: 'badge-qualification',
+                scoring: 'badge-scoring',
+                tc: 'badge-tc',
+                fundamentals: 'badge-fundamentals',
+                leatham: 'badge-leatham',
+                movement: 'badge-movement',
+                speed: 'badge-speed',
+                hackathorn: 'badge-hackathorn',
+                spaulding: 'badge-spaulding',
+                vickers: 'badge-vickers',
+                standards: 'badge-standards',
+                malfunction: 'badge-malfunction',
+                scenario: 'badge-scenario'
+            };
+            return badges[category] || 'badge-qualification';
+        }
+
+        function getCategoryName(category) {
+            const names = {
+                qualification: 'Qualification',
+                scoring: 'Scoring/Rules',
+                tc: 'TC Drills',
+                fundamentals: 'Fundamentals',
+                leatham: 'Leatham Series',
+                movement: 'Movement/Work',
+                speed: 'Speed/Accuracy',
+                hackathorn: 'Hackathorn',
+                spaulding: 'Spaulding',
+                vickers: 'Vickers',
+                standards: 'Standards',
+                malfunction: 'Malfunctions',
+                scenario: 'Scenarios'
+            };
+            return names[category] || category.toUpperCase();
+        }
+
+        function renderDrills(filteredDrills) {
+            const grid = document.getElementById('drillGrid');
+            
+            if (filteredDrills.length === 0) {
+                grid.innerHTML = '<div class="no-results">No drills found matching your search.</div>';
+                return;
+            }
+
+            grid.innerHTML = filteredDrills.map(drill => `
+                <div class="drill-card" data-category="${drill.category}">
+                    <span class="category-badge ${getCategoryBadge(drill.category)}">
+                        ${getCategoryName(drill.category)}
+                    </span>
+                    <h2>${drill.title}</h2>
+                    <div class="description">${drill.description}</div>
+                    
+                    <div class="section">
+                        <div class="section-title">Run</div>
+                        <ul>
+                            ${drill.run.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title">Scoring</div>
+                        <ul>
+                            ${drill.scoring.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title">Notes</div>
+                        <ul>
+                            ${drill.notes.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initial render
+        renderDrills(drillCards);
+
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active state
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Filter drills
+                const category = btn.dataset.category;
+                const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+                
+                let filtered = category === 'all' 
+                    ? drillCards 
+                    : drillCards.filter(drill => drill.category === category);
+
+                if (searchTerm) {
+                    filtered = filtered.filter(drill => 
+                        drill.title.toLowerCase().includes(searchTerm) ||
+                        drill.description.toLowerCase().includes(searchTerm)
+                    );
+                }
+
+                renderDrills(filtered);
+            });
+        });
+
+        // Search functionality
+        const searchBox = document.getElementById('searchBox');
+        searchBox.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const activeCategory = document.querySelector('.filter-btn.active').dataset.category;
+            
+            let filtered = activeCategory === 'all' 
+                ? drillCards 
+                : drillCards.filter(drill => drill.category === activeCategory);
+
+            if (searchTerm) {
+                filtered = filtered.filter(drill => 
+                    drill.title.toLowerCase().includes(searchTerm) ||
+                    drill.description.toLowerCase().includes(searchTerm) ||
+                    drill.run.some(item => item.toLowerCase().includes(searchTerm)) ||
+                    drill.scoring.some(item => item.toLowerCase().includes(searchTerm)) ||
+                    drill.notes.some(item => item.toLowerCase().includes(searchTerm))
+                );
+            }
+
+            renderDrills(filtered);
+        });
+    </script>
+</body>
+</html>
