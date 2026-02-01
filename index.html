@@ -12,8 +12,6 @@
     <link rel="manifest" href="manifest.json">
     <title>Marcus Armed - NRA Certified Firearms Training</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Zuume Rough Bold Font -->
-    <link href="https://fonts.cdnfonts.com/css/zuume-rough" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -172,6 +170,8 @@
             font-size: 1.8rem;
             min-width: 60px;
             min-height: 60px;
+            border: none;
+            cursor: pointer;
         }
 
         .banner-contact-item.emoji-only .banner-contact-icon {
@@ -567,7 +567,6 @@
             padding: 0.5rem;
             border-radius: 4px;
             display: inline-block;
-            /* Minimum iOS touch target size */
             min-height: 44px;
             line-height: 1.8;
         }
@@ -636,7 +635,7 @@
             transition: all 0.3s ease;
             position: relative;
             width: 100%;
-            padding-bottom: 75%; /* 4:3 aspect ratio for mobile */
+            padding-bottom: 75%;
             height: 0;
         }
 
@@ -648,7 +647,7 @@
         
         @media (min-width: 640px) {
             .calendar-container {
-                padding-bottom: 60%; /* Taller for tablets */
+                padding-bottom: 60%;
             }
         }
         
@@ -768,18 +767,6 @@
             }
         }
 
-        /* Scroll fade-in effect */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
         /* Improve text rendering on iOS */
         body, h2, p, a, li {
             text-rendering: optimizeLegibility;
@@ -794,13 +781,13 @@
                 <a href="sms:+17163528622" class="banner-contact-item emoji-only" title="Text Me">
                     <span class="banner-contact-icon">💬</span>
                 </a>
-               <a href="/cdn-cgi/l/email-protection#94f9f5e6f7e1e7f5e6f9e7d4f9f5e6f7e1e7f5e6f9f1f0baf7fbf9" class="banner-contact-item emoji-only" title="Email Me">
+                <a href="mailto:marcusarmed@gmail.com" class="banner-contact-item emoji-only" title="Email Me">
                     <span class="banner-contact-icon">✉️</span>
                 </a>
-                <button id="shareBtn" class="banner-contact-item emoji-only" style="border: none; cursor: pointer;" title="Share Website">
+                <button id="shareBtn" class="banner-contact-item emoji-only" title="Share Website">
                     <span class="banner-contact-icon">📤</span>
                 </button>
-                <button id="installBtn" class="banner-contact-item emoji-only" style="border: none; cursor: pointer;" title="Add to Home Screen">
+                <button id="installBtn" class="banner-contact-item emoji-only" title="Add to Home Screen">
                     <span class="banner-contact-icon">📱</span>
                 </button>
                 <a href="https://linktr.ee/MarcUsArmed" class="banner-contact-item" target="_blank" rel="noopener noreferrer">
@@ -816,7 +803,7 @@
             <h2>Certified Firearms Instructor</h2>
             <ul class="credentials-list">
                 <li><strong>NRA Certified Firearms Trainer</strong> - Authorized to provide comprehensive firearms safety and marksmanship instruction</li>
-                <li><strong>Class A USPSA Shooter</strong> - TY160440 </li>
+                <li><strong>Class A USPSA Shooter</strong> - TY160440</li>
             </ul>
         </section>
 
@@ -854,7 +841,7 @@
                 <p>Ready to enhance your firearms skills with professional instruction?</p>
                 <p style="margin-top: 1rem;">Contact me to schedule a training session:</p>
                 <p style="margin-top: 1rem;">
-                    <a href="/cdn-cgi/l/email-protection#573a362534222436253a24173a362534222436253a32337934383a"><span class="__cf_email__" data-cfemail="caa7abb8a9bfb9abb8a7b98aa7abb8a9bfb9abb8a7afaee4a9a5a7">[email&#160;protected]</span></a>
+                    <a href="mailto:marcusarmed@gmail.com">marcusarmed@gmail.com</a>
                 </p>
             </div>
         </section>
@@ -888,34 +875,36 @@
         <p>&copy; 2025 Marcus Armed | Professional Firearms Training | NRA Certified Instructor</p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Share Website functionality
         const shareBtn = document.getElementById('shareBtn');
         
-        shareBtn.addEventListener('click', async () => {
-            if (navigator.share) {
-                try {
-                    await navigator.share({
-                        title: 'Marcus Armed - Firearms Training',
-                        text: 'Check out Marcus Armed - NRA Certified Firearms Training & Class A USPSA Shooter',
-                        url: window.location.href
-                    });
-                } catch (err) {
-                    // User cancelled or share failed
-                    if (err.name !== 'AbortError') {
-                        console.log('Error sharing:', err);
+        if (shareBtn) {
+            shareBtn.addEventListener('click', async () => {
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: 'Marcus Armed - Firearms Training',
+                            text: 'Check out Marcus Armed - NRA Certified Firearms Training & Class A USPSA Shooter',
+                            url: window.location.href
+                        });
+                    } catch (err) {
+                        // User cancelled or share failed
+                        if (err.name !== 'AbortError') {
+                            console.log('Error sharing:', err);
+                        }
+                    }
+                } else {
+                    // Fallback: Copy URL to clipboard
+                    try {
+                        await navigator.clipboard.writeText(window.location.href);
+                        alert('Website link copied to clipboard!');
+                    } catch (err) {
+                        alert('To share this page, copy this URL:\n' + window.location.href);
                     }
                 }
-            } else {
-                // Fallback: Copy URL to clipboard
-                try {
-                    await navigator.clipboard.writeText(window.location.href);
-                    alert('Website link copied to clipboard!');
-                } catch (err) {
-                    alert('To share this page, copy this URL:\n' + window.location.href);
-                }
-            }
-        });
+            });
+        }
 
         // Add to Home Screen functionality
         let deferredPrompt;
@@ -928,31 +917,36 @@
             // Stash the event so it can be triggered later
             deferredPrompt = e;
             // Show the install button
-            installBtn.style.display = 'flex';
-        });
-
-        installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                // Show the install prompt
-                deferredPrompt.prompt();
-                // Wait for the user to respond to the prompt
-                const { outcome } = await deferredPrompt.userChoice;
-                // Clear the deferredPrompt
-                deferredPrompt = null;
-            } else {
-                // For iOS or browsers that don't support install prompt
-                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
-                
-                if (isIOS && !isInStandaloneMode) {
-                    alert('To add this to your home screen:\n\n1. Tap the Share button in Safari\n2. Scroll down and tap "Add to Home Screen"\n3. Tap "Add" in the top right');
-                } else if (isInStandaloneMode) {
-                    alert('App is already installed!');
-                } else {
-                    alert('To add this to your home screen, use your browser\'s menu and select "Add to Home Screen" or "Install"');
-                }
+            if (installBtn) {
+                installBtn.style.display = 'flex';
             }
         });
+
+        if (installBtn) {
+            installBtn.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    // Show the install prompt
+                    deferredPrompt.prompt();
+                    // Wait for the user to respond to the prompt
+                    const { outcome } = await deferredPrompt.userChoice;
+                    console.log(`User response to the install prompt: ${outcome}`);
+                    // Clear the deferredPrompt
+                    deferredPrompt = null;
+                } else {
+                    // For iOS or browsers that don't support install prompt
+                    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                    const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
+                    
+                    if (isIOS && !isInStandaloneMode) {
+                        alert('To add this to your home screen:\n\n1. Tap the Share button in Safari\n2. Scroll down and tap "Add to Home Screen"\n3. Tap "Add" in the top right');
+                    } else if (isInStandaloneMode) {
+                        alert('App is already installed!');
+                    } else {
+                        alert('To add this to your home screen, use your browser\'s menu and select "Add to Home Screen" or "Install"');
+                    }
+                }
+            });
+        }
 
         // Smooth scroll fade-in effect for sections
         const observerOptions = {
@@ -963,4 +957,15 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.t
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections with fade-in class
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
