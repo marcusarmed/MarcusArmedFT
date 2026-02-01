@@ -493,6 +493,29 @@
             }
         }
 
+        /* Drill Cards Button */
+        .drill-cards-btn {
+            background: var(--primary-dark) !important;
+            color: var(--accent-orange) !important;
+            box-shadow: 0 6px 20px rgba(41, 44, 51, 0.3) !important;
+        }
+
+        .drill-cards-btn:active {
+            box-shadow: 0 8px 25px rgba(41, 44, 51, 0.4) !important;
+        }
+
+        @media (min-width: 769px) {
+            .drill-cards-btn:hover {
+                background: #3a3d42 !important;
+                color: #faa83a !important;
+                box-shadow: 0 10px 30px rgba(41, 44, 51, 0.5) !important;
+            }
+        }
+
+        .drill-cards-section {
+            border-left: 5px solid var(--primary-dark);
+        }
+
         /* Contact Section */
         .contact-section {
             background: linear-gradient(135deg, var(--primary-dark), #1a1c20);
@@ -771,7 +794,7 @@
                 <a href="sms:+17163528622" class="banner-contact-item emoji-only" title="Text Me">
                     <span class="banner-contact-icon">💬</span>
                 </a>
-               <a href="mailto:marcusarms@marcusarmed.com" class="banner-contact-item emoji-only" title="Email Me">
+               <a href="/cdn-cgi/l/email-protection#94f9f5e6f7e1e7f5e6f9e7d4f9f5e6f7e1e7f5e6f9f1f0baf7fbf9" class="banner-contact-item emoji-only" title="Email Me">
                     <span class="banner-contact-icon">✉️</span>
                 </a>
                 <button id="shareBtn" class="banner-contact-item emoji-only" style="border: none; cursor: pointer;" title="Share Website">
@@ -795,6 +818,14 @@
                 <li><strong>NRA Certified Firearms Trainer</strong> - Authorized to provide comprehensive firearms safety and marksmanship instruction</li>
                 <li><strong>Class A USPSA Shooter</strong> - TY160440 </li>
             </ul>
+        </section>
+
+        <section class="grip-tutorial-section drill-cards-section" style="margin-bottom: 2rem;">
+            <h2>Training Drill Cards Database</h2>
+            <p>
+                Access my comprehensive collection of 70+ professional firearms training drills, including law enforcement qualifications (FBI, Border Patrol, Air Marshal, NY DCJS) and performance drills from top instructors like Hackathorn, Spaulding, and Vickers.
+            </p>
+            <a href="drill_cards.html" class="grip-tutorial-btn drill-cards-btn">View Drill Cards Database</a>
         </section>
 
         <div class="two-column-sections">
@@ -823,7 +854,7 @@
                 <p>Ready to enhance your firearms skills with professional instruction?</p>
                 <p style="margin-top: 1rem;">Contact me to schedule a training session:</p>
                 <p style="margin-top: 1rem;">
-                    <a href="mailto:marcusarms@marcusarmed.com">marcusarms@marcusarmed.com</a>
+                    <a href="/cdn-cgi/l/email-protection#573a362534222436253a24173a362534222436253a32337934383a"><span class="__cf_email__" data-cfemail="caa7abb8a9bfb9abb8a7b98aa7abb8a9bfb9abb8a7afaee4a9a5a7">[email&#160;protected]</span></a>
                 </p>
             </div>
         </section>
@@ -857,7 +888,7 @@
         <p>&copy; 2025 Marcus Armed | Professional Firearms Training | NRA Certified Instructor</p>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Share Website functionality
         const shareBtn = document.getElementById('shareBtn');
         
@@ -932,15 +963,4 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all sections with fade-in class
-        document.querySelectorAll('.fade-in-section').forEach(section => {
-            observer.observe(section);
-        });
-    </script>
-</body>
-</html>
+                    entry.t
