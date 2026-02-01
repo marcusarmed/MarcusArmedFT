@@ -6,12 +6,14 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#f99d22">
+    <meta name="apple-mobile-web-app-title" content="Marcus Armed">
+    <meta name="description" content="Marcus Armed - NRA Certified Firearms Training & Class A USPSA Shooter">
+    <link rel="manifest" href="manifest.json">
     <title>Marcus Armed - NRA Certified Firearms Training</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Zuume Rough Bold Font -->
     <link href="https://fonts.cdnfonts.com/css/zuume-rough" rel="stylesheet">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <meta name="apple-mobile-web-app-title" content="Marcus Armed">
     <style>
         * {
             margin: 0;
@@ -111,90 +113,82 @@
 
         .banner-contact {
             display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
+            flex-direction: row;
+            gap: 1rem;
             align-items: center;
+            justify-content: center;
             margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        @media (min-width: 968px) {
+            .banner-contact {
+                flex-wrap: nowrap;
+            }
         }
 
         .banner-contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #f99d22;
+            display: inline-block;
+            background: var(--accent-orange);
+            color: var(--primary-dark);
+            padding: 1rem 2rem;
+            border-radius: 30px;
             text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(249, 157, 34, 0.3);
             transition: all 0.3s ease;
-            padding: 0.5rem;
-            border-radius: 4px;
             min-height: 44px;
-        }
-        
-        @media (min-width: 640px) {
-            .banner-contact-item {
-                font-size: 1rem;
-            }
-        }
-        
-        @media (min-width: 769px) {
-            .banner-contact-item {
-                font-size: 1.1rem;
-            }
+            min-width: 44px;
+            line-height: 1.4;
+            white-space: nowrap;
         }
 
         .banner-contact-item:active {
-            background: rgba(249, 157, 34, 0.2);
-            transform: scale(0.98);
+            transform: translateY(-1px) scale(0.98);
+            box-shadow: 0 6px 20px rgba(249, 157, 34, 0.4);
         }
         
         @media (min-width: 769px) {
             .banner-contact-item:hover {
-                color: #faa83a;
-                background: rgba(249, 157, 34, 0.1);
-                transform: translateY(-2px);
+                background: #faa83a;
+                transform: translateY(-3px);
+                box-shadow: 0 8px 25px rgba(249, 157, 34, 0.5);
             }
         }
 
-        .banner-contact-icon {
-            width: 20px;
-            height: 20px;
-            background: #f99d22;
+        /* Circular emoji-only buttons */
+        .banner-contact-item.emoji-only {
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
+            padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #3a3d42;
-            font-size: 0.7rem;
-            flex-shrink: 0;
+            font-size: 1.8rem;
+            min-width: 60px;
+            min-height: 60px;
         }
-        
-        @media (min-width: 769px) {
-            .banner-contact-icon {
-                width: 24px;
-                height: 24px;
-                font-size: 0.8rem;
-            }
+
+        .banner-contact-item.emoji-only .banner-contact-icon {
+            margin: 0;
+        }
+
+        .banner-contact-icon {
+            margin-right: 0.5rem;
+        }
+
+        .emoji-only .banner-contact-icon {
+            margin-right: 0;
         }
 
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.5rem 1.5rem;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        @media (min-width: 769px) {
-            .header-content {
-                padding: 2rem 2rem;
-            }
         }
 
         /* Main content */
@@ -571,7 +565,7 @@
         .calendar-section {
             background: linear-gradient(135deg, #fff 0%, #f5f2eb 100%);
             padding: 2rem 1.5rem;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             animation: slideUp 0.8s ease-out 1.2s both;
             margin-bottom: 2rem;
@@ -579,15 +573,27 @@
         
         @media (min-width: 769px) {
             .calendar-section {
-                padding: 3rem;
-                margin-bottom: 3rem;
+                padding: 2.5rem;
+                margin-bottom: 2rem;
             }
+        }
+
+        .calendar-section h2 {
+            color: var(--primary-dark);
+            border-left: 6px solid var(--accent-orange);
+            padding-left: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .calendar-section h2::after {
+            display: none;
         }
 
         .calendar-section p {
             font-size: 1.1rem;
             color: var(--text-dark);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
         }
         
         @media (min-width: 769px) {
@@ -597,16 +603,24 @@
         }
 
         .calendar-container {
-            margin-top: 1.5rem;
-            border: 3px solid var(--primary-dark);
+            background: white;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.07),
+                0 2px 20px rgba(249, 157, 34, 0.1);
+            border: 2px solid rgba(249, 157, 34, 0.2);
+            transition: all 0.3s ease;
             position: relative;
-            /* Responsive aspect ratio container */
             width: 100%;
             padding-bottom: 75%; /* 4:3 aspect ratio for mobile */
             height: 0;
+        }
+
+        .calendar-container:active {
+            box-shadow: 
+                0 6px 10px rgba(0, 0, 0, 0.1),
+                0 4px 25px rgba(249, 157, 34, 0.15);
         }
         
         @media (min-width: 640px) {
@@ -617,10 +631,15 @@
         
         @media (min-width: 769px) {
             .calendar-container {
-                margin-top: 2rem;
-                border-width: 4px;
                 padding-bottom: 0;
-                height: 600px;
+                height: 500px;
+            }
+
+            .calendar-container:hover {
+                box-shadow: 
+                    0 8px 12px rgba(0, 0, 0, 0.1),
+                    0 4px 30px rgba(249, 157, 34, 0.2);
+                border-color: var(--accent-orange);
             }
         }
 
@@ -632,6 +651,7 @@
             height: 100%;
             border: none;
             display: block;
+            background: white;
         }
 
         /* Footer */
@@ -652,45 +672,6 @@
                 margin-top: 4rem;
                 padding: 2rem;
                 font-size: 0.95rem;
-            }
-        }
-
-        /* Linktree Link - Optimized for mobile touch */
-        .linktree-link {
-            animation: fadeIn 1s ease-out 0.5s both;
-            text-align: center;
-        }
-
-        .linktree-link a {
-            display: inline-block;
-            background: var(--accent-orange);
-            color: var(--primary-dark);
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 5px 15px rgba(249, 157, 34, 0.3);
-            transition: all 0.3s ease;
-            /* Ensure proper iOS touch target */
-            min-height: 44px;
-            min-width: 44px;
-            line-height: 1.4;
-        }
-
-        .linktree-link a:active {
-            transform: translateY(-1px) scale(0.98);
-            box-shadow: 0 6px 20px rgba(249, 157, 34, 0.4);
-        }
-        
-        @media (min-width: 769px) {
-            .linktree-link a:hover {
-                background: #faa83a;
-                transform: translateY(-3px);
-                box-shadow: 0 8px 25px rgba(249, 157, 34, 0.5);
             }
         }
 
@@ -787,23 +768,22 @@
         <div class="banner-container">
             <img src="banner.png" alt="Marcus Armed - Professional Firearms Training" class="banner-image">
             <div class="banner-contact">
-                <a href="tel:+17163528622" class="banner-contact-item">
-                    <span class="banner-contact-icon">📞</span>
-                    <span>+1 716.352.8622</span>
+                <a href="sms:+17163528622" class="banner-contact-item emoji-only" title="Text Me">
+                    <span class="banner-contact-icon">💬</span>
                 </a>
-               <a href="mailto:marcusarms@marcusarmed.com" class="banner-contact-item">
-                    <span class="banner-contact-icon">✉</span>
-                    <span><span class="__cf_email__" data-cfemail="fe939f8c9d8b8d9f8c938dbe939f8c9d8b8d9f8c939b9ad09d9193">[email&#160;protected]</span></span>
+               <a href="mailto:marcusarms@marcusarmed.com" class="banner-contact-item emoji-only" title="Email Me">
+                    <span class="banner-contact-icon">✉️</span>
                 </a>
-                <a href="https://www.marcusarmed.com" class="banner-contact-item" target="_blank" rel="noopener noreferrer">
-                    <span class="banner-contact-icon">🌐</span>
-                    <span>www.marcusarmed.com</span>
+                <button id="shareBtn" class="banner-contact-item emoji-only" style="border: none; cursor: pointer;" title="Share Website">
+                    <span class="banner-contact-icon">📤</span>
+                </button>
+                <button id="installBtn" class="banner-contact-item emoji-only" style="border: none; cursor: pointer;" title="Add to Home Screen">
+                    <span class="banner-contact-icon">📱</span>
+                </button>
+                <a href="https://linktr.ee/MarcUsArmed" class="banner-contact-item" target="_blank" rel="noopener noreferrer">
+                    <span class="banner-contact-icon">🔗</span>
+                    MY LINK HUB
                 </a>
-            </div>
-        </div>
-        <div class="header-content">
-            <div class="linktree-link">
-                <a href="https://linktr.ee/MarcUsArmed" target="_blank" rel="noopener noreferrer">MY LINK HUB</a>
             </div>
         </div>
     </header>
@@ -843,28 +823,24 @@
                 <p>Ready to enhance your firearms skills with professional instruction?</p>
                 <p style="margin-top: 1rem;">Contact me to schedule a training session:</p>
                 <p style="margin-top: 1rem;">
-                    <a href="/cdn-cgi/l/email-protection#30535f5e44515344705d514253454351425d55541e535f5d"><span class="__cf_email__" data-cfemail="32515d5c46535146725f534051474153405f57561c515d5f">[email&#160;protected]</span></a>
+                    <a href="mailto:marcusarms@marcusarmed.com">marcusarms@marcusarmed.com</a>
                 </p>
             </div>
         </section>
 
         <section class="calendar-section">
             <h2>Match Registration Calendar</h2>
-            <p>View upcoming competitive shooting matches and registration dates
-            <p style="margin-top: 1rem;">(Select schedule in the right corner of the calendar to see list view)
-            </p>
+            <p>View upcoming competitive shooting matches and registration dates</p>
             <div class="calendar-container">
-               <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FNew_York&showPrint=0&src=ZjQ5ZTVkYmI1OTAzM2Q0MDI1MTU1MzEzYjEzZjkxZjU5ZDI0NjEyZTRmM2Q4NDZiYTUzYjk5MWNiYTRkYTljMkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%237cb342" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+               <iframe src="https://calendar.google.com/calendar/embed?height=500&wkst=1&ctz=America%2FNew_York&showPrint=0&title=Match%20Registration&mode=AGENDA&src=ZjQ5ZTVkYmI1OTAzM2Q0MDI1MTU1MzEzYjEzZjkxZjU5ZDI0NjEyZTRmM2Q4NDZiYTUzYjk5MWNiYTRkYTljMkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%237cb342" frameborder="0" scrolling="no"></iframe>
             </div>
         </section>
 
         <section class="calendar-section">
             <h2>Western New York Monthly Matches</h2>
-            <p>Check out monthly competitive shooting matches in the Western New York area
-            <p style="margin-top: 1rem;">(Select schedule in the right corner of the calendar to see list view)
-            </p>
+            <p>Check out monthly competitive shooting matches in the Western New York area</p>
             <div class="calendar-container">
-                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FNew_York&showPrint=0&src=Y19hYzhiZmU4MjBiNmMzMWFjNjlmNTI0ZWRmNDY0Y2Y4NmE2Y2UwMjVhYzk4YmEyNzY2MzVlNDcwNmViYjRlZDQ0QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23ef6c00" frameborder="0" scrolling="no"></iframe>
+                <iframe src="https://calendar.google.com/calendar/embed?height=500&wkst=1&ctz=America%2FNew_York&showPrint=0&title=WNY%20Monthly%20Matches&mode=AGENDA&src=Y19hYzhiZmU4MjBiNmMzMWFjNjlmNTI0ZWRmNDY0Y2Y4NmE2Y2UwMjVhYzk4YmEyNzY2MzVlNDcwNmViYjRlZDQ0QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23ef6c00" frameborder="0" scrolling="no"></iframe>
             </div>
         </section>
     </main>
@@ -881,7 +857,72 @@
         <p>&copy; 2025 Marcus Armed | Professional Firearms Training | NRA Certified Instructor</p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
+        // Share Website functionality
+        const shareBtn = document.getElementById('shareBtn');
+        
+        shareBtn.addEventListener('click', async () => {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'Marcus Armed - Firearms Training',
+                        text: 'Check out Marcus Armed - NRA Certified Firearms Training & Class A USPSA Shooter',
+                        url: window.location.href
+                    });
+                } catch (err) {
+                    // User cancelled or share failed
+                    if (err.name !== 'AbortError') {
+                        console.log('Error sharing:', err);
+                    }
+                }
+            } else {
+                // Fallback: Copy URL to clipboard
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    alert('Website link copied to clipboard!');
+                } catch (err) {
+                    alert('To share this page, copy this URL:\n' + window.location.href);
+                }
+            }
+        });
+
+        // Add to Home Screen functionality
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+
+        // Listen for the beforeinstallprompt event
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the mini-infobar from appearing on mobile
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            // Show the install button
+            installBtn.style.display = 'flex';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                // Show the install prompt
+                deferredPrompt.prompt();
+                // Wait for the user to respond to the prompt
+                const { outcome } = await deferredPrompt.userChoice;
+                // Clear the deferredPrompt
+                deferredPrompt = null;
+            } else {
+                // For iOS or browsers that don't support install prompt
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
+                
+                if (isIOS && !isInStandaloneMode) {
+                    alert('To add this to your home screen:\n\n1. Tap the Share button in Safari\n2. Scroll down and tap "Add to Home Screen"\n3. Tap "Add" in the top right');
+                } else if (isInStandaloneMode) {
+                    alert('App is already installed!');
+                } else {
+                    alert('To add this to your home screen, use your browser\'s menu and select "Add to Home Screen" or "Install"');
+                }
+            }
+        });
+
         // Smooth scroll fade-in effect for sections
         const observerOptions = {
             threshold: 0.2,
@@ -897,4 +938,9 @@
         }, observerOptions);
 
         // Observe all sections with fade-in class
-        document.querySelectorAll('.fade-in-section').forEach(s
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
