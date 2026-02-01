@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Building Your Grip - Marcus Armed</title>
+    
+    <!-- Social Media Preview Meta Tags -->
+    <meta property="og:title" content="Building Your Grip - Marcus Armed">
+    <meta property="og:description" content="Master proper grip technique for competitive shooting with step-by-step visual instruction from NRA Certified Firearms Trainer Marcus Armed">
+    <meta property="og:image" content="https://marcusarmed.com/grip_preview.png">
+    <meta property="og:url" content="https://marcusarmed.com/grip.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Building Your Grip - Marcus Armed">
+    <meta name="twitter:description" content="Master proper grip technique for competitive shooting">
+    <meta name="twitter:image" content="https://marcusarmed.com/grip_preview.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -141,6 +153,31 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         }
 
+        .preview-image-container {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .preview-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .preview-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+        }
+
         .intro-section h2 {
             font-family: 'Oswald', sans-serif;
             font-size: 2rem;
@@ -252,6 +289,10 @@
                 of the proper grip technique used in competitive shooting.
             </p>
         </section>
+
+        <div class="preview-image-container">
+            <img src="grip_preview.png" alt="Marcus Armed Grip Tutorial" class="preview-image">
+        </div>
 
         <div class="grip-grid">
             <div class="grip-card">
