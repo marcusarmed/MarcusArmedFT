@@ -1,0 +1,18 @@
+{
+  "name": "Marcus Armed - Firearms Training",
+  "short_name": "Marcus Armed",
+  "description": "NRA Certified Firearms Training & Class A USPSA Shooter",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#e8ddc9",
+  "theme_color": "#f99d22",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "banner.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
