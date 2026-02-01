@@ -293,9 +293,78 @@
                 0 0 0 1px var(--accent),
                 0 0 30px var(--accent-glow);
         }
+
+        /* Back to Home Button */
+        .back-home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: var(--card-bg);
+            color: var(--accent);
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            box-shadow: 
+                0 5px 20px rgba(0, 0, 0, 0.5),
+                0 0 0 1px var(--border);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        .back-home-btn::before {
+            content: '←';
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-home-btn:hover {
+            background: var(--accent);
+            color: var(--primary-bg);
+            transform: translateX(-5px);
+            box-shadow: 
+                0 8px 25px rgba(255, 140, 0, 0.4),
+                0 0 0 1px var(--accent);
+        }
+
+        .back-home-btn:hover::before {
+            transform: translateX(-3px);
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .back-home-btn {
+                top: 15px;
+                left: 15px;
+                padding: 10px 16px;
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <a href="index.html" class="back-home-btn">
+        <span>Home</span>
+    </a>
+    
     <div class="container">
         <header>
             <h1>Favorite Carry Guns</h1>
