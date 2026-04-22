@@ -527,6 +527,44 @@
             border-left: 5px solid var(--primary-dark);
         }
 
+        /* NYS Pistol Permit Course Section */
+        .nys-course-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1e2127 100%);
+            border-left: 6px solid var(--accent-orange);
+            color: var(--cream);
+        }
+
+        .nys-course-section h2 {
+            color: var(--cream) !important;
+        }
+
+        .nys-course-section h2::after {
+            background: linear-gradient(90deg, var(--accent-orange), transparent) !important;
+        }
+
+        .nys-course-section p {
+            color: #c9bda5 !important;
+        }
+
+        .nys-course-btn {
+            background: var(--accent-orange) !important;
+            color: var(--primary-dark) !important;
+            box-shadow: 0 6px 20px rgba(249, 157, 34, 0.35) !important;
+            font-weight: 700 !important;
+        }
+
+        .nys-course-btn:active {
+            box-shadow: 0 8px 25px rgba(249, 157, 34, 0.5) !important;
+        }
+
+        @media (min-width: 769px) {
+            .nys-course-btn:hover {
+                background: #faa83a !important;
+                color: var(--primary-dark) !important;
+                box-shadow: 0 10px 30px rgba(249, 157, 34, 0.5) !important;
+            }
+        }
+
         /* Contact Section */
         .contact-section {
             background: linear-gradient(135deg, var(--primary-dark), #1a1c20);
@@ -805,6 +843,10 @@
                     <span class="banner-contact-icon">🔗</span>
                     MY LINK HUB
                 </a>
+                <a href="nys-course.html" class="banner-contact-item">
+                    <span class="banner-contact-icon">📋</span>
+                    NYS PISTOL PERMIT COURSE
+                </a>
             </div>
         </div>
     </header>
@@ -824,6 +866,14 @@
                 Access my comprehensive collection of 70+ professional firearms training drills, including law enforcement qualifications (FBI, Border Patrol, Air Marshal, NY DCJS) and performance drills from top instructors like Hackathorn, Spaulding, and Vickers.
             </p>
             <a href="drill_cards.html" class="grip-tutorial-btn drill-cards-btn">View Drill Cards Database</a>
+        </section>
+
+        <section class="grip-tutorial-section nys-course-section" style="margin-bottom: 2rem;">
+            <h2>NYS Pistol Permit Course</h2>
+            <p>
+                Currently enrolled in the Erie County 16-hour pistol permit course? Access your section quizzes and final exam here. Each quiz is passcode-protected — your instructor will provide the code at the end of each class.
+            </p>
+            <a href="nys-course.html" class="grip-tutorial-btn nys-course-btn">📋 Open Course Quizzes</a>
         </section>
 
         <div class="two-column-sections">
