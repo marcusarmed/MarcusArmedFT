@@ -8,13 +8,57 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1D9JZN9C5"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F1D9JZN9C5');</script>
+
+<!--
+  ══════════════════════════════════════════════════════════════
+  EMAILJS SETUP — DO THIS ONCE (takes ~5 minutes)
+  ══════════════════════════════════════════════════════════════
+  1. Go to https://www.emailjs.com and create a FREE account
+  2. Click "Add New Service" → connect your Gmail
+     → Copy the SERVICE ID and paste it below as EMAILJS_SERVICE_ID
+  3. Click "Email Templates" → "Create New Template"
+     → Set "To Email" to: marcusarms@marcusarmed.com
+     → Set Subject to: NYS Course Result — {{quiz_name}} — {{student_name}}
+     → Set Body to (copy exactly):
+
+         Student: {{student_name}}
+         Email: {{student_email}}
+         Phone: {{student_phone}}
+         Class Date: {{class_date}}
+
+         Quiz: {{quiz_name}}
+         Score: {{score}}
+         Result: {{result}}
+         Time: {{timestamp}}
+
+         Missed Questions:
+         {{missed_questions}}
+
+     → Save the template
+     → Copy the TEMPLATE ID and paste it below as EMAILJS_TEMPLATE_ID
+  4. Click your account name (top right) → "Account"
+     → Copy your PUBLIC KEY and paste it below as EMAILJS_PUBLIC_KEY
+  5. Upload this file to GitHub — emails will start sending automatically!
+  ══════════════════════════════════════════════════════════════
+-->
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // ── PASTE YOUR EMAILJS CREDENTIALS HERE ──────────────────
+  const EMAILJS_PUBLIC_KEY   = 'gBR5A4cYN0QdmdXOz';
+  const EMAILJS_SERVICE_ID   = 'service_7j2twbo';
+  const EMAILJS_TEMPLATE_ID  = 'template_crlzy4r';
+  // ─────────────────────────────────────────────────────────
+  (function(){ emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); })();
+</script>
+
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
     --bg:#292c33;--bg2:#1e2127;--bg3:#32363f;
     --orange:#f99d22;--orange2:#ef6c00;--red:#e24220;
     --cream:#e8ddc9;--cream2:#c9bda5;--white:#ffffff;
-    --success:#4caf50;--fail:#e24220;
+    --success:#4caf50;
   }
   html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--cream);font-family:'Barlow',sans-serif;min-height:100vh;overflow-x:hidden}
@@ -36,6 +80,7 @@
   .container{max-width:680px;margin:0 auto;padding:28px 16px 60px}
   .section-label-outer{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;padding-left:4px}
 
+  /* ── QUIZ CARD ── */
   .quiz-card{background:var(--bg3);border:1px solid rgba(249,157,34,.15);border-left:4px solid var(--orange2);border-radius:6px;margin-bottom:16px;overflow:hidden}
   .quiz-card.unlocked{border-left-color:var(--success)}
   .quiz-card.final-exam{border-left-color:var(--red)}
@@ -48,6 +93,7 @@
   .card-meta{font-size:12px;color:var(--cream2);margin-top:3px}
   .lock-icon{font-size:20px;flex-shrink:0}
 
+  /* ── PASSCODE ── */
   .passcode-section{padding:0 18px 18px;border-top:1px solid rgba(255,255,255,.06)}
   .passcode-label{font-size:12px;color:var(--cream2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;padding-top:14px}
   .pin-row{display:flex;align-items:center;gap:10px}
@@ -60,10 +106,30 @@
   .pin-btn:hover{background:var(--orange)}
   .pin-error{font-size:12px;color:var(--red);margin-top:8px;display:none}
 
+  /* ── SIGN-IN FORM ── */
+  .signin-section{display:none;padding:0 18px 20px;border-top:1px solid rgba(255,255,255,.06);animation:fadeIn .3s ease}
+  .signin-section.active{display:block}
+  .signin-title{font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);padding-top:16px;margin-bottom:14px}
+  .signin-desc{font-size:12px;color:var(--cream2);margin-bottom:16px;line-height:1.5}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+  @media(max-width:480px){.form-row{grid-template-columns:1fr}}
+  .form-group{display:flex;flex-direction:column;gap:5px}
+  .form-group.full{grid-column:1/-1}
+  .form-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cream2);font-weight:600}
+  .form-input{background:var(--bg2);border:2px solid rgba(255,255,255,.1);border-radius:6px;padding:11px 14px;color:var(--white);font-family:'Barlow',sans-serif;font-size:14px;outline:none;transition:border-color .2s;width:100%}
+  .form-input:focus{border-color:var(--orange)}
+  .form-input::placeholder{color:rgba(255,255,255,.25)}
+  .signin-btn{background:var(--orange2);color:var(--white);border:none;border-radius:6px;padding:13px 24px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;width:100%;margin-top:8px;transition:background .2s}
+  .signin-btn:hover{background:var(--orange)}
+  .signin-error{font-size:12px;color:var(--red);margin-top:8px;display:none}
+
+  /* ── QUIZ BODY ── */
   .quiz-body{display:none;padding:0 18px 20px;border-top:1px solid rgba(255,255,255,.06);animation:fadeIn .3s ease}
   @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
   .quiz-body.active{display:block}
-  .quiz-progress-bar{height:4px;background:rgba(255,255,255,.08);border-radius:2px;margin:16px 0 20px;overflow:hidden}
+  .student-badge{background:rgba(249,157,34,.08);border:1px solid rgba(249,157,34,.2);border-radius:5px;padding:8px 14px;margin:14px 0;font-size:12px;color:var(--cream2);display:flex;align-items:center;gap:8px}
+  .student-badge strong{color:var(--orange)}
+  .quiz-progress-bar{height:4px;background:rgba(255,255,255,.08);border-radius:2px;margin:14px 0 20px;overflow:hidden}
   .quiz-progress-fill{height:100%;background:linear-gradient(90deg,var(--orange2),var(--orange));border-radius:2px;transition:width .4s ease}
   .q-counter{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.1em;color:var(--orange);text-transform:uppercase;margin-bottom:4px}
   .q-section{font-size:11px;color:var(--cream2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;font-weight:600}
@@ -85,6 +151,7 @@
   .next-btn:hover{background:var(--orange)}
   .next-btn.show{display:block}
 
+  /* ── RESULTS ── */
   .results-screen{display:none;text-align:center;padding-top:16px}
   .results-screen.show{display:block;animation:fadeIn .4s ease}
   .result-badge{display:inline-block;font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:6px 20px;border-radius:3px;margin-bottom:14px}
@@ -99,6 +166,9 @@
   .result-review-title{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
   .review-item{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px;color:var(--cream2)}
   .review-item:last-child{border-bottom:none}
+  .email-status{font-size:12px;margin-bottom:14px;padding:8px 14px;border-radius:5px;display:none}
+  .email-status.sent{display:block;background:rgba(76,175,80,.1);color:#81c784;border:1px solid rgba(76,175,80,.2)}
+  .email-status.failed{display:block;background:rgba(249,157,34,.1);color:var(--orange);border:1px solid rgba(249,157,34,.2)}
   .retake-btn{background:transparent;color:var(--orange);border:2px solid var(--orange2);border-radius:6px;padding:12px 24px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;width:100%;transition:all .2s}
   .retake-btn:hover{background:rgba(249,157,34,.08)}
 
@@ -128,9 +198,9 @@
 </div>
 
 <div class="container">
-  <div class="section-label-outer">🔒 Enter Your Passcode to Unlock Each Quiz</div>
+  <div class="section-label-outer">🔒 Enter Passcode → Sign In → Take Quiz</div>
 
-  <!-- TEST 1 -->
+  <!-- ══ TEST 1 ══ -->
   <div class="quiz-card" id="card-1">
     <div class="card-header">
       <div class="card-num">Test 1</div>
@@ -141,7 +211,7 @@
       <div class="lock-icon" id="lock-1">🔒</div>
     </div>
     <div class="passcode-section" id="pin-section-1">
-      <div class="passcode-label">🔑 Enter 4-Digit Passcode</div>
+      <div class="passcode-label">🔑 Step 1 — Enter Passcode</div>
       <div class="pin-row">
         <div class="pin-inputs" data-quiz="1">
           <input class="pin-input" type="tel" maxlength="1" inputmode="numeric">
@@ -153,14 +223,27 @@
       </div>
       <div class="pin-error" id="pin-error-1">Incorrect passcode. Please try again.</div>
     </div>
+    <div class="signin-section" id="signin-1">
+      <div class="signin-title">✏️ Step 2 — Enter Your Info</div>
+      <div class="signin-desc">Your results will be sent to your instructor upon completion.</div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Full Name *</label><input class="form-input" type="text" id="s1-name" placeholder="Jane Smith"></div>
+        <div class="form-group"><label class="form-label">Email *</label><input class="form-input" type="email" id="s1-email" placeholder="you@email.com"></div>
+        <div class="form-group"><label class="form-label">Phone *</label><input class="form-input" type="tel" id="s1-phone" placeholder="(716) 555-0000"></div>
+        <div class="form-group"><label class="form-label">Class Date *</label><input class="form-input" type="date" id="s1-date"></div>
+      </div>
+      <div class="signin-error" id="signin-error-1">Please fill in all fields.</div>
+      <button class="signin-btn" onclick="submitSignin(1)">Start Quiz →</button>
+    </div>
     <div class="quiz-body" id="quiz-body-1">
+      <div class="student-badge" id="student-badge-1">👤 <span></span></div>
       <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="prog-1" style="width:0%"></div></div>
       <div id="question-area-1"></div>
       <div class="results-screen" id="results-1"></div>
     </div>
   </div>
 
-  <!-- TEST 2 -->
+  <!-- ══ TEST 2 ══ -->
   <div class="quiz-card" id="card-2">
     <div class="card-header">
       <div class="card-num">Test 2</div>
@@ -171,7 +254,7 @@
       <div class="lock-icon" id="lock-2">🔒</div>
     </div>
     <div class="passcode-section" id="pin-section-2">
-      <div class="passcode-label">🔑 Enter 4-Digit Passcode</div>
+      <div class="passcode-label">🔑 Step 1 — Enter Passcode</div>
       <div class="pin-row">
         <div class="pin-inputs" data-quiz="2">
           <input class="pin-input" type="tel" maxlength="1" inputmode="numeric">
@@ -183,14 +266,27 @@
       </div>
       <div class="pin-error" id="pin-error-2">Incorrect passcode. Please try again.</div>
     </div>
+    <div class="signin-section" id="signin-2">
+      <div class="signin-title">✏️ Step 2 — Enter Your Info</div>
+      <div class="signin-desc">Your results will be sent to your instructor upon completion.</div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Full Name *</label><input class="form-input" type="text" id="s2-name" placeholder="Jane Smith"></div>
+        <div class="form-group"><label class="form-label">Email *</label><input class="form-input" type="email" id="s2-email" placeholder="you@email.com"></div>
+        <div class="form-group"><label class="form-label">Phone *</label><input class="form-input" type="tel" id="s2-phone" placeholder="(716) 555-0000"></div>
+        <div class="form-group"><label class="form-label">Class Date *</label><input class="form-input" type="date" id="s2-date"></div>
+      </div>
+      <div class="signin-error" id="signin-error-2">Please fill in all fields.</div>
+      <button class="signin-btn" onclick="submitSignin(2)">Start Quiz →</button>
+    </div>
     <div class="quiz-body" id="quiz-body-2">
+      <div class="student-badge" id="student-badge-2">👤 <span></span></div>
       <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="prog-2" style="width:0%"></div></div>
       <div id="question-area-2"></div>
       <div class="results-screen" id="results-2"></div>
     </div>
   </div>
 
-  <!-- TEST 3 -->
+  <!-- ══ TEST 3 ══ -->
   <div class="quiz-card" id="card-3">
     <div class="card-header">
       <div class="card-num">Test 3</div>
@@ -201,7 +297,7 @@
       <div class="lock-icon" id="lock-3">🔒</div>
     </div>
     <div class="passcode-section" id="pin-section-3">
-      <div class="passcode-label">🔑 Enter 4-Digit Passcode</div>
+      <div class="passcode-label">🔑 Step 1 — Enter Passcode</div>
       <div class="pin-row">
         <div class="pin-inputs" data-quiz="3">
           <input class="pin-input" type="tel" maxlength="1" inputmode="numeric">
@@ -213,14 +309,27 @@
       </div>
       <div class="pin-error" id="pin-error-3">Incorrect passcode. Please try again.</div>
     </div>
+    <div class="signin-section" id="signin-3">
+      <div class="signin-title">✏️ Step 2 — Enter Your Info</div>
+      <div class="signin-desc">Your results will be sent to your instructor upon completion.</div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Full Name *</label><input class="form-input" type="text" id="s3-name" placeholder="Jane Smith"></div>
+        <div class="form-group"><label class="form-label">Email *</label><input class="form-input" type="email" id="s3-email" placeholder="you@email.com"></div>
+        <div class="form-group"><label class="form-label">Phone *</label><input class="form-input" type="tel" id="s3-phone" placeholder="(716) 555-0000"></div>
+        <div class="form-group"><label class="form-label">Class Date *</label><input class="form-input" type="date" id="s3-date"></div>
+      </div>
+      <div class="signin-error" id="signin-error-3">Please fill in all fields.</div>
+      <button class="signin-btn" onclick="submitSignin(3)">Start Quiz →</button>
+    </div>
     <div class="quiz-body" id="quiz-body-3">
+      <div class="student-badge" id="student-badge-3">👤 <span></span></div>
       <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="prog-3" style="width:0%"></div></div>
       <div id="question-area-3"></div>
       <div class="results-screen" id="results-3"></div>
     </div>
   </div>
 
-  <!-- TEST 4 -->
+  <!-- ══ TEST 4 ══ -->
   <div class="quiz-card" id="card-4">
     <div class="card-header">
       <div class="card-num">Test 4</div>
@@ -231,7 +340,7 @@
       <div class="lock-icon" id="lock-4">🔒</div>
     </div>
     <div class="passcode-section" id="pin-section-4">
-      <div class="passcode-label">🔑 Enter 4-Digit Passcode</div>
+      <div class="passcode-label">🔑 Step 1 — Enter Passcode</div>
       <div class="pin-row">
         <div class="pin-inputs" data-quiz="4">
           <input class="pin-input" type="tel" maxlength="1" inputmode="numeric">
@@ -243,14 +352,27 @@
       </div>
       <div class="pin-error" id="pin-error-4">Incorrect passcode. Please try again.</div>
     </div>
+    <div class="signin-section" id="signin-4">
+      <div class="signin-title">✏️ Step 2 — Enter Your Info</div>
+      <div class="signin-desc">Your results will be sent to your instructor upon completion.</div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Full Name *</label><input class="form-input" type="text" id="s4-name" placeholder="Jane Smith"></div>
+        <div class="form-group"><label class="form-label">Email *</label><input class="form-input" type="email" id="s4-email" placeholder="you@email.com"></div>
+        <div class="form-group"><label class="form-label">Phone *</label><input class="form-input" type="tel" id="s4-phone" placeholder="(716) 555-0000"></div>
+        <div class="form-group"><label class="form-label">Class Date *</label><input class="form-input" type="date" id="s4-date"></div>
+      </div>
+      <div class="signin-error" id="signin-error-4">Please fill in all fields.</div>
+      <button class="signin-btn" onclick="submitSignin(4)">Start Quiz →</button>
+    </div>
     <div class="quiz-body" id="quiz-body-4">
+      <div class="student-badge" id="student-badge-4">👤 <span></span></div>
       <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="prog-4" style="width:0%"></div></div>
       <div id="question-area-4"></div>
       <div class="results-screen" id="results-4"></div>
     </div>
   </div>
 
-  <!-- TEST 5 -->
+  <!-- ══ TEST 5 ══ -->
   <div class="quiz-card" id="card-5">
     <div class="card-header">
       <div class="card-num">Test 5</div>
@@ -261,7 +383,7 @@
       <div class="lock-icon" id="lock-5">🔒</div>
     </div>
     <div class="passcode-section" id="pin-section-5">
-      <div class="passcode-label">🔑 Enter 4-Digit Passcode</div>
+      <div class="passcode-label">🔑 Step 1 — Enter Passcode</div>
       <div class="pin-row">
         <div class="pin-inputs" data-quiz="5">
           <input class="pin-input" type="tel" maxlength="1" inputmode="numeric">
@@ -273,14 +395,27 @@
       </div>
       <div class="pin-error" id="pin-error-5">Incorrect passcode. Please try again.</div>
     </div>
+    <div class="signin-section" id="signin-5">
+      <div class="signin-title">✏️ Step 2 — Enter Your Info</div>
+      <div class="signin-desc">Your results will be sent to your instructor upon completion.</div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Full Name *</label><input class="form-input" type="text" id="s5-name" placeholder="Jane Smith"></div>
+        <div class="form-group"><label class="form-label">Email *</label><input class="form-input" type="email" id="s5-email" placeholder="you@email.com"></div>
+        <div class="form-group"><label class="form-label">Phone *</label><input class="form-input" type="tel" id="s5-phone" placeholder="(716) 555-0000"></div>
+        <div class="form-group"><label class="form-label">Class Date *</label><input class="form-input" type="date" id="s5-date"></div>
+      </div>
+      <div class="signin-error" id="signin-error-5">Please fill in all fields.</div>
+      <button class="signin-btn" onclick="submitSignin(5)">Start Quiz →</button>
+    </div>
     <div class="quiz-body" id="quiz-body-5">
+      <div class="student-badge" id="student-badge-5">👤 <span></span></div>
       <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="prog-5" style="width:0%"></div></div>
       <div id="question-area-5"></div>
       <div class="results-screen" id="results-5"></div>
     </div>
   </div>
 
-  <!-- FINAL EXAM -->
+  <!-- ══ FINAL EXAM ══ -->
   <div class="quiz-card final-exam" id="card-6">
     <div class="card-header">
       <div class="card-num">⭐ Final Exam</div>
@@ -291,7 +426,7 @@
       <div class="lock-icon" id="lock-6">🔒</div>
     </div>
     <div class="passcode-section" id="pin-section-6">
-      <div class="passcode-label">🔑 Enter 4-Digit Passcode</div>
+      <div class="passcode-label">🔑 Step 1 — Enter Passcode</div>
       <div class="pin-row">
         <div class="pin-inputs" data-quiz="6">
           <input class="pin-input" type="tel" maxlength="1" inputmode="numeric">
@@ -303,7 +438,20 @@
       </div>
       <div class="pin-error" id="pin-error-6">Incorrect passcode. Please try again.</div>
     </div>
+    <div class="signin-section" id="signin-6">
+      <div class="signin-title">✏️ Step 2 — Enter Your Info</div>
+      <div class="signin-desc">Your results will be sent to your instructor upon completion.</div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Full Name *</label><input class="form-input" type="text" id="s6-name" placeholder="Jane Smith"></div>
+        <div class="form-group"><label class="form-label">Email *</label><input class="form-input" type="email" id="s6-email" placeholder="you@email.com"></div>
+        <div class="form-group"><label class="form-label">Phone *</label><input class="form-input" type="tel" id="s6-phone" placeholder="(716) 555-0000"></div>
+        <div class="form-group"><label class="form-label">Class Date *</label><input class="form-input" type="date" id="s6-date"></div>
+      </div>
+      <div class="signin-error" id="signin-error-6">Please fill in all fields.</div>
+      <button class="signin-btn" onclick="submitSignin(6)">Start Quiz →</button>
+    </div>
     <div class="quiz-body" id="quiz-body-6">
+      <div class="student-badge" id="student-badge-6">👤 <span></span></div>
       <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="prog-6" style="width:0%"></div></div>
       <div id="question-area-6"></div>
       <div class="results-screen" id="results-6"></div>
@@ -317,14 +465,14 @@
 </footer>
 
 <script>
-// ─────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════
 //  PASSCODES
-// ─────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════
 const CODES={1:'2011',2:'1911',3:'0320',4:'0201',5:'7645',6:'1999'};
 
-// ─────────────────────────────────────────────────────
-//  QUIZ DATA  (c = correct answer index: 0=A 1=B 2=C 3=D)
-// ─────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════
+//  QUIZ DATA
+// ═══════════════════════════════════════════════
 const QUIZZES={
   1:{pass:7,questions:[
     {s:'Safe Storage',q:'Under New York law, failing to safely store a firearm is classified as a:',c:1,a:['Class B felony punishable by 5 years in prison','Class A misdemeanor punishable by up to one year in prison and a $1,000 fine','Civil infraction with no criminal penalty','Class E felony punishable by up to 2 years in prison']},
@@ -336,7 +484,7 @@ const QUIZZES={
     {s:'Sensitive Places',q:'When you must stop at a location where carrying is restricted, the course recommends you:',c:2,a:['Leave the firearm under your car seat unlocked for quick access','Store it in the glove box, which is an acceptable storage location','Unload it and lock it in a tamper-resistant car safe hidden from view, or go home first','Disassemble it and place the parts in your bag']},
     {s:'Where You Can Carry',q:'Which of the following is NOT listed as an acceptable place to carry in New York State?',c:2,a:['A private residence','A shopping center (without a posted prohibition)','A bar or restaurant that serves alcohol','A gas station']},
     {s:'Law Enforcement',q:'In New York State, what is the current rule regarding the duty to inform a law enforcement officer that you are carrying a concealed firearm?',c:1,a:['You must always immediately volunteer that you are carrying','There is no duty to inform unless asked or asked to step out of the vehicle','You are prohibited from telling an officer you are carrying during a traffic stop','You must inform the officer only if you are transporting the firearm in a vehicle']},
-    {s:'Law Enforcement',q:'The course recommends handing an officer which documents during a traffic stop when carrying?',c:2,a:['Your pistol permit only','Your driver\'s license and vehicle registration only','Your concealed carry permit along with your driver\'s license and vehicle registration','Your firearms purchase receipt and permit']}
+    {s:'Law Enforcement',q:"The course recommends handing an officer which documents during a traffic stop when carrying?",c:2,a:['Your pistol permit only','Your driver\'s license and vehicle registration only','Your concealed carry permit along with your driver\'s license and vehicle registration','Your firearms purchase receipt and permit']}
   ]},
   2:{pass:7,questions:[
     {s:'Firearm Parts',q:'A semi-automatic pistol consists of how many major parts?',c:1,a:['Two — the frame and the barrel','Three — the action, barrel, and frame','Four — the slide, frame, barrel, and magazine','Five — the slide, frame, barrel, magazine, and trigger']},
@@ -410,15 +558,27 @@ const QUIZZES={
   ]}
 };
 
-// ─────────────────────────────────────────────────────
-//  STATE
-// ─────────────────────────────────────────────────────
-const state={};
-for(let i=1;i<=6;i++) state[i]={qi:0,score:0,answered:false,answers:[]};
+// ═══════════════════════════════════════════════
+//  QUIZ NAMES
+// ═══════════════════════════════════════════════
+const QUIZ_NAMES={
+  1:'Test 1 — Safe Storage, Sensitive Places & Law Enforcement',
+  2:'Test 2 — Laws, Firearms, Ammunition & Concealed Carry',
+  3:'Test 3 — Situational Awareness & Purchasing a Pistol in NYS',
+  4:'Test 4 — De-escalation, Substances & Mental Health',
+  5:'Test 5 — Article 35, Justification & Handgun Fundamentals',
+  6:'Final Exam — NYS Pistol Permit Written Exam'
+};
 
-// ─────────────────────────────────────────────────────
-//  PIN WIRING
-// ─────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════
+const state={};
+for(let i=1;i<=6;i++) state[i]={qi:0,score:0,answered:false,answers:[],student:null};
+
+// ═══════════════════════════════════════════════
+//  PIN INPUT WIRING
+// ═══════════════════════════════════════════════
 document.querySelectorAll('.pin-inputs').forEach(group=>{
   const inputs=group.querySelectorAll('.pin-input');
   inputs.forEach((inp,idx)=>{
@@ -434,18 +594,19 @@ document.querySelectorAll('.pin-inputs').forEach(group=>{
   });
 });
 
+// ═══════════════════════════════════════════════
+//  CHECK PIN → SHOW SIGN-IN
+// ═══════════════════════════════════════════════
 function checkPin(n){
   const inputs=document.querySelectorAll(`#card-${n} .pin-input`);
   const entered=Array.from(inputs).map(i=>i.value).join('');
   const err=document.getElementById(`pin-error-${n}`);
   if(entered===CODES[n]){
     document.getElementById(`pin-section-${n}`).style.display='none';
-    document.getElementById(`lock-${n}`).textContent='🔓';
-    document.getElementById(`card-${n}`).classList.add('unlocked');
-    const body=document.getElementById(`quiz-body-${n}`);
-    body.classList.add('active');
-    renderQuestion(n);
-    body.scrollIntoView({behavior:'smooth',block:'start'});
+    document.getElementById(`lock-${n}`).textContent='✏️';
+    const signin=document.getElementById(`signin-${n}`);
+    signin.classList.add('active');
+    signin.scrollIntoView({behavior:'smooth',block:'start'});
   } else {
     inputs.forEach(i=>{i.classList.add('wrong');setTimeout(()=>i.classList.remove('wrong'),500)});
     err.style.display='block';
@@ -454,6 +615,42 @@ function checkPin(n){
   }
 }
 
+// ═══════════════════════════════════════════════
+//  SUBMIT SIGN-IN → START QUIZ
+// ═══════════════════════════════════════════════
+function submitSignin(n){
+  const name  = document.getElementById(`s${n}-name`).value.trim();
+  const email = document.getElementById(`s${n}-email`).value.trim();
+  const phone = document.getElementById(`s${n}-phone`).value.trim();
+  const date  = document.getElementById(`s${n}-date`).value;
+  const err   = document.getElementById(`signin-error-${n}`);
+
+  if(!name||!email||!phone||!date){
+    err.style.display='block';
+    return;
+  }
+  err.style.display='none';
+
+  // Format date nicely
+  const dateFormatted = new Date(date+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+
+  state[n].student={name,email,phone,date:dateFormatted};
+
+  document.getElementById(`signin-${n}`).classList.remove('active');
+  document.getElementById(`signin-${n}`).style.display='none';
+  document.getElementById(`lock-${n}`).textContent='🔓';
+  document.getElementById(`card-${n}`).classList.add('unlocked');
+
+  const body=document.getElementById(`quiz-body-${n}`);
+  body.classList.add('active');
+  document.getElementById(`student-badge-${n}`).querySelector('span').textContent=`${name} · ${dateFormatted}`;
+  renderQuestion(n);
+  body.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ═══════════════════════════════════════════════
+//  RENDER QUESTION
+// ═══════════════════════════════════════════════
 function renderQuestion(n){
   const quiz=QUIZZES[n],st=state[n];
   const area=document.getElementById(`question-area-${n}`);
@@ -471,6 +668,9 @@ function renderQuestion(n){
     <button class="next-btn" id="next-${n}" onclick="nextQuestion(${n})">${st.qi+1<total?'Next Question →':'See Results'}</button>`;
 }
 
+// ═══════════════════════════════════════════════
+//  SELECT ANSWER
+// ═══════════════════════════════════════════════
 function selectAnswer(n,chosen){
   const st=state[n];
   if(st.answered) return;
@@ -492,34 +692,92 @@ function selectAnswer(n,chosen){
   document.getElementById(`next-${n}`).classList.add('show');
 }
 
+// ═══════════════════════════════════════════════
+//  NEXT QUESTION
+// ═══════════════════════════════════════════════
 function nextQuestion(n){
   state[n].qi++;
   if(state[n].qi<QUIZZES[n].questions.length) renderQuestion(n);
   else showResults(n);
 }
 
+// ═══════════════════════════════════════════════
+//  SHOW RESULTS + SEND EMAIL
+// ═══════════════════════════════════════════════
 function showResults(n){
   const quiz=QUIZZES[n],st=state[n],total=quiz.questions.length;
   const passed=st.score>=quiz.pass,pct=Math.round(st.score/total*100);
+  const isFinal=(n===6);
+
   document.getElementById(`prog-${n}`).style.width='100%';
   document.getElementById(`question-area-${n}`).style.display='none';
+
   const missed=st.answers.filter(a=>a.chosen!==a.correct).map(a=>{
     const q=quiz.questions[a.qi];
     return `<div class="review-item"><span>✗</span><span><strong>Q${a.qi+1}:</strong> ${q.q.length>65?q.q.slice(0,65)+'…':q.q} — Correct: <strong>${['A','B','C','D'][a.correct]}</strong></span></div>`;
   }).join('');
+
+  // Missed questions plain text for email
+  const missedText=st.answers.filter(a=>a.chosen!==a.correct).map(a=>{
+    const q=quiz.questions[a.qi];
+    return `Q${a.qi+1}: ${q.q}\n  Your answer: ${['A','B','C','D'][a.chosen]} — ${q.a[a.chosen]}\n  Correct: ${['A','B','C','D'][a.correct]} — ${q.a[a.correct]}`;
+  }).join('\n\n') || 'None — perfect score!';
+
   const el=document.getElementById(`results-${n}`);
   el.innerHTML=`
     <div class="result-badge ${passed?'pass':'fail'}">${passed?'✓ PASS':'✗ FAIL'}</div>
     <div class="result-score ${passed?'pass':'fail'}">${pct}%</div>
-    <div class="result-fraction">${st.score} / ${total} correct${n===6?` &nbsp;·&nbsp; ${st.score*5} / 100 pts`:''}</div>
+    <div class="result-fraction">${st.score} / ${total} correct${isFinal?` &nbsp;·&nbsp; ${st.score*5} / 100 pts`:''}</div>
     <div class="result-msg">${passed?'Great work! You passed. Keep building on this knowledge.':`You need ${quiz.pass} correct to pass. Review the material and try again.`}</div>
     ${missed?`<div class="result-review"><div class="result-review-title">Review These Questions</div>${missed}</div>`:''}
+    <div class="email-status" id="email-status-${n}"></div>
     <button class="retake-btn" onclick="retakeQuiz(${n})">🔄 Retake Quiz</button>`;
   el.classList.add('show');
+
+  // Send email via EmailJS
+  sendResults(n, missedText, pct, passed, isFinal);
 }
 
+// ═══════════════════════════════════════════════
+//  SEND EMAIL VIA EMAILJS
+// ═══════════════════════════════════════════════
+function sendResults(n, missedText, pct, passed, isFinal){
+  const st=state[n];
+  const s=st.student;
+  const total=QUIZZES[n].questions.length;
+  const scoreStr=`${st.score}/${total} (${pct}%)${isFinal?' — '+st.score*5+'/100 pts':''}`;
+
+  const params={
+    quiz_name:     QUIZ_NAMES[n],
+    student_name:  s.name,
+    student_email: s.email,
+    student_phone: s.phone,
+    class_date:    s.date,
+    score:         scoreStr,
+    result:        passed?'PASS ✓':'FAIL ✗',
+    missed_questions: missedText,
+    timestamp:     new Date().toLocaleString('en-US',{timeZone:'America/New_York'})
+  };
+
+  const statusEl=document.getElementById(`email-status-${n}`);
+
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+    .then(()=>{
+      statusEl.textContent='📧 Results sent to your instructor.';
+      statusEl.className='email-status sent';
+    })
+    .catch(()=>{
+      statusEl.textContent='⚠️ Could not send results automatically. Please screenshot your score.';
+      statusEl.className='email-status failed';
+    });
+}
+
+// ═══════════════════════════════════════════════
+//  RETAKE
+// ═══════════════════════════════════════════════
 function retakeQuiz(n){
-  state[n]={qi:0,score:0,answered:false,answers:[]};
+  const prevStudent=state[n].student;
+  state[n]={qi:0,score:0,answered:false,answers:[],student:prevStudent};
   const el=document.getElementById(`results-${n}`);
   el.classList.remove('show');el.innerHTML='';
   document.getElementById(`question-area-${n}`).style.display='';
