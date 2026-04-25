@@ -934,6 +934,27 @@
             }
         }
 
+        .red-btn {
+            background: var(--accent-red);
+            color: #fff;
+            border: 2px solid var(--accent-red);
+            box-shadow: 0 6px 20px rgba(226,66,32,0.35);
+        }
+
+        .red-btn:active {
+            transform: scale(0.98);
+            box-shadow: 0 3px 10px rgba(226,66,32,0.2);
+        }
+
+        @media (min-width: 769px) {
+            .red-btn:hover {
+                background: #c23618;
+                border-color: #c23618;
+                transform: translateY(-2px);
+                box-shadow: 0 10px 30px rgba(226,66,32,0.5);
+            }
+        }
+
         .signin-btn {
             background: var(--accent-orange);
             color: var(--primary-dark);
@@ -1007,9 +1028,9 @@
                 <li>Erie County Certificate Included</li>
             </ul>
             <div class="permit-btn-group">
-                <a href="nys-course.html" class="permit-btn waiver-btn">📝 Course Quizzes</a>
-                <a href="waiver.html" class="permit-btn waiver-btn">📋 Sign Waiver</a>
+                <a href="waiver.html" class="permit-btn red-btn">📋 Sign Waiver</a>
                 <a href="class-signin.html" class="permit-btn signin-btn">✍️ Sign In for Class</a>
+                <a href="nys-course.html" class="permit-btn waiver-btn">📝 Course Quizzes</a>
             </div>
         </section>
 
