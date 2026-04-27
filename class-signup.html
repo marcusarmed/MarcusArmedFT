@@ -835,7 +835,31 @@ function updateRecap(entry) {
     section.style.display = 'block';
 }
 
-buildDates();
+// ── Load roster counts from SheetDB then build date cards ────
+async function loadAndBuild() {
+    try {
+        const res  = await fetch(SHEETDB_URL + '?limit=500');
+        const rows = await res.json();
+
+        // Count registrations per class date
+        const counts = {};
+        rows.forEach(row => {
+            const d = (row['Class Date'] || '').trim();
+            if (d) counts[d] = (counts[d] || 0) + 1;
+        });
+
+        // Inject live booked counts into CLASS_DATES
+        CLASS_DATES.forEach(entry => {
+            const label = formatDateLong(entry.date);
+            entry.booked = counts[label] || 0;
+        });
+    } catch (err) {
+        console.warn('Could not load roster counts — using defaults.', err);
+    }
+    buildDates();
+}
+
+loadAndBuild();
 
 // ── EmailJS Configuration ─────────────────────────────────────
 emailjs.init('gBR5A4cYN0QdmdXOz');
