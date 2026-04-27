@@ -18,6 +18,11 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 
+    <!-- EmailJS — auto-sends signed waiver to instructor + student -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- jsPDF — client-side PDF download -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -482,6 +487,42 @@
         }
         .btn-print:hover { background: #1a1c20; transform: translateY(-2px); }
 
+        .btn-pdf {
+            display: inline-block;
+            background: var(--orange);
+            color: var(--dark);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0.85rem 2rem;
+            border-radius: 35px;
+            border: none;
+            cursor: pointer;
+            margin-top: 1.25rem;
+            margin-left: 0.75rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(249,157,34,0.35);
+        }
+        .btn-pdf:hover { background: #faa83a; transform: translateY(-2px); }
+
+        .success-email-note {
+            background: #eaf7ee;
+            border: 1px solid #b6dfc2;
+            border-radius: 8px;
+            padding: 0.85rem 1.25rem;
+            font-size: 0.9rem;
+            color: #2d6a3f;
+            margin: 1rem 0 0;
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
         @media print {
             header, .page-header, .btn-print, .submit-wrap { display: none !important; }
             body { background: #fff; }
@@ -567,6 +608,13 @@
                     <input type="date" id="signDate" required>
                 </div>
             </div>
+
+            <div class="field-row" style="margin-top:0">
+                <div class="field">
+                    <label for="studentEmail">Your Email Address * <span style="font-size:0.65rem;font-family:'Barlow',sans-serif;font-weight:400;text-transform:none;letter-spacing:0;opacity:0.7">(a signed copy will be emailed to you)</span></label>
+                    <input type="email" id="studentEmail" placeholder="you@example.com" autocomplete="email" required>
+                </div>
+            </div>
         </div>
 
         <div class="form-section">
@@ -591,7 +639,7 @@
         </div>
 
         <div class="submit-wrap">
-            <p class="submit-note">Submitting will open your email app with your signed waiver details. Please send the email to complete your submission.</p>
+            <p class="submit-note">A signed copy will be automatically emailed to both you and Marcus Armed — no manual steps required.</p>
             <button type="button" class="btn-submit" id="submitBtn">📋 Submit Signed Waiver</button>
         </div>
 
@@ -601,8 +649,7 @@
     <div id="successScreen">
         <div class="success-icon">✅</div>
         <h2>Waiver Submitted</h2>
-        <p>Your email app has opened with your signed waiver confirmation.</p>
-        <p style="margin-bottom:0.5rem;">Please <strong>send the email</strong> to complete your submission.</p>
+        <p id="successEmailMsg">Your signed waiver has been emailed to you and to Marcus Armed.</p>
 
         <div class="success-details" id="successDetails"></div>
 
@@ -611,16 +658,42 @@
             <img id="successSigImg" alt="Captured signature" />
         </div>
 
-        <button class="btn-print" onclick="window.print()">🖨 Print / Save Copy</button>
+        <div id="successEmailNote" class="success-email-note" style="display:none"></div>
+
+        <div>
+            <button class="btn-pdf" onclick="downloadPDF()">📥 Download PDF</button>
+            <button class="btn-print" onclick="window.print()">🖨 Print Copy</button>
+        </div>
     </div>
 
 </div><!-- /.page-wrap -->
 
 <script>
-// ── Set today's date ─────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════
+//  EMAILJS SETUP  —  Replace the 3 placeholder values below.
+//
+//  1. Create a FREE account at https://www.emailjs.com
+//  2. Add Email Service:  Account → Email Services → Add New Service
+//     (connect your Gmail) → copy the Service ID
+//  3. Create Template:    Email Templates → Create New Template
+//       • "To Email"  field  →  {{to_email}}
+//       • "Subject"   field  →  {{subject}}
+//       • "Message"   field  →  {{html_body}}   (set type to HTML)
+//     Copy the Template ID
+//  4. Get Public Key:     Account → API Keys → copy Public Key
+// ════════════════════════════════════════════════════════════════════
+const EJS_PUBLIC_KEY  = 'gBR5A4cYN0QdmdXOz';
+const EJS_SERVICE_ID  = 'service_7j2twbo';
+const EJS_TEMPLATE_ID = 'template_o7rwxkn';
+const MARCUS_EMAIL    = 'marcusarms@marcusarmed.com';
+// ════════════════════════════════════════════════════════════════════
+
+emailjs.init(EJS_PUBLIC_KEY);
+
+// ── Set today's date ─────────────────────────────────────────────
 document.getElementById('signDate').valueAsDate = new Date();
 
-// ── Signature Pad ─────────────────────────────────────────────
+// ── Signature Pad ────────────────────────────────────────────────
 const canvas  = document.getElementById('sigCanvas');
 const ctx     = canvas.getContext('2d');
 const sigWrap = document.getElementById('sigWrap');
@@ -682,81 +755,303 @@ document.getElementById('clearSig').addEventListener('click', () => {
     sigWrap.classList.remove('active', 'error-border');
 });
 
-// ── Form Submission ──────────────────────────────────────────
+// ── Form Submission ───────────────────────────────────────────────
 document.getElementById('submitBtn').addEventListener('click', submitWaiver);
 
-function submitWaiver() {
+async function submitWaiver() {
     const nameEl      = document.getElementById('fullName');
     const dateEl      = document.getElementById('signDate');
+    const emailEl     = document.getElementById('studentEmail');
     const agreeEl     = document.getElementById('agreeCheck');
     const agreeRow    = document.getElementById('agreeRow');
+    const submitBtn   = document.getElementById('submitBtn');
 
     let valid = true;
 
-    nameEl.classList.remove('error');
-    dateEl.classList.remove('error');
+    [nameEl, dateEl, emailEl].forEach(el => el.classList.remove('error'));
     sigWrap.classList.remove('error-border');
     agreeRow.classList.remove('error-border');
 
-    if (!nameEl.value.trim()) { nameEl.classList.add('error'); valid = false; }
-    if (!dateEl.value)        { dateEl.classList.add('error'); valid = false; }
-    if (!hasSig)              { sigWrap.classList.add('error-border'); valid = false; }
-    if (!agreeEl.checked)     { agreeRow.classList.add('error-border'); valid = false; }
+    if (!nameEl.value.trim())                          { nameEl.classList.add('error');  valid = false; }
+    if (!dateEl.value)                                 { dateEl.classList.add('error');  valid = false; }
+    if (!emailEl.value.trim() || !emailEl.value.includes('@')) { emailEl.classList.add('error'); valid = false; }
+    if (!hasSig)                                       { sigWrap.classList.add('error-border'); valid = false; }
+    if (!agreeEl.checked)                              { agreeRow.classList.add('error-border'); valid = false; }
 
     if (!valid) {
-        alert('Please fill in all required fields, sign the waiver, and check the agreement box.');
+        alert('Please fill in all required fields, provide your email address, sign the waiver, and check the agreement box.');
         const firstError = document.querySelector('.field input.error, .sig-wrap.error-border, .agree-row.error-border');
         if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
     }
 
-    const name    = nameEl.value.trim();
-    const signDate = formatDate(dateEl.value);
-    const now     = new Date().toLocaleString('en-US', { dateStyle:'full', timeStyle:'short' });
+    const name         = nameEl.value.trim();
+    const studentEmail = emailEl.value.trim();
+    const signDate     = formatDate(dateEl.value);
+    const now          = new Date().toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' });
+    const sigDataUrl   = canvas.toDataURL('image/png');
 
-    const subject = encodeURIComponent(`NYS Pistol Permit Course Waiver — Signed by ${name}`);
-    const body = encodeURIComponent(
-`MARCUS ARMED — NYS PISTOL PERMIT COURSE
-ASSUMPTION OF RISK & RELEASE OF LIABILITY
-==========================================
-Submission Date/Time: ${now}
+    // Loading state
+    submitBtn.disabled    = true;
+    submitBtn.textContent = '⏳ Sending…';
 
-PARTICIPANT
------------
-Full Name:     ${name}
-Signed Date:   ${signDate}
+    const marcusSubject  = `NYS Pistol Permit Waiver — Signed by ${name}`;
+    const studentSubject = `Your Signed Waiver — Marcus Armed NYS Pistol Permit Course`;
 
-ATTESTATION
------------
-The participant named above confirms they have read the full Assumption of Risk
-& Release of Liability Agreement for the Marcus Armed NYS 16-Hour Pistol Permit
-Course, and voluntarily agreed to its terms by providing a digital signature on
-${now}.
+    let sendOk = false;
+    try {
+        // Send to Marcus (instructor copy)
+        await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, {
+            to_email : MARCUS_EMAIL,
+            subject  : marcusSubject,
+            html_body: buildEmailHTML({ name, studentEmail, signDate, now, sigDataUrl, recipient: 'instructor' })
+        });
 
-Device: ${navigator.userAgent.substring(0, 120)}`
-    );
+        // Send to student (their copy)
+        await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, {
+            to_email : studentEmail,
+            subject  : studentSubject,
+            html_body: buildEmailHTML({ name, studentEmail, signDate, now, sigDataUrl, recipient: 'student' })
+        });
 
-    window.location.href = `mailto:marcusarms@marcusarmed.com?subject=${subject}&body=${body}`;
+        sendOk = true;
+    } catch (err) {
+        console.error('EmailJS send failed:', err);
+        // Graceful fallback — open mailto for Marcus so submission isn't lost
+        const fbBody = encodeURIComponent(
+`MARCUS ARMED — NYS PISTOL PERMIT COURSE WAIVER
+=================================================
+Participant : ${name}
+Email       : ${studentEmail}
+Signed      : ${signDate}
+Submitted   : ${now}
 
-    setTimeout(() => showSuccess(name, signDate, now), 400);
+The participant has read and agreed to the full Assumption of Risk
+& Release of Liability Agreement for the Marcus Armed NYS Pistol
+Permit Course.`
+        );
+        window.location.href = `mailto:${MARCUS_EMAIL}?subject=${encodeURIComponent(marcusSubject)}&body=${fbBody}`;
+    }
+
+    showSuccess({ name, studentEmail, signDate, now, sigDataUrl, sendOk });
 }
 
-function showSuccess(name, signDate, now) {
+// ── Build email HTML body ─────────────────────────────────────────
+function buildEmailHTML({ name, studentEmail, signDate, now, sigDataUrl, recipient }) {
+    const firstName = name.split(' ')[0];
+    const intro = recipient === 'student'
+        ? `<p style="font-size:14px;color:#444;margin:0 0 16px">Hi ${escHtml(firstName)}, this confirms receipt of your signed liability waiver for the Marcus Armed NYS 16-Hour Pistol Permit Course. Please keep this email for your records.</p>`
+        : `<p style="font-size:14px;color:#444;margin:0 0 16px">A new waiver has been submitted. Details are below.</p>`;
+
+    return `<div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto;background:#ffffff;border:1px solid #e0ddd8;border-radius:10px;overflow:hidden">
+
+  <!-- Header -->
+  <div style="background:#292c33;padding:22px 28px;text-align:center">
+    <div style="color:#f99d22;font-size:22px;font-weight:700;letter-spacing:3px;text-transform:uppercase">MARCUS ARMED</div>
+    <div style="color:#e8ddc9;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-top:5px">NYS Pistol Permit Course</div>
+  </div>
+
+  <!-- Title bar -->
+  <div style="background:#e24220;padding:10px 28px">
+    <div style="color:#fff;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase">Liability Waiver — Signed &amp; Submitted</div>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:24px 28px">
+    ${intro}
+
+    <!-- Details table -->
+    <table style="width:100%;border-collapse:collapse;margin-bottom:20px;font-size:14px">
+      <tr>
+        <td style="padding:10px 14px;background:#f5f2ec;border:1px solid #e0ddd8;font-weight:700;color:#292c33;width:36%">Participant</td>
+        <td style="padding:10px 14px;border:1px solid #e0ddd8;color:#333">${escHtml(name)}</td>
+      </tr>
+      <tr>
+        <td style="padding:10px 14px;background:#f5f2ec;border:1px solid #e0ddd8;font-weight:700;color:#292c33">Email</td>
+        <td style="padding:10px 14px;border:1px solid #e0ddd8;color:#333">${escHtml(studentEmail)}</td>
+      </tr>
+      <tr>
+        <td style="padding:10px 14px;background:#f5f2ec;border:1px solid #e0ddd8;font-weight:700;color:#292c33">Date Signed</td>
+        <td style="padding:10px 14px;border:1px solid #e0ddd8;color:#333">${escHtml(signDate)}</td>
+      </tr>
+      <tr>
+        <td style="padding:10px 14px;background:#f5f2ec;border:1px solid #e0ddd8;font-weight:700;color:#292c33">Submitted At</td>
+        <td style="padding:10px 14px;border:1px solid #e0ddd8;color:#333">${escHtml(now)}</td>
+      </tr>
+      <tr>
+        <td style="padding:10px 14px;background:#f5f2ec;border:1px solid #e0ddd8;font-weight:700;color:#292c33">Agreement</td>
+        <td style="padding:10px 14px;border:1px solid #e0ddd8;color:#333">Assumption of Risk &amp; Release of Liability — Marcus Armed NYS 16-Hour Pistol Permit Course</td>
+      </tr>
+    </table>
+
+    <!-- Attestation box -->
+    <div style="background:#fff8e6;border-left:4px solid #f99d22;padding:12px 16px;margin-bottom:20px;font-size:13px;color:#5a4a00;border-radius:0 6px 6px 0">
+      The participant named above confirms they have read the full Assumption of Risk &amp; Release of Liability Agreement and voluntarily agreed to its terms by providing a digital signature.
+    </div>
+
+    <!-- Signature image -->
+    <div style="border:1px solid #e0ddd8;border-radius:8px;overflow:hidden;margin-bottom:8px">
+      <div style="background:#f5f2ec;padding:8px 14px;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#888;border-bottom:1px solid #e0ddd8">Digital Signature</div>
+      <div style="background:#fff;padding:10px;text-align:center">
+        <img src="${sigDataUrl}" alt="Participant Signature" style="max-width:100%;height:auto;display:block;margin:0 auto" />
+      </div>
+    </div>
+    <p style="font-size:11px;color:#aaa;text-align:center;margin:0">Signature captured electronically on ${escHtml(now)}</p>
+  </div>
+
+  <!-- Footer -->
+  <div style="background:#292c33;padding:14px 28px;text-align:center">
+    <p style="font-size:11px;color:#888;margin:0">marcusarmed.com &nbsp;·&nbsp; (716) 352-8622 &nbsp;·&nbsp; NRA Certified Pistol Instructor</p>
+  </div>
+
+</div>`;
+}
+
+// ── Show success screen ───────────────────────────────────────────
+function showSuccess({ name, studentEmail, signDate, now, sigDataUrl, sendOk }) {
     document.getElementById('waiverCard').style.display = 'none';
 
     document.getElementById('successDetails').innerHTML = `
         <strong>Participant:</strong> ${escHtml(name)}<br>
+        <strong>Email:</strong> ${escHtml(studentEmail)}<br>
         <strong>Date Signed:</strong> ${escHtml(signDate)}<br>
         <strong>Submitted:</strong> ${escHtml(now)}<br>
         <strong>Agreement:</strong> Assumption of Risk &amp; Release of Liability — Marcus Armed NYS Pistol Permit Course
     `;
 
-    document.getElementById('successSigImg').src = canvas.toDataURL('image/png');
+    document.getElementById('successSigImg').src = sigDataUrl;
+
+    const msgEl  = document.getElementById('successEmailMsg');
+    const noteEl = document.getElementById('successEmailNote');
+
+    if (sendOk) {
+        msgEl.innerHTML = `A signed copy has been emailed to <strong>${escHtml(studentEmail)}</strong> and to Marcus Armed.`;
+    } else {
+        msgEl.textContent = 'Your waiver has been recorded. Email delivery encountered an issue — please download your PDF copy below.';
+        noteEl.textContent = 'Tip: If you expected a confirmation email and didn\'t receive one, please save or print this page.';
+        noteEl.style.display = 'block';
+    }
 
     document.getElementById('successScreen').style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Store for PDF generation
+    window._waiverData = { name, studentEmail, signDate, now, sigDataUrl };
 }
 
+// ── Download PDF ──────────────────────────────────────────────────
+function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const { name, studentEmail, signDate, now, sigDataUrl } = window._waiverData;
+    const doc = new jsPDF({ unit: 'pt', format: 'letter' });
+    const W = doc.internal.pageSize.getWidth();
+    const H = doc.internal.pageSize.getHeight();
+
+    // ── Header bar
+    doc.setFillColor(41, 44, 51);
+    doc.rect(0, 0, W, 72, 'F');
+    doc.setTextColor(249, 157, 34);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(20);
+    doc.text('MARCUS ARMED', W / 2, 34, { align: 'center' });
+    doc.setTextColor(232, 221, 201);
+    doc.setFontSize(9);
+    doc.text('NYS PISTOL PERMIT COURSE', W / 2, 52, { align: 'center' });
+
+    // ── Red accent bar
+    doc.setFillColor(226, 66, 32);
+    doc.rect(0, 72, W, 22, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(8.5);
+    doc.setFont('helvetica', 'bold');
+    doc.text('LIABILITY WAIVER — SIGNED & SUBMITTED', W / 2, 87, { align: 'center' });
+
+    // ── Title
+    doc.setTextColor(41, 44, 51);
+    doc.setFontSize(15);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Assumption of Risk & Release of Liability', 50, 124);
+
+    // ── Details table
+    const rows = [
+        ['Participant',  name],
+        ['Email',        studentEmail],
+        ['Date Signed',  signDate],
+        ['Submitted',    now],
+        ['Agreement',    'Marcus Armed NYS 16-Hour Pistol Permit Course'],
+    ];
+    let y = 148;
+    doc.setFontSize(10);
+    rows.forEach(([label, val], i) => {
+        const bg = i % 2 === 0;
+        if (bg) { doc.setFillColor(245, 242, 236); doc.rect(50, y - 14, W - 100, 22, 'F'); }
+        doc.setTextColor(100, 100, 100);
+        doc.setFont('helvetica', 'bold');
+        doc.text(label + ':', 58, y);
+        doc.setTextColor(41, 44, 51);
+        doc.setFont('helvetica', 'normal');
+        const wrapped = doc.splitTextToSize(String(val), W - 260);
+        doc.text(wrapped, 182, y);
+        y += wrapped.length > 1 ? 26 : 22;
+    });
+
+    y += 10;
+
+    // ── Attestation box
+    doc.setFillColor(255, 248, 230);
+    doc.rect(50, y, W - 100, 52, 'F');
+    doc.setDrawColor(249, 157, 34);
+    doc.setLineWidth(3);
+    doc.line(50, y, 50, y + 52);
+    doc.setLineWidth(1);
+    doc.setTextColor(90, 74, 0);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    const attest = doc.splitTextToSize(
+        'The participant named above has read and voluntarily agreed to the full Assumption of Risk & Release of Liability Agreement for the Marcus Armed NYS 16-Hour Pistol Permit Course.',
+        W - 130
+    );
+    doc.text(attest, 62, y + 18);
+
+    y += 68;
+
+    // ── Signature block
+    doc.setTextColor(136, 136, 136);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.text('DIGITAL SIGNATURE', 50, y);
+    y += 8;
+
+    doc.setDrawColor(224, 221, 216);
+    doc.setLineWidth(1);
+    doc.rect(50, y, W - 100, 110);
+
+    try {
+        doc.addImage(sigDataUrl, 'PNG', 54, y + 4, W - 108, 102);
+    } catch (e) {
+        doc.setFontSize(9);
+        doc.setTextColor(180, 180, 180);
+        doc.text('[Signature image]', W / 2, y + 55, { align: 'center' });
+    }
+
+    y += 118;
+    doc.setTextColor(180, 180, 180);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.text(`Signature captured electronically on ${now}`, 50, y);
+
+    // ── Footer bar
+    doc.setFillColor(41, 44, 51);
+    doc.rect(0, H - 36, W, 36, 'F');
+    doc.setTextColor(136, 136, 136);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.text('marcusarmed.com  ·  (716) 352-8622  ·  NRA Certified Pistol Instructor', W / 2, H - 14, { align: 'center' });
+
+    doc.save(`Marcus_Armed_Waiver_${name.replace(/\s+/g, '_')}.pdf`);
+}
+
+// ── Helpers ───────────────────────────────────────────────────────
 function formatDate(val) {
     if (!val) return '';
     const [y, m, d] = val.split('-');
@@ -764,7 +1059,11 @@ function formatDate(val) {
 }
 
 function escHtml(str) {
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
 }
 </script>
 </body>
