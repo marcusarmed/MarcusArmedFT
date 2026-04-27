@@ -441,18 +441,24 @@
     btn.disabled = true;
     btn.innerHTML = '<span class="spinner"></span> Submitting…';
 
-    const payload = {
-      ...fields,
-      classDate : dateStr,
-      courseName: 'NYS Pistol Permit Course',
-      timestamp : new Date().toISOString()
+    // Keys must match sheet column headers exactly
+    const row = {
+      'Timestamp'         : new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }),
+      'Class Date'        : dateStr,
+      'Full Name'         : fields.fullName,
+      'Date of Birth'     : fields.dob,
+      'Phone'             : fields.phone,
+      'Email'             : fields.email,
+      'Home Address'      : fields.address,
+      'Emergency Contact' : fields.ecName,
+      'EC Phone'          : fields.ecPhone
     };
 
     try {
       const res = await fetch(SHEETDB_URL, {
         method  : 'POST',
         headers : { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body    : JSON.stringify({ data: payload })
+        body    : JSON.stringify({ data: [row] })
       });
       if (!res.ok) throw new Error('SheetDB error');
 
