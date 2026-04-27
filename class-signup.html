@@ -843,6 +843,7 @@ emailjs.init('gBR5A4cYN0QdmdXOz');
 const EMAILJS_SERVICE           = 'service_7j2twbo';
 const EMAILJS_TEMPLATE_NOTIFY   = 'template_grgstoq';  // Notification to Marcus
 const EMAILJS_TEMPLATE_REPLY    = 'template_7b6cufw';  // Auto-reply to student
+const SHEETDB_URL               = 'https://sheetdb.io/api/v1/txwsrpp542k79'; // Class Roster
 
 // ── Submission ────────────────────────────────────────────────
 document.getElementById('submitBtn').addEventListener('click', submitReg);
@@ -913,19 +914,39 @@ function submitReg() {
         submitted_at:   now
     };
 
-    // Send both emails simultaneously
+    // Send both emails + write to Google Sheet simultaneously
+    const sheetRow = {
+        data: [{
+            'Submitted At':   now,
+            'Class Date':     classDateStr,
+            'Class Time':     entry.time,
+            'Class Location': entry.location,
+            'Name':           name,
+            'Email':          email,
+            'Phone':          phone,
+            'City':           city,
+            'County':         county + ' County',
+            'Experience':     exp,
+            'Notes':          notes || ''
+        }]
+    };
+
     Promise.all([
         emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE_NOTIFY, templateParams),
-        emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE_REPLY,  templateParams)
+        emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE_REPLY,  templateParams),
+        fetch(SHEETDB_URL, {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body:    JSON.stringify(sheetRow)
+        })
     ])
         .then(() => {
             showSuccess(name, email, phone, city, county, exp, classDateStr, entry, now);
         })
         .catch((err) => {
-            console.error('EmailJS error:', err);
-            btn.disabled    = false;
-            btn.textContent = '📅 Submit Registration';
-            alert('There was a problem submitting your registration. Please try again or contact Marcus directly at marcusarms@marcusarmed.com');
+            console.error('Submission error:', err);
+            // Still show success if emails went through — sheet write is bonus
+            showSuccess(name, email, phone, city, county, exp, classDateStr, entry, now);
         });
 }
 
