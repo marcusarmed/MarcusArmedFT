@@ -1,738 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#f99d22">
-    <title>Class Sign-In — Marcus Armed NYS Pistol Permit Course</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Class Sign-In — Marcus Armed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dark:    #292c33;
+      --darker:  #1a1c20;
+      --card:    #1e2128;
+      --orange:  #f99d22;
+      --orange2: #e24220;
+      --cream:   #e8ddc9;
+      --white:   #ffffff;
+      --border:  rgba(249,157,34,0.25);
+    }
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1D9JZN9C5"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-F1D9JZN9C5');
-    </script>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    body {
+      background: var(--darker);
+      color: var(--cream);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+      padding-bottom: 3rem;
+    }
 
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* ── HEADER ── */
+    .header {
+      background: var(--darker);
+      border-bottom: 3px solid var(--orange);
+      padding: 1.1rem 1.5rem 1rem;
+      text-align: center;
+    }
+    .header-brand {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .header-brand span { color: var(--orange); }
+    .header-tagline {
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.5;
+      margin-top: 2px;
+    }
 
-        :root {
-            --dark:   #292c33;
-            --orange: #f99d22;
-            --red:    #e24220;
-            --cream:  #e8ddc9;
-            --white:  #ffffff;
-            --border: #d5cfc4;
-            --input-bg: #faf9f7;
-        }
+    /* ── CLASS BANNER ── */
+    .class-banner {
+      background: var(--orange);
+      color: var(--darker);
+      text-align: center;
+      padding: 0.6rem 1rem;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
 
-        body {
-            font-family: 'Barlow', sans-serif;
-            background: var(--cream);
-            color: var(--dark);
-            line-height: 1.6;
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-        }
+    /* ── FORM WRAP ── */
+    .form-wrap {
+      max-width: 460px;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 0;
+    }
 
-        /* ── Header ── */
-        header {
-            background: var(--dark);
-            padding: 1.25rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
+    /* ── FORM CARD ── */
+    .form-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 1.6rem 1.4rem 1.8rem;
+      border: 1px solid var(--border);
+    }
 
-        .header-brand {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--orange);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            text-decoration: none;
-        }
+    .form-headline {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.25rem;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 0.2rem;
+    }
+    .form-note {
+      font-size: 0.82rem;
+      color: var(--cream);
+      opacity: 0.55;
+      margin-bottom: 1.4rem;
+      line-height: 1.5;
+    }
 
-        .header-back {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--cream);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            opacity: 0.75;
-            transition: opacity 0.2s;
-        }
-        .header-back:hover { opacity: 1; }
+    /* ── SECTION DIVIDERS ── */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 1.4rem 0 1rem;
+    }
+    .section-divider-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.78rem;
+      color: var(--orange);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .section-divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
 
-        /* ── Page Container ── */
-        .page-wrap {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 2rem 1rem 4rem;
-        }
+    /* ── FIELDS ── */
+    .field {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--cream);
+      opacity: 0.75;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.38rem;
+    }
+    label .req { color: var(--orange); }
 
-        @media (min-width: 640px) {
-            .page-wrap { padding: 2.5rem 1.5rem 4rem; }
-        }
+    input {
+      width: 100%;
+      background: var(--dark);
+      border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 0.72rem 0.9rem;
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    input:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(249,157,34,0.12);
+    }
+    input::placeholder {
+      color: rgba(255,255,255,0.2);
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(0.6) sepia(1) saturate(3) hue-rotate(10deg);
+      opacity: 0.7;
+    }
 
-        /* ── Page Header ── */
-        .page-header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
+    /* ── SUBMIT ── */
+    .submit-btn {
+      width: 100%;
+      background: var(--orange);
+      color: var(--darker);
+      border: none;
+      border-radius: 8px;
+      padding: 0.95rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 1.6rem;
+      transition: opacity 0.2s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .submit-btn:active  { opacity: 0.82; transform: scale(0.98); }
+    .submit-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 
-        .page-badge {
-            display: inline-block;
-            background: var(--orange);
-            color: var(--dark);
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 0.35rem 1.1rem;
-            border-radius: 20px;
-            margin-bottom: 1rem;
-        }
+    /* ── ERROR ── */
+    .error-box {
+      display: none;
+      background: rgba(226,66,32,0.12);
+      border: 1px solid var(--orange2);
+      border-radius: 7px;
+      padding: 0.7rem 0.9rem;
+      font-size: 0.88rem;
+      color: #ff9b7a;
+      margin-top: 1rem;
+      line-height: 1.4;
+    }
 
-        .page-header h1 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--dark);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            line-height: 1.2;
-            margin-bottom: 0.75rem;
-        }
+    /* ── SPINNER ── */
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2.5px solid rgba(30,30,30,0.3);
+      border-top-color: var(--darker);
+      border-radius: 50%;
+      animation: spin 0.65s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-        @media (min-width: 640px) {
-            .page-header h1 { font-size: 2.4rem; }
-        }
+    /* ── SUCCESS SCREEN ── */
+    #successScreen {
+      display: none;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      animation: fadeUp 0.4s ease-out both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .success-icon {
+      font-size: 4.5rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+    .success-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 0.6rem;
+    }
+    .success-body {
+      font-size: 1rem;
+      color: var(--cream);
+      opacity: 0.8;
+      line-height: 1.7;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    .success-name {
+      color: var(--orange);
+      font-weight: 600;
+    }
+    .success-divider {
+      width: 50px;
+      height: 3px;
+      background: var(--orange);
+      margin: 1.2rem auto;
+      border-radius: 2px;
+    }
+    .success-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      margin-top: 1.5rem;
+      text-align: left;
+    }
+    .success-card-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.75rem;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 0.6rem;
+    }
+    .success-card-item {
+      font-size: 0.88rem;
+      color: var(--cream);
+      opacity: 0.7;
+      padding: 0.28rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      gap: 0.6rem;
+    }
+    .success-card-item:last-child { border-bottom: none; }
+    .sci-key {
+      min-width: 80px;
+      opacity: 0.55;
+      font-size: 0.8rem;
+    }
 
-        .page-header p {
-            font-size: 1rem;
-            color: #555;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        /* ── Form Card ── */
-        .form-card {
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 8px 35px rgba(0,0,0,0.12);
-            overflow: hidden;
-        }
-
-        .form-section {
-            padding: 1.75rem 1.5rem;
-            border-bottom: 1px solid #ede9e0;
-        }
-
-        @media (min-width: 640px) {
-            .form-section { padding: 2rem 2.25rem; }
-        }
-
-        .form-section:last-child { border-bottom: none; }
-
-        .section-label {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--orange);
-            margin-bottom: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .section-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
-
-        /* ── Fields ── */
-        .field-row {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        @media (min-width: 480px) {
-            .field-row.two-col { grid-template-columns: 1fr 1fr; }
-            .field-row.three-col { grid-template-columns: 2fr 1fr 1fr; }
-        }
-
-        .field {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-
-        .field label {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #666;
-        }
-
-        .field input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1.5px solid var(--border);
-            border-radius: 8px;
-            font-family: 'Barlow', sans-serif;
-            font-size: 1rem;
-            color: var(--dark);
-            background: var(--input-bg);
-            transition: border-color 0.2s, box-shadow 0.2s;
-            -webkit-appearance: none;
-            min-height: 44px;
-        }
-
-        .field input:focus {
-            outline: none;
-            border-color: var(--orange);
-            box-shadow: 0 0 0 3px rgba(249,157,34,0.15);
-            background: #fff;
-        }
-
-        .field input.error {
-            border-color: var(--red);
-            box-shadow: 0 0 0 3px rgba(226,66,32,0.12);
-        }
-
-        /* ── Signature Pad ── */
-        .sig-wrap {
-            border: 2px dashed var(--border);
-            border-radius: 10px;
-            overflow: hidden;
-            background: var(--input-bg);
-            position: relative;
-            touch-action: none;
-            transition: border-color 0.2s;
-        }
-
-        .sig-wrap.active { border-color: var(--orange); border-style: solid; }
-        .sig-wrap.error-border { border-color: var(--red); border-style: solid; }
-
-        #sigCanvas {
-            display: block;
-            width: 100%;
-            height: 180px;
-            cursor: crosshair;
-            touch-action: none;
-        }
-
-        .sig-hint {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Barlow', sans-serif;
-            font-size: 0.95rem;
-            color: #aaa;
-            pointer-events: none;
-            transition: opacity 0.3s;
-            white-space: nowrap;
-        }
-
-        .sig-controls {
-            display: flex;
-            justify-content: flex-end;
-            padding: 0.5rem 0.75rem;
-            border-top: 1px solid #ede9e0;
-            background: #faf9f7;
-        }
-
-        .btn-clear {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #888;
-            background: none;
-            border: 1px solid #ccc;
-            border-radius: 20px;
-            padding: 0.3rem 1rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-clear:hover { color: var(--red); border-color: var(--red); }
-
-        /* ── Submit Button ── */
-        .submit-wrap {
-            padding: 1.75rem 1.5rem 2rem;
-            background: #faf9f7;
-            border-top: 1px solid #ede9e0;
-            text-align: center;
-        }
-
-        @media (min-width: 640px) {
-            .submit-wrap { padding: 2rem 2.25rem 2.25rem; }
-        }
-
-        .submit-note {
-            font-size: 0.85rem;
-            color: #777;
-            margin-bottom: 1.25rem;
-        }
-
-        .btn-submit {
-            display: inline-block;
-            background: var(--orange);
-            color: var(--dark);
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            padding: 1rem 3rem;
-            border-radius: 35px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(249,157,34,0.35);
-            transition: all 0.3s ease;
-            min-height: 52px;
-            width: 100%;
-            max-width: 320px;
-        }
-
-        .btn-submit:hover {
-            background: #faa83a;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 28px rgba(249,157,34,0.45);
-        }
-
-        .btn-submit:active {
-            transform: scale(0.98);
-        }
-
-        /* ── Success Screen ── */
-        #successScreen {
-            display: none;
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 8px 35px rgba(0,0,0,0.12);
-            padding: 2.5rem 2rem;
-            text-align: center;
-        }
-
-        .success-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-
-        #successScreen h2 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--dark);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 0.75rem;
-        }
-
-        #successScreen p {
-            font-size: 1rem;
-            color: #555;
-            margin-bottom: 0.5rem;
-        }
-
-        .success-details {
-            background: #faf9f7;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.25rem;
-            margin: 1.5rem 0;
-            text-align: left;
-            font-size: 0.95rem;
-            line-height: 1.8;
-            color: var(--dark);
-        }
-
-        .success-sig-wrap {
-            margin: 1.25rem 0;
-            border: 1.5px solid var(--border);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .success-sig-label {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.7rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #888;
-            padding: 0.5rem 0.75rem;
-            background: #faf9f7;
-            border-bottom: 1px solid var(--border);
-        }
-
-        #successSigImg {
-            display: block;
-            width: 100%;
-            height: auto;
-            background: #fff;
-        }
-
-        .btn-print {
-            display: inline-block;
-            background: var(--dark);
-            color: var(--cream);
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 0.85rem 2rem;
-            border-radius: 35px;
-            border: none;
-            cursor: pointer;
-            margin-top: 1.25rem;
-            transition: all 0.3s;
-        }
-
-        .btn-print:hover {
-            background: #1a1c20;
-            transform: translateY(-2px);
-        }
-
-        .error-msg {
-            color: var(--red);
-            font-size: 0.82rem;
-            margin-top: 0.3rem;
-            display: none;
-        }
-
-        @media print {
-            header, .page-header, .btn-print, .submit-wrap { display: none !important; }
-            body { background: #fff; }
-            #successScreen { box-shadow: none; }
-        }
-    </style>
+    /* ── FOOTER ── */
+    .footer-note {
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--cream);
+      opacity: 0.35;
+      margin-top: 1.4rem;
+      line-height: 1.5;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <a href="index.html" class="header-brand">Marcus Armed</a>
-    <a href="index.html" class="header-back">← Back to Home</a>
-</header>
+<!-- HEADER -->
+<div class="header">
+  <div class="header-brand">Marcus <span>Armed</span></div>
+  <div class="header-tagline">Professional Firearms Training</div>
+</div>
 
-<div class="page-wrap">
+<!-- CLASS BANNER -->
+<div class="class-banner">
+  NYS Pistol Permit Course &nbsp;·&nbsp; <span id="classDateDisplay"></span>
+</div>
 
-    <div class="page-header">
-        <div class="page-badge">NYS Pistol Permit Course</div>
-        <h1>Class Sign-In</h1>
-        <p>Please complete all fields and provide your digital signature to sign in for today's class.</p>
+<div class="form-wrap">
+
+  <!-- ══ SIGN-IN FORM ══ -->
+  <div id="formScreen">
+    <div class="form-card">
+      <div class="form-headline">📋 Class Sign-In</div>
+      <div class="form-note">Please complete all fields before class begins. Your info is for attendance records only.</div>
+
+      <!-- Personal Info -->
+      <div class="section-divider">
+        <span class="section-divider-label">Personal Info</span>
+        <div class="section-divider-line"></div>
+      </div>
+
+      <div class="field">
+        <label>Full Name <span class="req">*</span></label>
+        <input type="text" id="fullName" placeholder="First Last" autocomplete="name" inputmode="text">
+      </div>
+
+      <div class="field">
+        <label>Date of Birth <span class="req">*</span></label>
+        <input type="date" id="dob" autocomplete="bday">
+      </div>
+
+      <div class="field">
+        <label>Phone Number <span class="req">*</span></label>
+        <input type="tel" id="phone" placeholder="(716) 000-0000" autocomplete="tel" inputmode="tel">
+      </div>
+
+      <div class="field">
+        <label>Email Address <span class="req">*</span></label>
+        <input type="email" id="email" placeholder="you@email.com" autocomplete="email" inputmode="email">
+      </div>
+
+      <div class="field">
+        <label>Home Address <span class="req">*</span></label>
+        <input type="text" id="address" placeholder="123 Main St, Buffalo, NY 14200" autocomplete="street-address">
+      </div>
+
+      <!-- Emergency Contact -->
+      <div class="section-divider">
+        <span class="section-divider-label">Emergency Contact</span>
+        <div class="section-divider-line"></div>
+      </div>
+
+      <div class="field">
+        <label>Contact Name <span class="req">*</span></label>
+        <input type="text" id="ecName" placeholder="Full Name" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label>Contact Phone <span class="req">*</span></label>
+        <input type="tel" id="ecPhone" placeholder="(716) 000-0000" autocomplete="off" inputmode="tel">
+      </div>
+
+      <div class="error-box" id="errorBox"></div>
+
+      <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">
+        ✓ &nbsp;Sign In
+      </button>
     </div>
 
-    <!-- ── Sign-In Form ── -->
-    <div class="form-card" id="signInForm">
-
-        <!-- Participant Info -->
-        <div class="form-section">
-            <div class="section-label">Participant Information</div>
-
-            <div class="field-row">
-                <div class="field">
-                    <label for="fullName">Full Legal Name *</label>
-                    <input type="text" id="fullName" name="fullName" placeholder="First Middle Last" autocomplete="name" required>
-                </div>
-            </div>
-
-            <div class="field-row two-col">
-                <div class="field">
-                    <label for="dob">Date of Birth *</label>
-                    <input type="date" id="dob" name="dob" required>
-                </div>
-                <div class="field">
-                    <label for="phone">Phone Number *</label>
-                    <input type="tel" id="phone" name="phone" placeholder="(716) 555-0100" autocomplete="tel" required>
-                </div>
-            </div>
-
-            <div class="field-row">
-                <div class="field">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
-                </div>
-            </div>
-        </div>
-
-        <!-- Address -->
-        <div class="form-section">
-            <div class="section-label">Home Address</div>
-
-            <div class="field-row">
-                <div class="field">
-                    <label for="address">Street Address *</label>
-                    <input type="text" id="address" name="address" placeholder="123 Main St, Apt 4" autocomplete="street-address" required>
-                </div>
-            </div>
-
-            <div class="field-row three-col">
-                <div class="field">
-                    <label for="city">City *</label>
-                    <input type="text" id="city" name="city" placeholder="Buffalo" autocomplete="address-level2" required>
-                </div>
-                <div class="field">
-                    <label for="state">State *</label>
-                    <input type="text" id="state" name="state" placeholder="NY" maxlength="2" autocomplete="address-level1" required>
-                </div>
-                <div class="field">
-                    <label for="zip">ZIP Code *</label>
-                    <input type="text" id="zip" name="zip" placeholder="14201" maxlength="10" autocomplete="postal-code" required>
-                </div>
-            </div>
-        </div>
-
-        <!-- Signature -->
-        <div class="form-section">
-            <div class="section-label">Digital Signature</div>
-            <p style="font-size:0.9rem; color:#666; margin-bottom:1rem;">
-                By signing below, you confirm that all information provided is accurate and that you agree to follow all safety rules and instructor directives during the course.
-            </p>
-            <div class="sig-wrap" id="sigWrap">
-                <canvas id="sigCanvas" width="700" height="200"></canvas>
-                <div class="sig-hint" id="sigHint">✍️ Sign here</div>
-                <div class="sig-controls">
-                    <button type="button" class="btn-clear" id="clearSig">Clear Signature</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Submit -->
-        <div class="submit-wrap">
-            <p class="submit-note">Submitting will open your email app with your sign-in details pre-filled. Please send the email to complete your sign-in.</p>
-            <button type="button" class="btn-submit" id="submitBtn">✓ Submit Sign-In</button>
-        </div>
-
-    </div><!-- /.form-card -->
-
-    <!-- ── Success Screen ── -->
-    <div id="successScreen">
-        <div class="success-icon">✅</div>
-        <h2>Sign-In Complete</h2>
-        <p>Your email app has opened with your sign-in details.</p>
-        <p style="margin-bottom:0.5rem;">Please <strong>send the email</strong> to finish your sign-in.</p>
-
-        <div class="success-details" id="successDetails"></div>
-
-        <div class="success-sig-wrap">
-            <div class="success-sig-label">Your Signature on File</div>
-            <img id="successSigImg" alt="Captured signature" />
-        </div>
-
-        <button class="btn-print" onclick="window.print()">🖨 Print / Save Copy</button>
+    <div class="footer-note">
+      marcusarmed.com &nbsp;·&nbsp; NRA Certified Pistol Instructor<br>
+      Information collected for class records only.
     </div>
+  </div>
 
-</div><!-- /.page-wrap -->
+  <!-- ══ SUCCESS SCREEN ══ -->
+  <div id="successScreen">
+    <span class="success-icon">✅</span>
+    <div class="success-title">You're In!</div>
+    <div class="success-divider"></div>
+    <div class="success-body">
+      Welcome, <span class="success-name" id="successName"></span>.<br>
+      Your attendance has been recorded.<br>
+      Please find a seat — class starts soon.
+    </div>
+    <div class="success-card">
+      <div class="success-card-label">Signed In For</div>
+      <div class="success-card-item"><span class="sci-key">Course</span><span>NYS Pistol Permit</span></div>
+      <div class="success-card-item"><span class="sci-key">Date</span><span id="successDate"></span></div>
+      <div class="success-card-item"><span class="sci-key">Instructor</span><span>Marcus Armed</span></div>
+    </div>
+  </div>
+
+</div><!-- /form-wrap -->
+
 
 <script>
-// ── Signature Pad ────────────────────────────────────────────
-const canvas  = document.getElementById('sigCanvas');
-const ctx     = canvas.getContext('2d');
-const sigWrap = document.getElementById('sigWrap');
-const sigHint = document.getElementById('sigHint');
-let isDrawing = false;
-let lastX = 0, lastY = 0;
-let hasSig = false;
+  const SHEETDB_URL = 'https://sheetdb.io/api/v1/n30skldqew4bc';
 
-ctx.strokeStyle = '#1a1a1a';
-ctx.lineWidth   = 2.5;
-ctx.lineCap     = 'round';
-ctx.lineJoin    = 'round';
+  // Set today's date in header
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('en-US', {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+  });
+  document.getElementById('classDateDisplay').textContent = dateStr;
+  document.getElementById('successDate').textContent = dateStr;
 
-function getPos(e) {
-    const rect   = canvas.getBoundingClientRect();
-    const scaleX = canvas.width  / rect.width;
-    const scaleY = canvas.height / rect.height;
-    const src    = e.touches ? e.touches[0] : e;
-    return {
-        x: (src.clientX - rect.left) * scaleX,
-        y: (src.clientY - rect.top)  * scaleY
-    };
-}
+  async function handleSubmit() {
+    const btn    = document.getElementById('submitBtn');
+    const errBox = document.getElementById('errorBox');
 
-function startDraw(e) {
-    isDrawing = true;
-    const p = getPos(e);
-    lastX = p.x; lastY = p.y;
-    sigWrap.classList.add('active');
-    if (sigHint) sigHint.style.opacity = '0';
-}
-
-function draw(e) {
-    if (!isDrawing) return;
-    e.preventDefault();
-    const p = getPos(e);
-    ctx.beginPath();
-    ctx.moveTo(lastX, lastY);
-    ctx.lineTo(p.x, p.y);
-    ctx.stroke();
-    lastX = p.x; lastY = p.y;
-    hasSig = true;
-}
-
-function endDraw() { isDrawing = false; }
-
-canvas.addEventListener('mousedown',  startDraw);
-canvas.addEventListener('mousemove',  draw);
-canvas.addEventListener('mouseup',    endDraw);
-canvas.addEventListener('mouseleave', endDraw);
-canvas.addEventListener('touchstart', startDraw, { passive: false });
-canvas.addEventListener('touchmove',  draw,      { passive: false });
-canvas.addEventListener('touchend',   endDraw);
-
-document.getElementById('clearSig').addEventListener('click', () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    hasSig = false;
-    sigHint.style.opacity = '1';
-    sigWrap.classList.remove('active', 'error-border');
-});
-
-// ── Form Submission ──────────────────────────────────────────
-document.getElementById('submitBtn').addEventListener('click', submitForm);
-
-function submitForm() {
     const fields = {
-        fullName: document.getElementById('fullName'),
-        dob:      document.getElementById('dob'),
-        phone:    document.getElementById('phone'),
-        email:    document.getElementById('email'),
-        address:  document.getElementById('address'),
-        city:     document.getElementById('city'),
-        state:    document.getElementById('state'),
-        zip:      document.getElementById('zip'),
+      fullName : document.getElementById('fullName').value.trim(),
+      dob      : document.getElementById('dob').value.trim(),
+      phone    : document.getElementById('phone').value.trim(),
+      email    : document.getElementById('email').value.trim(),
+      address  : document.getElementById('address').value.trim(),
+      ecName   : document.getElementById('ecName').value.trim(),
+      ecPhone  : document.getElementById('ecPhone').value.trim(),
     };
 
-    let valid = true;
-
-    // Clear errors
-    Object.values(fields).forEach(f => f.classList.remove('error'));
-    sigWrap.classList.remove('error-border');
-
-    // Validate fields
-    Object.entries(fields).forEach(([key, el]) => {
-        if (!el.value.trim()) {
-            el.classList.add('error');
-            valid = false;
-        }
-    });
-
-    // Validate email format
-    if (fields.email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email.value.trim())) {
-        fields.email.classList.add('error');
-        valid = false;
+    // Validate
+    const missing = Object.entries(fields).filter(([,v]) => !v);
+    if (missing.length) {
+      errBox.style.display = 'block';
+      errBox.textContent = '⚠️ Please fill in all required fields before signing in.';
+      return;
     }
 
-    // Validate signature
-    if (!hasSig) {
-        sigWrap.classList.add('error-border');
-        valid = false;
+    // Basic email check
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) {
+      errBox.style.display = 'block';
+      errBox.textContent = '⚠️ Please enter a valid email address.';
+      return;
     }
 
-    if (!valid) {
-        alert('Please fill in all required fields and provide your signature.');
-        const firstError = document.querySelector('.field input.error, .sig-wrap.error-border');
-        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        return;
+    errBox.style.display = 'none';
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Submitting…';
+
+    const payload = {
+      ...fields,
+      classDate : dateStr,
+      courseName: 'NYS Pistol Permit Course',
+      timestamp : new Date().toISOString()
+    };
+
+    try {
+      const res = await fetch(SHEETDB_URL, {
+        method  : 'POST',
+        headers : { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body    : JSON.stringify({ data: payload })
+      });
+      if (!res.ok) throw new Error('SheetDB error');
+
+      // Show success
+      document.getElementById('successName').textContent = fields.fullName.split(' ')[0];
+      document.getElementById('formScreen').style.display   = 'none';
+      document.getElementById('successScreen').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch (err) {
+      btn.disabled = false;
+      btn.innerHTML = '✓ &nbsp;Sign In';
+      errBox.style.display = 'block';
+      errBox.textContent = '⚠️ Submission failed. Check your connection and try again.';
     }
-
-    // Collect values
-    const name    = fields.fullName.value.trim();
-    const dob     = formatDate(fields.dob.value);
-    const phone   = fields.phone.value.trim();
-    const email   = fields.email.value.trim();
-    const address = fields.address.value.trim();
-    const city    = fields.city.value.trim();
-    const state   = fields.state.value.trim().toUpperCase();
-    const zip     = fields.zip.value.trim();
-    const now     = new Date().toLocaleString('en-US', { dateStyle:'full', timeStyle:'short' });
-
-    // Build email
-    const subject = encodeURIComponent(`NYS Pistol Permit Course Sign-In: ${name}`);
-    const body = encodeURIComponent(
-`NYS PISTOL PERMIT COURSE — CLASS SIGN-IN
-==========================================
-Sign-In Date/Time: ${now}
-
-PARTICIPANT INFORMATION
------------------------
-Full Name:      ${name}
-Date of Birth:  ${dob}
-Phone:          ${phone}
-Email:          ${email}
-
-HOME ADDRESS
-------------
-${address}
-${city}, ${state} ${zip}
-
-SIGNATURE ATTESTATION
----------------------
-This participant digitally signed this form on ${now}.
-By signing, they confirmed all information is accurate and agreed to follow
-all safety rules and instructor directives during the course.
-
-Device: ${navigator.userAgent.substring(0, 120)}`
-    );
-
-    window.location.href = `mailto:marcusarms@marcusarmed.com?subject=${subject}&body=${body}`;
-
-    // Show success screen
-    setTimeout(() => showSuccess(name, dob, phone, email, address, city, state, zip, now), 400);
-}
-
-function showSuccess(name, dob, phone, email, address, city, state, zip, now) {
-    document.getElementById('signInForm').style.display = 'none';
-
-    document.getElementById('successDetails').innerHTML = `
-        <strong>Name:</strong> ${escHtml(name)}<br>
-        <strong>Date of Birth:</strong> ${escHtml(dob)}<br>
-        <strong>Phone:</strong> ${escHtml(phone)}<br>
-        <strong>Email:</strong> ${escHtml(email)}<br>
-        <strong>Address:</strong> ${escHtml(address)}, ${escHtml(city)}, ${escHtml(state)} ${escHtml(zip)}<br>
-        <strong>Signed:</strong> ${escHtml(now)}
-    `;
-
-    // Capture signature image
-    document.getElementById('successSigImg').src = canvas.toDataURL('image/png');
-
-    document.getElementById('successScreen').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function formatDate(val) {
-    if (!val) return '';
-    const [y, m, d] = val.split('-');
-    return `${m}/${d}/${y}`;
-}
-
-function escHtml(str) {
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
+  }
 </script>
+
 </body>
 </html>
