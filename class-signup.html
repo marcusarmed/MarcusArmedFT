@@ -17,6 +17,7 @@
     </script>
 
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -836,9 +837,12 @@ function updateRecap(entry) {
 
 buildDates();
 
-// ── Google Apps Script URL ────────────────────────────────────
-// Paste your Web App URL here after completing the setup steps
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbywUU9TNkKbZEYkfW8qv-oF8S4LEGuTaEGqwcVnMYXxelo5mX0l5Bq5OQDVubUbkvGh/exec';
+// ── EmailJS Configuration ─────────────────────────────────────
+emailjs.init('gBR5A4cYN0QdmdXOz');
+
+const EMAILJS_SERVICE           = 'service_7j2twbo';
+const EMAILJS_TEMPLATE_NOTIFY   = 'template_grgstoq';  // Notification to Marcus
+const EMAILJS_TEMPLATE_REPLY    = 'template_7b6cufw';  // Auto-reply to student
 
 // ── Submission ────────────────────────────────────────────────
 document.getElementById('submitBtn').addEventListener('click', submitReg);
@@ -895,43 +899,34 @@ function submitReg() {
     btn.disabled    = true;
     btn.textContent = '⏳ Submitting…';
 
-    const payload = {
-        classDate:     classDateStr,
-        classTime:     entry.time,
-        classLocation: entry.location,
-        name, email, phone, city, county,
-        experience: exp,
-        notes
+    const templateParams = {
+        class_date:     classDateStr,
+        class_time:     entry.time,
+        class_location: entry.location,
+        student_name:   name,
+        student_email:  email,
+        student_phone:  phone,
+        student_city:   city,
+        student_county: county + ' County',
+        experience:     exp,
+        notes:          notes || 'None',
+        submitted_at:   now
     };
 
-    fetch(APPS_SCRIPT_URL, {
-        method:  'POST',
-        mode:    'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(payload)
-    })
-    .then(() => {
-        showSuccess(name, email, phone, city, county, exp, classDateStr, entry, now);
-    })
-    .catch(() => {
-        // Fallback to mailto so no registration is ever lost
-        const subject = encodeURIComponent('NYS Pistol Permit Course Registration: ' + name + ' — ' + classDateStr);
-        const bodyText = 'NYS PISTOL PERMIT COURSE — CLASS REGISTRATION\n'
-            + '===============================================\n'
-            + 'Submitted: ' + now + '\n\n'
-            + 'Class Date: ' + classDateStr + '\n'
-            + 'Time:       ' + entry.time + '\n'
-            + 'Location:   ' + entry.location + '\n\n'
-            + 'Name:       ' + name + '\n'
-            + 'Email:      ' + email + '\n'
-            + 'Phone:      ' + phone + '\n'
-            + 'City:       ' + city + '\n'
-            + 'County:     ' + county + ' County\n'
-            + 'Experience: ' + exp
-            + (notes ? '\n\nNotes:\n' + notes : '');
-        window.location.href = 'mailto:marcusarms@marcusarmed.com?subject=' + subject + '&body=' + encodeURIComponent(bodyText);
-        setTimeout(() => showSuccess(name, email, phone, city, county, exp, classDateStr, entry, now), 400);
-    });
+    // Send both emails simultaneously
+    Promise.all([
+        emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE_NOTIFY, templateParams),
+        emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE_REPLY,  templateParams)
+    ])
+        .then(() => {
+            showSuccess(name, email, phone, city, county, exp, classDateStr, entry, now);
+        })
+        .catch((err) => {
+            console.error('EmailJS error:', err);
+            btn.disabled    = false;
+            btn.textContent = '📅 Submit Registration';
+            alert('There was a problem submitting your registration. Please try again or contact Marcus directly at marcusarms@marcusarmed.com');
+        });
 }
 
 function showSuccess(name, email, phone, city, county, exp, classDateStr, entry, now) {
