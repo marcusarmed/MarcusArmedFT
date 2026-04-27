@@ -934,6 +934,26 @@
             }
         }
 
+        .signup-btn {
+            background: #2e7d32;
+            color: #fff;
+            border: 2px solid #2e7d32;
+            box-shadow: 0 6px 20px rgba(46,125,50,0.35);
+        }
+
+        .signup-btn:active {
+            transform: scale(0.98);
+        }
+
+        @media (min-width: 769px) {
+            .signup-btn:hover {
+                background: #1b5e20;
+                border-color: #1b5e20;
+                transform: translateY(-2px);
+                box-shadow: 0 10px 30px rgba(46,125,50,0.5);
+            }
+        }
+
         .red-btn {
             background: var(--accent-red);
             color: #fff;
@@ -975,6 +995,8 @@
                 box-shadow: 0 10px 30px rgba(249,157,34,0.5);
             }
         }
+        body { -webkit-user-select: none; -moz-user-select: none; user-select: none; }
+        input, textarea { -webkit-user-select: text; -moz-user-select: text; user-select: text; }
     </style>
 </head>
 <body>
@@ -1028,6 +1050,7 @@
                 <li>Erie County Certificate Included</li>
             </ul>
             <div class="permit-btn-group">
+                <a href="class-signup.html" class="permit-btn signup-btn">📅 Register for Class</a>
                 <a href="waiver.html" class="permit-btn red-btn">📋 Sign Waiver</a>
                 <a href="class-signin.html" class="permit-btn signin-btn">✍️ Sign In for Class</a>
                 <a href="nys-course.html" class="permit-btn waiver-btn">📝 Course Quizzes</a>
@@ -1192,6 +1215,15 @@
         // Observe all sections
         document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
+        });
+    </script>
+    <script>
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('selectstart', e => e.preventDefault());
+        document.addEventListener('keydown', e => {
+            if ((e.ctrlKey && ['u','s','a','p'].includes(e.key.toLowerCase())) || e.key === 'F12') {
+                e.preventDefault();
+            }
         });
     </script>
 </body>
