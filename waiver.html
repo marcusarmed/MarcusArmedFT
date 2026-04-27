@@ -721,6 +721,8 @@ const MARCUS_EMAIL    = 'marcusarms@marcusarmed.com';
 
 emailjs.init(EJS_PUBLIC_KEY);
 
+document.addEventListener('DOMContentLoaded', () => {
+
 document.getElementById('signDate').valueAsDate = new Date();
 
 // ── Signature Pad ─────────────────────────────────────────────────
@@ -738,6 +740,7 @@ function getPos(e) {
              y: (src.clientY - rect.top)  * canvas.height / rect.height };
 }
 function startDraw(e) {
+    e.preventDefault();
     isDrawing = true; const p = getPos(e); lastX = p.x; lastY = p.y;
     sigWrap.classList.add('active'); if (sigHint) sigHint.style.opacity = '0';
 }
@@ -974,22 +977,15 @@ function downloadPDF() {
 
     // Waiver sections
     const sections = [
-        ['1. DESCRIPTION OF ACTIVITY', 'Participant is voluntarily enrolling in a pistol permit / concealed carry firearms training course conducted by Instructor (the "Course"). The Course includes, but is not limited to: classroom instruction on firearms safety, laws, and handling; live-fire exercises; range activities; and the use of handguns, ammunition, and related equipment.'],
-        ['2. ACKNOWLEDGMENT OF RISKS', 'Participant acknowledges that firearms training involves inherent risks that cannot be eliminated, including but not limited to:
-(a) accidental or negligent discharge of firearms;
-(b) ricochet or deflection of projectiles, bullet fragments, or debris;
-(c) noise-induced hearing damage despite use of hearing protection;
-(d) malfunction, failure, or unexpected discharge of any firearm or ammunition;
-(e) physical injury from recoil, burns, or handling of equipment;
-(f) death, bodily injury, property damage, or other harm arising from the nature of firearms and range environments.
-Participant accepts and voluntarily assumes all such risks, known and unknown.'],
-        ['3. RELEASE AND WAIVER OF LIABILITY', 'In consideration of being permitted to participate in the Course, Participant, on behalf of themselves, their heirs, personal representatives, and assigns, hereby RELEASES, WAIVES, DISCHARGES, AND COVENANTS NOT TO SUE Instructor from any and all claims, demands, losses, damages, costs, expenses, and causes of action of every kind and nature, including claims arising from Instructor's own negligence, arising out of or related to Participant's participation in the Course, including any claims for personal injury, death, or property damage.'],
-        ['4. INDEMNIFICATION AND HOLD HARMLESS', 'Participant agrees to INDEMNIFY, DEFEND, AND HOLD HARMLESS Instructor from and against any and all claims, damages, losses, costs, and expenses (including reasonable attorneys' fees) arising out of or related to: (a) Participant's participation in the Course; (b) Participant's breach of any safety rule, instruction, or applicable law; (c) any act or omission of Participant that causes harm to any third party; or (d) any misrepresentation made by Participant in connection with enrollment in the Course.'],
-        ['5. MEDICAL AUTHORIZATION AND HEALTH REPRESENTATIONS', 'Participant represents that they are in adequate physical and mental health to safely participate in the Course and are not prohibited by law from possessing or handling firearms. Participant authorizes Instructor to seek emergency medical treatment on their behalf in the event of an injury. Participant acknowledges that Instructor is not responsible for the cost of any such treatment.'],
-        ['6. COMPLIANCE WITH SAFETY RULES', 'Participant agrees to comply fully with all range rules, safety instructions, and directives issued by Instructor at all times during the Course. Instructor reserves the right to remove Participant from the Course at any time for any safety-related reason without refund.'],
-        ['7. PHOTOGRAPHIC AND MEDIA RELEASE', `Participant ${photoChoice} permission to Instructor to photograph or record Participant during the Course for promotional or educational purposes.`],
-        ['8. SEVERABILITY AND GOVERNING LAW', 'If any provision of this Agreement is found to be unenforceable, the remaining provisions shall remain in full force and effect. This Agreement shall be governed by the laws of the State of New York. Participant consents to jurisdiction in the county where the Course is conducted.'],
-        ['9. ENTIRE AGREEMENT', 'This Agreement constitutes the entire agreement between the parties with respect to the subject matter hereof. Participant acknowledges that no representations, warranties, or inducements have been made other than those set forth herein.'],
+        [`1. DESCRIPTION OF ACTIVITY`, `Participant is voluntarily enrolling in a pistol permit / concealed carry firearms training course conducted by Instructor (the "Course"). The Course includes, but is not limited to: classroom instruction on firearms safety, laws, and handling; live-fire exercises; range activities; and the use of handguns, ammunition, and related equipment.`],
+        [`2. ACKNOWLEDGMENT OF RISKS`, `Participant acknowledges that firearms training involves inherent risks that cannot be eliminated, including but not limited to: (a) accidental or negligent discharge of firearms; (b) ricochet or deflection of projectiles, bullet fragments, or debris; (c) noise-induced hearing damage despite use of hearing protection; (d) malfunction, failure, or unexpected discharge of any firearm or ammunition; (e) physical injury from recoil, burns, or handling of equipment; (f) death, bodily injury, property damage, or other harm arising from the nature of firearms and range environments. Participant accepts and voluntarily assumes all such risks, known and unknown.`],
+        [`3. RELEASE AND WAIVER OF LIABILITY`, `In consideration of being permitted to participate in the Course, Participant, on behalf of themselves, their heirs, personal representatives, and assigns, hereby RELEASES, WAIVES, DISCHARGES, AND COVENANTS NOT TO SUE Instructor from any and all claims, demands, losses, damages, costs, expenses, and causes of action of every kind and nature, including claims arising from Instructor's own negligence, arising out of or related to Participant's participation in the Course, including any claims for personal injury, death, or property damage.`],
+        [`4. INDEMNIFICATION AND HOLD HARMLESS`, `Participant agrees to INDEMNIFY, DEFEND, AND HOLD HARMLESS Instructor from and against any and all claims, damages, losses, costs, and expenses (including reasonable attorneys' fees) arising out of or related to: (a) Participant's participation in the Course; (b) Participant's breach of any safety rule, instruction, or applicable law; (c) any act or omission of Participant that causes harm to any third party; or (d) any misrepresentation made by Participant in connection with enrollment in the Course.`],
+        [`5. MEDICAL AUTHORIZATION AND HEALTH REPRESENTATIONS`, `Participant represents that they are in adequate physical and mental health to safely participate in the Course and are not prohibited by law from possessing or handling firearms. Participant authorizes Instructor to seek emergency medical treatment on their behalf in the event of an injury. Participant acknowledges that Instructor is not responsible for the cost of any such treatment.`],
+        [`6. COMPLIANCE WITH SAFETY RULES`, `Participant agrees to comply fully with all range rules, safety instructions, and directives issued by Instructor at all times during the Course. Instructor reserves the right to remove Participant from the Course at any time for any safety-related reason without refund.`],
+        [`7. PHOTOGRAPHIC AND MEDIA RELEASE`, `Participant ${photoChoice} permission to Instructor to photograph or record Participant during the Course for promotional or educational purposes.`],
+        [`8. SEVERABILITY AND GOVERNING LAW`, `If any provision of this Agreement is found to be unenforceable, the remaining provisions shall remain in full force and effect. This Agreement shall be governed by the laws of the State of New York. Participant consents to jurisdiction in the county where the Course is conducted.`],
+        [`9. ENTIRE AGREEMENT`, `This Agreement constitutes the entire agreement between the parties with respect to the subject matter hereof. Participant acknowledges that no representations, warranties, or inducements have been made other than those set forth herein.`],
     ];
     sections.forEach(([h, b]) => {
         const bl = doc.splitTextToSize(b, TW);
@@ -1042,6 +1038,8 @@ function formatDate(val) {
 function escHtml(str) {
     return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
+}); // end DOMContentLoaded
 </script>
 </body>
 </html>
