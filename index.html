@@ -980,7 +980,7 @@
             <div class="nys-section-sub">
 
                 <!-- REGISTER -->
-                <a class="nys-gun-item" href="#" onclick="return false;">
+                <a class="nys-gun-item" href="#">
                     <div class="nys-gun-scale">
                         <div class="nys-gun-overlay"></div>
                         <button class="cartoon-gun-button" type="button" aria-label="Register">
@@ -1054,7 +1054,7 @@
                 </a>
 
                 <!-- SIGN WAIVER -->
-                <a class="nys-gun-item" href="#" onclick="return false;">
+                <a class="nys-gun-item" href="#">
                     <div class="nys-gun-scale">
                         <div class="nys-gun-overlay"></div>
                         <button class="cartoon-gun-button" type="button" aria-label="Sign Waiver">
@@ -1104,7 +1104,7 @@
                 </a>
 
                 <!-- SIGN-IN -->
-                <a class="nys-gun-item" href="#" onclick="return false;">
+                <a class="nys-gun-item" href="#">
                     <div class="nys-gun-scale">
                         <div class="nys-gun-overlay"></div>
                         <button class="cartoon-gun-button" type="button" aria-label="Sign-In">
@@ -1404,27 +1404,15 @@
         document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
         });
-        // NYS Gun Buttons — fire animation and navigate
+        // NYS Gun Buttons — play fire animation on click (navigation handled natively by <a> tag)
         document.querySelectorAll('.nys-gun-item').forEach(item => {
             const btn = item.querySelector('.cartoon-gun-button');
-
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                const href = item.getAttribute('href');
-
-                // Trigger fire animation
+            item.addEventListener('click', () => {
                 if (btn) {
                     btn.classList.remove('fire');
                     void btn.offsetWidth;
                     btn.classList.add('fire');
                 }
-
-                // Navigate after animation
-                setTimeout(() => {
-                    if (href && href !== '#') {
-                        window.location.href = href;
-                    }
-                }, 260);
             });
         });
 
