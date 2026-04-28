@@ -573,6 +573,17 @@
             width: 168px;   /* 420 × 0.40 */
             height: 84px;   /* 210 × 0.40 */
             position: relative;
+            overflow: visible;
+        }
+
+        /* Click-capture overlay — sits on top at the true rendered size */
+        .nys-gun-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 168px;
+            height: 84px;
+            z-index: 10;
+            cursor: pointer;
         }
 
         .nys-gun-scale .cartoon-gun-button {
@@ -585,15 +596,16 @@
             border: 0;
             background: transparent;
             cursor: pointer;
+            pointer-events: none; /* overlay handles clicks */
             transition: filter 140ms ease;
             filter: drop-shadow(0 8px 10px rgba(20,24,36,0.35));
         }
 
-        .nys-gun-scale .cartoon-gun-button:hover {
+        .nys-gun-item:hover .cartoon-gun-button {
             filter: drop-shadow(0 8px 10px rgba(20,24,36,0.35)) brightness(1.1);
         }
 
-        .nys-gun-scale .cartoon-gun-button:active {
+        .nys-gun-item:active .cartoon-gun-button {
             filter: drop-shadow(0 4px 6px rgba(20,24,36,0.3));
         }
 
@@ -968,6 +980,7 @@
                 <!-- REGISTER -->
                 <div class="nys-gun-item" data-href="#">
                     <div class="nys-gun-scale">
+                        <div class="nys-gun-overlay"></div>
                         <button class="cartoon-gun-button" type="button" aria-label="Register">
                             <svg class="gun-svg" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                               <defs>
@@ -1041,6 +1054,7 @@
                 <!-- SIGN WAIVER -->
                 <div class="nys-gun-item" data-href="#">
                     <div class="nys-gun-scale">
+                        <div class="nys-gun-overlay"></div>
                         <button class="cartoon-gun-button" type="button" aria-label="Sign Waiver">
                             <svg class="gun-svg" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                               <use href="#gSlide"/><use href="#gFrame"/><use href="#gGrip"/><use href="#gBarrel"/>
@@ -1090,6 +1104,7 @@
                 <!-- SIGN-IN -->
                 <div class="nys-gun-item" data-href="#">
                     <div class="nys-gun-scale">
+                        <div class="nys-gun-overlay"></div>
                         <button class="cartoon-gun-button" type="button" aria-label="Sign-In">
                             <svg class="gun-svg" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                               <g class="gun-flash-svg">
@@ -1138,6 +1153,7 @@
                 <!-- TESTING -->
                 <div class="nys-gun-item" data-href="NYS_Pistol_Permit_Tests.html">
                     <div class="nys-gun-scale">
+                        <div class="nys-gun-overlay"></div>
                         <button class="cartoon-gun-button" type="button" aria-label="Testing">
                             <svg class="gun-svg" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                               <g class="gun-flash-svg">
@@ -1186,6 +1202,7 @@
                 <!-- RESOURCES -->
                 <div class="nys-gun-item" data-href="nys-resources.html">
                     <div class="nys-gun-scale">
+                        <div class="nys-gun-overlay"></div>
                         <button class="cartoon-gun-button" type="button" aria-label="Resources">
                             <svg class="gun-svg" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                               <g class="gun-flash-svg">
@@ -1388,25 +1405,24 @@
         // NYS Gun Buttons — fire animation then navigate
         document.querySelectorAll('.nys-gun-item').forEach(item => {
             const btn = item.querySelector('.cartoon-gun-button');
-            const svg = item.querySelector('.gun-svg');
+            const overlay = item.querySelector('.nys-gun-overlay');
             const href = item.dataset.href;
 
-            btn.addEventListener('click', () => {
+            const fire = () => {
                 btn.classList.remove('fire');
                 void btn.offsetWidth;
                 btn.classList.add('fire');
-            });
 
-            if (svg) {
-                svg.addEventListener('animationend', (e) => {
-                    if (e.animationName === 'nys-recoil') {
-                        btn.classList.remove('fire');
-                        if (href && href !== '#') {
-                            window.location.href = href;
-                        }
+                setTimeout(() => {
+                    btn.classList.remove('fire');
+                    if (href && href !== '#') {
+                        window.location.href = href;
                     }
-                });
-            }
+                }, 260);
+            };
+
+            if (overlay) overlay.addEventListener('click', fire);
+            item.addEventListener('click', fire);
         });
 
     </script>
