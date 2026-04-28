@@ -532,6 +532,7 @@
             background: linear-gradient(135deg, var(--primary-dark) 0%, #3a3d42 100%) !important;
             border-left: 5px solid var(--accent-orange) !important;
             box-shadow: 0 10px 40px rgba(41, 44, 51, 0.35) !important;
+            overflow: visible !important;
         }
 
         .nys-section::before {
@@ -565,6 +566,7 @@
             flex-direction: column;
             align-items: center;
             cursor: pointer;
+            text-decoration: none;
         }
 
         /* Scale wrapper — shrinks the 420×210 gun to fit 5 across */
@@ -978,7 +980,7 @@
             <div class="nys-section-sub">
 
                 <!-- REGISTER -->
-                <div class="nys-gun-item" data-href="#">
+                <a class="nys-gun-item" href="#" onclick="return false;">
                     <div class="nys-gun-scale">
                         <div class="nys-gun-overlay"></div>
                         <button class="cartoon-gun-button" type="button" aria-label="Register">
@@ -1049,10 +1051,10 @@
                         </button>
                     </div>
                     <div class="nys-gun-label">Register</div>
-                </div>
+                </a>
 
                 <!-- SIGN WAIVER -->
-                <div class="nys-gun-item" data-href="#">
+                <a class="nys-gun-item" href="#" onclick="return false;">
                     <div class="nys-gun-scale">
                         <div class="nys-gun-overlay"></div>
                         <button class="cartoon-gun-button" type="button" aria-label="Sign Waiver">
@@ -1099,10 +1101,10 @@
                         </button>
                     </div>
                     <div class="nys-gun-label">Sign Waiver</div>
-                </div>
+                </a>
 
                 <!-- SIGN-IN -->
-                <div class="nys-gun-item" data-href="#">
+                <a class="nys-gun-item" href="#" onclick="return false;">
                     <div class="nys-gun-scale">
                         <div class="nys-gun-overlay"></div>
                         <button class="cartoon-gun-button" type="button" aria-label="Sign-In">
@@ -1148,10 +1150,10 @@
                         </button>
                     </div>
                     <div class="nys-gun-label">Sign-In</div>
-                </div>
+                </a>
 
                 <!-- TESTING -->
-                <div class="nys-gun-item" data-href="NYS_Pistol_Permit_Tests.html">
+                <a class="nys-gun-item" href="NYS_Pistol_Permit_Tests.html">
                     <div class="nys-gun-scale">
                         <div class="nys-gun-overlay"></div>
                         <button class="cartoon-gun-button" type="button" aria-label="Testing">
@@ -1197,10 +1199,10 @@
                         </button>
                     </div>
                     <div class="nys-gun-label">Testing</div>
-                </div>
+                </a>
 
                 <!-- RESOURCES -->
-                <div class="nys-gun-item" data-href="nys-resources.html">
+                <a class="nys-gun-item" href="nys-resources.html">
                     <div class="nys-gun-scale">
                         <div class="nys-gun-overlay"></div>
                         <button class="cartoon-gun-button" type="button" aria-label="Resources">
@@ -1246,7 +1248,7 @@
                         </button>
                     </div>
                     <div class="nys-gun-label">Resources</div>
-                </div>
+                </a>
 
             </div>
         </section>
@@ -1402,27 +1404,28 @@
         document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
         });
-        // NYS Gun Buttons — fire animation then navigate
+        // NYS Gun Buttons — fire animation and navigate
         document.querySelectorAll('.nys-gun-item').forEach(item => {
             const btn = item.querySelector('.cartoon-gun-button');
-            const overlay = item.querySelector('.nys-gun-overlay');
-            const href = item.dataset.href;
 
-            const fire = () => {
-                btn.classList.remove('fire');
-                void btn.offsetWidth;
-                btn.classList.add('fire');
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = item.getAttribute('href');
 
-                setTimeout(() => {
+                // Trigger fire animation
+                if (btn) {
                     btn.classList.remove('fire');
+                    void btn.offsetWidth;
+                    btn.classList.add('fire');
+                }
+
+                // Navigate after animation
+                setTimeout(() => {
                     if (href && href !== '#') {
                         window.location.href = href;
                     }
                 }, 260);
-            };
-
-            if (overlay) overlay.addEventListener('click', fire);
-            item.addEventListener('click', fire);
+            });
         });
 
     </script>
