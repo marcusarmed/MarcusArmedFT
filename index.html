@@ -554,114 +554,39 @@
         /* ── NYS GUN BUTTONS ── */
         .nys-section-sub {
             display: flex;
-            gap: 0;
+            gap: 0.6rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 1.25rem;
-            align-items: flex-start;
+            margin-top: 1.5rem;
         }
 
-        .nys-gun-item {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
+        .nys-btn {
+            display: inline-block;
+            background: var(--accent-orange);
+            color: var(--primary-dark);
+            padding: 0.85rem 1.5rem;
+            border-radius: 35px;
             text-decoration: none;
-        }
-
-        /* Scale wrapper — shrinks the 420×210 gun to fit 5 across */
-        .nys-gun-scale {
-            display: block;
-            width: 168px;   /* 420 × 0.40 */
-            height: 84px;   /* 210 × 0.40 */
-            position: relative;
-            overflow: visible;
-            pointer-events: none;
-        }
-
-        .nys-gun-scale .cartoon-gun-button {
-            position: absolute;
-            top: 0; left: 0;
-            transform: scale(0.40);
-            transform-origin: top left;
-            width: 420px;
-            height: 210px;
-            border: 0;
-            background: transparent;
-            cursor: pointer;
-            transition: filter 140ms ease;
-            filter: drop-shadow(0 8px 10px rgba(20,24,36,0.35));
-        }
-
-        .nys-gun-item:hover .cartoon-gun-button {
-            filter: drop-shadow(0 8px 10px rgba(20,24,36,0.35)) brightness(1.1);
-        }
-
-        .nys-gun-item:active .cartoon-gun-button {
-            filter: drop-shadow(0 4px 6px rgba(20,24,36,0.3));
-        }
-
-        .nys-gun-label {
             font-family: 'Oswald', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 2px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            color: var(--cream);
-            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-            margin-top: 4px;
-            text-align: center;
+            box-shadow: 0 5px 15px rgba(249,157,34,0.3);
+            transition: all 0.25s ease;
+            min-height: 44px;
+            line-height: 1.4;
+            white-space: nowrap;
         }
 
-        /* Gun SVG styles */
-        .gun-svg {
-            position: absolute;
-            top: 0; left: 0;
-            width: 420px; height: 210px;
-            overflow: visible;
-        }
-        .gun-slide-group {
-            transition: transform 240ms cubic-bezier(.2,.9,.2,1.3);
-        }
-        .cartoon-gun-button:hover .gun-slide-group,
-        .nys-gun-item:hover .gun-slide-group {
-            transform: translateX(38px);
-        }
-        .gun-flash-svg {
-            opacity: 0;
-            transform-origin: 35px 55px;
+        .nys-btn:hover {
+            background: #faa83a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(249,157,34,0.45);
         }
 
-        /* Firing animations */
-        .cartoon-gun-button.fire .gun-flash-svg { animation: nys-flash 220ms ease-out forwards; }
-        .cartoon-gun-button.fire .gun-svg       { animation: nys-recoil 220ms ease-out; }
-        .cartoon-gun-button.fire .gun-slide-group { animation: nys-rack 220ms ease-out; }
-
-        @keyframes nys-flash {
-            0%   { opacity: 0; transform: scale(0.2) rotate(-8deg); }
-            25%  { opacity: 1; transform: scale(1.1) rotate(5deg); }
-            100% { opacity: 0; transform: scale(0.4) rotate(-4deg); }
-        }
-        @keyframes nys-recoil {
-            0%   { transform: translateX(0) rotate(0); }
-            35%  { transform: translateX(-12px) rotate(-2deg); }
-            100% { transform: translateX(0) rotate(0); }
-        }
-        @keyframes nys-rack {
-            0%   { transform: translateX(0); }
-            35%  { transform: translateX(52px); }
-            100% { transform: translateX(0); }
-        }
-
-        @media (max-width: 600px) {
-            .nys-gun-scale {
-                width: 126px;
-                height: 63px;
-            }
-            .nys-gun-scale .cartoon-gun-button {
-                transform: scale(0.30);
-            }
-            .nys-gun-label { font-size: 0.62rem; letter-spacing: 1.5px; }
+        .nys-btn:active {
+            transform: translateY(0);
         }
 
         /* Contact Section */
@@ -961,273 +886,11 @@
                 Resources for students enrolled in the New York State 16-hour pistol permit course — including state gun laws, reciprocity maps, and mental health support.
             </p>
             <div class="nys-section-sub">
-
-                <!-- REGISTER -->
-                <a class="nys-gun-item" href="#">
-                    <div class="nys-gun-scale">
-                        <div class="cartoon-gun-button" role="presentation">
-                            <svg class="gun-svg" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                              <defs>
-                                <linearGradient id="gSlide" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#cdd8e2"/><stop offset="35%" stop-color="#96a6b6"/><stop offset="100%" stop-color="#606e7e"/></linearGradient>
-                                <linearGradient id="gFrame" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#808e9e"/><stop offset="100%" stop-color="#505e6e"/></linearGradient>
-                                <linearGradient id="gGrip" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#606878"/><stop offset="100%" stop-color="#252a34"/></linearGradient>
-                                <linearGradient id="gBarrel" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#b0bcc8"/><stop offset="100%" stop-color="#5a6472"/></linearGradient>
-                              </defs>
-                              <!-- Muzzle flash -->
-                              <g class="gun-flash-svg">
-                                <polygon points="-5,38 32,44 22,58 -5,55" fill="#ff6b35" opacity="0.9"/>
-                                <polygon points="-22,44 30,48 18,60 -20,58" fill="#ffd23f" opacity="0.9"/>
-                                <polygon points="-30,50 28,50 16,62 -28,62" fill="#fff7ad" opacity="0.85"/>
-                                <polygon points="-12,35 25,46 15,56 -10,52" fill="#ff6b35" opacity="0.7"/>
-                              </g>
-                              <!-- SLIDE GROUP (barrel + slide — animates on rack) -->
-                              <g class="gun-slide-group">
-                                <!-- Barrel -->
-                                <rect x="14" y="38" width="128" height="30" rx="8" fill="url(#gBarrel)" stroke="#191d27" stroke-width="5"/>
-                                <rect x="24" y="42" width="100" height="8" rx="3" fill="rgba(255,255,255,0.32)"/>
-                                <!-- Muzzle face -->
-                                <circle cx="20" cy="53" r="9" fill="#191d27"/>
-                                <circle cx="20" cy="53" r="5" fill="#0a0c12"/>
-                                <!-- Slide body -->
-                                <rect x="132" y="18" width="220" height="62" rx="13" fill="url(#gSlide)" stroke="#191d27" stroke-width="5.5"/>
-                                <!-- Slide top bevel highlight -->
-                                <rect x="142" y="23" width="200" height="13" rx="6" fill="rgba(255,255,255,0.38)"/>
-                                <!-- Ejection port -->
-                                <rect x="220" y="28" width="64" height="30" rx="5" fill="#22262e" stroke="#191d27" stroke-width="3"/>
-                                <!-- Serrations rear of slide -->
-                                <line x1="306" y1="24" x2="306" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <line x1="319" y1="24" x2="319" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <line x1="332" y1="24" x2="332" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <line x1="345" y1="24" x2="345" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <!-- Front sight -->
-                                <rect x="44" y="12" width="13" height="12" rx="2" fill="#282c38" stroke="#191d27" stroke-width="3"/>
-                                <!-- Rear sight -->
-                                <rect x="334" y="11" width="26" height="11" rx="2" fill="#282c38" stroke="#191d27" stroke-width="3"/>
-                              </g>
-                              <!-- FRAME (static) -->
-                              <path d="M140,72 L348,72 Q358,72 358,82 L358,122 Q358,132 348,132 L140,132 Q130,132 130,122 L130,82 Q130,72 140,72Z" fill="url(#gFrame)" stroke="#191d27" stroke-width="5.5"/>
-                              <rect x="136" y="76" width="214" height="14" rx="4" fill="rgba(255,255,255,0.16)"/>
-                              <!-- Dustcover / rail under barrel -->
-                              <rect x="130" y="98" width="86" height="18" rx="4" fill="#505a68" stroke="#191d27" stroke-width="4"/>
-                              <line x1="140" y1="104" x2="208" y2="104" stroke="#3a4450" stroke-width="2"/>
-                              <line x1="140" y1="110" x2="208" y2="110" stroke="#3a4450" stroke-width="2"/>
-                              <!-- Trigger guard -->
-                              <path d="M182,129 L182,178 Q182,194 198,194 L258,194 Q272,194 272,178 L272,129" fill="url(#gFrame)" stroke="#191d27" stroke-width="5.5" stroke-linejoin="round"/>
-                              <!-- Trigger -->
-                              <path d="M224,132 C221,152 226,165 231,170" fill="none" stroke="#191d27" stroke-width="6" stroke-linecap="round"/>
-                              <!-- Grip -->
-                              <path d="M292,120 L356,122 Q374,126 378,144 L384,198 Q384,210 368,212 L298,212 Q280,210 278,196 L274,133 Z" fill="url(#gGrip)" stroke="#191d27" stroke-width="5.5"/>
-                              <!-- Grip texture -->
-                              <line x1="280" y1="140" x2="378" y2="147" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="279" y1="154" x2="380" y2="161" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="278" y1="168" x2="380" y2="175" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="278" y1="182" x2="380" y2="189" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="278" y1="196" x2="378" y2="203" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <!-- Grip highlight -->
-                              <path d="M295,124 L354,126 Q368,130 370,144 L370,162 Q346,156 298,153Z" fill="rgba(255,255,255,0.09)"/>
-                              <!-- Mag release -->
-                              <circle cx="276" cy="130" r="7" fill="#383e4e" stroke="#191d27" stroke-width="3"/>
-                              <!-- Takedown lever -->
-                              <rect x="138" y="106" width="22" height="8" rx="3" fill="#383e4e" stroke="#191d27" stroke-width="2.5"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="nys-gun-label">Register</div>
-                </a>
-
-                <!-- SIGN WAIVER -->
-                <a class="nys-gun-item" href="#">
-                    <div class="nys-gun-scale">
-                        <div class="cartoon-gun-button" role="presentation">
-                            <svg class="gun-svg" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                              <use href="#gSlide"/><use href="#gFrame"/><use href="#gGrip"/><use href="#gBarrel"/>
-                              <g class="gun-flash-svg">
-                                <polygon points="-5,38 32,44 22,58 -5,55" fill="#ff6b35" opacity="0.9"/>
-                                <polygon points="-22,44 30,48 18,60 -20,58" fill="#ffd23f" opacity="0.9"/>
-                                <polygon points="-30,50 28,50 16,62 -28,62" fill="#fff7ad" opacity="0.85"/>
-                                <polygon points="-12,35 25,46 15,56 -10,52" fill="#ff6b35" opacity="0.7"/>
-                              </g>
-                              <g class="gun-slide-group">
-                                <rect x="14" y="38" width="128" height="30" rx="8" fill="url(#gBarrel)" stroke="#191d27" stroke-width="5"/>
-                                <rect x="24" y="42" width="100" height="8" rx="3" fill="rgba(255,255,255,0.32)"/>
-                                <circle cx="20" cy="53" r="9" fill="#191d27"/>
-                                <circle cx="20" cy="53" r="5" fill="#0a0c12"/>
-                                <rect x="132" y="18" width="220" height="62" rx="13" fill="url(#gSlide)" stroke="#191d27" stroke-width="5.5"/>
-                                <rect x="142" y="23" width="200" height="13" rx="6" fill="rgba(255,255,255,0.38)"/>
-                                <rect x="220" y="28" width="64" height="30" rx="5" fill="#22262e" stroke="#191d27" stroke-width="3"/>
-                                <line x1="306" y1="24" x2="306" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <line x1="319" y1="24" x2="319" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <line x1="332" y1="24" x2="332" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <line x1="345" y1="24" x2="345" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <rect x="44" y="12" width="13" height="12" rx="2" fill="#282c38" stroke="#191d27" stroke-width="3"/>
-                                <rect x="334" y="11" width="26" height="11" rx="2" fill="#282c38" stroke="#191d27" stroke-width="3"/>
-                              </g>
-                              <path d="M140,72 L348,72 Q358,72 358,82 L358,122 Q358,132 348,132 L140,132 Q130,132 130,122 L130,82 Q130,72 140,72Z" fill="url(#gFrame)" stroke="#191d27" stroke-width="5.5"/>
-                              <rect x="136" y="76" width="214" height="14" rx="4" fill="rgba(255,255,255,0.16)"/>
-                              <rect x="130" y="98" width="86" height="18" rx="4" fill="#505a68" stroke="#191d27" stroke-width="4"/>
-                              <line x1="140" y1="104" x2="208" y2="104" stroke="#3a4450" stroke-width="2"/>
-                              <line x1="140" y1="110" x2="208" y2="110" stroke="#3a4450" stroke-width="2"/>
-                              <path d="M182,129 L182,178 Q182,194 198,194 L258,194 Q272,194 272,178 L272,129" fill="url(#gFrame)" stroke="#191d27" stroke-width="5.5" stroke-linejoin="round"/>
-                              <path d="M224,132 C221,152 226,165 231,170" fill="none" stroke="#191d27" stroke-width="6" stroke-linecap="round"/>
-                              <path d="M292,120 L356,122 Q374,126 378,144 L384,198 Q384,210 368,212 L298,212 Q280,210 278,196 L274,133 Z" fill="url(#gGrip)" stroke="#191d27" stroke-width="5.5"/>
-                              <line x1="280" y1="140" x2="378" y2="147" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="279" y1="154" x2="380" y2="161" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="278" y1="168" x2="380" y2="175" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="278" y1="182" x2="380" y2="189" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="278" y1="196" x2="378" y2="203" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <path d="M295,124 L354,126 Q368,130 370,144 L370,162 Q346,156 298,153Z" fill="rgba(255,255,255,0.09)"/>
-                              <circle cx="276" cy="130" r="7" fill="#383e4e" stroke="#191d27" stroke-width="3"/>
-                              <rect x="138" y="106" width="22" height="8" rx="3" fill="#383e4e" stroke="#191d27" stroke-width="2.5"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="nys-gun-label">Sign Waiver</div>
-                </a>
-
-                <!-- SIGN-IN -->
-                <a class="nys-gun-item" href="#">
-                    <div class="nys-gun-scale">
-                        <div class="cartoon-gun-button" role="presentation">
-                            <svg class="gun-svg" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                              <g class="gun-flash-svg">
-                                <polygon points="-5,38 32,44 22,58 -5,55" fill="#ff6b35" opacity="0.9"/>
-                                <polygon points="-22,44 30,48 18,60 -20,58" fill="#ffd23f" opacity="0.9"/>
-                                <polygon points="-30,50 28,50 16,62 -28,62" fill="#fff7ad" opacity="0.85"/>
-                                <polygon points="-12,35 25,46 15,56 -10,52" fill="#ff6b35" opacity="0.7"/>
-                              </g>
-                              <g class="gun-slide-group">
-                                <rect x="14" y="38" width="128" height="30" rx="8" fill="url(#gBarrel)" stroke="#191d27" stroke-width="5"/>
-                                <rect x="24" y="42" width="100" height="8" rx="3" fill="rgba(255,255,255,0.32)"/>
-                                <circle cx="20" cy="53" r="9" fill="#191d27"/>
-                                <circle cx="20" cy="53" r="5" fill="#0a0c12"/>
-                                <rect x="132" y="18" width="220" height="62" rx="13" fill="url(#gSlide)" stroke="#191d27" stroke-width="5.5"/>
-                                <rect x="142" y="23" width="200" height="13" rx="6" fill="rgba(255,255,255,0.38)"/>
-                                <rect x="220" y="28" width="64" height="30" rx="5" fill="#22262e" stroke="#191d27" stroke-width="3"/>
-                                <line x1="306" y1="24" x2="306" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <line x1="319" y1="24" x2="319" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <line x1="332" y1="24" x2="332" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <line x1="345" y1="24" x2="345" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <rect x="44" y="12" width="13" height="12" rx="2" fill="#282c38" stroke="#191d27" stroke-width="3"/>
-                                <rect x="334" y="11" width="26" height="11" rx="2" fill="#282c38" stroke="#191d27" stroke-width="3"/>
-                              </g>
-                              <path d="M140,72 L348,72 Q358,72 358,82 L358,122 Q358,132 348,132 L140,132 Q130,132 130,122 L130,82 Q130,72 140,72Z" fill="url(#gFrame)" stroke="#191d27" stroke-width="5.5"/>
-                              <rect x="136" y="76" width="214" height="14" rx="4" fill="rgba(255,255,255,0.16)"/>
-                              <rect x="130" y="98" width="86" height="18" rx="4" fill="#505a68" stroke="#191d27" stroke-width="4"/>
-                              <line x1="140" y1="104" x2="208" y2="104" stroke="#3a4450" stroke-width="2"/>
-                              <line x1="140" y1="110" x2="208" y2="110" stroke="#3a4450" stroke-width="2"/>
-                              <path d="M182,129 L182,178 Q182,194 198,194 L258,194 Q272,194 272,178 L272,129" fill="url(#gFrame)" stroke="#191d27" stroke-width="5.5" stroke-linejoin="round"/>
-                              <path d="M224,132 C221,152 226,165 231,170" fill="none" stroke="#191d27" stroke-width="6" stroke-linecap="round"/>
-                              <path d="M292,120 L356,122 Q374,126 378,144 L384,198 Q384,210 368,212 L298,212 Q280,210 278,196 L274,133 Z" fill="url(#gGrip)" stroke="#191d27" stroke-width="5.5"/>
-                              <line x1="280" y1="140" x2="378" y2="147" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="279" y1="154" x2="380" y2="161" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="278" y1="168" x2="380" y2="175" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="278" y1="182" x2="380" y2="189" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="278" y1="196" x2="378" y2="203" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <path d="M295,124 L354,126 Q368,130 370,144 L370,162 Q346,156 298,153Z" fill="rgba(255,255,255,0.09)"/>
-                              <circle cx="276" cy="130" r="7" fill="#383e4e" stroke="#191d27" stroke-width="3"/>
-                              <rect x="138" y="106" width="22" height="8" rx="3" fill="#383e4e" stroke="#191d27" stroke-width="2.5"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="nys-gun-label">Sign-In</div>
-                </a>
-
-                <!-- TESTING -->
-                <a class="nys-gun-item" href="NYS_Pistol_Permit_Tests.html">
-                    <div class="nys-gun-scale">
-                        <div class="cartoon-gun-button" role="presentation">
-                            <svg class="gun-svg" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                              <g class="gun-flash-svg">
-                                <polygon points="-5,38 32,44 22,58 -5,55" fill="#ff6b35" opacity="0.9"/>
-                                <polygon points="-22,44 30,48 18,60 -20,58" fill="#ffd23f" opacity="0.9"/>
-                                <polygon points="-30,50 28,50 16,62 -28,62" fill="#fff7ad" opacity="0.85"/>
-                                <polygon points="-12,35 25,46 15,56 -10,52" fill="#ff6b35" opacity="0.7"/>
-                              </g>
-                              <g class="gun-slide-group">
-                                <rect x="14" y="38" width="128" height="30" rx="8" fill="url(#gBarrel)" stroke="#191d27" stroke-width="5"/>
-                                <rect x="24" y="42" width="100" height="8" rx="3" fill="rgba(255,255,255,0.32)"/>
-                                <circle cx="20" cy="53" r="9" fill="#191d27"/>
-                                <circle cx="20" cy="53" r="5" fill="#0a0c12"/>
-                                <rect x="132" y="18" width="220" height="62" rx="13" fill="url(#gSlide)" stroke="#191d27" stroke-width="5.5"/>
-                                <rect x="142" y="23" width="200" height="13" rx="6" fill="rgba(255,255,255,0.38)"/>
-                                <rect x="220" y="28" width="64" height="30" rx="5" fill="#22262e" stroke="#191d27" stroke-width="3"/>
-                                <line x1="306" y1="24" x2="306" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <line x1="319" y1="24" x2="319" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <line x1="332" y1="24" x2="332" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <line x1="345" y1="24" x2="345" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <rect x="44" y="12" width="13" height="12" rx="2" fill="#282c38" stroke="#191d27" stroke-width="3"/>
-                                <rect x="334" y="11" width="26" height="11" rx="2" fill="#282c38" stroke="#191d27" stroke-width="3"/>
-                              </g>
-                              <path d="M140,72 L348,72 Q358,72 358,82 L358,122 Q358,132 348,132 L140,132 Q130,132 130,122 L130,82 Q130,72 140,72Z" fill="url(#gFrame)" stroke="#191d27" stroke-width="5.5"/>
-                              <rect x="136" y="76" width="214" height="14" rx="4" fill="rgba(255,255,255,0.16)"/>
-                              <rect x="130" y="98" width="86" height="18" rx="4" fill="#505a68" stroke="#191d27" stroke-width="4"/>
-                              <line x1="140" y1="104" x2="208" y2="104" stroke="#3a4450" stroke-width="2"/>
-                              <line x1="140" y1="110" x2="208" y2="110" stroke="#3a4450" stroke-width="2"/>
-                              <path d="M182,129 L182,178 Q182,194 198,194 L258,194 Q272,194 272,178 L272,129" fill="url(#gFrame)" stroke="#191d27" stroke-width="5.5" stroke-linejoin="round"/>
-                              <path d="M224,132 C221,152 226,165 231,170" fill="none" stroke="#191d27" stroke-width="6" stroke-linecap="round"/>
-                              <path d="M292,120 L356,122 Q374,126 378,144 L384,198 Q384,210 368,212 L298,212 Q280,210 278,196 L274,133 Z" fill="url(#gGrip)" stroke="#191d27" stroke-width="5.5"/>
-                              <line x1="280" y1="140" x2="378" y2="147" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="279" y1="154" x2="380" y2="161" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="278" y1="168" x2="380" y2="175" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="278" y1="182" x2="380" y2="189" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="278" y1="196" x2="378" y2="203" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <path d="M295,124 L354,126 Q368,130 370,144 L370,162 Q346,156 298,153Z" fill="rgba(255,255,255,0.09)"/>
-                              <circle cx="276" cy="130" r="7" fill="#383e4e" stroke="#191d27" stroke-width="3"/>
-                              <rect x="138" y="106" width="22" height="8" rx="3" fill="#383e4e" stroke="#191d27" stroke-width="2.5"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="nys-gun-label">Testing</div>
-                </a>
-
-                <!-- RESOURCES -->
-                <a class="nys-gun-item" href="nys-resources.html">
-                    <div class="nys-gun-scale">
-                        <div class="cartoon-gun-button" role="presentation">
-                            <svg class="gun-svg" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                              <g class="gun-flash-svg">
-                                <polygon points="-5,38 32,44 22,58 -5,55" fill="#ff6b35" opacity="0.9"/>
-                                <polygon points="-22,44 30,48 18,60 -20,58" fill="#ffd23f" opacity="0.9"/>
-                                <polygon points="-30,50 28,50 16,62 -28,62" fill="#fff7ad" opacity="0.85"/>
-                                <polygon points="-12,35 25,46 15,56 -10,52" fill="#ff6b35" opacity="0.7"/>
-                              </g>
-                              <g class="gun-slide-group">
-                                <rect x="14" y="38" width="128" height="30" rx="8" fill="url(#gBarrel)" stroke="#191d27" stroke-width="5"/>
-                                <rect x="24" y="42" width="100" height="8" rx="3" fill="rgba(255,255,255,0.32)"/>
-                                <circle cx="20" cy="53" r="9" fill="#191d27"/>
-                                <circle cx="20" cy="53" r="5" fill="#0a0c12"/>
-                                <rect x="132" y="18" width="220" height="62" rx="13" fill="url(#gSlide)" stroke="#191d27" stroke-width="5.5"/>
-                                <rect x="142" y="23" width="200" height="13" rx="6" fill="rgba(255,255,255,0.38)"/>
-                                <rect x="220" y="28" width="64" height="30" rx="5" fill="#22262e" stroke="#191d27" stroke-width="3"/>
-                                <line x1="306" y1="24" x2="306" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <line x1="319" y1="24" x2="319" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <line x1="332" y1="24" x2="332" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <line x1="345" y1="24" x2="345" y2="76" stroke="#191d27" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
-                                <rect x="44" y="12" width="13" height="12" rx="2" fill="#282c38" stroke="#191d27" stroke-width="3"/>
-                                <rect x="334" y="11" width="26" height="11" rx="2" fill="#282c38" stroke="#191d27" stroke-width="3"/>
-                              </g>
-                              <path d="M140,72 L348,72 Q358,72 358,82 L358,122 Q358,132 348,132 L140,132 Q130,132 130,122 L130,82 Q130,72 140,72Z" fill="url(#gFrame)" stroke="#191d27" stroke-width="5.5"/>
-                              <rect x="136" y="76" width="214" height="14" rx="4" fill="rgba(255,255,255,0.16)"/>
-                              <rect x="130" y="98" width="86" height="18" rx="4" fill="#505a68" stroke="#191d27" stroke-width="4"/>
-                              <line x1="140" y1="104" x2="208" y2="104" stroke="#3a4450" stroke-width="2"/>
-                              <line x1="140" y1="110" x2="208" y2="110" stroke="#3a4450" stroke-width="2"/>
-                              <path d="M182,129 L182,178 Q182,194 198,194 L258,194 Q272,194 272,178 L272,129" fill="url(#gFrame)" stroke="#191d27" stroke-width="5.5" stroke-linejoin="round"/>
-                              <path d="M224,132 C221,152 226,165 231,170" fill="none" stroke="#191d27" stroke-width="6" stroke-linecap="round"/>
-                              <path d="M292,120 L356,122 Q374,126 378,144 L384,198 Q384,210 368,212 L298,212 Q280,210 278,196 L274,133 Z" fill="url(#gGrip)" stroke="#191d27" stroke-width="5.5"/>
-                              <line x1="280" y1="140" x2="378" y2="147" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="279" y1="154" x2="380" y2="161" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="278" y1="168" x2="380" y2="175" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="278" y1="182" x2="380" y2="189" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <line x1="278" y1="196" x2="378" y2="203" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
-                              <path d="M295,124 L354,126 Q368,130 370,144 L370,162 Q346,156 298,153Z" fill="rgba(255,255,255,0.09)"/>
-                              <circle cx="276" cy="130" r="7" fill="#383e4e" stroke="#191d27" stroke-width="3"/>
-                              <rect x="138" y="106" width="22" height="8" rx="3" fill="#383e4e" stroke="#191d27" stroke-width="2.5"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="nys-gun-label">Resources</div>
-                </a>
-
+                <a href="#" class="nys-btn">Register</a>
+                <a href="#" class="nys-btn">Sign Waiver</a>
+                <a href="#" class="nys-btn">Sign-In</a>
+                <a href="NYS_Pistol_Permit_Tests.html" class="nys-btn">Testing</a>
+                <a href="nys-resources.html" class="nys-btn">Resources</a>
             </div>
         </section>
 
@@ -1390,17 +1053,7 @@
         document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
         });
-        // NYS Gun Buttons — fire animation on click only (navigation via <a> href)
-        document.querySelectorAll('.nys-gun-item').forEach(item => {
-            const gun = item.querySelector('.cartoon-gun-button');
-            item.addEventListener('click', function() {
-                if (gun) {
-                    gun.classList.remove('fire');
-                    void gun.offsetWidth;
-                    gun.classList.add('fire');
-                }
-            }, false);
-        });
+
 
     </script>
 </body>
