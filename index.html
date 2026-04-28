@@ -633,7 +633,8 @@
         .gun-slide-group {
             transition: transform 240ms cubic-bezier(.2,.9,.2,1.3);
         }
-        .cartoon-gun-button:hover .gun-slide-group {
+        .cartoon-gun-button:hover .gun-slide-group,
+        .nys-gun-item:hover .gun-slide-group {
             transform: translateX(38px);
         }
         .gun-flash-svg {
@@ -983,7 +984,7 @@
                 <a class="nys-gun-item" href="#">
                     <div class="nys-gun-scale">
                         <div class="nys-gun-overlay"></div>
-                        <button class="cartoon-gun-button" type="button" aria-label="Register">
+                        <div class="cartoon-gun-button" role="presentation">
                             <svg class="gun-svg" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                               <defs>
                                 <linearGradient id="gSlide" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#cdd8e2"/><stop offset="35%" stop-color="#96a6b6"/><stop offset="100%" stop-color="#606e7e"/></linearGradient>
@@ -1048,7 +1049,7 @@
                               <!-- Takedown lever -->
                               <rect x="138" y="106" width="22" height="8" rx="3" fill="#383e4e" stroke="#191d27" stroke-width="2.5"/>
                             </svg>
-                        </button>
+                        </div>
                     </div>
                     <div class="nys-gun-label">Register</div>
                 </a>
@@ -1057,7 +1058,7 @@
                 <a class="nys-gun-item" href="#">
                     <div class="nys-gun-scale">
                         <div class="nys-gun-overlay"></div>
-                        <button class="cartoon-gun-button" type="button" aria-label="Sign Waiver">
+                        <div class="cartoon-gun-button" role="presentation">
                             <svg class="gun-svg" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                               <use href="#gSlide"/><use href="#gFrame"/><use href="#gGrip"/><use href="#gBarrel"/>
                               <g class="gun-flash-svg">
@@ -1098,7 +1099,7 @@
                               <circle cx="276" cy="130" r="7" fill="#383e4e" stroke="#191d27" stroke-width="3"/>
                               <rect x="138" y="106" width="22" height="8" rx="3" fill="#383e4e" stroke="#191d27" stroke-width="2.5"/>
                             </svg>
-                        </button>
+                        </div>
                     </div>
                     <div class="nys-gun-label">Sign Waiver</div>
                 </a>
@@ -1107,7 +1108,7 @@
                 <a class="nys-gun-item" href="#">
                     <div class="nys-gun-scale">
                         <div class="nys-gun-overlay"></div>
-                        <button class="cartoon-gun-button" type="button" aria-label="Sign-In">
+                        <div class="cartoon-gun-button" role="presentation">
                             <svg class="gun-svg" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                               <g class="gun-flash-svg">
                                 <polygon points="-5,38 32,44 22,58 -5,55" fill="#ff6b35" opacity="0.9"/>
@@ -1147,7 +1148,7 @@
                               <circle cx="276" cy="130" r="7" fill="#383e4e" stroke="#191d27" stroke-width="3"/>
                               <rect x="138" y="106" width="22" height="8" rx="3" fill="#383e4e" stroke="#191d27" stroke-width="2.5"/>
                             </svg>
-                        </button>
+                        </div>
                     </div>
                     <div class="nys-gun-label">Sign-In</div>
                 </a>
@@ -1156,7 +1157,7 @@
                 <a class="nys-gun-item" href="NYS_Pistol_Permit_Tests.html">
                     <div class="nys-gun-scale">
                         <div class="nys-gun-overlay"></div>
-                        <button class="cartoon-gun-button" type="button" aria-label="Testing">
+                        <div class="cartoon-gun-button" role="presentation">
                             <svg class="gun-svg" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                               <g class="gun-flash-svg">
                                 <polygon points="-5,38 32,44 22,58 -5,55" fill="#ff6b35" opacity="0.9"/>
@@ -1196,7 +1197,7 @@
                               <circle cx="276" cy="130" r="7" fill="#383e4e" stroke="#191d27" stroke-width="3"/>
                               <rect x="138" y="106" width="22" height="8" rx="3" fill="#383e4e" stroke="#191d27" stroke-width="2.5"/>
                             </svg>
-                        </button>
+                        </div>
                     </div>
                     <div class="nys-gun-label">Testing</div>
                 </a>
@@ -1205,7 +1206,7 @@
                 <a class="nys-gun-item" href="nys-resources.html">
                     <div class="nys-gun-scale">
                         <div class="nys-gun-overlay"></div>
-                        <button class="cartoon-gun-button" type="button" aria-label="Resources">
+                        <div class="cartoon-gun-button" role="presentation">
                             <svg class="gun-svg" viewBox="0 0 420 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                               <g class="gun-flash-svg">
                                 <polygon points="-5,38 32,44 22,58 -5,55" fill="#ff6b35" opacity="0.9"/>
@@ -1245,7 +1246,7 @@
                               <circle cx="276" cy="130" r="7" fill="#383e4e" stroke="#191d27" stroke-width="3"/>
                               <rect x="138" y="106" width="22" height="8" rx="3" fill="#383e4e" stroke="#191d27" stroke-width="2.5"/>
                             </svg>
-                        </button>
+                        </div>
                     </div>
                     <div class="nys-gun-label">Resources</div>
                 </a>
@@ -1406,12 +1407,12 @@
         });
         // NYS Gun Buttons — play fire animation on click (navigation handled natively by <a> tag)
         document.querySelectorAll('.nys-gun-item').forEach(item => {
-            const btn = item.querySelector('.cartoon-gun-button');
+            const gun = item.querySelector('.cartoon-gun-button');
             item.addEventListener('click', () => {
-                if (btn) {
-                    btn.classList.remove('fire');
-                    void btn.offsetWidth;
-                    btn.classList.add('fire');
+                if (gun) {
+                    gun.classList.remove('fire');
+                    void gun.offsetWidth;
+                    gun.classList.add('fire');
                 }
             });
         });
