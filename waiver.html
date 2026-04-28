@@ -808,12 +808,15 @@ async function submitWaiver() {
     const signDate     = formatDate(dateEl.value);
     const photoChoice  = photoVal ? photoVal.value : 'Not specified';
     const now          = new Date().toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' });
-    const sigDataUrl   = canvas.toDataURL('image/png');
+    const sigDataUrl   = canvas.toDataURL('image/png');  // full quality for PDF
+
+    // Compressed JPEG for email — keeps payload under EmailJS size limit
+    const emailSigUrl  = canvas.toDataURL('image/jpeg', 0.4);
 
     submitBtn.disabled = true;
     submitBtn.textContent = '⏳ Sending…';
 
-    const data = { name, dob, address, phone, studentEmail, signDate, photoChoice, now, sigDataUrl };
+    const data = { name, dob, address, phone, studentEmail, signDate, photoChoice, now, sigDataUrl, emailSigUrl };
 
     let sendOk = false;
     try {
@@ -873,7 +876,7 @@ function waiverBodyHTML(d) {
 
 // ── Build email HTML ──────────────────────────────────────────────
 function buildEmailHTML(data) {
-    const { name, signDate, now, sigDataUrl, recipient } = data;
+    const { name, signDate, now, emailSigUrl, recipient } = data;
     const firstName = name.split(' ')[0];
     const intro = recipient === 'student'
         ? `<p style="font-size:13px;color:#444;margin:0 0 16px">Hi ${escHtml(firstName)}, this confirms receipt of your signed liability waiver for the Marcus Armed NYS Pistol Permit Course. Please keep this email for your records.</p>`
@@ -887,7 +890,7 @@ function buildEmailHTML(data) {
     ${waiverBodyHTML(data)}
     <div style="border:1px solid #e0ddd8;border-radius:8px;overflow:hidden;margin-top:8px">
       <div style="background:#f5f2ec;padding:7px 14px;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#888;border-bottom:1px solid #e0ddd8">Participant Signature &nbsp;·&nbsp; Signed: ${escHtml(signDate)}</div>
-      <div style="background:#fff;padding:10px;text-align:center"><img src="${sigDataUrl}" alt="Signature" style="max-width:100%;height:auto;display:block;margin:0 auto"/></div>
+      <div style="background:#fff;padding:10px;text-align:center"><img src="${emailSigUrl}" alt="Signature" style="max-width:100%;height:auto;display:block;margin:0 auto"/></div>
       <div style="background:#f5f2ec;padding:7px 14px;font-size:10px;color:#888;border-top:1px solid #e0ddd8">Printed Name: ${escHtml(data.name)}</div>
     </div>
     <p style="font-size:10px;color:#aaa;text-align:center;margin:8px 0 0">Signature captured electronically · ${escHtml(now)}</p>
