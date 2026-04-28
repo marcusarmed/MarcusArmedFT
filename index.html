@@ -344,6 +344,139 @@
             font-size: 0.9rem;
         }
 
+        /* Class Links Section */
+        .class-links-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1c20 100%);
+            padding: 2.5rem 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out 0.7s both;
+        }
+
+        @media (min-width: 769px) {
+            .class-links-section {
+                padding: 3rem;
+                margin-bottom: 3rem;
+            }
+        }
+
+        .class-links-section::before {
+            content: '🎓';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 80px;
+            opacity: 0.08;
+        }
+
+        @media (min-width: 769px) {
+            .class-links-section::before {
+                font-size: 120px;
+                top: -20px;
+                right: 20px;
+            }
+        }
+
+        .class-links-section h2 {
+            color: var(--cream);
+        }
+
+        .class-links-section h2::after {
+            background: linear-gradient(90deg, var(--accent-orange), transparent);
+        }
+
+        .class-links-section p {
+            color: #b0b4bc;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .class-links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .class-links-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 900px) {
+            .class-links-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        .class-link-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: rgba(249, 157, 34, 0.12);
+            border: 2px solid rgba(249, 157, 34, 0.35);
+            color: var(--cream);
+            padding: 1.4rem 1rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-align: center;
+            transition: all 0.3s ease;
+            min-height: 90px;
+            line-height: 1.3;
+        }
+
+        .class-link-btn .link-icon {
+            font-size: 1.8rem;
+            display: block;
+            line-height: 1;
+        }
+
+        .class-link-btn:active {
+            background: rgba(249, 157, 34, 0.3);
+            border-color: var(--accent-orange);
+            transform: scale(0.97);
+        }
+
+        @media (min-width: 769px) {
+            .class-link-btn:hover {
+                background: rgba(249, 157, 34, 0.22);
+                border-color: var(--accent-orange);
+                color: var(--accent-orange);
+                transform: translateY(-4px);
+                box-shadow: 0 8px 25px rgba(249, 157, 34, 0.2);
+            }
+        }
+
+        .class-link-btn.testing-btn {
+            background: rgba(226, 66, 32, 0.12);
+            border-color: rgba(226, 66, 32, 0.35);
+        }
+
+        .class-link-btn.testing-btn:active {
+            background: rgba(226, 66, 32, 0.3);
+            border-color: var(--accent-red);
+        }
+
+        @media (min-width: 769px) {
+            .class-link-btn.testing-btn:hover {
+                background: rgba(226, 66, 32, 0.22);
+                border-color: var(--accent-red);
+                color: #ff7755;
+                box-shadow: 0 8px 25px rgba(226, 66, 32, 0.2);
+            }
+        }
+
         /* Grip Tutorial Section */
         .grip-tutorial-section {
             background: linear-gradient(135deg, var(--accent-orange) 0%, #faa83a 100%);
@@ -525,68 +658,6 @@
 
         .drill-cards-section {
             border-left: 5px solid var(--primary-dark);
-        }
-
-        /* NYS 16-Hour Course Section */
-        .nys-section {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, #3a3d42 100%) !important;
-            border-left: 5px solid var(--accent-orange) !important;
-            box-shadow: 0 10px 40px rgba(41, 44, 51, 0.35) !important;
-            overflow: visible !important;
-        }
-
-        .nys-section::before {
-            content: '📋' !important;
-        }
-
-        .nys-section h2 {
-            color: var(--cream) !important;
-        }
-
-        .nys-section h2::after {
-            background: linear-gradient(90deg, var(--cream), transparent) !important;
-        }
-
-        .nys-section p {
-            color: rgba(232,221,201,0.85) !important;
-        }
-
-        /* ── NYS GUN BUTTONS ── */
-        .nys-section-sub {
-            display: flex;
-            gap: 0.6rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-        }
-
-        .nys-btn {
-            display: inline-block;
-            background: var(--accent-orange);
-            color: var(--primary-dark);
-            padding: 0.85rem 1.5rem;
-            border-radius: 35px;
-            text-decoration: none;
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 5px 15px rgba(249,157,34,0.3);
-            transition: all 0.25s ease;
-            min-height: 44px;
-            line-height: 1.4;
-            white-space: nowrap;
-        }
-
-        .nys-btn:hover {
-            background: #faa83a;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 22px rgba(249,157,34,0.45);
-        }
-
-        .nys-btn:active {
-            transform: translateY(0);
         }
 
         /* Contact Section */
@@ -880,17 +951,30 @@
             </ul>
         </section>
 
-        <section class="grip-tutorial-section nys-section" style="margin-bottom: 2rem;">
-            <h2>NYS 16-Hour Pistol Permit Course</h2>
-            <p>
-                Resources for students enrolled in the New York State 16-hour pistol permit course — including state gun laws, reciprocity maps, and mental health support.
-            </p>
-            <div class="nys-section-sub">
-                <a href="#" class="nys-btn">Register</a>
-                <a href="#" class="nys-btn">Sign Waiver</a>
-                <a href="#" class="nys-btn">Sign-In</a>
-                <a href="NYS_Pistol_Permit_Tests.html" class="nys-btn">Testing</a>
-                <a href="nys-resources.html" class="nys-btn">Resources</a>
+        <section class="class-links-section">
+            <h2>NYS 16 Hour Pistol Permit Course</h2>
+            <p>Everything you need before, during, and after your training class — all in one place.</p>
+            <div class="class-links-grid">
+                <a href="class-signup.html" class="class-link-btn">
+                    <span class="link-icon">📋</span>
+                    Registration
+                </a>
+                <a href="waiver.html" class="class-link-btn">
+                    <span class="link-icon">✍️</span>
+                    Sign Waiver
+                </a>
+                <a href="class-signin.html" class="class-link-btn">
+                    <span class="link-icon">🔏</span>
+                    Sign In
+                </a>
+                <a href="nys-resources.html" class="class-link-btn">
+                    <span class="link-icon">📚</span>
+                    Resources
+                </a>
+                <a href="NYS_Pistol_Permit_Tests.html" class="class-link-btn testing-btn">
+                    <span class="link-icon">🎯</span>
+                    Testing
+                </a>
             </div>
         </section>
 
@@ -1053,8 +1137,6 @@
         document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
         });
-
-
     </script>
 </body>
 </html>
