@@ -409,7 +409,7 @@
 
         @media (min-width: 900px) {
             .class-links-grid {
-                grid-template-columns: repeat(5, 1fr);
+                grid-template-columns: repeat(6, 1fr);
             }
         }
 
@@ -475,6 +475,85 @@
                 color: #ff7755;
                 box-shadow: 0 8px 25px rgba(226, 66, 32, 0.2);
             }
+        }
+
+        /* Gun Fidget Widget */
+        .gun-fidget-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(249, 157, 34, 0.15);
+        }
+
+        .gun-badge {
+            font-family: monospace;
+            font-size: 10px;
+            color: #C8922A;
+            letter-spacing: 0.18em;
+            margin: 0;
+        }
+
+        .gun-btn {
+            background: #0d0d0d;
+            border: 1px solid rgba(200, 146, 42, 0.3);
+            border-radius: 8px;
+            cursor: crosshair;
+            padding: 20px 30px;
+            outline: none;
+            transition: border-color 0.15s, background 0.12s;
+            position: relative;
+            display: block;
+        }
+
+        .gun-btn:hover {
+            border-color: rgba(200, 146, 42, 0.65);
+            background: #111;
+        }
+
+        .gun-btn:active { background: #090909; }
+
+        .gun-btn:focus-visible {
+            outline: 2px solid #C8922A;
+            outline-offset: 3px;
+        }
+
+        #slide-grp { transition: transform 0.17s cubic-bezier(.15,0,.3,1); }
+        .gun-btn:hover #slide-grp { transform: translateX(30px); }
+
+        #gun-body { transform-box: fill-box; transform-origin: 78% 88%; }
+        .gun-btn.fire #gun-body { animation: recoil 0.4s ease-out; }
+
+        #mflash { opacity: 0; transform-box: fill-box; transform-origin: center; }
+        .gun-btn.fire #mflash { animation: flash 0.25s ease-out; }
+
+        #shell { transform-box: fill-box; transform-origin: center; }
+        .gun-btn.fire #shell { animation: eject 0.58s cubic-bezier(.25,.46,.45,.94) forwards; }
+
+        @keyframes recoil {
+            0%   { transform: rotate(0) translate(0,0); }
+            22%  { transform: rotate(-9deg) translate(-5px,-9px); }
+            60%  { transform: rotate(-3deg) translate(-2px,-3px); }
+            100% { transform: rotate(0) translate(0,0); }
+        }
+        @keyframes flash {
+            0%   { opacity: 0; transform: scale(0.1); }
+            15%  { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(2.4); }
+        }
+        @keyframes eject {
+            0%   { opacity: 1; transform: translate(0,0) rotate(0); }
+            100% { opacity: 0; transform: translate(54px,-86px) rotate(600deg); }
+        }
+
+        .gun-hint {
+            font-family: monospace;
+            font-size: 11px;
+            color: #666;
+            letter-spacing: 0.09em;
+            margin: 0;
         }
 
         /* Grip Tutorial Section */
@@ -971,10 +1050,86 @@
                     <span class="link-icon">📚</span>
                     Resources
                 </a>
-                <a href="NYS_Pistol_Permit_Tests.html" class="class-link-btn testing-btn">
+                <a href="nys-course.html" class="class-link-btn testing-btn">
                     <span class="link-icon">🎯</span>
-                    Testing
+                    Quizzes
                 </a>
+                <a href="NYS_Pistol_Permit_Final_Exam.html" class="class-link-btn testing-btn">
+                    <span class="link-icon">📝</span>
+                    Final Exam
+                </a>
+            </div>
+
+            <div class="gun-fidget-wrap">
+                <p class="gun-badge">MARCUS ARMED</p>
+                <button class="gun-btn" id="gunBtn" aria-label="Rack and fire">
+                    <svg viewBox="0 0 300 165" width="260" height="143" style="overflow:visible;display:block" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <pattern id="gt" patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(45)">
+                                <line x1="0" y1="0" x2="0" y2="5" stroke="#111" stroke-width="2"/>
+                            </pattern>
+                        </defs>
+                        <g id="gun-body">
+                            <rect x="18" y="64" width="220" height="14" rx="2" fill="#565656"/>
+                            <rect x="18" y="64" width="220" height="5" rx="1" fill="#686868"/>
+                            <circle cx="21" cy="71" r="5.5" fill="#0d0d0d"/>
+                            <circle cx="21" cy="71" r="3" fill="#060606"/>
+                            <rect x="75" y="75" width="165" height="38" rx="3" fill="#2d2d2d"/>
+                            <rect x="75" y="75" width="165" height="5" rx="2" fill="#3c3c3c"/>
+                            <rect x="193" y="105" width="47" height="57" rx="4" fill="#1c1c1c"/>
+                            <rect x="193" y="105" width="47" height="57" rx="4" fill="url(#gt)" opacity=".7"/>
+                            <rect x="193" y="156" width="47" height="7" rx="3" fill="#2c2c2c"/>
+                            <path d="M172,113 L172,134 Q172,140 178,140 L200,140 Q205,140 205,113" fill="none" stroke="#242424" stroke-width="13" stroke-linejoin="round" stroke-linecap="square"/>
+                            <path d="M172,113 L172,134 Q172,140 178,140 L200,140 Q205,140 205,113" fill="none" stroke="#353535" stroke-width="8" stroke-linejoin="round" stroke-linecap="square"/>
+                            <rect x="181" y="108" width="7" height="22" rx="3" fill="#7a7a7a"/>
+                            <rect x="181" y="108" width="3.5" height="22" rx="1.5" fill="#9a9a9a"/>
+                            <rect x="102" y="86" width="15" height="6" rx="2" fill="#404040"/>
+                            <circle cx="92" cy="91" r="4" fill="#363636"/>
+                            <circle cx="92" cy="91" r="2" fill="#4d4d4d"/>
+                            <rect x="113" y="88" width="30" height="3" rx="1" fill="#C8922A" opacity=".55"/>
+                            <circle cx="221" cy="111" r="4" fill="#3a3a3a"/>
+                            <circle cx="221" cy="111" r="2" fill="#525252"/>
+                            <path d="M206,113 C204,94 213,77 229,76 C241,76 244,88 244,108 L244,113 Z" fill="#252525"/>
+                            <path d="M206,113 C204,94 213,77 229,76 C241,76 244,88 244,108 L244,113 Z" fill="none" stroke="#353535" stroke-width="1.5"/>
+                            <path d="M208,110 C207,93 215,79 229,78 C239,78 242,89 242,106" fill="none" stroke="#3d3d3d" stroke-width="1" stroke-linecap="round"/>
+                            <g id="slide-grp">
+                                <rect x="18" y="42" width="220" height="46" rx="4" fill="#383838"/>
+                                <rect x="18" y="42" width="220" height="7" rx="3" fill="#484848"/>
+                                <rect x="18" y="82" width="220" height="5" rx="1" fill="#252525"/>
+                                <line x1="204" y1="46" x2="204" y2="84" stroke="#222" stroke-width="3"/>
+                                <line x1="210" y1="46" x2="210" y2="84" stroke="#222" stroke-width="3"/>
+                                <line x1="216" y1="46" x2="216" y2="84" stroke="#222" stroke-width="3"/>
+                                <line x1="222" y1="46" x2="222" y2="84" stroke="#222" stroke-width="3"/>
+                                <line x1="228" y1="46" x2="228" y2="84" stroke="#222" stroke-width="3"/>
+                                <line x1="234" y1="46" x2="234" y2="84" stroke="#222" stroke-width="3"/>
+                                <rect x="134" y="50" width="44" height="26" rx="2" fill="#1a1a1a"/>
+                                <rect x="137" y="53" width="38" height="20" rx="1.5" fill="#121212"/>
+                                <rect x="23" y="37" width="9" height="11" rx="1" fill="#4a4a4a"/>
+                                <rect x="25" y="37" width="5" height="9" rx=".5" fill="#C8922A"/>
+                                <rect x="218" y="37" width="16" height="10" rx="1" fill="#4a4a4a"/>
+                                <rect x="224" y="37" width="4" height="7" rx=".5" fill="#121212"/>
+                                <g id="shell">
+                                    <rect x="137" y="48" width="40" height="18" rx="9" fill="#b87333"/>
+                                    <rect x="137" y="48" width="16" height="18" rx="8" fill="#d4904a"/>
+                                    <circle cx="174" cy="57" r="4" fill="#8a5520"/>
+                                    <circle cx="174" cy="57" r="1.5" fill="#6b3f18"/>
+                                </g>
+                            </g>
+                            <g id="mflash">
+                                <line x1="21" y1="71" x2="-15" y2="62" stroke="#ff8800" stroke-width="9" stroke-linecap="round"/>
+                                <line x1="21" y1="71" x2="-17" y2="71" stroke="#ffaa00" stroke-width="11" stroke-linecap="round"/>
+                                <line x1="21" y1="71" x2="-15" y2="80" stroke="#ff8800" stroke-width="9" stroke-linecap="round"/>
+                                <line x1="21" y1="71" x2="-3" y2="52" stroke="#ff6600" stroke-width="6" stroke-linecap="round"/>
+                                <line x1="21" y1="71" x2="-3" y2="90" stroke="#ff6600" stroke-width="6" stroke-linecap="round"/>
+                                <line x1="21" y1="71" x2="9" y2="47" stroke="#ff5500" stroke-width="4" stroke-linecap="round"/>
+                                <line x1="21" y1="71" x2="9" y2="95" stroke="#ff5500" stroke-width="4" stroke-linecap="round"/>
+                                <circle cx="21" cy="71" r="17" fill="#ffcc00" opacity=".88"/>
+                                <circle cx="21" cy="71" r="9" fill="white"/>
+                            </g>
+                        </g>
+                    </svg>
+                </button>
+                <p class="gun-hint">hover to rack &nbsp;·&nbsp; click to fire</p>
             </div>
         </section>
 
@@ -1137,6 +1292,17 @@
         document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
         });
+
+        // Gun fidget button
+        const gunBtn = document.getElementById('gunBtn');
+        if (gunBtn) {
+            gunBtn.addEventListener('click', () => {
+                gunBtn.classList.remove('fire');
+                void gunBtn.offsetWidth;
+                gunBtn.classList.add('fire');
+                setTimeout(() => gunBtn.classList.remove('fire'), 700);
+            });
+        }
     </script>
 </body>
 </html>
