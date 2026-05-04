@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f99d22">
+    <meta name="description" content="Competition Safety Guide — Action Pistol & USPSA Match Rules, Safety Protocol, and Match Flow. Marcus Armed, LLC.">
+    <meta property="og:title" content="Competition Safety Guide | Marcus Armed">
+    <meta property="og:description" content="Read this guide before attending your first practical pistol match. Marcus Armed, LLC.">
+    <meta property="og:image" content="marcusarmedlogo__Logo_.svg">
+    <title>Competition Safety Guide | Marcus Armed</title>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1D9JZN9C5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-F1D9JZN9C5');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: rgba(249, 157, 34, 0.2);
+        }
+
+        :root {
+            --primary-dark: #292c33;
+            --accent-orange: #f99d22;
+            --accent-red: #e24220;
+            --accent-deep: #ef6c00;
+            --cream: #e8ddc9;
+            --text-dark: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.65;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image:
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(41,44,51,0.03) 35px, rgba(41,44,51,0.03) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(249,157,34,0.02) 35px, rgba(249,157,34,0.02) 70px);
+            z-index: -1;
+        }
+
+        /* ── HEADER ── */
+        header {
+            background: #3a3d42;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+        }
+
+        .header-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            background: var(--accent-orange);
+            color: var(--primary-dark);
+            padding: 0.6rem 1.2rem;
+            border-radius: 24px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: background 0.2s;
+            min-height: 44px;
+        }
+        .back-btn:hover { background: #faa83a; }
+
+        .header-title { flex: 1; }
+
+        .header-eyebrow {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent-orange);
+            margin-bottom: 0.15rem;
+        }
+
+        .header-title h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            font-weight: 700;
+            color: var(--cream);
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .header-dedication {
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: rgba(232,221,201,0.75);
+            margin-top: 0.3rem;
+            letter-spacing: 0.02em;
+            font-style: italic;
+        }
+
+        /* ── TOC PILL ── */
+        .toc-strip {
+            background: var(--primary-dark);
+            border-bottom: 3px solid var(--accent-orange);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .toc-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0;
+            padding: 0 1rem;
+        }
+
+        .toc-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.7rem 1rem;
+            color: rgba(232,221,201,0.65);
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: color 0.2s, background 0.2s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -3px;
+        }
+
+        .toc-item:hover {
+            color: var(--accent-orange);
+            background: rgba(249,157,34,0.07);
+        }
+
+        /* ── MAIN ── */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.25rem 4rem;
+        }
+
+        /* ── MANDATORY BANNER ── */
+        .mandatory-banner {
+            background: var(--accent-red);
+            color: #fff;
+            border-radius: 10px;
+            padding: 1.4rem 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .mandatory-banner .bang {
+            font-size: 2rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .mandatory-banner p {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.55;
+        }
+
+        .mandatory-banner p span {
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.25rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+
+        /* ── SECTION CARD ── */
+        .guide-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(41,44,51,0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            border-top: 5px solid var(--accent-orange);
+        }
+
+        .guide-card.red-top { border-top-color: var(--accent-red); }
+        .guide-card.deep-top { border-top-color: var(--accent-deep); }
+
+        .card-header {
+            background: var(--primary-dark);
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+        }
+
+        .card-icon { font-size: 1.8rem; line-height: 1; }
+
+        .card-header-text h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--cream);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .card-header-text p {
+            font-size: 0.82rem;
+            color: rgba(232,221,201,0.55);
+            margin-top: 0.1rem;
+        }
+
+        .card-body { padding: 1.5rem; }
+
+        /* ── TEXT ELEMENTS ── */
+        .card-body p { margin-bottom: 1rem; font-size: 0.97rem; }
+        .card-body p:last-child { margin-bottom: 0; }
+
+        .highlight-box {
+            background: #fdf4ea;
+            border-left: 4px solid var(--accent-orange);
+            border-radius: 0 6px 6px 0;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.25rem;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: #2d1a00;
+        }
+
+        .highlight-box.red {
+            background: #fdf0ef;
+            border-left-color: var(--accent-red);
+            color: #2d0800;
+        }
+
+        .highlight-box strong {
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent-orange);
+            margin-bottom: 0.4rem;
+        }
+
+        .highlight-box.red strong { color: var(--accent-red); }
+
+        /* ── RULE LIST ── */
+        .rule-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1rem;
+        }
+
+        .rule-list li {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(41,44,51,0.07);
+            font-size: 0.96rem;
+        }
+
+        .rule-list li:last-child { border-bottom: none; padding-bottom: 0; }
+
+        .rule-list .bullet {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            background: var(--accent-orange);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .rule-list .bullet.red { background: var(--accent-red); color: #fff; }
+
+        .rule-list strong { font-weight: 600; }
+
+        /* ── SUBSECTION LABEL ── */
+        .sub-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent-orange);
+            font-weight: 700;
+            margin: 1.5rem 0 0.6rem;
+        }
+
+        .sub-label:first-child { margin-top: 0; }
+        .sub-label.red { color: var(--accent-red); }
+
+        /* ── COMMAND SEQUENCE ── */
+        .command-seq {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .command-step {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            background: #f8f5ef;
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+        }
+
+        .step-num {
+            flex-shrink: 0;
+            width: 26px;
+            height: 26px;
+            background: var(--primary-dark);
+            color: var(--accent-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .step-content { flex: 1; font-size: 0.95rem; }
+        .step-content strong { font-weight: 600; }
+
+        /* ── SCORING TABLE ── */
+        .score-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .score-cell {
+            background: #f8f5ef;
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        .score-cell .label { font-weight: 500; }
+
+        .score-cell .pts {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--accent-deep);
+        }
+
+        .score-cell.penalty .pts { color: var(--accent-red); }
+
+        /* ── GEAR CHECKLIST ── */
+        .gear-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .gear-item {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            background: #f8f5ef;
+            border-radius: 6px;
+            padding: 0.8rem 1rem;
+        }
+
+        .gear-icon { font-size: 1.4rem; flex-shrink: 0; line-height: 1.2; }
+
+        .gear-text { flex: 1; }
+
+        .gear-text strong {
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.15rem;
+        }
+
+        .gear-text span { font-size: 0.9rem; color: #444; }
+
+        .gear-item.no-go {
+            border: 1.5px solid var(--accent-red);
+            background: #fdf0ef;
+        }
+
+        .gear-item.no-go .gear-text strong { color: var(--accent-red); }
+
+        /* ── MATCH FLOW STEPS ── */
+        .flow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .flow-step {
+            display: flex;
+            gap: 0;
+            position: relative;
+        }
+
+        .flow-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 48px;
+            flex-shrink: 0;
+        }
+
+        .flow-node {
+            width: 32px;
+            height: 32px;
+            background: var(--accent-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .flow-line {
+            flex: 1;
+            width: 2px;
+            background: rgba(249,157,34,0.3);
+            min-height: 24px;
+        }
+
+        .flow-step:last-child .flow-line { display: none; }
+
+        .flow-content {
+            flex: 1;
+            padding: 0 0 1.5rem 0.75rem;
+        }
+
+        .flow-content h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary-dark);
+            margin-bottom: 0.35rem;
+            line-height: 1.3;
+        }
+
+        .flow-content p { font-size: 0.93rem; color: #444; margin-bottom: 0.4rem; }
+        .flow-content p:last-child { margin-bottom: 0; }
+
+        /* ── 180 RULE VISUAL ── */
+        .rule-180-visual {
+            background: var(--primary-dark);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+            text-align: center;
+        }
+
+        .rule-180-visual .label-180 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(3rem, 12vw, 5rem);
+            font-weight: 700;
+            color: var(--accent-orange);
+            line-height: 1;
+            display: block;
+        }
+
+        .rule-180-visual .rule-sub {
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(232,221,201,0.65);
+            margin-top: 0.4rem;
+        }
+
+        /* ── DQ WARNING ── */
+        .dq-box {
+            background: var(--accent-red);
+            color: #fff;
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .dq-box .dq-icon { font-size: 1.4rem; flex-shrink: 0; }
+
+        /* ── CLUBS GRID ── */
+        .clubs-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        @media (min-width: 540px) {
+            .clubs-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .club-card {
+            background: #f8f5ef;
+            border-radius: 8px;
+            padding: 1rem 1.1rem;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        .club-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.2rem;
+            color: var(--primary-dark);
+        }
+
+        .club-card .location {
+            font-size: 0.82rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .club-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .club-card ul li {
+            font-size: 0.88rem;
+            color: #444;
+            padding: 0.15rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.35rem;
+        }
+
+        .club-card ul li::before {
+            content: '→';
+            color: var(--accent-orange);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* ── RESOURCES LIST ── */
+        .resource-cols {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 540px) {
+            .resource-cols { grid-template-columns: 1fr 1fr; }
+        }
+
+        .resource-col h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent-deep);
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .resource-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resource-col ul li {
+            font-size: 0.93rem;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid rgba(41,44,51,0.07);
+            display: flex;
+            gap: 0.4rem;
+            align-items: flex-start;
+        }
+
+        .resource-col ul li:last-child { border-bottom: none; }
+
+        .resource-col ul li::before {
+            content: '▸';
+            color: var(--accent-orange);
+            flex-shrink: 0;
+        }
+
+        /* ── CONTACT FOOTER ── */
+        .contact-footer {
+            background: var(--primary-dark);
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .contact-footer .footer-text h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--cream);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .contact-footer .footer-text p {
+            font-size: 0.85rem;
+            color: rgba(232,221,201,0.6);
+            margin-top: 0.15rem;
+        }
+
+        .contact-btns {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--accent-orange);
+            color: var(--primary-dark);
+            padding: 0.65rem 1.3rem;
+            border-radius: 24px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: background 0.2s;
+            min-height: 44px;
+        }
+
+        .contact-btn:hover { background: #faa83a; }
+
+        .resource-col ul li a {
+            color: var(--accent-deep);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .resource-col ul li a:hover {
+            color: var(--accent-red);
+            text-decoration: underline;
+        }
+
+        /* ── PAGE ANCHOR OFFSET ── */
+        [id] { scroll-margin-top: 1rem; }
+
+        @media (min-width: 769px) {
+            .score-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-inner">
+        <a href="index.html" class="back-btn">← Back</a>
+        <div class="header-title">
+            <div class="header-eyebrow">Marcus Armed — Match Guide</div>
+            <h1>Matt Wolff Competition Safety Guide</h1>
+        </div>
+    </div>
+</header>
+
+<!-- TOC STRIP -->
+<nav class="toc-strip" aria-label="Page sections">
+    <div class="toc-inner">
+        <a href="#intro" class="toc-item">🎯 Intro</a>
+        <a href="#what-is" class="toc-item">🔫 What Is It</a>
+        <a href="#scoring" class="toc-item">📊 Scoring</a>
+        <a href="#prep" class="toc-item">🎒 Gear</a>
+        <a href="#range-rules" class="toc-item">📋 Range Rules</a>
+        <a href="#match-flow" class="toc-item">🔄 Match Flow</a>
+        <a href="#shooting-rules" class="toc-item">🛡️ Safety Rules</a>
+        <a href="#results" class="toc-item">🏆 Results</a>
+        <a href="#clubs" class="toc-item">📍 Clubs</a>
+    </div>
+</nav>
+
+<main>
+
+    <!-- MANDATORY NOTICE -->
+    <div class="mandatory-banner">
+        <div class="bang">⚠️</div>
+        <p>
+            <span>Mandatory Reading</span>
+            It is mandatory to read this guide in its entirety before attending your first practical pistol match. No exceptions. Range Officers are here to help guide you — our primary goal is the safety of all participants.
+        </p>
+    </div>
+
+    <!-- INTRO -->
+    <section id="intro" class="guide-card">
+        <div class="card-header">
+            <div class="card-icon">🎯</div>
+            <div class="card-header-text">
+                <h2>Introduction</h2>
+                <p>Welcome to Action Pistol Shooting Matches — Marcus Armed</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <p>These matches are designed for seasoned handgun shooters attending their first action pistol match to learn the critical safety, etiquette, and procedures of competing in practical pistol competitions. Experienced action pistol enthusiasts competing in USPSA, IDPA, PCSL and other hit factor matches are also welcome to participate.</p>
+
+            <div class="highlight-box red">
+                <strong>Important Note</strong>
+                These matches are <em>not</em> for new or inexperienced shooters. We encourage and embrace new handgun enthusiasts to continue renting range time and attending training classes.
+            </div>
+
+            <div class="sub-label">Your Goals — In Order</div>
+            <ul class="rule-list">
+                <li>
+                    <span class="bullet">1</span>
+                    <div><strong>Be safe.</strong> Understand and adhere to every safety expectation outlined in this guide. Individual gun handling, spatial awareness, understanding RO commands — all critical.</div>
+                </li>
+                <li>
+                    <span class="bullet">2</span>
+                    <div><strong>Avoid DQ.</strong> Avoid being disqualified for any breach of safety protocol while shooting, and adhere to all range rules throughout the match.</div>
+                </li>
+                <li>
+                    <span class="bullet">3</span>
+                    <div><strong>Have fun.</strong> Performance improvement will be fostered and encouraged — as a secondary point of focus to your safety and the safety of all participants.</div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- WHAT IS ACTION PISTOL -->
+    <section id="what-is" class="guide-card">
+        <div class="card-header">
+            <div class="card-icon">🔫</div>
+            <div class="card-header-text">
+                <h2>What Is Action Pistol / Practical Pistol Shooting?</h2>
+                <p>USPSA, IDPA, PCSL — hit factor competition explained</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <p>Competitors move through a course of fire (with their finger on the frame of the gun), engage multiple targets, shoot from unconventional positions, and perform rapid reloads.</p>
+
+            <div class="highlight-box">
+                <strong>Core Concept</strong>
+                Action pistol matches are a great outlet for training: use stress inoculation through "competition" in a controlled environment to test practical marksmanship on demand. Simultaneously shooting <em>faster AND more accurately</em> is a benefit to any practical marksmanship application.
+            </div>
+
+            <p>Not everyone needs to become immersed in the competition world. The goal is for handgun enthusiasts to use these structured matches to assess their own strengths and weaknesses.</p>
+
+            <p>These Action Pistol Matches follow many guidelines for safety, scoring, and rule set of the <strong>United States Practical Shooting Association (USPSA)</strong> — the national governing body and official region for the International Practical Shooting Confederation (IPSC) in the United States.</p>
+
+            <div class="highlight-box">
+                <strong>Reflection — Think of It Like a CrossFit Class</strong>
+                Everyone in the group is presented with the same stage of challenge. Each person's skill level determines their outcome. You will likely redefine the ceiling of what YOU are capable of by watching an experienced competitor run the same stage. That's the point.
+            </div>
+        </div>
+    </section>
+
+    <!-- SCORING BASICS -->
+    <section id="scoring" class="guide-card">
+        <div class="card-header">
+            <div class="card-icon">📊</div>
+            <div class="card-header-text">
+                <h2>Stage Scoring Basics</h2>
+                <p>Hit Factor — the formula that balances speed and accuracy</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="highlight-box">
+                <strong>The Short Version</strong>
+                Shoot 2 rounds at the center of all brown cardboard targets — unless the stage brief specifies otherwise. Keep shooting until you've engaged ALL designated targets. Make-up shots are fine unless noted.
+            </div>
+
+            <div class="sub-label">Hit Factor Formula</div>
+            <div class="highlight-box">
+                <strong>HF = Total Target Points ÷ Total Time</strong>
+                "How fast, and how accurately, can you shoot all the targets on the stage?" Hit Factor is king — it tests your on-demand efficiency, balancing speed and accuracy. When someone asks which is more important — the answer is "yes." A proficient shooter executes both.
+            </div>
+
+            <div class="sub-label">Cardboard Target — 2 Rounds Required</div>
+
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.25rem;align-items:end;">
+                <div style="text-align:center;">
+                    <img src="Target1.png" alt="Standard USPSA cardboard target showing A, C, D zones" style="width:100%;max-width:160px;display:block;margin:0 auto 0.5rem;border-radius:6px;">
+                    <span style="font-family:'Oswald',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#666;">Standard Target</span>
+                </div>
+                <div style="text-align:center;">
+                    <img src="Target2.jpg" alt="No-shoot penalty target" style="width:100%;max-width:160px;display:block;margin:0 auto 0.5rem;border-radius:6px;">
+                    <span style="font-family:'Oswald',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#666;">No-Shoot Target</span>
+                </div>
+                <div style="text-align:center;">
+                    <img src="Target3.png" alt="Partial target with hard cover showing exposed scoring zones" style="width:100%;max-width:160px;display:block;margin:0 auto 0.5rem;border-radius:6px;">
+                    <span style="font-family:'Oswald',sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#666;">Hard Cover Target</span>
+                </div>
+            </div>
+
+            <div class="score-grid">
+                <div class="score-cell"><span class="label">Alpha (A)</span><span class="pts">5 pts</span></div>
+                <div class="score-cell"><span class="label">Charlie (C)</span><span class="pts">3 pts</span></div>
+                <div class="score-cell"><span class="label">Delta (D)</span><span class="pts">1 pt</span></div>
+                <div class="score-cell penalty"><span class="label">Miss (Mic)</span><span class="pts">−10 pts</span></div>
+                <div class="score-cell penalty"><span class="label">No-Shoot / Penalty</span><span class="pts">−10 pts</span></div>
+                <div class="score-cell"><span class="label">Steel Target (1 round)</span><span class="pts">5 pts</span></div>
+            </div>
+
+            <p>Always listen to — and fully understand — the written stage brief (WSB) before shooting.</p>
+        </div>
+    </section>
+
+    <!-- PRE-MATCH PREP -->
+    <section id="prep" class="guide-card">
+        <div class="card-header">
+            <div class="card-icon">🎒</div>
+            <div class="card-header-text">
+                <h2>Pre-Match Prep — What to Bring</h2>
+                <p>Everything you need to show up ready on match day</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="gear-list">
+                <div class="gear-item">
+                    <div class="gear-icon">🥽</div>
+                    <div class="gear-text">
+                        <strong>Safety Glasses + Ear Protection</strong>
+                        <span>Plugs, muffs, or electronic — all fine.</span>
+                    </div>
+                </div>
+                <div class="gear-item">
+                    <div class="gear-icon">💼</div>
+                    <div class="gear-text">
+                        <strong>Gun Bag / Gun Box</strong>
+                        <span>Separate bag <em>just</em> for your firearm to transport to the Safe Table. No live ammo in the bag.</span>
+                    </div>
+                </div>
+                <div class="gear-item">
+                    <div class="gear-icon">🔫</div>
+                    <div class="gear-text">
+                        <strong>Gun: Safe, Reliable, Semi-Auto Pistol</strong>
+                        <span>9mm, .380, .40, .45 ACP, 10mm — all fine. No .22 or rimfire. Must be New York State compliant, safe, and reliable. Run what you have. Optics or irons — both welcome. Bone stock or modified — just keep it NYS legal.</span>
+                    </div>
+                </div>
+                <div class="gear-item">
+                    <div class="gear-icon">🗂️</div>
+                    <div class="gear-text">
+                        <strong>Magazines: Qty. 3–5 (10 round max — NYS)</strong>
+                        <span>Most stages run 6–20 rounds total. Three 10-round magazines will generally cover you. More is always better.</span>
+                    </div>
+                </div>
+                <div class="gear-item">
+                    <div class="gear-icon">🔩</div>
+                    <div class="gear-text">
+                        <strong>Kydex Holster — OWB or IWB</strong>
+                        <span>Must be rigid, durable, and allow a safe draw and re-holster.</span>
+                    </div>
+                </div>
+                <div class="gear-item no-go">
+                    <div class="gear-icon">🚫</div>
+                    <div class="gear-text">
+                        <strong>NO: Pocket / Sticky / Soft / Leather Holsters</strong>
+                        <span>No exceptions. You must be able to safely draw and re-holster with a rigid, reliable holster.</span>
+                    </div>
+                </div>
+                <div class="gear-item">
+                    <div class="gear-icon">🧲</div>
+                    <div class="gear-text">
+                        <strong>Magazine Pouches: Qty. 2–4</strong>
+                        <span>Most stages only require a single reload. Minimum 2 pouches recommended. USPSA competitors typically run 4–5 pouches.</span>
+                    </div>
+                </div>
+                <div class="gear-item">
+                    <div class="gear-icon">👟</div>
+                    <div class="gear-text">
+                        <strong>Separate Sneakers</strong>
+                        <span>Don't track snow, mud, or water into the range.</span>
+                    </div>
+                </div>
+                <div class="gear-item">
+                    <div class="gear-icon">🎯</div>
+                    <div class="gear-text">
+                        <strong>Ammo: 75–100 Rounds</strong>
+                        <span>Most matches run under 75 rounds. Ammo is typically available for sale at the range front counter — no background check required for match ammo shot on site.</span>
+                    </div>
+                </div>
+                <div class="gear-item">
+                    <div class="gear-icon">🫙</div>
+                    <div class="gear-text">
+                        <strong>Ziplock Bag / Container for Brass</strong>
+                        <span>Save it or give it to a reloader.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RANGE RULES -->
+    <section id="range-rules" class="guide-card deep-top">
+        <div class="card-header">
+            <div class="card-icon">📋</div>
+            <div class="card-header-text">
+                <h2>Range Rules During the Match</h2>
+                <p>Check-in, Safe Table, and general range conduct</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="sub-label">Arrival</div>
+            <ul class="rule-list">
+                <li>
+                    <span class="bullet">①</span>
+                    <div><strong>Check in at the front counter.</strong> State your name and pay <strong>$10 cash</strong>. Ensure you've completed the match waiver and read this guide.</div>
+                </li>
+                <li>
+                    <span class="bullet">②</span>
+                    <div><strong>Unload CCW before entering the range.</strong> Look for the designated "Unload Here" sign. Point muzzle at the sign and slowly and safely unload. Store in your range bag. You may also do this in your car. This protocol ensures no one in the room has a loaded gun until they are the single shooter running a stage.</div>
+                </li>
+                <li>
+                    <span class="bullet">③</span>
+                    <div><strong>Claim a bench/table for your gear.</strong> Space is limited — optimize.</div>
+                </li>
+            </ul>
+
+            <div class="sub-label">Safe Table</div>
+            <div class="highlight-box">
+                <strong>The Safe Table Is the ONLY Place to Handle Your Gun</strong>
+                Unbag your gun and lock the action open — this shows all competitors the gun is clearly unloaded. You may holster an unloaded pistol and walk around during the match. You CANNOT unholster or handle your gun anywhere except the Safe Table.
+            </div>
+
+            <ul class="rule-list">
+                <li>
+                    <span class="bullet red">!</span>
+                    <div>The only exception is when you're up to shoot the stage and the Range Officer gives the <strong>"Make Ready"</strong> command.</div>
+                </li>
+            </ul>
+
+            <div class="sub-label">Etiquette</div>
+            <p>Say hello to the Range Officer, Match Director, and your fellow competitors. These are your squadmates for the day.</p>
+        </div>
+    </section>
+
+    <!-- MATCH FLOW -->
+    <section id="match-flow" class="guide-card">
+        <div class="card-header">
+            <div class="card-icon">🔄</div>
+            <div class="card-header-text">
+                <h2>Match Flow</h2>
+                <p>Safety meeting → Stage walk → Shoot → Score → Repeat</p>
+            </div>
+        </div>
+        <div class="card-body">
+
+            <div class="sub-label">3 Main Points</div>
+            <div class="flow-steps">
+                <div class="flow-step">
+                    <div class="flow-left"><div class="flow-node">1</div><div class="flow-line"></div></div>
+                    <div class="flow-content">
+                        <h3>Up-Front Safety Meeting</h3>
+                        <p>ROs introduce themselves and cover emergency protocol — 911, medical kits, and the safe gun handling procedure for the day. "Make Ready" and "Show Clear" commands are explained. <em>Ask questions upfront — don't hesitate.</em></p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-left"><div class="flow-node">2</div><div class="flow-line"></div></div>
+                    <div class="flow-content">
+                        <h3>Stage Walk + Written Stage Brief (WSB)</h3>
+                        <p>The RO reads the WSB for the stage. Shooters then have <strong>5 minutes</strong> to walk the stage, identify all targets, establish target order, plan reloads, and mentally rehearse. You shoot each stage <strong>once only</strong> — no warm-ups, no do-overs.</p>
+                        <div class="highlight-box">
+                            <strong>Stage Walk Checklist</strong>
+                            ① Start position + hand/gun start details &nbsp;②&nbsp;Total round count + target count &nbsp;③&nbsp;Identify all targets &nbsp;④&nbsp;Establish target order and movement path &nbsp;⑤&nbsp;Note any special criteria (mandatory reload, weak hand, etc.) &nbsp;⑥&nbsp;Mental rehearsal
+                        </div>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-left"><div class="flow-node">3</div><div class="flow-line"></div></div>
+                    <div class="flow-content">
+                        <h3>Shooting the Stage — Order of Operations</h3>
+                        <p><strong>Shooter approaches</strong> start position. RO gives "Make Ready." Timer initiates with "Stand by." Shooter runs the stage.</p>
+                        <p>At the end, the RO issues "Show Clear." Once verified safe and holstered, RO calls <strong>"Range Is Clear"</strong> — this is the signal for all competitors to enter and work.</p>
+                        <ul class="rule-list">
+                            <li><span class="bullet">A</span><div><strong>Pasting:</strong> Grab pasters, stand next to a target. WAIT for the RO to verbally call the score before pasting any hole.</div></li>
+                            <li><span class="bullet">B</span><div><strong>Brass + Mag pickup:</strong> Collect all brass and mags into one container, hand to the shooter who just finished.</div></li>
+                            <li><span class="bullet">C</span><div><strong>Scoring:</strong> Scorer shows the shooter their Hit Factor. Shooter must follow the RO to verify hits and <strong>approve the score on the tablet.</strong> Then go reload for the next stage.</div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHOOTING RULES -->
+    <section id="shooting-rules" class="guide-card red-top">
+        <div class="card-header">
+            <div class="card-icon">🛡️</div>
+            <div class="card-header-text">
+                <h2>Shooting Safety Rules</h2>
+                <p>Make Ready · Show Clear · 180 Rule · Trigger Awareness</p>
+            </div>
+        </div>
+        <div class="card-body">
+
+            <div class="highlight-box red">
+                <strong>If the RO Calls "STOP" at Any Time</strong>
+                Take your finger off the trigger and rest it on the side of the gun. Take a breath. WAIT for the RO to instruct you. Do not move or act until directed. A stop may result in a reshoot (stage issue) or a DQ (safety violation).
+            </div>
+
+            <!-- Make Ready -->
+            <div class="sub-label">Make Ready — Loading Your Gun for Your Stage</div>
+            <p>The "Make Ready" command signals the start of the course of fire — you may unholster, load, and prepare your firearm under RO supervision. You must face downrange and assume your designated start position.</p>
+
+            <div class="command-seq">
+                <div class="command-step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">With gun <strong>unloaded</strong>, practice a draw and verify your optic is on with adequate brightness.</div>
+                </div>
+                <div class="command-step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">Load your firearm. Take a breath. Place your hand on the grip <em>(signals to RO you are not ready)</em> and mentally rehearse your stage plan.</div>
+                </div>
+                <div class="command-step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">When ready, take your hand <strong>OFF the grip</strong> and move to the required start position — this signals the RO to proceed.</div>
+                </div>
+                <div class="command-step">
+                    <div class="step-num">4</div>
+                    <div class="step-content">RO says <strong>"Are You Ready?"</strong> → <strong>"Standby"</strong> → timer beeps. Go.</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <strong>Etiquette</strong>
+                Aim to complete Make Ready in 30–60 seconds. Exceeding 60 seconds slows down match flow for everyone.
+            </div>
+
+            <!-- Show Clear -->
+            <div class="sub-label">Show Clear — After Your Last Shot</div>
+            <p>When the RO says <strong>"If You Are Finished, Unload and Show Clear,"</strong> follow this sequence deliberately. There is zero need to rush.</p>
+
+            <div class="command-seq">
+                <div class="command-step">
+                    <div class="step-num">1</div>
+                    <div class="step-content"><strong>Take a breath.</strong> The timer has stopped. The race is done.</div>
+                </div>
+                <div class="command-step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">Remove the magazine and place it in your pocket or on your belt.</div>
+                </div>
+                <div class="command-step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">Rack the slide to eject the chambered round and lock the slide open. Let the round hit the floor — don't chase it. Focus on confirming the chamber is clear.</div>
+                </div>
+                <div class="command-step">
+                    <div class="step-num">4</div>
+                    <div class="step-content">Present the open chamber to the RO for inspection. You must also visually verify it is empty.</div>
+                </div>
+                <div class="command-step">
+                    <div class="step-num">5</div>
+                    <div class="step-content">RO says <strong>"If clear, hammer down, holster."</strong> Pointing downrange, pull the trigger (dry fire) to confirm empty, then holster.</div>
+                </div>
+                <div class="command-step">
+                    <div class="step-num">6</div>
+                    <div class="step-content">RO says <strong>"Range is clear."</strong> All competitors may now enter.</div>
+                </div>
+            </div>
+
+            <div class="highlight-box red">
+                <strong>Critical Responsibility</strong>
+                It is 100% the shooter's responsibility to ensure the gun is unloaded — regardless of the RO's inspection. If you are not actually finished shooting when "Show Clear" is given, you may continue engaging targets.
+            </div>
+
+            <!-- 180 Rule -->
+            <div class="sub-label">The 180 Rule — Muzzle Awareness</div>
+
+            <div class="rule-180-visual">
+                <span class="label-180">180°</span>
+                <div class="rule-sub">The muzzle must point generally downrange toward the backstop at all times.</div>
+            </div>
+
+            <img src="Picture1.png" alt="180 Rule diagram showing safe shooting direction vs. uprange" style="width:100%;border-radius:8px;margin-bottom:1.25rem;display:block;">
+
+            <p>Breaking the 180° plane — pointing the gun uprange, behind you, or parallel to the berms — results in an <strong>immediate match disqualification.</strong> Pointing your muzzle at yourself or the Range Officer is also an instant DQ.</p>
+
+            <div class="dq-box">
+                <span class="dq-icon">🚫</span>
+                <div>Breaking the 180 Rule = Immediate DQ. No exceptions. Practice your reloads and movement at home (dry fire) to build the habit before match day.</div>
+            </div>
+
+            <div class="highlight-box">
+                <strong>Home Practice Tip</strong>
+                In a safe area at home, dry fire your unloaded pistol. Practice movement and reloads WITH the gun. Evaluate what you must do with your hands, wrist, and body to ensure you are never breaking the 180 or flagging yourself.
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;">
+                <img src="Picture1.jpg" alt="Left-handed competitor 180 rule reload diagram" style="width:100%;border-radius:8px;display:block;">
+                <img src="PictureR.jpg" alt="Right-handed competitor 180 rule reload diagram" style="width:100%;border-radius:8px;display:block;">
+            </div>
+
+            <!-- Trigger Awareness -->
+            <div class="sub-label">Trigger Awareness — Finger Discipline</div>
+            <p>In USPSA, the trigger finger must be <strong>visibly outside the trigger guard</strong> whenever moving between positions, reloading, or not actively engaging a target. This prevents negligent discharges.</p>
+
+            <ul class="rule-list">
+                <li>
+                    <span class="bullet">→</span>
+                    <div><strong>Movement:</strong> Finger straight and completely outside the guard when transitioning between positions.</div>
+                </li>
+                <li>
+                    <span class="bullet">→</span>
+                    <div><strong>Active Engagement Only:</strong> Finger enters the trigger guard only when the firearm is on target and a conscious decision to fire is made.</div>
+                </li>
+                <li>
+                    <span class="bullet">→</span>
+                    <div><strong>Reloading:</strong> Finger must be outside the guard during any magazine change.</div>
+                </li>
+                <li>
+                    <span class="bullet">→</span>
+                    <div><strong>Post-Shot:</strong> Immediately after finishing a position, return the finger to the indexed position along the frame.</div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- RESULTS + SCORING -->
+    <section id="results" class="guide-card">
+        <div class="card-header">
+            <div class="card-icon">🏆</div>
+            <div class="card-header-text">
+                <h2>Results + Scoring</h2>
+                <p>How your performance is ranked on Practiscore</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="highlight-box">
+                <strong>First Match Goal</strong>
+                Focus on being SAFE and shooting "Alphas" as efficiently as possible. Be smooth and safe with your reloads, movement, and spatial awareness. Everything else is secondary.
+            </div>
+
+            <p>Results are posted on <strong>Practiscore</strong> by dinner time the day of the match — visible in your profile and searchable under the Scores section.</p>
+
+            <div class="sub-label">How Stage Points Work</div>
+            <p>The shooter with the highest hit factor on a stage receives 100% of that stage's points. Every other shooter receives a proportional percentage. Example: a stage worth 100 total points — if the top hit factor is 10.0 HF, a shooter who ran a 9.0 HF earns 90 stage points. This is calculated for every stage, and the cumulative total determines the overall match winner.</p>
+
+            <p>Practiscore shows your percentage finish relative to the entire field, plus your time, hits, and penalties broken out by stage — a powerful tool for identifying exactly where you can improve.</p>
+        </div>
+    </section>
+
+    <!-- OTHER CLUBS -->
+    <section id="clubs" class="guide-card deep-top">
+        <div class="card-header">
+            <div class="card-icon">📍</div>
+            <div class="card-header-text">
+                <h2>Other Clubs in Western New York</h2>
+                <p>Additional opportunities to shoot action pistol in WNY</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <p>There are significant opportunities to shoot action pistol / hit factor matches spanning from Buffalo, Rochester, and Syracuse. Research each club on Practiscore for their specific rules before attending.</p>
+
+            <div class="clubs-grid">
+                <div class="club-card">
+                    <h3>Ontario Rod & Gun (ORGC)</h3>
+                    <div class="location">📍 Ontario, NY</div>
+                    <ul>
+                        <li>Weekly practice Tuesdays (Spring/Summer)</li>
+                        <li>Monthly match — 2nd Sat/Sun</li>
+                    </ul>
+                </div>
+                <div class="club-card">
+                    <h3>Genesee Conservation League (GCL)</h3>
+                    <div class="location">📍 Penfield, NY</div>
+                    <ul>
+                        <li>Weekly practice Wednesdays (indoor, all year)</li>
+                        <li>Monthly match — 1st Saturday (all year)</li>
+                    </ul>
+                </div>
+                <div class="club-card">
+                    <h3>Rochester Brooks (RBPS)</h3>
+                    <div class="location">📍 Rush, NY</div>
+                    <ul>
+                        <li>Weekly practice Thursdays (Spring/Summer)</li>
+                        <li>Monthly match — 3rd Sunday</li>
+                    </ul>
+                </div>
+                <div class="club-card">
+                    <h3>Tonawanda Sportsmen's Club (WNYPPL)</h3>
+                    <div class="location">📍 North Tonawanda, NY</div>
+                    <ul>
+                        <li>Weekly practice Thursdays, indoor (contact first)</li>
+                        <li>Monthly match — 4th Sunday</li>
+                    </ul>
+                </div>
+                <div class="club-card">
+                    <h3>Cortland Pistol Club</h3>
+                    <div class="location">📍 Groton, NY</div>
+                    <ul>
+                        <li>Monthly match — 2nd Saturday</li>
+                    </ul>
+                </div>
+                <div class="club-card">
+                    <h3>Pathfinder Gun Club</h3>
+                    <div class="location">📍 Fulton, NY</div>
+                    <ul>
+                        <li>Monthly match — 3rd Sunday</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sub-label">Additional Resources</div>
+            <div class="resource-cols">
+                <div class="resource-col">
+                    <h3>Experts to Follow (YouTube / Instagram)</h3>
+                    <ul>
+                        <li><a href="https://www.instagram.com/christiansailerofficial/" target="_blank" rel="noopener">Christian Sailer</a></li>
+                        <li><a href="https://www.instagram.com/ericgrauffel/" target="_blank" rel="noopener">Eric Grauffel</a></li>
+                        <li><a href="https://www.instagram.com/jjracaza/" target="_blank" rel="noopener">JJ Racaza</a></li>
+                        <li><a href="https://www.instagram.com/mason_lane_shooting/" target="_blank" rel="noopener">Mason Lane</a></li>
+                        <li><a href="https://www.instagram.com/joel.park_/" target="_blank" rel="noopener">Joel Park / PSTG</a></li>
+                        <li><a href="https://www.instagram.com/robepifania/" target="_blank" rel="noopener">Rob Epifania</a></li>
+                        <li><a href="https://www.instagram.com/tomcastroshootingacademy/" target="_blank" rel="noopener">Tom Castro</a></li>
+                        <li><a href="https://www.instagram.com/travistomasie/" target="_blank" rel="noopener">Travis Tomasie</a></li>
+                        <li><a href="https://www.instagram.com/benstoeger/" target="_blank" rel="noopener">Ben Stoeger</a></li>
+                    </ul>
+                </div>
+                <div class="resource-col">
+                    <h3>Podcasts, Books + Dry Fire</h3>
+                    <ul>
+                        <li><a href="https://open.spotify.com/show/2IBm0AjYpt9NbBjao68r7N" target="_blank" rel="noopener">The Perfect Double Podcast</a></li>
+                        <li><a href="https://open.spotify.com/show/1uSndupZEpWuMPWNSDKKdR" target="_blank" rel="noopener">Training Group Live by PSTG / Joel Park</a></li>
+                        <li><a href="https://open.spotify.com/show/5RfTTW5J3pUgcHml2Nv5x3" target="_blank" rel="noopener">Practical Shooting After Dark — Ben Stoeger</a></li>
+                        <li>Charlie Perez — "Path of Focused Effort"</li>
+                        <li>Brian Enos — "Beyond Fundamentals"</li>
+                        <li>Steve Anderson — "Get to Work"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <strong>Dry Fire Reminder</strong>
+                Dry fire costs zero cents per round. You can practice virtually all required fundamentals, movement skills, reloads, and trigger discipline without firing a single live round.
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT FOOTER -->
+    <div class="contact-footer">
+        <div class="footer-text">
+            <h3>Questions? Contact the Match Director</h3>
+            <p>Marcus Armed, LLC — 716.352.8622</p>
+        </div>
+        <div class="contact-btns">
+            <a href="mailto:marcusarms@marcusarmed.com" class="contact-btn">✉️ Email GregDaniel</a>
+            <a href="tel:7163528622" class="contact-btn">📱 Call</a>
+        </div>
+    </div>
+
+</main>
+
+</body>
+</html>
