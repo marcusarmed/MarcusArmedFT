@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f99d22">
+    <meta name="description" content="Marcus Armed — Favorite Competition Guns. Limited Optics and Carry Optics builds from a Class A USPSA Shooter.">
+    <meta property="og:title" content="Favorite Competition Guns | Marcus Armed">
+    <meta property="og:description" content="Limited Optics and Carry Optics — my top competition builds.">
+    <title>Favorite Competition Guns | Marcus Armed</title>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1D9JZN9C5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-F1D9JZN9C5');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: rgba(249, 157, 34, 0.2);
+        }
+
+        :root {
+            --primary-dark: #292c33;
+            --accent-orange: #f99d22;
+            --accent-red: #e24220;
+            --accent-deep: #ef6c00;
+            --cream: #e8ddc9;
+            --text-dark: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image:
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(41,44,51,0.03) 35px, rgba(41,44,51,0.03) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(249,157,34,0.02) 35px, rgba(249,157,34,0.02) 70px);
+            z-index: -1;
+        }
+
+        /* ── HEADER ── */
+        header {
+            background: #3a3d42;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            background: var(--accent-orange);
+            color: var(--primary-dark);
+            padding: 0.6rem 1.2rem;
+            border-radius: 24px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: background 0.2s;
+            min-height: 44px;
+        }
+        .back-btn:hover { background: #faa83a; }
+
+        .header-title { flex: 1; }
+
+        .header-eyebrow {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent-orange);
+            margin-bottom: 0.15rem;
+        }
+
+        .header-title h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            font-weight: 700;
+            color: var(--cream);
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        /* ── MAIN ── */
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.5rem 1.25rem 4rem;
+        }
+
+        /* ── CATEGORY HEADER ── */
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+            margin-top: 0;
+        }
+
+        .category-header + .cards-grid {
+            margin-bottom: 3rem;
+        }
+
+        .category-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary-dark);
+            white-space: nowrap;
+        }
+
+        .category-line {
+            flex: 1;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-orange), transparent);
+            border-radius: 2px;
+        }
+
+        .category-badge {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            background: var(--primary-dark);
+            color: var(--accent-orange);
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        /* Second category gets some top spacing */
+        .category-section + .category-section {
+            margin-top: 1rem;
+        }
+
+        /* ── CARDS GRID ── */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 540px) {
+            .cards-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 900px) {
+            .cards-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* ── FLIP CARD ── */
+        .flip-card {
+            perspective: 1000px;
+            height: 320px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* ── FRONT ── */
+        .flip-card-front {
+            background: var(--primary-dark);
+            border: 2px solid rgba(249,157,34,0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.2);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .flip-card:hover .flip-card-front,
+        .flip-card:focus .flip-card-front {
+            border-color: rgba(249,157,34,0.55);
+            box-shadow: 0 10px 40px rgba(249,157,34,0.15);
+        }
+
+        .front-gun-img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -58%);
+            width: 88%;
+            max-height: 160px;
+            object-fit: contain;
+            object-position: center;
+            filter: drop-shadow(0 4px 16px rgba(0,0,0,0.5));
+            pointer-events: none;
+            transition: transform 0.3s ease;
+        }
+
+        .flip-card:hover .front-gun-img {
+            transform: translate(-50%, -62%) scale(1.04);
+        }
+
+        .front-accent {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+        }
+
+        .front-accent.orange { background: var(--accent-orange); }
+        .front-accent.red    { background: var(--accent-red); }
+
+        .front-number {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: rgba(249,157,34,0.08);
+            line-height: 1;
+            user-select: none;
+        }
+
+        .front-division {
+            position: absolute;
+            top: 1.25rem;
+            left: 1.25rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent-orange);
+            opacity: 0.75;
+        }
+
+        .front-content {
+            padding: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .front-content h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            font-weight: 700;
+            color: var(--cream);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .front-content .caliber {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent-orange);
+        }
+
+        .front-tap-hint {
+            position: absolute;
+            bottom: 1.25rem;
+            right: 1.25rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(232,221,201,0.3);
+        }
+
+        /* ── BACK ── */
+        .flip-card-back {
+            background: linear-gradient(135deg, #fff 0%, #f5f2eb 100%);
+            border: 2px solid var(--accent-orange);
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 6px 30px rgba(249,157,34,0.15);
+        }
+
+        .back-header {
+            background: var(--primary-dark);
+            padding: 0.9rem 1.25rem;
+        }
+
+        .back-header h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--cream);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+        }
+
+        .back-header .back-division {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent-orange);
+            margin-top: 0.15rem;
+        }
+
+        .back-specs {
+            flex: 1;
+            padding: 1rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            overflow: hidden;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.5rem;
+            font-size: 0.88rem;
+            border-bottom: 1px solid rgba(41,44,51,0.07);
+            padding-bottom: 0.4rem;
+        }
+
+        .spec-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+        .spec-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #888;
+            flex-shrink: 0;
+        }
+
+        .spec-value {
+            font-weight: 600;
+            color: var(--text-dark);
+            text-align: right;
+            font-size: 0.88rem;
+        }
+
+        .back-footer {
+            padding: 0.75rem 1.25rem;
+            background: rgba(249,157,34,0.08);
+            border-top: 1px solid rgba(249,157,34,0.2);
+        }
+
+        .back-footer p {
+            font-size: 0.78rem;
+            color: #666;
+            line-height: 1.45;
+            font-style: italic;
+        }
+
+        /* ── DIVIDER ── */
+        .section-divider {
+            border: none;
+            border-top: 2px solid rgba(41,44,51,0.1);
+            margin: 2.5rem 0;
+        }
+
+        /* ── TAP HINT ── */
+        .page-hint {
+            text-align: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <a href="index.html" class="back-btn">← Back</a>
+        <div class="header-title">
+            <div class="header-eyebrow">Marcus Armed — Class A USPSA Shooter</div>
+            <h1>Favorite Competition Guns</h1>
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <p class="page-hint">Tap any card to see full specs</p>
+
+    <!-- LIMITED OPTICS -->
+    <div class="category-section">
+        <div class="category-header">
+            <span class="category-label">Limited Optics</span>
+            <div class="category-line"></div>
+            <span class="category-badge">LO Division</span>
+        </div>
+
+        <div class="cards-grid">
+
+            <!-- MasterPiece Arms DS9 Hybrid V2 -->
+            <div class="flip-card" tabindex="0" role="button" aria-label="MasterPiece Arms DS9 Hybrid V2 — tap to see specs">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="front-accent orange"></div>
+                        <span class="front-number">01</span>
+                        <span class="front-division">Limited Optics</span>
+                        <img src="https://masterpiecearms.com/wp-content/uploads/2020/11/IMG_0774-1024x720.jpg" alt="MasterPiece Arms DS9 Hybrid V2" class="front-gun-img">
+                        <div class="front-content">
+                            <h2>MasterPiece Arms DS9 Hybrid V2</h2>
+                            <span class="caliber">9mm · 2011 Platform</span>
+                        </div>
+                        <span class="front-tap-hint">Tap for specs</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="back-header">
+                            <h3>MasterPiece Arms DS9 Hybrid V2</h3>
+                            <div class="back-division">Limited Optics</div>
+                        </div>
+                        <div class="back-specs">
+                            <div class="spec-row">
+                                <span class="spec-label">Caliber</span>
+                                <span class="spec-value">9mm</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Platform</span>
+                                <span class="spec-value">2011 Double Stack</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Frame</span>
+                                <span class="spec-value">Steel / Aluminum Hybrid</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Barrel</span>
+                                <span class="spec-value">5" Bull Barrel</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Capacity</span>
+                                <span class="spec-value">17+1 (NYS: 10+1)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Weight</span>
+                                <span class="spec-value">~40 oz</span>
+                            </div>
+                        </div>
+                        <div class="back-footer">
+                            <p>Heavy hybrid frame tames recoil. Purpose-built for USPSA Limited Optics competition.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Atlas Athena -->
+            <div class="flip-card" tabindex="0" role="button" aria-label="Atlas Athena — tap to see specs">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="front-accent orange"></div>
+                        <span class="front-number">02</span>
+                        <span class="front-division">Limited Optics</span>
+                        <img src="https://atlasgunworks.com/media/c5/7a/fd/1765983026/Athena_(3).png?ts=1765983026" alt="Atlas Athena" class="front-gun-img">
+                        <div class="front-content">
+                            <h2>Atlas Athena</h2>
+                            <span class="caliber">9mm · 2011 Platform</span>
+                        </div>
+                        <span class="front-tap-hint">Tap for specs</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="back-header">
+                            <h3>Atlas Athena</h3>
+                            <div class="back-division">Limited Optics</div>
+                        </div>
+                        <div class="back-specs">
+                            <div class="spec-row">
+                                <span class="spec-label">Caliber</span>
+                                <span class="spec-value">9mm</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Platform</span>
+                                <span class="spec-value">2011 Double Stack</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Frame</span>
+                                <span class="spec-value">Aluminum</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Barrel</span>
+                                <span class="spec-value">5"</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Capacity</span>
+                                <span class="spec-value">17+1 (NYS: 10+1)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Weight</span>
+                                <span class="spec-value">~38 oz</span>
+                            </div>
+                        </div>
+                        <div class="back-footer">
+                            <p>Custom built by Atlas Gunworks. Exceptional trigger, flawless reliability, and match-ready out of the box.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Staccato P -->
+            <div class="flip-card" tabindex="0" role="button" aria-label="Staccato P — tap to see specs">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="front-accent orange"></div>
+                        <span class="front-number">03</span>
+                        <span class="front-division">Limited Optics</span>
+                        <img src="https://images.contentstack.io/v3/assets/blted16ad9939ec9fa0/blt0e87f8497e286b2d/65c4f1510872224ae74978a8/Staccato_P_Base_Image.png" alt="Staccato P" class="front-gun-img">
+                        <div class="front-content">
+                            <h2>Staccato P</h2>
+                            <span class="caliber">9mm · 2011 Platform</span>
+                        </div>
+                        <span class="front-tap-hint">Tap for specs</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="back-header">
+                            <h3>Staccato P</h3>
+                            <div class="back-division">Limited Optics</div>
+                        </div>
+                        <div class="back-specs">
+                            <div class="spec-row">
+                                <span class="spec-label">Caliber</span>
+                                <span class="spec-value">9mm</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Platform</span>
+                                <span class="spec-value">2011 Double Stack</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Frame</span>
+                                <span class="spec-value">Aluminum</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Barrel</span>
+                                <span class="spec-value">4.4"</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Capacity</span>
+                                <span class="spec-value">17+1 (NYS: 10+1)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Weight</span>
+                                <span class="spec-value">~33 oz</span>
+                            </div>
+                        </div>
+                        <div class="back-footer">
+                            <p>Versatile 2011 platform. Compact enough for carry, competitive enough for the stage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- CARRY OPTICS -->
+    <div class="category-section">
+        <div class="category-header">
+            <span class="category-label">Carry Optics</span>
+            <div class="category-line"></div>
+            <span class="category-badge">CO Division</span>
+        </div>
+
+        <div class="cards-grid">
+
+            <!-- CZ Shadow 2 -->
+            <div class="flip-card" tabindex="0" role="button" aria-label="CZ Shadow 2 — tap to see specs">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="front-accent red"></div>
+                        <span class="front-number">04</span>
+                        <span class="front-division">Carry Optics</span>
+                        <img src="https://www.czfirearms.com/storage-pim/assets/CZ_SHADOW_2_right_black_d73cc1ca89.png" alt="CZ Shadow 2" class="front-gun-img">
+                        <div class="front-content">
+                            <h2>CZ Shadow 2</h2>
+                            <span class="caliber">9mm · DA/SA</span>
+                        </div>
+                        <span class="front-tap-hint">Tap for specs</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="back-header">
+                            <h3>CZ Shadow 2</h3>
+                            <div class="back-division">Carry Optics</div>
+                        </div>
+                        <div class="back-specs">
+                            <div class="spec-row">
+                                <span class="spec-label">Caliber</span>
+                                <span class="spec-value">9mm</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Action</span>
+                                <span class="spec-value">DA/SA</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Frame</span>
+                                <span class="spec-value">Aluminum Alloy</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Barrel</span>
+                                <span class="spec-value">4.89"</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Capacity</span>
+                                <span class="spec-value">17+1 (NYS: 10+1)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Weight</span>
+                                <span class="spec-value">~46 oz</span>
+                            </div>
+                        </div>
+                        <div class="back-footer">
+                            <p>The gold standard of Carry Optics. Heavy alloy frame, world-class DA/SA trigger, dominant at every level.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Glock 17 -->
+            <div class="flip-card" tabindex="0" role="button" aria-label="Glock 17 — tap to see specs">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="front-accent red"></div>
+                        <span class="front-number">05</span>
+                        <span class="front-division">Carry Optics</span>
+                        <img src="https://eu-images.contentstack.com/v3/assets/bltf7171cc1cfc1a31f/blt9e981ba261555083/695e5cd301be3f6635d06022/G17_Gen6.png" alt="Glock 17" class="front-gun-img">
+                        <div class="front-content">
+                            <h2>Glock 17</h2>
+                            <span class="caliber">9mm · Striker Fired</span>
+                        </div>
+                        <span class="front-tap-hint">Tap for specs</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="back-header">
+                            <h3>Glock 17</h3>
+                            <div class="back-division">Carry Optics</div>
+                        </div>
+                        <div class="back-specs">
+                            <div class="spec-row">
+                                <span class="spec-label">Caliber</span>
+                                <span class="spec-value">9mm</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Action</span>
+                                <span class="spec-value">Striker Fired</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Frame</span>
+                                <span class="spec-value">Polymer</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Barrel</span>
+                                <span class="spec-value">4.49"</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Capacity</span>
+                                <span class="spec-value">17+1 (NYS: 10+1)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Weight</span>
+                                <span class="spec-value">~25 oz</span>
+                            </div>
+                        </div>
+                        <div class="back-footer">
+                            <p>Proven, reliable, and endlessly customizable. The G17 is a fixture in Carry Optics competition.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Walther PDP -->
+            <div class="flip-card" tabindex="0" role="button" aria-label="Walther PDP — tap to see specs">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="front-accent red"></div>
+                        <span class="front-number">06</span>
+                        <span class="front-division">Carry Optics</span>
+                        <img src="https://waltherarms.com/images/product_images/PDP/2851776/2851776-PDP-Full-Size-5in-Black-18RD-9MM-L.webp" alt="Walther PDP" class="front-gun-img" onerror="this.src='https://waltherarms.com/images/product_images/PDP/2842475/2842475-PDP-Full-Size-4.5in-Black-18RD-9MM-L_thumb.webp'">
+                        <div class="front-content">
+                            <h2>Walther PDP</h2>
+                            <span class="caliber">9mm · Striker Fired</span>
+                        </div>
+                        <span class="front-tap-hint">Tap for specs</span>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="back-header">
+                            <h3>Walther PDP</h3>
+                            <div class="back-division">Carry Optics</div>
+                        </div>
+                        <div class="back-specs">
+                            <div class="spec-row">
+                                <span class="spec-label">Caliber</span>
+                                <span class="spec-value">9mm</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Action</span>
+                                <span class="spec-value">Striker Fired</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Frame</span>
+                                <span class="spec-value">Polymer</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Barrel</span>
+                                <span class="spec-value">5"</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Capacity</span>
+                                <span class="spec-value">18+1 (NYS: 10+1)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Weight</span>
+                                <span class="spec-value">~27 oz</span>
+                            </div>
+                        </div>
+                        <div class="back-footer">
+                            <p>Performance trigger straight from the factory. The PDP has quickly become a top contender in CO division.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</main>
+
+<script>
+    document.querySelectorAll('.flip-card').forEach(card => {
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+        });
+        card.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                card.classList.toggle('flipped');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
