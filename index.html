@@ -8,10 +8,10 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="theme-color" content="#f99d22">
     <meta name="apple-mobile-web-app-title" content="Marcus Armed">
-    <meta name="description" content="Marcus Armed - NRA Certified Firearms Training & Class A USPSA Shooter">
+    <meta name="description" content="Marcus Armed - NRA Certified Firearms Training & Class A USPSA Shooter in Western New York">
     <link rel="manifest" href="manifest.json">
     <title>Marcus Armed - NRA Certified Firearms Training</title>
-    
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1D9JZN9C5"></script>
     <script>
@@ -20,1431 +20,1300 @@
         gtag('js', new Date());
         gtag('config', 'G-F1D9JZN9C5');
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        * {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: rgba(249, 157, 34, 0.2);
+            -webkit-tap-highlight-color: rgba(249, 157, 34, 0.15);
         }
 
         :root {
-            --primary-dark: #292c33;
-            --accent-orange: #f99d22;
-            --accent-red: #e24220;
-            --cream: #e8ddc9;
-            --text-dark: #1a1a1a;
+            --charcoal:    #292c33;
+            --charcoal-2:  #32363f;
+            --charcoal-3:  #1e2025;
+            --orange:      #f99d22;
+            --orange-2:    #faa83a;
+            --red:         #e24220;
+            --red-2:       #c23618;
+            --cream:       #e8ddc9;
+            --cream-2:     #f5f0e8;
+            --white:       #ffffff;
+            --text-dark:   #1a1a1a;
+            --text-muted:  #6b6b6b;
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Barlow', sans-serif;
-            background-color: var(--cream);
+            background: var(--cream-2);
             color: var(--text-dark);
-            line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Optimized animated background pattern for mobile */
-        body::before {
-            content: '';
+        /* ── HAMBURGER MENU ── */
+        .menu-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            background: rgba(249,157,34,0.12);
+            border: 1.5px solid rgba(249,157,34,0.3);
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+            flex-shrink: 0;
+            padding: 0;
+        }
+        .menu-toggle:hover, .menu-toggle.open {
+            background: rgba(249,157,34,0.28);
+            border-color: var(--orange);
+        }
+        .menu-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: transform 0.25s, opacity 0.25s, width 0.25s;
+            transform-origin: center;
+        }
+        .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .menu-toggle.open span:nth-child(2) { opacity: 0; width: 0; }
+        .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Drawer overlay */
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 98;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .menu-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Slide-in drawer */
+        .menu-drawer {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(41, 44, 51, 0.03) 35px, rgba(41, 44, 51, 0.03) 70px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(249, 157, 34, 0.02) 35px, rgba(249, 157, 34, 0.02) 70px);
-            z-index: -1;
-            will-change: transform;
-        }
-        
-        /* Disable animation on mobile for better performance */
-        @media (prefers-reduced-motion: reduce) {
-            body::before {
-                animation: none;
-            }
-        }
-        
-        @media (min-width: 769px) {
-            body::before {
-                animation: slidePattern 30s linear infinite;
-            }
-        }
-
-        @keyframes slidePattern {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(70px, 70px); }
-        }
-
-        /* Header - Full Width Interactive Banner */
-        header {
-            background: #3a3d42;
-            padding: 0;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .banner-container {
-            width: 100%;
-            background: #3a3d42;
-            padding: 1.5rem 1.5rem;
-            text-align: center;
-            animation: fadeIn 1s ease-out;
-        }
-        
-        @media (min-width: 640px) {
-            .banner-container {
-                padding: 2rem 2rem;
-            }
-        }
-        
-        @media (min-width: 769px) {
-            .banner-container {
-                padding: 2.5rem 2rem;
-            }
-        }
-
-        .banner-image {
-            max-width: 100%;
-            height: auto;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto 1.5rem;
-            display: block;
-        }
-
-        .banner-contact {
-            display: flex;
-            flex-direction: row;
-            gap: 1rem;
-            align-items: center;
-            justify-content: center;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        @media (min-width: 968px) {
-            .banner-contact {
-                flex-wrap: nowrap;
-            }
-        }
-
-        .banner-contact-item {
-            display: inline-block;
-            background: var(--accent-orange);
-            color: var(--primary-dark);
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 5px 15px rgba(249, 157, 34, 0.3);
-            transition: all 0.3s ease;
-            min-height: 44px;
-            min-width: 44px;
-            line-height: 1.4;
-            white-space: nowrap;
-            border: none;
-            cursor: pointer;
-        }
-
-        .banner-contact-item:active {
-            transform: translateY(-1px) scale(0.98);
-            box-shadow: 0 6px 20px rgba(249, 157, 34, 0.4);
-        }
-        
-        @media (min-width: 769px) {
-            .banner-contact-item:hover {
-                background: #faa83a;
-                transform: translateY(-3px);
-                box-shadow: 0 8px 25px rgba(249, 157, 34, 0.5);
-            }
-        }
-
-        /* Circular emoji-only buttons */
-        .banner-contact-item.emoji-only {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            min-width: 60px;
-            min-height: 60px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .banner-contact-item.emoji-only .banner-contact-icon {
-            margin: 0;
-        }
-
-        .banner-contact-icon {
-            margin-right: 0.5rem;
-        }
-
-        .emoji-only .banner-contact-icon {
-            margin-right: 0;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Main content */
-        main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-        
-        @media (min-width: 769px) {
-            main {
-                padding: 3rem 2rem;
-            }
-        }
-
-        .credentials-section {
-            background: linear-gradient(135deg, #fff 0%, #f5f2eb 100%);
-            border-left: 6px solid var(--accent-red);
-            padding: 2rem 1.5rem;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-            animation: slideUp 0.8s ease-out 0.6s both;
-        }
-        
-        @media (min-width: 769px) {
-            .credentials-section {
-                border-left-width: 8px;
-                padding: 3rem;
-                margin-bottom: 3rem;
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .credentials-section::before {
-            content: '★';
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 60px;
-            color: var(--accent-orange);
-            opacity: 0.05;
-            font-family: serif;
-        }
-        
-        @media (min-width: 769px) {
-            .credentials-section::before {
-                font-size: 100px;
-                right: 30px;
-            }
-        }
-
-        h2 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.8rem;
-            color: var(--primary-dark);
-            margin-bottom: 1.5rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-        
-        @media (min-width: 640px) {
-            h2 {
-                font-size: 2rem;
-                letter-spacing: 2px;
-            }
-        }
-        
-        @media (min-width: 769px) {
-            h2 {
-                font-size: 2.5rem;
-            }
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
             bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-orange), transparent);
-        }
-
-        .credentials-list {
-            list-style: none;
-            margin: 2rem 0;
-        }
-
-        .credentials-list li {
-            font-size: 1.1rem;
-            color: var(--text-dark);
-            margin-bottom: 1.2rem;
-            padding-left: 2rem;
-            position: relative;
-            font-weight: 500;
-            opacity: 0;
-            animation: fadeInSlide 0.5s ease-out forwards;
-            line-height: 1.6;
-        }
-        
-        @media (min-width: 640px) {
-            .credentials-list li {
-                font-size: 1.2rem;
-            }
-        }
-        
-        @media (min-width: 769px) {
-            .credentials-list li {
-                font-size: 1.3rem;
-                margin-bottom: 1rem;
-            }
-        }
-
-        .credentials-list li:nth-child(1) { animation-delay: 0.9s; }
-        .credentials-list li:nth-child(2) { animation-delay: 1.1s; }
-
-        @keyframes fadeInSlide {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .credentials-list li::before {
-            content: '▶';
-            position: absolute;
-            left: 0;
-            color: var(--accent-red);
-            font-size: 0.9rem;
-        }
-
-        /* Class Links Section */
-        .class-links-section {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1c20 100%);
-            padding: 2.5rem 1.5rem;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
-            position: relative;
-            overflow: hidden;
-            animation: slideUp 0.8s ease-out 0.7s both;
-        }
-
-        @media (min-width: 769px) {
-            .class-links-section {
-                padding: 3rem;
-                margin-bottom: 3rem;
-            }
-        }
-
-        .class-links-section::before {
-            content: '🎓';
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            font-size: 80px;
-            opacity: 0.08;
-        }
-
-        @media (min-width: 769px) {
-            .class-links-section::before {
-                font-size: 120px;
-                top: -20px;
-                right: 20px;
-            }
-        }
-
-        .class-links-section h2 {
-            color: var(--cream);
-        }
-
-        .class-links-section h2::after {
-            background: linear-gradient(90deg, var(--accent-orange), transparent);
-        }
-
-        .class-links-section p {
-            color: #b0b4bc;
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .class-links-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        @media (min-width: 640px) {
-            .class-links-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (min-width: 900px) {
-            .class-links-grid {
-                grid-template-columns: repeat(6, 1fr);
-            }
-        }
-
-        .class-link-btn {
+            width: 280px;
+            max-width: 85vw;
+            background: var(--charcoal-3);
+            border-right: 2px solid rgba(249,157,34,0.2);
+            z-index: 99;
+            transform: translateX(-100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
+            overflow-y: auto;
+        }
+        .menu-drawer.open {
+            transform: translateX(0);
+        }
+
+        .menu-drawer-header {
+            padding: 1.1rem 1.25rem;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--charcoal);
+            min-height: 52px;
+        }
+        .menu-drawer-logo {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            color: var(--white);
+            text-transform: uppercase;
+        }
+        .menu-drawer-logo span { color: var(--orange); }
+
+        .menu-drawer-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.07);
+            border: none;
+            color: rgba(255,255,255,0.6);
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            background: rgba(249, 157, 34, 0.12);
-            border: 2px solid rgba(249, 157, 34, 0.35);
-            color: var(--cream);
-            padding: 1.4rem 1rem;
-            border-radius: 10px;
-            text-decoration: none;
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: 1px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .menu-drawer-close:hover { background: rgba(249,157,34,0.2); color: var(--orange); }
+
+        .menu-nav {
+            padding: 1rem 0;
+            flex: 1;
+        }
+
+        .menu-section-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            text-align: center;
-            transition: all 0.3s ease;
-            min-height: 90px;
-            line-height: 1.3;
+            color: rgba(255,255,255,0.3);
+            padding: 1rem 1.25rem 0.4rem;
         }
 
-        .class-link-btn .link-icon {
-            font-size: 1.8rem;
-            display: block;
-            line-height: 1;
-        }
-
-        .class-link-btn:active {
-            background: rgba(249, 157, 34, 0.3);
-            border-color: var(--accent-orange);
-            transform: scale(0.97);
-        }
-
-        @media (min-width: 769px) {
-            .class-link-btn:hover {
-                background: rgba(249, 157, 34, 0.22);
-                border-color: var(--accent-orange);
-                color: var(--accent-orange);
-                transform: translateY(-4px);
-                box-shadow: 0 8px 25px rgba(249, 157, 34, 0.2);
-            }
-        }
-
-        .class-link-btn.testing-btn {
-            background: rgba(226, 66, 32, 0.12);
-            border-color: rgba(226, 66, 32, 0.35);
-        }
-
-        .class-link-btn.testing-btn:active {
-            background: rgba(226, 66, 32, 0.3);
-            border-color: var(--accent-red);
-        }
-
-        @media (min-width: 769px) {
-            .class-link-btn.testing-btn:hover {
-                background: rgba(226, 66, 32, 0.22);
-                border-color: var(--accent-red);
-                color: #ff7755;
-                box-shadow: 0 8px 25px rgba(226, 66, 32, 0.2);
-            }
-        }
-
-        /* Gun Fidget Widget */
-        .gun-fidget-wrap {
+        .menu-link {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 10px;
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(249, 157, 34, 0.15);
-        }
-
-        .gun-badge {
-            font-family: monospace;
-            font-size: 10px;
-            color: #C8922A;
-            letter-spacing: 0.18em;
-            margin: 0;
-        }
-
-        .gun-btn {
-            background: #0d0d0d;
-            border: 1px solid rgba(200, 146, 42, 0.3);
-            border-radius: 8px;
-            cursor: crosshair;
-            padding: 20px 30px;
-            outline: none;
-            transition: border-color 0.15s, background 0.12s;
-            position: relative;
-            display: block;
-        }
-
-        .gun-btn:hover {
-            border-color: rgba(200, 146, 42, 0.65);
-            background: #111;
-        }
-
-        .gun-btn:active { background: #090909; }
-
-        .gun-btn:focus-visible {
-            outline: 2px solid #C8922A;
-            outline-offset: 3px;
-        }
-
-        #slide-grp { transition: transform 0.17s cubic-bezier(.15,0,.3,1); }
-        .gun-btn:hover #slide-grp { transform: translateX(30px); }
-
-        #gun-body { transform-box: fill-box; transform-origin: 78% 88%; }
-        .gun-btn.fire #gun-body { animation: recoil 0.4s ease-out; }
-
-        #mflash { opacity: 0; transform-box: fill-box; transform-origin: center; }
-        .gun-btn.fire #mflash { animation: flash 0.25s ease-out; }
-
-        #shell { transform-box: fill-box; transform-origin: center; }
-        .gun-btn.fire #shell { animation: eject 0.58s cubic-bezier(.25,.46,.45,.94) forwards; }
-
-        @keyframes recoil {
-            0%   { transform: rotate(0) translate(0,0); }
-            22%  { transform: rotate(-9deg) translate(-5px,-9px); }
-            60%  { transform: rotate(-3deg) translate(-2px,-3px); }
-            100% { transform: rotate(0) translate(0,0); }
-        }
-        @keyframes flash {
-            0%   { opacity: 0; transform: scale(0.1); }
-            15%  { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(2.4); }
-        }
-        @keyframes eject {
-            0%   { opacity: 1; transform: translate(0,0) rotate(0); }
-            100% { opacity: 0; transform: translate(54px,-86px) rotate(600deg); }
-        }
-
-        .gun-hint {
-            font-family: monospace;
-            font-size: 11px;
-            color: #666;
-            letter-spacing: 0.09em;
-            margin: 0;
-        }
-
-        /* Grip Tutorial Section */
-        .grip-tutorial-section {
-            background: linear-gradient(135deg, var(--accent-orange) 0%, #faa83a 100%);
-            padding: 2.5rem 1.5rem;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 10px 40px rgba(249, 157, 34, 0.3);
-            text-align: center;
-            animation: slideUp 0.8s ease-out 0.8s both;
-            position: relative;
-            overflow: hidden;
-        }
-
-        @media (min-width: 769px) {
-            .grip-tutorial-section {
-                padding: 3rem;
-                margin-bottom: 3rem;
-            }
-        }
-
-        .grip-tutorial-section::before {
-            content: '🎯';
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            font-size: 80px;
-            opacity: 0.1;
-        }
-
-        @media (min-width: 769px) {
-            .grip-tutorial-section::before {
-                font-size: 120px;
-                top: -20px;
-                right: 20px;
-            }
-        }
-
-        .grip-tutorial-section h2 {
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-        }
-
-        .grip-tutorial-section h2::after {
-            background: linear-gradient(90deg, var(--primary-dark), transparent);
-        }
-
-        .grip-tutorial-section p {
-            color: var(--primary-dark);
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        @media (min-width: 769px) {
-            .grip-tutorial-section p {
-                font-size: 1.2rem;
-            }
-        }
-
-        .grip-tutorial-btn {
-            display: inline-block;
-            background: var(--primary-dark);
-            color: var(--cream);
-            padding: 1.2rem 2.5rem;
-            border-radius: 35px;
+            gap: 0.75rem;
+            padding: 0.75rem 1.25rem;
             text-decoration: none;
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 6px 20px rgba(41, 44, 51, 0.4);
-            transition: all 0.3s ease;
-            min-height: 44px;
-            min-width: 44px;
-            line-height: 1.4;
-            position: relative;
+            color: rgba(255,255,255,0.75);
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background 0.15s, color 0.15s, padding-left 0.15s;
+            border-left: 2px solid transparent;
         }
-
-        @media (min-width: 640px) {
-            .grip-tutorial-btn {
-                font-size: 1.2rem;
-            }
-        }
-
-        .grip-tutorial-btn::before {
-            content: '→';
-            margin-right: 0.5rem;
-            transition: transform 0.3s ease;
-            display: inline-block;
-        }
-
-        .grip-tutorial-btn:active {
-            transform: translateY(-1px) scale(0.98);
-            box-shadow: 0 8px 25px rgba(41, 44, 51, 0.5);
-        }
-
-        @media (min-width: 769px) {
-            .grip-tutorial-btn:hover {
-                background: #1a1c20;
-                transform: translateY(-3px);
-                box-shadow: 0 10px 30px rgba(41, 44, 51, 0.6);
-            }
-
-            .grip-tutorial-btn:hover::before {
-                transform: translateX(5px);
-            }
-        }
-
-        /* Two Column Layout */
-        .two-column-sections {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        @media (min-width: 769px) {
-            .two-column-sections {
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-            }
-        }
-
-        /* Carry Guns Section Custom Styling */
-        .carry-guns-section {
-            background: linear-gradient(135deg, #e24220 0%, #c23618 100%) !important;
-            color: #e8ddc9 !important;
-        }
-
-        .carry-guns-section h2 {
-            color: #e8ddc9 !important;
-        }
-
-        .carry-guns-section h2::after {
-            background: linear-gradient(90deg, #e8ddc9, transparent) !important;
-        }
-
-        .carry-guns-section p {
-            color: #e8ddc9 !important;
-        }
-
-        .carry-guns-btn {
-            background: #e8ddc9 !important;
-            color: #e24220 !important;
-            box-shadow: 0 6px 20px rgba(232, 221, 201, 0.3) !important;
-        }
-
-        .carry-guns-btn:active {
-            box-shadow: 0 8px 25px rgba(232, 221, 201, 0.4) !important;
-        }
-
-        @media (min-width: 769px) {
-            .carry-guns-btn:hover {
-                background: #f5f2eb !important;
-                color: #c23618 !important;
-                box-shadow: 0 10px 30px rgba(232, 221, 201, 0.5) !important;
-            }
-        }
-
-        /* Drill Cards Button */
-        .drill-cards-btn {
-            background: var(--primary-dark) !important;
-            color: var(--accent-orange) !important;
-            box-shadow: 0 6px 20px rgba(41, 44, 51, 0.3) !important;
-        }
-
-        .drill-cards-btn:active {
-            box-shadow: 0 8px 25px rgba(41, 44, 51, 0.4) !important;
-        }
-
-        @media (min-width: 769px) {
-            .drill-cards-btn:hover {
-                background: #3a3d42 !important;
-                color: #faa83a !important;
-                box-shadow: 0 10px 30px rgba(41, 44, 51, 0.5) !important;
-            }
-        }
-
-        .drill-cards-section {
-            border-left: 5px solid var(--primary-dark);
-        }
-
-        /* Contact Section */
-        .contact-section {
-            background: linear-gradient(135deg, var(--primary-dark), #1a1c20);
-            color: var(--cream);
-            padding: 2rem 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            animation: slideUp 0.8s ease-out 0.9s both;
-        }
-        
-        @media (min-width: 769px) {
-            .contact-section {
-                padding: 3rem;
-                margin-bottom: 3rem;
-            }
-        }
-
-        .contact-section h2 {
-            color: var(--cream);
-        }
-
-        .contact-section h2::after {
-            background: linear-gradient(90deg, var(--accent-orange), transparent);
-        }
-
-        .contact-info {
-            font-size: 1.2rem;
-            margin-top: 1.5rem;
-        }
-        
-        @media (min-width: 640px) {
-            .contact-info {
-                font-size: 1.3rem;
-            }
-        }
-        
-        @media (min-width: 769px) {
-            .contact-info {
-                font-size: 1.4rem;
-            }
-        }
-
-        .contact-info a {
-            color: var(--accent-orange);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            padding: 0.5rem;
-            border-radius: 4px;
-            display: inline-block;
-            min-height: 44px;
-            line-height: 1.8;
-        }
-
-        .contact-info a:active {
-            background: rgba(249, 157, 34, 0.3);
-            transform: scale(0.98);
-        }
-        
-        @media (min-width: 769px) {
-            .contact-info a:hover {
-                background: rgba(249, 157, 34, 0.2);
-                transform: translateX(5px);
-            }
-        }
-
-        /* Calendar Section */
-        .calendar-section {
-            background: linear-gradient(135deg, #fff 0%, #f5f2eb 100%);
-            padding: 2rem 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            animation: slideUp 0.8s ease-out 1.2s both;
-            margin-bottom: 2rem;
-        }
-        
-        @media (min-width: 769px) {
-            .calendar-section {
-                padding: 2.5rem;
-                margin-bottom: 2rem;
-            }
-        }
-
-        .calendar-section h2 {
-            color: var(--primary-dark);
-            border-left: 6px solid var(--accent-orange);
-            padding-left: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .calendar-section h2::after {
-            display: none;
-        }
-
-        .calendar-section p {
-            font-size: 1.1rem;
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
+        .menu-link:hover {
+            background: rgba(249,157,34,0.08);
+            color: var(--white);
+            border-left-color: var(--orange);
             padding-left: 1.5rem;
         }
-        
-        @media (min-width: 769px) {
-            .calendar-section p {
-                font-size: 1.2rem;
-            }
+        .menu-link:active { background: rgba(249,157,34,0.15); }
+
+        .menu-link-icon {
+            font-size: 1.1rem;
+            line-height: 1;
+            width: 22px;
+            text-align: center;
+            flex-shrink: 0;
         }
 
-        .calendar-container {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 
-                0 4px 6px rgba(0, 0, 0, 0.07),
-                0 2px 20px rgba(249, 157, 34, 0.1);
-            border: 2px solid rgba(249, 157, 34, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            width: 100%;
-            padding-bottom: 75%;
-            height: 0;
+        .menu-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.06);
+            margin: 0.5rem 1.25rem;
         }
 
-        .calendar-container:active {
-            box-shadow: 
-                0 6px 10px rgba(0, 0, 0, 0.1),
-                0 4px 25px rgba(249, 157, 34, 0.15);
-        }
-        
-        @media (min-width: 640px) {
-            .calendar-container {
-                padding-bottom: 60%;
-            }
-        }
-        
-        @media (min-width: 769px) {
-            .calendar-container {
-                padding-bottom: 0;
-                height: 500px;
-            }
-
-            .calendar-container:hover {
-                box-shadow: 
-                    0 8px 12px rgba(0, 0, 0, 0.1),
-                    0 4px 30px rgba(249, 157, 34, 0.2);
-                border-color: var(--accent-orange);
-            }
-        }
-
-        .calendar-container iframe {
-            position: absolute;
+        /* ── STICKY UTILITY NAV ── */
+        .util-nav {
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            z-index: 100;
+            background: var(--charcoal-3);
+            border-bottom: 2px solid var(--orange);
+            padding: 0 1.25rem;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .util-nav-logo {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.12em;
+            color: var(--white);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        .util-nav-logo span { color: var(--orange); }
+
+        .util-nav-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(249,157,34,0.12);
+            border: 1.5px solid rgba(249,157,34,0.3);
+            color: var(--white);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, transform 0.15s;
+            line-height: 1;
+        }
+        .nav-btn:active, .nav-btn:hover {
+            background: rgba(249,157,34,0.28);
+            border-color: var(--orange);
+            transform: scale(1.08);
+        }
+
+        .nav-btn-link {
+            height: 40px;
+            padding: 0 1rem;
+            border-radius: 20px;
+            background: var(--orange);
             border: none;
+            color: var(--charcoal);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            white-space: nowrap;
+        }
+        .nav-btn-link:active, .nav-btn-link:hover {
+            background: var(--orange-2);
+            transform: translateY(-1px);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: var(--charcoal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Crosshatch background pattern */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(0deg,   transparent, transparent 39px, rgba(249,157,34,0.04) 39px, rgba(249,157,34,0.04) 40px),
+                repeating-linear-gradient(90deg,  transparent, transparent 39px, rgba(249,157,34,0.04) 39px, rgba(249,157,34,0.04) 40px);
+            pointer-events: none;
+        }
+
+        /* Orange angled bottom slash */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--red), var(--orange), var(--orange-2));
+        }
+
+        .hero-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 3rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-banner {
+            width: 100%;
+            max-width: 780px;
+            height: auto;
             display: block;
-            background: white;
+            margin: 0 auto;
+            animation: heroFadeIn 0.8s ease-out both;
         }
 
-        /* Footer */
-        footer {
-            background: var(--primary-dark);
-            color: var(--cream);
-            text-align: center;
-            padding: 2rem 1rem;
-            margin-top: 3rem;
-            font-size: 0.9rem;
-            opacity: 0;
-            animation: fadeIn 1s ease-out 1.5s both;
-            line-height: 1.6;
-        }
-        
-        @media (min-width: 769px) {
-            footer {
-                margin-top: 4rem;
-                padding: 2rem;
-                font-size: 0.95rem;
-            }
+        @keyframes heroFadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* Armstrong's Armory CTA */
-        .armory-cta {
-            background: linear-gradient(135deg, #fff 0%, #f5f2eb 100%);
-            padding: 3rem 1.5rem;
-            text-align: center;
-            margin-top: 3rem;
-            border-top: 4px solid var(--accent-red);
-            animation: slideUp 0.8s ease-out 1.5s both;
-        }
-        
-        @media (min-width: 769px) {
-            .armory-cta {
-                padding: 4rem 2rem;
-            }
+        /* ── CREDENTIALS STRIP ── */
+        .cred-strip {
+            background: linear-gradient(90deg, var(--red) 0%, var(--orange) 100%);
+            padding: 0.85rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem 1.25rem;
         }
 
-        .armory-cta-content {
-            max-width: 600px;
+        .cred-item {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            white-space: nowrap;
+        }
+        .cred-item svg { flex-shrink: 0; }
+        .cred-divider {
+            width: 4px; height: 4px;
+            background: rgba(41,44,51,0.4);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* ── SECTION SHARED ── */
+        .section {
+            padding: 3.5rem 1.5rem;
+        }
+        @media (min-width: 769px) { .section { padding: 4.5rem 2rem; } }
+
+        .section-inner {
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .armory-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--accent-red) 0%, #c23618 100%);
-            color: #fff;
-            padding: 1.2rem 2.5rem;
-            border-radius: 35px;
-            text-decoration: none;
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 600;
-            letter-spacing: 1px;
+        .section-eyebrow {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            box-shadow: 0 6px 20px rgba(226, 66, 32, 0.4);
-            transition: all 0.3s ease;
-            min-height: 44px;
-            min-width: 44px;
-            line-height: 1.4;
-            position: relative;
-            overflow: hidden;
+            color: var(--orange);
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
         }
-
-        .armory-btn::before {
+        .section-eyebrow::before {
             content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
+            display: block;
+            width: 28px; height: 2px;
+            background: var(--orange);
         }
 
-        .armory-btn:active {
-            transform: translateY(-1px) scale(0.98);
-            box-shadow: 0 8px 25px rgba(226, 66, 32, 0.5);
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--charcoal);
+            line-height: 1.1;
+            margin-bottom: 2.5rem;
         }
-        
-        @media (min-width: 769px) {
-            .armory-btn:hover {
-                background: linear-gradient(135deg, #f74d2a 0%, var(--accent-red) 100%);
-                transform: translateY(-3px);
-                box-shadow: 0 10px 30px rgba(226, 66, 32, 0.6);
-            }
-            
-            .armory-btn:hover::before {
-                left: 100%;
-            }
-        }
+        .section-title span { color: var(--orange); }
 
-        /* Improve text rendering on iOS */
-        body, h2, p, a, li {
-            text-rendering: optimizeLegibility;
-        }
+        /* ── TRAINING TOOLS GRID ── */
+        .tools-section { background: var(--cream-2); }
 
-        /* Competition Shooting Section */
-        .competition-section {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1c20 100%);
-            padding: 2.5rem 1.5rem 2rem;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
-            position: relative;
-            overflow: hidden;
-            animation: slideUp 0.8s ease-out 0.85s both;
-        }
-
-        @media (min-width: 769px) {
-            .competition-section {
-                padding: 3rem 3rem 2.5rem;
-                margin-bottom: 3rem;
-            }
-        }
-
-        .competition-section::before {
-            content: '';
-        }
-
-        @media (min-width: 769px) {
-            .competition-section::before {
-                font-size: 120px;
-                top: -20px;
-                right: 20px;
-            }
-        }
-
-        .competition-section h2 {
-            color: var(--accent-orange);
-        }
-
-        .competition-section h2::after {
-            background: linear-gradient(90deg, var(--accent-orange), transparent);
-        }
-
-        .competition-section > p {
-            color: rgba(232, 221, 201, 0.8);
-            font-size: 1.1rem;
-            margin-bottom: 1.75rem;
-            line-height: 1.8;
-        }
-
-        @media (min-width: 769px) {
-            .competition-section > p {
-                font-size: 1.2rem;
-            }
-        }
-
-        .competition-cards {
+        .tools-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.25rem;
         }
-
         @media (min-width: 640px) {
-            .competition-cards {
-                grid-template-columns: 1fr 1fr;
+            .tools-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (min-width: 1024px) {
+            .tools-grid { grid-template-columns: 1.4fr 1fr 1fr; }
+        }
+
+        .tool-card {
+            background: var(--charcoal);
+            border-radius: 6px;
+            padding: 2rem 1.75rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+            border-top: 3px solid var(--orange);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.25), 0 0 0 1px var(--orange);
+        }
+        .tool-card:active { transform: translateY(-1px); }
+
+        /* Featured drill-card spans 2 rows on large screens */
+        @media (min-width: 640px) {
+            .tool-card--drill { grid-column: 1 / -1; }
+        }
+        @media (min-width: 1024px) {
+            .tool-card--drill {
+                grid-column: 1 / 2;
+                grid-row: 1 / 3;
             }
         }
 
-        .comp-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1.5px solid rgba(249, 157, 34, 0.3);
-            border-radius: 8px;
-            padding: 1.5rem 1.5rem 3rem;
+        .tool-card--red  { border-top-color: var(--red); }
+        .tool-card--dark { border-top-color: var(--charcoal-2); background: var(--charcoal-3); }
+
+        .tool-badge {
+            display: inline-block;
+            background: var(--orange);
+            color: var(--charcoal);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.6rem;
+            border-radius: 3px;
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+        .tool-badge--red { background: var(--red); color: #fff; }
+
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            line-height: 1;
+        }
+
+        .tool-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.75rem;
+            line-height: 1.15;
+        }
+        .tool-card--drill h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+
+        .tool-card p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.65;
+            flex: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--orange);
+            transition: gap 0.2s;
+        }
+        .tool-card--red .tool-cta { color: #ff7a5c; }
+        .tool-card:hover .tool-cta { gap: 0.85rem; }
+
+        .tool-cta svg { flex-shrink: 0; }
+
+        /* Decorative watermark number */
+        .tool-card::after {
+            content: attr(data-num);
+            position: absolute;
+            bottom: -0.5rem;
+            right: 1rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 6rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.03);
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* ── CLASS / TOOLS ROW ── */
+        .class-section {
+            background: var(--charcoal);
+            clip-path: polygon(0 0, 100% 2%, 100% 98%, 0 100%);
+            padding-top: 4.5rem;
+            padding-bottom: 4.5rem;
+        }
+        @media (max-width: 640px) {
+            .class-section { clip-path: polygon(0 0, 100% 1%, 100% 99%, 0 100%); }
+        }
+
+        .class-section .section-title { color: var(--white); }
+
+        .class-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 769px) {
+            .class-grid { grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+        }
+
+        .class-card {
+            background: var(--charcoal-2);
+            border: 1.5px solid rgba(249,157,34,0.18);
+            border-radius: 6px;
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.65rem;
             text-decoration: none;
-            display: block;
-            transition: all 0.3s ease;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+            color: inherit;
+        }
+        .class-card:hover {
+            background: rgba(249,157,34,0.1);
+            border-color: var(--orange);
+            transform: translateY(-3px);
+        }
+        .class-card:active { transform: translateY(-1px); }
+
+        .class-card-icon {
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .class-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        .class-card p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.5;
+        }
+
+        .class-card-arrow {
+            margin-top: auto;
+            font-size: 0.75rem;
+            color: var(--orange);
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* ── CONTACT CTA ── */
+        .contact-section {
+            background: linear-gradient(135deg, var(--red-2) 0%, var(--red) 40%, #d94e2a 100%);
+            padding: 4rem 1.5rem;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .comp-card:active {
-            transform: scale(0.98);
-            background: rgba(249, 157, 34, 0.1);
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.02) 20px, rgba(255,255,255,0.02) 21px);
+            pointer-events: none;
         }
 
-        @media (min-width: 769px) {
-            .comp-card:hover {
-                background: rgba(249, 157, 34, 0.1);
-                border-color: var(--accent-orange);
-                transform: translateY(-3px);
-                box-shadow: 0 8px 25px rgba(249, 157, 34, 0.2);
-            }
+        .contact-inner {
+            max-width: 680px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
-        .comp-card-icon {
-            font-size: 2rem;
-            margin-bottom: 0.75rem;
-            display: block;
+        .contact-section .section-eyebrow { color: rgba(255,255,255,0.7); justify-content: center; }
+        .contact-section .section-eyebrow::before { background: rgba(255,255,255,0.5); }
+
+        .contact-section h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .contact-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            min-height: 48px;
+        }
+        .contact-btn--primary {
+            background: var(--white);
+            color: var(--red);
+        }
+        .contact-btn--secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+        .contact-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .contact-btn:active { transform: translateY(0); }
+
+        /* ── CALENDARS ── */
+        .calendars-section {
+            background: var(--cream-2);
+            padding: 4rem 1.5rem;
+        }
+        @media (min-width: 769px) { .calendars-section { padding: 5rem 2rem; } }
+
+        .calendars-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        @media (min-width: 900px) {
+            .calendars-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .cal-block {}
+
+        .cal-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+        .cal-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .cal-dot--orange { background: var(--orange); }
+        .cal-dot--red    { background: var(--red); }
+
+        .cal-block h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--charcoal);
+        }
+
+        .cal-block p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            padding-left: 1.35rem;
+        }
+
+        .cal-frame {
+            border-radius: 6px;
+            overflow: hidden;
+            border: 2px solid rgba(41,44,51,0.1);
+            background: white;
+            position: relative;
+            width: 100%;
+            padding-bottom: 75%;
+            height: 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+            transition: border-color 0.2s;
+        }
+        .cal-frame:hover { border-color: var(--orange); }
+        @media (min-width: 640px) { .cal-frame { padding-bottom: 60%; } }
+        @media (min-width: 769px) { .cal-frame { padding-bottom: 0; height: 420px; } }
+
+        .cal-frame iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+
+        /* ── ARMORY CTA ── */
+        .armory-section {
+            background: var(--charcoal-3);
+            border-top: 3px solid var(--orange);
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .armory-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: linear-gradient(135deg, var(--red), var(--red-2));
+            color: #fff;
+            padding: 1.1rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            box-shadow: 0 4px 20px rgba(226,66,32,0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .armory-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.4s;
+        }
+        .armory-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(226,66,32,0.5); }
+        .armory-btn:hover::after { left: 100%; }
+        .armory-btn:active { transform: translateY(-1px); }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--charcoal-3);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            padding: 1.5rem 1rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+        footer a {
+            color: rgba(249,157,34,0.7);
+            text-decoration: none;
+        }
+        footer a:hover { color: var(--orange); }
+
+        /* ── COMPETITION SECTION ── */
+        .comp-section {
+            background: var(--charcoal);
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+        .comp-section .section-title { color: var(--white); }
+
+        .comp-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+        @media (min-width: 640px) {
+            .comp-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .comp-card {
+            background: var(--charcoal-2);
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+        }
+        .comp-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 0 0 1px var(--orange);
+        }
+        .comp-card:active { transform: translateY(-1px); }
+
+        .comp-card--safety:hover {
+            box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 0 0 1px var(--red);
+        }
+
+        .comp-card-accent {
+            height: 4px;
+            background: linear-gradient(90deg, var(--orange), var(--orange-2));
+        }
+        .comp-card--safety .comp-card-accent {
+            background: linear-gradient(90deg, var(--red), #f06040);
+        }
+
+        .comp-card-body {
+            padding: 2rem 1.75rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
 
         .comp-card h3 {
             font-family: 'Oswald', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            color: var(--cream);
+            color: var(--white);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.75rem;
+            margin-top: 0.5rem;
+            line-height: 1.15;
         }
 
         .comp-card p {
-            font-size: 0.9rem;
-            color: rgba(232, 221, 201, 0.6);
-            line-height: 1.55;
-            margin: 0;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.65;
+            flex: 1;
+            margin-bottom: 1.5rem;
         }
 
-        .comp-card-arrow {
-            position: absolute;
-            bottom: 1.25rem;
-            right: 1.25rem;
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--accent-orange);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+        .comp-card .tool-cta { color: var(--orange); }
+        .comp-card--safety .tool-cta { color: #ff7a5c; }
+        .comp-card:hover .tool-cta { gap: 0.85rem; }
+
+        /* ── SCROLL REVEAL ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* ── RESPONSIVE MISC ── */
+        body, h2, h3, p, a, li { text-rendering: optimizeLegibility; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="banner-container">
-            <img src="banner.png" alt="Marcus Armed - Professional Firearms Training" class="banner-image">
-            <div class="banner-contact">
-                <a href="sms:+17163528622" class="banner-contact-item emoji-only" title="Text Me">
-                    <span class="banner-contact-icon">💬</span>
-                </a>
-                <a href="mailto:marcusarms@marcusarmed.com" class="banner-contact-item emoji-only" title="Email Me">
-                    <span class="banner-contact-icon">✉️</span>
-                </a>
-                <button id="shareBtn" class="banner-contact-item emoji-only" title="Share Website">
-                    <span class="banner-contact-icon">📤</span>
-                </button>
-                <button id="installBtn" class="banner-contact-item emoji-only" title="Add to Home Screen">
-                    <span class="banner-contact-icon">📱</span>
-                </button>
-                <a href="https://linktr.ee/MarcUsArmed" class="banner-contact-item" target="_blank" rel="noopener noreferrer">
-                    <span class="banner-contact-icon">🔗</span>
-                    MY LINK HUB
-                </a>
-            </div>
+
+    <!-- MENU OVERLAY -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- SLIDE-IN DRAWER -->
+    <div class="menu-drawer" id="menuDrawer">
+        <div class="menu-drawer-header">
+            <div class="menu-drawer-logo">Marcus <span>Armed</span></div>
+            <button class="menu-drawer-close" id="menuClose">✕</button>
+        </div>
+        <nav class="menu-nav">
+            <div class="menu-section-label">Course</div>
+            <a href="#section-course" class="menu-link menu-nav-link">
+                <span class="menu-link-icon">🏛️</span> NYS 16 Hr Pistol Permit
+            </a>
+
+            <div class="menu-divider"></div>
+            <div class="menu-section-label">Training</div>
+            <a href="#section-training" class="menu-link menu-nav-link">
+                <span class="menu-link-icon">🃏</span> Drill Cards Database
+            </a>
+            <a href="#section-training" class="menu-link menu-nav-link">
+                <span class="menu-link-icon">🎯</span> Grip Tutorial
+            </a>
+            <a href="#section-training" class="menu-link menu-nav-link">
+                <span class="menu-link-icon">🔫</span> Favorite Carry Guns
+            </a>
+
+            <div class="menu-divider"></div>
+            <div class="menu-section-label">Competition</div>
+            <a href="#section-competition" class="menu-link menu-nav-link">
+                <span class="menu-link-icon">🏆</span> Competition Guns
+            </a>
+            <a href="#section-competition" class="menu-link menu-nav-link">
+                <span class="menu-link-icon">🛡️</span> Safety Guide
+            </a>
+
+            <div class="menu-divider"></div>
+            <div class="menu-section-label">Schedule</div>
+            <a href="#section-contact" class="menu-link menu-nav-link">
+                <span class="menu-link-icon">📅</span> Book Training
+            </a>
+            <a href="#section-calendars" class="menu-link menu-nav-link">
+                <span class="menu-link-icon">📆</span> Match Calendars
+            </a>
+        </nav>
+    </div>
+
+    <!-- STICKY UTILITY NAV -->
+    <nav class="util-nav">
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+            <a href="#" class="util-nav-logo">Marcus <span>Armed</span></a>
+        </div>
+        <div class="util-nav-actions">
+            <a href="sms:+17163528622"  class="nav-btn" title="Text Me">💬</a>
+            <a href="mailto:marcusarms@marcusarmed.com" class="nav-btn" title="Email Me">✉️</a>
+            <button id="shareBtn"  class="nav-btn" title="Share Site">📤</button>
+            <button id="installBtn" class="nav-btn" title="Add to Home Screen" style="display:none;">📱</button>
+            <a href="https://linktr.ee/MarcUsArmed" class="nav-btn-link" target="_blank" rel="noopener noreferrer">
+                🔗 Links
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-inner">
+            <img src="banner.png" alt="Marcus Armed — Professional Firearms Training" class="hero-banner">
         </div>
     </header>
 
-    <main>
-        <section class="credentials-section">
-            <h2>Certified Firearms Instructor</h2>
-            <ul class="credentials-list">
-                <li><strong>NRA Certified Firearms Trainer</strong> - Authorized to provide comprehensive firearms safety and marksmanship instruction</li>
-                <li><strong>Class A USPSA Shooter</strong> - TY160440</li>
-            </ul>
-        </section>
-
-        <section class="class-links-section">
-            <h2>NYS 16 Hour Pistol Permit Course</h2>
-            <p>Everything you need before, during, and after your training class — all in one place.</p>
-            <div class="class-links-grid">
-                <a href="class-signup.html" class="class-link-btn">
-                    <span class="link-icon">📋</span>
-                    Registration
-                </a>
-                <a href="waiver.html" class="class-link-btn">
-                    <span class="link-icon">✍️</span>
-                    Sign Waiver
-                </a>
-                <a href="class-signin.html" class="class-link-btn">
-                    <span class="link-icon">🔏</span>
-                    Sign In
-                </a>
-                <a href="nys-resources.html" class="class-link-btn">
-                    <span class="link-icon">📚</span>
-                    Resources
-                </a>
-                <a href="nys-course.html" class="class-link-btn testing-btn">
-                    <span class="link-icon">🎯</span>
-                    Quizzes
-                </a>
-                <a href="NYS_Pistol_Permit_Final_Exam.html" class="class-link-btn testing-btn">
-                    <span class="link-icon">📝</span>
-                    Final Exam
-                </a>
-            </div>
-
-            <div class="gun-fidget-wrap">
-                <p class="gun-badge">MARCUS ARMED</p>
-                <button class="gun-btn" id="gunBtn" aria-label="Rack and fire">
-                    <svg viewBox="0 0 300 165" width="260" height="143" style="overflow:visible;display:block" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <pattern id="gt" patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(45)">
-                                <line x1="0" y1="0" x2="0" y2="5" stroke="#111" stroke-width="2"/>
-                            </pattern>
-                        </defs>
-                        <g id="gun-body">
-                            <rect x="18" y="64" width="220" height="14" rx="2" fill="#565656"/>
-                            <rect x="18" y="64" width="220" height="5" rx="1" fill="#686868"/>
-                            <circle cx="21" cy="71" r="5.5" fill="#0d0d0d"/>
-                            <circle cx="21" cy="71" r="3" fill="#060606"/>
-                            <rect x="75" y="75" width="165" height="38" rx="3" fill="#2d2d2d"/>
-                            <rect x="75" y="75" width="165" height="5" rx="2" fill="#3c3c3c"/>
-                            <rect x="193" y="105" width="47" height="57" rx="4" fill="#1c1c1c"/>
-                            <rect x="193" y="105" width="47" height="57" rx="4" fill="url(#gt)" opacity=".7"/>
-                            <rect x="193" y="156" width="47" height="7" rx="3" fill="#2c2c2c"/>
-                            <path d="M172,113 L172,134 Q172,140 178,140 L200,140 Q205,140 205,113" fill="none" stroke="#242424" stroke-width="13" stroke-linejoin="round" stroke-linecap="square"/>
-                            <path d="M172,113 L172,134 Q172,140 178,140 L200,140 Q205,140 205,113" fill="none" stroke="#353535" stroke-width="8" stroke-linejoin="round" stroke-linecap="square"/>
-                            <rect x="181" y="108" width="7" height="22" rx="3" fill="#7a7a7a"/>
-                            <rect x="181" y="108" width="3.5" height="22" rx="1.5" fill="#9a9a9a"/>
-                            <rect x="102" y="86" width="15" height="6" rx="2" fill="#404040"/>
-                            <circle cx="92" cy="91" r="4" fill="#363636"/>
-                            <circle cx="92" cy="91" r="2" fill="#4d4d4d"/>
-                            <rect x="113" y="88" width="30" height="3" rx="1" fill="#C8922A" opacity=".55"/>
-                            <circle cx="221" cy="111" r="4" fill="#3a3a3a"/>
-                            <circle cx="221" cy="111" r="2" fill="#525252"/>
-                            <path d="M206,113 C204,94 213,77 229,76 C241,76 244,88 244,108 L244,113 Z" fill="#252525"/>
-                            <path d="M206,113 C204,94 213,77 229,76 C241,76 244,88 244,108 L244,113 Z" fill="none" stroke="#353535" stroke-width="1.5"/>
-                            <path d="M208,110 C207,93 215,79 229,78 C239,78 242,89 242,106" fill="none" stroke="#3d3d3d" stroke-width="1" stroke-linecap="round"/>
-                            <g id="slide-grp">
-                                <rect x="18" y="42" width="220" height="46" rx="4" fill="#383838"/>
-                                <rect x="18" y="42" width="220" height="7" rx="3" fill="#484848"/>
-                                <rect x="18" y="82" width="220" height="5" rx="1" fill="#252525"/>
-                                <line x1="204" y1="46" x2="204" y2="84" stroke="#222" stroke-width="3"/>
-                                <line x1="210" y1="46" x2="210" y2="84" stroke="#222" stroke-width="3"/>
-                                <line x1="216" y1="46" x2="216" y2="84" stroke="#222" stroke-width="3"/>
-                                <line x1="222" y1="46" x2="222" y2="84" stroke="#222" stroke-width="3"/>
-                                <line x1="228" y1="46" x2="228" y2="84" stroke="#222" stroke-width="3"/>
-                                <line x1="234" y1="46" x2="234" y2="84" stroke="#222" stroke-width="3"/>
-                                <rect x="134" y="50" width="44" height="26" rx="2" fill="#1a1a1a"/>
-                                <rect x="137" y="53" width="38" height="20" rx="1.5" fill="#121212"/>
-                                <rect x="23" y="37" width="9" height="11" rx="1" fill="#4a4a4a"/>
-                                <rect x="25" y="37" width="5" height="9" rx=".5" fill="#C8922A"/>
-                                <rect x="218" y="37" width="16" height="10" rx="1" fill="#4a4a4a"/>
-                                <rect x="224" y="37" width="4" height="7" rx=".5" fill="#121212"/>
-                                <g id="shell">
-                                    <rect x="137" y="48" width="40" height="18" rx="9" fill="#b87333"/>
-                                    <rect x="137" y="48" width="16" height="18" rx="8" fill="#d4904a"/>
-                                    <circle cx="174" cy="57" r="4" fill="#8a5520"/>
-                                    <circle cx="174" cy="57" r="1.5" fill="#6b3f18"/>
-                                </g>
-                            </g>
-                            <g id="mflash">
-                                <line x1="21" y1="71" x2="-15" y2="62" stroke="#ff8800" stroke-width="9" stroke-linecap="round"/>
-                                <line x1="21" y1="71" x2="-17" y2="71" stroke="#ffaa00" stroke-width="11" stroke-linecap="round"/>
-                                <line x1="21" y1="71" x2="-15" y2="80" stroke="#ff8800" stroke-width="9" stroke-linecap="round"/>
-                                <line x1="21" y1="71" x2="-3" y2="52" stroke="#ff6600" stroke-width="6" stroke-linecap="round"/>
-                                <line x1="21" y1="71" x2="-3" y2="90" stroke="#ff6600" stroke-width="6" stroke-linecap="round"/>
-                                <line x1="21" y1="71" x2="9" y2="47" stroke="#ff5500" stroke-width="4" stroke-linecap="round"/>
-                                <line x1="21" y1="71" x2="9" y2="95" stroke="#ff5500" stroke-width="4" stroke-linecap="round"/>
-                                <circle cx="21" cy="71" r="17" fill="#ffcc00" opacity=".88"/>
-                                <circle cx="21" cy="71" r="9" fill="white"/>
-                            </g>
-                        </g>
-                    </svg>
-                </button>
-                <p class="gun-hint">hover to rack &nbsp;·&nbsp; click to fire</p>
-            </div>
-        </section>
-
-        <section class="grip-tutorial-section drill-cards-section" style="margin-bottom: 2rem;">
-            <h2>Training Drill Cards Database</h2>
-            <p>
-                Access my comprehensive collection of 70+ professional firearms training drills, including law enforcement qualifications (FBI, Border Patrol, Air Marshal, NY DCJS) and performance drills from top instructors like Hackathorn, Spaulding, and Vickers.
-            </p>
-            <a href="drill_cards.html" class="grip-tutorial-btn drill-cards-btn">View Drill Cards Database</a>
-        </section>
-
-        <div class="two-column-sections">
-            <section class="grip-tutorial-section">
-                <h2>Master Your Grip Technique</h2>
-                <p>
-                    Learn the step-by-step process for building a proper competitive shooting grip. 
-                    This comprehensive visual guide will help you improve your accuracy and recoil management.
-                </p>
-                <a href="grip.html" class="grip-tutorial-btn">View Grip Tutorial</a>
-            </section>
-
-            <section class="grip-tutorial-section carry-guns-section">
-                <h2>My Favorite Carry Guns</h2>
-                <p>
-                    Explore my top picks for everyday carry firearms. Each selection represents years of experience 
-                    and real-world performance. Click through to see detailed specs and what makes each one special.
-                </p>
-                <a href="favorite-carry-guns.html" class="grip-tutorial-btn carry-guns-btn">View My Favorites</a>
-            </section>
+    <!-- CREDENTIALS STRIP -->
+    <div class="cred-strip">
+        <div class="cred-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            NRA Certified Firearms Trainer
         </div>
+        <div class="cred-divider"></div>
+        <div class="cred-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+            Class A USPSA Shooter · TY160440
+        </div>
+        <div class="cred-divider"></div>
+        <div class="cred-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+            Western New York
+        </div>
+    </div>
 
-        <section class="competition-section">
-            <h2>Competition Shooting</h2>
-            <p>Class A USPSA Shooter — explore my favorite competition builds and everything you need to know before stepping onto your first match stage.</p>
-            <div class="competition-cards">
-                <a href="favorite-competition-guns.html" class="comp-card">
-                    <h3>Favorite Competition Guns</h3>
-                    <p>My go-to competition builds — specs, setup, and what makes each one perform on the clock.</p>
-                    <span class="comp-card-arrow">View →</span>
-                </a>
-                <a href="competition-safety-guide.html" class="comp-card">
-                    <h3>Matt Wolff Safety Guide</h3>
-                    <p>Everything you need to read before your first practical pistol match — range rules, match flow, and USPSA safety protocol.</p>
-                    <span class="comp-card-arrow">Read Guide →</span>
-                </a>
+    <main>
+
+        <!-- NYS 16 HOUR PISTOL PERMIT COURSE -->
+        <section id="section-course" class="section class-section">
+            <div class="section-inner">
+                <div class="section-eyebrow reveal" style="color:rgba(255,255,255,0.5);">
+                    <span style="background:rgba(255,255,255,0.3); display:block; width:28px; height:2px;"></span>
+                    NYS 16 Hour Pistol Permit Course
+                </div>
+                <h2 class="section-title reveal reveal-delay-1">Register, Sign In<br>&amp; <span>Get Certified</span></h2>
+
+                <div class="class-grid">
+
+                    <a href="class-signup.html" class="class-card reveal">
+                        <div class="class-card-icon">📋</div>
+                        <h3>Class Sign-Up</h3>
+                        <p>Register for an upcoming training session</p>
+                        <div class="class-card-arrow">Register →</div>
+                    </a>
+
+                    <a href="waiver.html" class="class-card reveal reveal-delay-1">
+                        <div class="class-card-icon">✍️</div>
+                        <h3>Sign Waiver</h3>
+                        <p>Complete your liability waiver before class</p>
+                        <div class="class-card-arrow">Sign Now →</div>
+                    </a>
+
+                    <a href="class-signin.html" class="class-card reveal reveal-delay-2">
+                        <div class="class-card-icon">✅</div>
+                        <h3>Class Sign-In</h3>
+                        <p>Check in on the day of your training</p>
+                        <div class="class-card-arrow">Sign In →</div>
+                    </a>
+
+                    <a href="nys-resources.html" class="class-card reveal reveal-delay-3">
+                        <div class="class-card-icon">🏛️</div>
+                        <h3>NYS Pistol Permit</h3>
+                        <p>Resources, tests &amp; study materials</p>
+                        <div class="class-card-arrow">Explore →</div>
+                    </a>
+
+                </div>
             </div>
         </section>
 
-        <section class="contact-section">
-            <h2>Schedule Your Training</h2>
-            <div class="contact-info">
-                <p>Ready to enhance your firearms skills with professional instruction?</p>
-                <p style="margin-top: 1rem;">Contact me to schedule a training session:</p>
-                <p style="margin-top: 1rem;">
-                    <a href="mailto:marcusarms@marcusarmed.com">marcusarms@marcusarmed.com</a>
-                </p>
+        <!-- TRAINING TOOLS -->
+        <section id="section-training" class="section tools-section">
+            <div class="section-inner">
+                <div class="section-eyebrow reveal">Training Resources</div>
+                <h2 class="section-title reveal reveal-delay-1">Sharpen Your <span>Skills</span></h2>
+
+                <div class="tools-grid">
+
+                    <!-- DRILL CARDS — featured -->
+                    <a href="drill_cards.html" class="tool-card tool-card--drill reveal" data-num="70+">
+                        <div class="tool-badge">Featured</div>
+                        <div class="tool-icon">🃏</div>
+                        <h3>Training Drill Cards Database</h3>
+                        <p>70+ professional drills including law enforcement qualifications — FBI, Border Patrol, Air Marshal, NY DCJS — plus performance drills from Hackathorn, Spaulding, and Vickers.</p>
+                        <div class="tool-cta">
+                            View All Drills
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </div>
+                    </a>
+
+                    <!-- GRIP TUTORIAL -->
+                    <a href="grip.html" class="tool-card reveal reveal-delay-1" data-num="01">
+                        <div class="tool-icon">🎯</div>
+                        <h3>Master Your Grip Technique</h3>
+                        <p>Step-by-step visual guide to building a proper competitive shooting grip. Improve accuracy and recoil management.</p>
+                        <div class="tool-cta">
+                            View Tutorial
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </div>
+                    </a>
+
+                    <!-- CARRY GUNS -->
+                    <a href="favorite-carry-guns.html" class="tool-card tool-card--red reveal reveal-delay-2" data-num="05">
+                        <div class="tool-badge tool-badge--red">EDC Picks</div>
+                        <div class="tool-icon">🔫</div>
+                        <h3>My Favorite Carry Guns</h3>
+                        <p>Top 5 everyday carry selections — years of experience distilled into detailed specs and real-world insights.</p>
+                        <div class="tool-cta">
+                            View My Favorites
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </div>
+                    </a>
+
+                </div>
             </div>
         </section>
 
-        <section class="calendar-section">
-            <h2>Match Registration Calendar</h2>
-            <p>View upcoming competitive shooting matches and registration dates</p>
-            <div class="calendar-container">
-               <iframe src="https://calendar.google.com/calendar/embed?height=500&wkst=1&ctz=America%2FNew_York&showPrint=0&title=Match%20Registration&mode=AGENDA&src=ZjQ5ZTVkYmI1OTAzM2Q0MDI1MTU1MzEzYjEzZjkxZjU5ZDI0NjEyZTRmM2Q4NDZiYTUzYjk5MWNiYTRkYTljMkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%237cb342" frameborder="0" scrolling="no"></iframe>
+        <!-- COMPETITION SHOOTING -->
+        <section id="section-competition" class="section comp-section">
+            <div class="section-inner">
+                <div class="section-eyebrow reveal">Competitive Shooting</div>
+                <h2 class="section-title reveal reveal-delay-1">Hit the <span>Stage</span></h2>
+
+                <div class="comp-grid">
+
+                    <a href="favorite-competition-guns.html" class="comp-card reveal">
+                        <div class="comp-card-accent"></div>
+                        <div class="comp-card-body">
+                            <div class="tool-icon">🏆</div>
+                            <h3>Favorite Competition Guns</h3>
+                            <p>My top picks for competitive shooting — the guns I trust on the stage, with full specs and what makes each one perform.</p>
+                            <div class="tool-cta">
+                                View Competition Guns
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="competition-safety-guide.html" class="comp-card comp-card--safety reveal reveal-delay-1">
+                        <div class="comp-card-accent"></div>
+                        <div class="comp-card-body">
+                            <div class="tool-icon">🛡️</div>
+                            <h3>Competition Safety Guide</h3>
+                            <p>Everything you need to know before stepping onto a match stage — rules, safe gun handling, and range commands explained.</p>
+                            <div class="tool-cta">
+                                Read the Guide
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
             </div>
         </section>
 
-        <section class="calendar-section">
-            <h2>Western New York Monthly Matches</h2>
-            <p>Check out monthly competitive shooting matches in the Western New York area</p>
-            <div class="calendar-container">
-                <iframe src="https://calendar.google.com/calendar/embed?height=500&wkst=1&ctz=America%2FNew_York&showPrint=0&title=WNY%20Monthly%20Matches&mode=AGENDA&src=Y19hYzhiZmU4MjBiNmMzMWFjNjlmNTI0ZWRmNDY0Y2Y4NmE2Y2UwMjVhYzk4YmEyNzY2MzVlNDcwNmViYjRlZDQ0QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23ef6c00" frameborder="0" scrolling="no"></iframe>
+        <!-- CONTACT / SCHEDULE -->
+        <section id="section-contact" class="contact-section">
+            <div class="contact-inner">
+                <div class="section-eyebrow" style="justify-content:center;">Schedule Training</div>
+                <h2>Ready to Level<br>Up Your Skills?</h2>
+                <p>Professional firearms instruction tailored to your experience level. Reach out to schedule a session or ask any questions.</p>
+                <div class="contact-btns">
+                    <a href="mailto:marcusarms@marcusarmed.com" class="contact-btn contact-btn--primary">
+                        ✉️ Send an Email
+                    </a>
+                    <a href="sms:+17163528622" class="contact-btn contact-btn--secondary">
+                        💬 Send a Text
+                    </a>
+                </div>
             </div>
         </section>
+
+        <!-- CALENDARS -->
+        <section id="section-calendars" class="calendars-section">
+            <div class="section-inner">
+                <div class="section-eyebrow reveal">Competitive Shooting</div>
+                <h2 class="section-title reveal reveal-delay-1">Match <span>Calendars</span></h2>
+
+                <div class="calendars-grid">
+                    <div class="cal-block reveal">
+                        <div class="cal-header">
+                            <div class="cal-dot cal-dot--orange"></div>
+                            <h3>Match Registration</h3>
+                        </div>
+                        <p>Upcoming matches &amp; registration deadlines</p>
+                        <div class="cal-frame">
+                            <iframe src="https://calendar.google.com/calendar/embed?height=500&wkst=1&ctz=America%2FNew_York&showPrint=0&title=Match%20Registration&mode=AGENDA&src=ZjQ5ZTVkYmI1OTAzM2Q0MDI1MTU1MzEzYjEzZjkxZjU5ZDI0NjEyZTRmM2Q4NDZiYTUzYjk5MWNiYTRkYTljMkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%237cb342" frameborder="0" scrolling="no"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="cal-block reveal reveal-delay-1">
+                        <div class="cal-header">
+                            <div class="cal-dot cal-dot--red"></div>
+                            <h3>WNY Monthly Matches</h3>
+                        </div>
+                        <p>Western New York competitive shooting schedule</p>
+                        <div class="cal-frame">
+                            <iframe src="https://calendar.google.com/calendar/embed?height=500&wkst=1&ctz=America%2FNew_York&showPrint=0&title=WNY%20Monthly%20Matches&mode=AGENDA&src=Y19hYzhiZmU4MjBiNmMzMWFjNjlmNTI0ZWRmNDY0Y2Y4NmE2Y2UwMjVhYzk4YmEyNzY2MzVlNDcwNmViYjRlZDQ0QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23ef6c00" frameborder="0" scrolling="no"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <section class="armory-cta">
-        <div class="armory-cta-content">
-            <a href="https://armstrongsarmory.com/" target="_blank" rel="noopener noreferrer" class="armory-btn">
-                Looking for a New Pistol?
-            </a>
-        </div>
+    <!-- ARMSTRONG'S ARMORY CTA -->
+    <section class="armory-section">
+        <a href="https://armstrongsarmory.com/" target="_blank" rel="noopener noreferrer" class="armory-btn">
+            🔫 Looking for a New Pistol?
+        </a>
     </section>
 
+    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2025 Marcus Armed | Professional Firearms Training | NRA Certified Instructor</p>
+        <p>&copy; 2025 Marcus Armed &nbsp;|&nbsp; Professional Firearms Training &nbsp;|&nbsp; NRA Certified Instructor &nbsp;|&nbsp; <a href="mailto:marcusarms@marcusarmed.com">marcusarms@marcusarmed.com</a></p>
     </footer>
 
     <script>
-        // Share Website functionality
+        // ── Hamburger Menu ──
+        const menuToggle  = document.getElementById('menuToggle');
+        const menuDrawer  = document.getElementById('menuDrawer');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const menuClose   = document.getElementById('menuClose');
+
+        function openMenu() {
+            menuDrawer.classList.add('open');
+            menuOverlay.classList.add('open');
+            menuToggle.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMenu() {
+            menuDrawer.classList.remove('open');
+            menuOverlay.classList.remove('open');
+            menuToggle.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        menuToggle.addEventListener('click', () => menuDrawer.classList.contains('open') ? closeMenu() : openMenu());
+        menuClose.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+
+        // Close drawer and smooth scroll on link click
+        document.querySelectorAll('.menu-nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    closeMenu();
+                    setTimeout(() => {
+                        const target = document.querySelector(href);
+                        if (target) {
+                            const offset = 60; // nav height
+                            const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                            window.scrollTo({ top, behavior: 'smooth' });
+                        }
+                    }, 300);
+                }
+            });
+        });
+
+        // ── Share ──
         const shareBtn = document.getElementById('shareBtn');
-        
         if (shareBtn) {
             shareBtn.addEventListener('click', async () => {
                 if (navigator.share) {
                     try {
                         await navigator.share({
                             title: 'Marcus Armed - Firearms Training',
-                            text: 'Check out Marcus Armed - NRA Certified Firearms Training & Class A USPSA Shooter',
+                            text: 'Check out Marcus Armed — NRA Certified Firearms Training & Class A USPSA Shooter',
                             url: window.location.href
                         });
-                    } catch (err) {
-                        // User cancelled or share failed
-                        if (err.name !== 'AbortError') {
-                            console.log('Error sharing:', err);
-                        }
+                    } catch(err) {
+                        if (err.name !== 'AbortError') console.log('Share error:', err);
                     }
                 } else {
-                    // Fallback: Copy URL to clipboard
                     try {
                         await navigator.clipboard.writeText(window.location.href);
                         alert('Website link copied to clipboard!');
-                    } catch (err) {
-                        alert('To share this page, copy this URL:\n' + window.location.href);
+                    } catch(err) {
+                        alert('Copy this URL to share:\n' + window.location.href);
                     }
                 }
             });
         }
 
-        // Add to Home Screen functionality
+        // ── PWA Install ──
         let deferredPrompt;
         const installBtn = document.getElementById('installBtn');
 
-        // Listen for the beforeinstallprompt event
         window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent the mini-infobar from appearing on mobile
             e.preventDefault();
-            // Stash the event so it can be triggered later
             deferredPrompt = e;
-            // Show the install button
-            if (installBtn) {
-                installBtn.style.display = 'flex';
-            }
+            if (installBtn) installBtn.style.display = 'flex';
         });
 
         if (installBtn) {
             installBtn.addEventListener('click', async () => {
                 if (deferredPrompt) {
-                    // Show the install prompt
                     deferredPrompt.prompt();
-                    // Wait for the user to respond to the prompt
                     const { outcome } = await deferredPrompt.userChoice;
-                    console.log(`User response to the install prompt: ${outcome}`);
-                    // Clear the deferredPrompt
                     deferredPrompt = null;
                 } else {
-                    // For iOS or browsers that don't support install prompt
                     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                    const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches;
-                    
-                    if (isIOS && !isInStandaloneMode) {
-                        alert('To add this to your home screen:\n\n1. Tap the Share button in Safari\n2. Scroll down and tap "Add to Home Screen"\n3. Tap "Add" in the top right');
-                    } else if (isInStandaloneMode) {
+                    const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+                    if (isIOS && !isStandalone) {
+                        alert('To add to Home Screen:\n1. Tap the Share button in Safari\n2. Tap "Add to Home Screen"\n3. Tap "Add"');
+                    } else if (isStandalone) {
                         alert('App is already installed!');
                     } else {
-                        alert('To add this to your home screen, use your browser\'s menu and select "Add to Home Screen" or "Install"');
+                        alert('Use your browser menu and select "Add to Home Screen" or "Install".');
                     }
                 }
             });
         }
 
-        // Smooth scroll fade-in effect for sections
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
+        // ── Scroll Reveal ──
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    observer.unobserve(e.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-        // Observe all sections
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Gun fidget button
-        const gunBtn = document.getElementById('gunBtn');
-        if (gunBtn) {
-            gunBtn.addEventListener('click', () => {
-                gunBtn.classList.remove('fire');
-                void gunBtn.offsetWidth;
-                gunBtn.classList.add('fire');
-                setTimeout(() => gunBtn.classList.remove('fire'), 700);
-            });
-        }
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
