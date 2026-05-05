@@ -737,6 +737,7 @@
         <a href="#shooting-rules" class="toc-item">🛡️ Safety Rules</a>
         <a href="#results" class="toc-item">🏆 Results</a>
         <a href="#clubs" class="toc-item">📍 Clubs</a>
+        <a href="#quiz" class="toc-item">📝 Quiz</a>
     </div>
 </nav>
 
@@ -1295,6 +1296,39 @@
         </div>
     </section>
 
+    <!-- QUIZ -->
+    <section id="quiz" class="guide-card red-top" style="margin-top:2rem;">
+        <div class="card-header">
+            <div class="card-icon">📝</div>
+            <div class="card-header-text">
+                <h2>Safety Knowledge Quiz</h2>
+                <p>10 questions — test what you've learned before match day</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div id="quiz-container">
+                <div id="quiz-progress-bar-wrap" style="background:rgba(41,44,51,0.1);border-radius:20px;height:6px;margin-bottom:1.5rem;overflow:hidden;">
+                    <div id="quiz-progress-bar" style="height:100%;width:10%;background:var(--accent-orange);border-radius:20px;transition:width 0.4s ease;"></div>
+                </div>
+                <div id="quiz-status" style="font-family:'Oswald',sans-serif;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:#888;margin-bottom:1rem;">Question <span id="q-num">1</span> of 10</div>
+
+                <div id="question-block">
+                    <p id="question-text" style="font-size:1.05rem;font-weight:600;color:var(--primary-dark);margin-bottom:1.25rem;line-height:1.55;"></p>
+                    <div id="options-list" style="display:flex;flex-direction:column;gap:0.6rem;"></div>
+                    <div id="feedback" style="display:none;margin-top:1rem;padding:0.9rem 1.1rem;border-radius:6px;font-size:0.95rem;line-height:1.55;font-weight:500;"></div>
+                    <button id="next-btn" style="display:none;margin-top:1.25rem;background:var(--primary-dark);color:var(--accent-orange);border:none;font-family:'Oswald',sans-serif;font-size:0.95rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.75rem 1.75rem;border-radius:24px;cursor:pointer;min-height:44px;">Next Question →</button>
+                </div>
+
+                <div id="quiz-results" style="display:none;text-align:center;padding:1rem 0;">
+                    <div id="results-score" style="font-family:'Oswald',sans-serif;font-size:3.5rem;font-weight:700;color:var(--accent-orange);line-height:1;margin-bottom:0.5rem;"></div>
+                    <div id="results-label" style="font-family:'Oswald',sans-serif;font-size:1rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--primary-dark);margin-bottom:0.5rem;"></div>
+                    <p id="results-msg" style="font-size:0.95rem;color:#555;margin-bottom:1.5rem;"></p>
+                    <button id="retake-btn" style="background:var(--accent-orange);color:var(--primary-dark);border:none;font-family:'Oswald',sans-serif;font-size:0.95rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.75rem 2rem;border-radius:24px;cursor:pointer;min-height:44px;">Retake Quiz</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CONTACT FOOTER -->
     <div class="contact-footer">
         <div class="footer-text">
@@ -1309,5 +1343,251 @@
 
 </main>
 
+<script>
+const questions = [
+    {
+        q: "What is the ONLY place you can handle your firearm during a match (outside of shooting a stage)?",
+        options: ["Your bench or table", "The Safe Table", "Anywhere as long as it's unloaded", "Behind the shooter's line"],
+        answer: 1,
+        explain: "The Safe Table is the ONLY place you can handle your firearm during the match — except when the Range Officer gives you the 'Make Ready' command at the start of a stage."
+    },
+    {
+        q: "What does the Hit Factor (HF) formula measure?",
+        options: ["Total rounds fired divided by misses", "Total target points divided by total time", "Accuracy percentage per stage", "Time minus penalty seconds"],
+        answer: 1,
+        explain: "HF = Total Target Points ÷ Total Time. It measures how fast AND accurately you can engage all targets on a stage."
+    },
+    {
+        q: "Breaking the 180° Rule results in:",
+        options: ["A 10-point penalty", "A warning from the RO", "Immediate match disqualification", "A mandatory reshoot"],
+        answer: 2,
+        explain: "Breaking the 180 Rule — pointing your muzzle uprange, behind you, or at yourself or the RO — results in an immediate match disqualification. No exceptions."
+    },
+    {
+        q: "When the Range Officer says 'If You Are Finished, Unload and Show Clear,' what is your FIRST action?",
+        options: ["Immediately rack the slide", "Remove the magazine", "Take a breath — the shooting is done, there is no need to rush", "Point the gun downrange"],
+        answer: 2,
+        explain: "FIRST: take a breath. The shooting is done and there is zero need to rush. Then remove the magazine, rack the slide to eject the chambered round, and lock it open for inspection."
+    },
+    {
+        q: "How many points is an Alpha zone hit worth on a cardboard target?",
+        options: ["3 points", "1 point", "10 points", "5 points"],
+        answer: 3,
+        explain: "Alpha = 5 points. Charlie = 3 points. Delta = 1 point. A missed shot (Mike) or No-Shoot hit = −10 points."
+    },
+    {
+        q: "When must your trigger finger be OUTSIDE the trigger guard?",
+        options: ["Only when reloading", "Only when moving between positions", "Whenever moving, reloading, or not actively engaging a target", "Only after the last shot on a stage"],
+        answer: 2,
+        explain: "Your trigger finger must be visibly outside the trigger guard whenever moving between positions, reloading, or not actively engaging a target. The finger only enters the guard when the firearm is on target and you have made a conscious decision to fire."
+    },
+    {
+        q: "What holster types are NOT permitted at these matches?",
+        options: ["OWB Kydex holsters", "IWB Kydex holsters", "Pocket, sticky/soft, and leather holsters", "Competition belt-mounted holsters"],
+        answer: 2,
+        explain: "Pocket holsters, sticky/soft holsters, and leather holsters are NOT permitted. You must use a rigid, durable Kydex holster (OWB or IWB) that allows a safe draw and re-holster."
+    },
+    {
+        q: "How long is the stage walk (Written Stage Brief time) before shooting each stage?",
+        options: ["2 minutes", "10 minutes", "5 minutes", "As long as needed"],
+        answer: 2,
+        explain: "Shooters have 5 minutes to walk the stage after the RO reads the Written Stage Brief. Use that time to identify all targets, plan your path, note your reload point, and mentally rehearse."
+    },
+    {
+        q: "What should you do if the Range Officer calls 'STOP' while you are shooting?",
+        options: ["Immediately holster your firearm", "Finish engaging the current target then stop", "Remove your finger from the trigger, take a breath, and wait for RO instruction", "Unload and show clear immediately"],
+        answer: 2,
+        explain: "Take your finger off the trigger and rest it on the side of the gun. Take a breath. WAIT for the RO to instruct you on what to do next — do not act until directed."
+    },
+    {
+        q: "How many magazines should you bring to a match, and what is the maximum capacity per magazine under New York State law?",
+        options: ["1–2 magazines, 15 rounds max", "3–5 magazines, 10 rounds max", "5–10 magazines, no limit", "2–3 magazines, 17 rounds max"],
+        answer: 1,
+        explain: "Bring 3–5 magazines. All magazines must be New York State compliant — 10 round maximum capacity. Most stages run 6–20 rounds total, so three 10-round magazines will generally cover you."
+    }
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+
+const qNum       = document.getElementById('q-num');
+const qText      = document.getElementById('question-text');
+const optsList   = document.getElementById('options-list');
+const feedback   = document.getElementById('feedback');
+const nextBtn    = document.getElementById('next-btn');
+const progressBar = document.getElementById('quiz-progress-bar');
+const resultsDiv = document.getElementById('quiz-results');
+const questionBlock = document.getElementById('question-block');
+const retakeBtn  = document.getElementById('retake-btn');
+
+function loadQuestion() {
+    answered = false;
+    feedback.style.display = 'none';
+    nextBtn.style.display = 'none';
+    qNum.textContent = current + 1;
+    progressBar.style.width = ((current / questions.length) * 100) + '%';
+
+    const q = questions[current];
+    qText.textContent = q.q;
+    optsList.innerHTML = '';
+
+    q.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.textContent = opt;
+        btn.style.cssText = `
+            text-align:left;padding:0.75rem 1rem;border-radius:6px;border:1.5px solid rgba(41,44,51,0.15);
+            background:#f8f5ef;cursor:pointer;font-family:'Barlow',sans-serif;font-size:0.95rem;
+            font-weight:500;color:var(--text-dark);transition:all 0.2s;min-height:44px;width:100%;
+        `;
+        btn.addEventListener('click', () => selectAnswer(i, btn));
+        optsList.appendChild(btn);
+    });
+}
+
+function selectAnswer(index, btn) {
+    if (answered) return;
+    answered = true;
+
+    const q = questions[current];
+    const allBtns = optsList.querySelectorAll('button');
+
+    allBtns.forEach(b => { b.style.cursor = 'default'; b.style.opacity = '0.5'; });
+    btn.style.opacity = '1';
+
+    if (index === q.answer) {
+        score++;
+        btn.style.background = '#e8f5e9';
+        btn.style.borderColor = '#2e7d32';
+        btn.style.color = '#1b5e20';
+        feedback.style.background = '#e8f5e9';
+        feedback.style.borderLeft = '4px solid #2e7d32';
+        feedback.style.color = '#1b5e20';
+        feedback.innerHTML = '<strong>Correct!</strong> ' + q.explain;
+    } else {
+        btn.style.background = '#fdf0ef';
+        btn.style.borderColor = 'var(--accent-red)';
+        btn.style.color = 'var(--accent-red)';
+        allBtns[q.answer].style.background = '#e8f5e9';
+        allBtns[q.answer].style.borderColor = '#2e7d32';
+        allBtns[q.answer].style.color = '#1b5e20';
+        allBtns[q.answer].style.opacity = '1';
+        feedback.style.background = '#fdf0ef';
+        feedback.style.borderLeft = '4px solid var(--accent-red)';
+        feedback.style.color = '#7a1a00';
+        feedback.innerHTML = '<strong>Not quite.</strong> ' + q.explain;
+    }
+
+    feedback.style.display = 'block';
+    nextBtn.style.display = 'inline-block';
+    nextBtn.textContent = current < questions.length - 1 ? 'Next Question →' : 'See Results →';
+}
+
+nextBtn.addEventListener('click', () => {
+    current++;
+    if (current < questions.length) {
+        loadQuestion();
+    } else {
+        showResults();
+    }
+});
+
+function showResults() {
+    questionBlock.style.display = 'none';
+    progressBar.style.width = '100%';
+    resultsDiv.style.display = 'block';
+
+    document.getElementById('results-score').textContent = score + ' / ' + questions.length;
+
+    if (score === questions.length) {
+        document.getElementById('results-score').style.color = '#2e7d32';
+        document.getElementById('results-label').textContent = 'Perfect Score — Range Ready!';
+        document.getElementById('results-msg').textContent = "Outstanding. You know this guide cold. See you on the stage.";
+        document.getElementById('retake-btn').style.display = 'none';
+    } else {
+        document.getElementById('results-score').style.color = 'var(--accent-red)';
+        document.getElementById('results-label').textContent = 'Failed — Re-read the Guide';
+        document.getElementById('results-msg').textContent = "You must score 100% before attending a match. Review the guide and try again.";
+        document.getElementById('retake-btn').style.display = 'inline-block';
+        showSafetyPopup();
+    }
+}
+
+function showSafetyPopup() {
+    const overlay = document.createElement('div');
+    overlay.id = 'safety-overlay';
+    overlay.style.cssText = `
+        position:fixed;top:0;left:0;width:100%;height:100%;
+        background:rgba(0,0,0,0.82);z-index:9999;
+        display:flex;align-items:center;justify-content:center;
+        padding:1.5rem;animation:fadeInOverlay 0.3s ease;
+    `;
+
+    overlay.innerHTML = `
+        <style>
+            @keyframes fadeInOverlay { from { opacity:0; } to { opacity:1; } }
+            @keyframes popIn { from { transform:scale(0.85); opacity:0; } to { transform:scale(1); opacity:1; } }
+        </style>
+        <div style="
+            background:var(--primary-dark);
+            border:3px solid var(--accent-red);
+            border-radius:12px;
+            max-width:420px;
+            width:100%;
+            padding:2.5rem 2rem;
+            text-align:center;
+            animation:popIn 0.35s cubic-bezier(0.175,0.885,0.32,1.275);
+            box-shadow:0 20px 60px rgba(226,66,32,0.4);
+        ">
+            <div style="font-size:3rem;margin-bottom:1rem;">🚫</div>
+            <div style="
+                font-family:'Oswald',sans-serif;
+                font-size:clamp(1.4rem,5vw,2rem);
+                font-weight:700;
+                text-transform:uppercase;
+                letter-spacing:0.06em;
+                color:var(--accent-red);
+                line-height:1.15;
+                margin-bottom:1rem;
+            ">Safety Is Not<br>Negotiable</div>
+            <p style="
+                font-family:'Barlow',sans-serif;
+                font-size:0.95rem;
+                color:rgba(232,221,201,0.8);
+                line-height:1.6;
+                margin-bottom:1.75rem;
+            ">You must answer every question correctly before attending a match. Re-read the guide carefully and try again.</p>
+            <button onclick="document.getElementById('safety-overlay').remove()" style="
+                background:var(--accent-red);
+                color:#fff;
+                border:none;
+                font-family:'Oswald',sans-serif;
+                font-size:1rem;
+                font-weight:700;
+                letter-spacing:0.1em;
+                text-transform:uppercase;
+                padding:0.8rem 2rem;
+                border-radius:24px;
+                cursor:pointer;
+                min-height:44px;
+                width:100%;
+            ">Re-Read the Guide</button>
+        </div>
+    `;
+
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+}
+
+retakeBtn.addEventListener('click', () => {
+    current = 0;
+    score = 0;
+    questionBlock.style.display = 'block';
+    resultsDiv.style.display = 'none';
+    loadQuestion();
+});
+
+loadQuestion();
+</script>
 </body>
 </html>
