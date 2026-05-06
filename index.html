@@ -861,6 +861,14 @@
             box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 0 0 1px var(--red);
         }
 
+        .comp-card--rules:hover {
+            box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 0 0 1px #5ba8e0;
+        }
+        .comp-card--rules .comp-card-accent {
+            background: linear-gradient(90deg, #3a82b8, #5ba8e0);
+        }
+        .comp-card--rules .tool-cta { color: #5ba8e0; }
+
         .comp-card-accent {
             height: 4px;
             background: linear-gradient(90deg, var(--orange), var(--orange-2));
@@ -964,6 +972,9 @@
             </a>
             <a href="#section-competition" class="menu-link menu-nav-link">
                 <span class="menu-link-icon">🛡️</span> Safety Guide
+            </a>
+            <a href="#section-competition" class="menu-link menu-nav-link">
+                <span class="menu-link-icon">📋</span> Rules Assistant
             </a>
 
             <div class="menu-divider"></div>
@@ -1156,6 +1167,19 @@
                             <p>Everything you need to know before stepping onto a match stage — rules, safe gun handling, and range commands explained.</p>
                             <div class="tool-cta">
                                 Read the Guide
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="uspsa_nroi_assistant.html" class="comp-card comp-card--rules reveal reveal-delay-2">
+                        <div class="comp-card-accent"></div>
+                        <div class="comp-card-body">
+                            <div class="tool-icon">📋</div>
+                            <h3>USPSA / NROI Rules Assistant</h3>
+                            <p>AI-powered assistant trained on the USPSA rulebook and NROI guidelines — penalties, stage legality, equipment rules, and more.</p>
+                            <div class="tool-cta">
+                                Ask the Rules
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </div>
                         </div>
