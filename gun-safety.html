@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f99d22">
+    <meta name="description" content="Firearm Safety Guide — The 4 Universal Rules, Safe Storage, Handling & Transport, and Child Access Prevention. Marcus Armed, LLC.">
+    <meta property="og:title" content="Firearm Safety Guide | Marcus Armed">
+    <meta property="og:description" content="The core rules every gun owner should know cold — safe handling, storage, and child access prevention. Marcus Armed, LLC.">
+    <meta property="og:image" content="marcusarmedlogo__Logo_.svg">
+    <title>Firearm Safety Guide | Marcus Armed</title>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1D9JZN9C5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-F1D9JZN9C5');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: rgba(249, 157, 34, 0.2);
+        }
+
+        :root {
+            --primary-dark: #292c33;
+            --accent-orange: #f99d22;
+            --accent-red: #e24220;
+            --accent-deep: #ef6c00;
+            --cream: #e8ddc9;
+            --text-dark: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.65;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image:
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(41,44,51,0.03) 35px, rgba(41,44,51,0.03) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(249,157,34,0.02) 35px, rgba(249,157,34,0.02) 70px);
+            z-index: -1;
+        }
+
+        /* ── HEADER ── */
+        header {
+            background: #3a3d42;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+        }
+
+        .header-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            background: var(--accent-orange);
+            color: var(--primary-dark);
+            padding: 0.6rem 1.2rem;
+            border-radius: 24px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: background 0.2s;
+            min-height: 44px;
+        }
+        .back-btn:hover { background: #faa83a; }
+
+        .header-title { flex: 1; }
+
+        .header-eyebrow {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent-orange);
+            margin-bottom: 0.15rem;
+        }
+
+        .header-title h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            font-weight: 700;
+            color: var(--cream);
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .header-dedication {
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: rgba(232,221,201,0.75);
+            margin-top: 0.3rem;
+            letter-spacing: 0.02em;
+            font-style: italic;
+        }
+
+        /* ── TOC PILL ── */
+        .toc-strip {
+            background: var(--primary-dark);
+            border-bottom: 3px solid var(--accent-orange);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .toc-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0;
+            padding: 0 1rem;
+        }
+
+        .toc-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.7rem 1rem;
+            color: rgba(232,221,201,0.65);
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: color 0.2s, background 0.2s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -3px;
+        }
+
+        .toc-item:hover {
+            color: var(--accent-orange);
+            background: rgba(249,157,34,0.07);
+        }
+
+        /* ── MAIN ── */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.25rem 4rem;
+        }
+
+        /* ── MANDATORY BANNER ── */
+        .mandatory-banner {
+            background: var(--accent-red);
+            color: #fff;
+            border-radius: 10px;
+            padding: 1.4rem 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .mandatory-banner .bang {
+            font-size: 2rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .mandatory-banner p {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.55;
+        }
+
+        .mandatory-banner p span {
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.25rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+
+        /* ── SECTION CARD ── */
+        .guide-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(41,44,51,0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            border-top: 5px solid var(--accent-orange);
+        }
+
+        .guide-card.red-top { border-top-color: var(--accent-red); }
+        .guide-card.deep-top { border-top-color: var(--accent-deep); }
+
+        .card-header {
+            background: var(--primary-dark);
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+        }
+
+        .card-icon { font-size: 1.8rem; line-height: 1; }
+
+        .card-header-text h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--cream);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .card-header-text p {
+            font-size: 0.82rem;
+            color: rgba(232,221,201,0.55);
+            margin-top: 0.1rem;
+        }
+
+        .card-body { padding: 1.5rem; }
+
+        /* ── TEXT ELEMENTS ── */
+        .card-body p { margin-bottom: 1rem; font-size: 0.97rem; }
+        .card-body p:last-child { margin-bottom: 0; }
+
+        .highlight-box {
+            background: #fdf4ea;
+            border-left: 4px solid var(--accent-orange);
+            border-radius: 0 6px 6px 0;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.25rem;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: #2d1a00;
+        }
+
+        .highlight-box.red {
+            background: #fdf0ef;
+            border-left-color: var(--accent-red);
+            color: #2d0800;
+        }
+
+        .highlight-box strong {
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent-orange);
+            margin-bottom: 0.4rem;
+        }
+
+        .highlight-box.red strong { color: var(--accent-red); }
+
+        /* ── RULE LIST ── */
+        .rule-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1rem;
+        }
+
+        .rule-list li {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(41,44,51,0.07);
+            font-size: 0.96rem;
+        }
+
+        .rule-list li:last-child { border-bottom: none; padding-bottom: 0; }
+
+        .rule-list .bullet {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            background: var(--accent-orange);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .rule-list .bullet.red { background: var(--accent-red); color: #fff; }
+
+        .rule-list strong { font-weight: 600; }
+
+        /* ── SUBSECTION LABEL ── */
+        .sub-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent-orange);
+            font-weight: 700;
+            margin: 1.5rem 0 0.6rem;
+        }
+
+        .sub-label:first-child { margin-top: 0; }
+        .sub-label.red { color: var(--accent-red); }
+
+        /* ── GEAR / ITEM LIST ── */
+        .gear-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .gear-item {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            background: #f8f5ef;
+            border-radius: 6px;
+            padding: 0.8rem 1rem;
+        }
+
+        .gear-icon { font-size: 1.4rem; flex-shrink: 0; line-height: 1.2; }
+
+        .gear-text { flex: 1; }
+
+        .gear-text strong {
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.15rem;
+        }
+
+        .gear-text span { font-size: 0.9rem; color: #444; }
+
+        .gear-item.no-go {
+            border: 1.5px solid var(--accent-red);
+            background: #fdf0ef;
+        }
+
+        .gear-item.no-go .gear-text strong { color: var(--accent-red); }
+
+        /* ── BIG RULE NUMBER CARDS (4 Universal Rules) ── */
+        .big-rules {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .big-rule {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            background: var(--primary-dark);
+            border-radius: 10px;
+            padding: 1.25rem 1.4rem;
+        }
+
+        .big-rule-num {
+            flex-shrink: 0;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--accent-orange);
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .big-rule-text h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--cream);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            line-height: 1.25;
+            margin-bottom: 0.35rem;
+        }
+
+        .big-rule-text p {
+            font-size: 0.92rem;
+            color: rgba(232,221,201,0.75);
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        /* ── STORAGE OPTIONS GRID ── */
+        .storage-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        @media (min-width: 540px) {
+            .storage-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .storage-card {
+            background: #f8f5ef;
+            border-radius: 8px;
+            padding: 1rem 1.1rem;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        .storage-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.3rem;
+            color: var(--primary-dark);
+        }
+
+        .storage-card p {
+            font-size: 0.87rem;
+            color: #444;
+            margin: 0;
+        }
+
+        /* ── DQ-STYLE WARNING BOX ── */
+        .dq-box {
+            background: var(--accent-red);
+            color: #fff;
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .dq-box .dq-icon { font-size: 1.4rem; flex-shrink: 0; }
+
+        /* ── RESOURCES LIST ── */
+        .resource-cols {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 540px) {
+            .resource-cols { grid-template-columns: 1fr 1fr; }
+        }
+
+        .resource-col h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent-deep);
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .resource-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resource-col ul li {
+            font-size: 0.93rem;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid rgba(41,44,51,0.07);
+            display: flex;
+            gap: 0.4rem;
+            align-items: flex-start;
+        }
+
+        .resource-col ul li:last-child { border-bottom: none; }
+
+        .resource-col ul li::before {
+            content: '▸';
+            color: var(--accent-orange);
+            flex-shrink: 0;
+        }
+
+        .resource-col ul li a {
+            color: var(--accent-deep);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .resource-col ul li a:hover {
+            color: var(--accent-red);
+            text-decoration: underline;
+        }
+
+        /* ── CONTACT FOOTER ── */
+        .contact-footer {
+            background: var(--primary-dark);
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .contact-footer .footer-text h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--cream);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .contact-footer .footer-text p {
+            font-size: 0.85rem;
+            color: rgba(232,221,201,0.6);
+            margin-top: 0.15rem;
+        }
+
+        .contact-btns {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--accent-orange);
+            color: var(--primary-dark);
+            padding: 0.65rem 1.3rem;
+            border-radius: 24px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: background 0.2s;
+            min-height: 44px;
+        }
+
+        .contact-btn:hover { background: #faa83a; }
+
+        /* ── PAGE ANCHOR OFFSET ── */
+        [id] { scroll-margin-top: 1rem; }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-inner">
+        <a href="index.html" class="back-btn">← Back</a>
+        <div class="header-title">
+            <div class="header-eyebrow">Marcus Armed — Safety Guide</div>
+            <h1>Firearm Safety Guide</h1>
+        </div>
+    </div>
+</header>
+
+<!-- TOC STRIP -->
+<nav class="toc-strip" aria-label="Page sections">
+    <div class="toc-inner">
+        <a href="#intro" class="toc-item">🎯 Intro</a>
+        <a href="#four-rules" class="toc-item">🔫 The 4 Rules</a>
+        <a href="#handling" class="toc-item">✋ Handling</a>
+        <a href="#storage" class="toc-item">🔒 Storage</a>
+        <a href="#kids" class="toc-item">🧒 Child Safety</a>
+        <a href="#transport" class="toc-item">🚗 Transport</a>
+        <a href="#resources" class="toc-item">📚 Resources</a>
+    </div>
+</nav>
+
+<main>
+
+    <!-- MANDATORY NOTICE -->
+    <div class="mandatory-banner">
+        <div class="bang">⚠️</div>
+        <p>
+            <span>Read This First</span>
+            Every firearm owner — new or experienced — should know these rules cold. They are simple, they never change, and they are the single biggest reason the shooting sports remain as safe as they are.
+        </p>
+    </div>
+
+    <!-- INTRO -->
+    <section id="intro" class="guide-card">
+        <div class="card-header">
+            <div class="card-icon">🎯</div>
+            <div class="card-header-text">
+                <h2>Why Safety Comes First</h2>
+                <p>The foundation everything else is built on</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <p>Owning or carrying a firearm is a serious responsibility. Safe handling isn't a list of rules you memorize once for a test — it's a habit you build so deeply that it becomes automatic, even under stress, even when you're tired, even when no one is watching.</p>
+
+            <div class="highlight-box">
+                <strong>Who This Is For</strong>
+                Students preparing for their NYS Pistol Permit, new gun owners, experienced shooters who want a refresher, and anyone bringing a firearm into their home for the first time.
+            </div>
+
+            <p>This guide covers the four universal safety rules, proper handling and storage practices, transport requirements under New York law, and — critically — how to keep firearms away from children and unauthorized users.</p>
+        </div>
+    </section>
+
+    <!-- THE 4 UNIVERSAL RULES -->
+    <section id="four-rules" class="guide-card red-top">
+        <div class="card-header">
+            <div class="card-icon">🔫</div>
+            <div class="card-header-text">
+                <h2>The 4 Universal Safety Rules</h2>
+                <p>Non-negotiable. Apply them every time, with every firearm.</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <p>These four rules are deliberately redundant by design. Following all four — every time — means that breaking any one of them still won't result in an accident.</p>
+
+            <div class="big-rules">
+                <div class="big-rule">
+                    <div class="big-rule-num">1</div>
+                    <div class="big-rule-text">
+                        <h3>Treat Every Gun as if It's Loaded</h3>
+                        <p>Always. Even if you watched someone unload it. Even if you just checked it yourself. There are no exceptions to this rule — it removes the guesswork that causes accidents.</p>
+                    </div>
+                </div>
+                <div class="big-rule">
+                    <div class="big-rule-num">2</div>
+                    <div class="big-rule-text">
+                        <h3>Never Point It at Anything You're Not Willing to Destroy</h3>
+                        <p>Muzzle discipline, at all times. Know where your muzzle is pointed — even when holstering, clearing a malfunction, or just walking around with the gun in hand.</p>
+                    </div>
+                </div>
+                <div class="big-rule">
+                    <div class="big-rule-num">3</div>
+                    <div class="big-rule-text">
+                        <h3>Keep Your Finger Off the Trigger Until You're Ready to Shoot</h3>
+                        <p>Your finger stays straight, indexed on the frame above the trigger guard, until your sights are on target and you've made a conscious decision to fire.</p>
+                    </div>
+                </div>
+                <div class="big-rule">
+                    <div class="big-rule-num">4</div>
+                    <div class="big-rule-text">
+                        <h3>Know Your Target — and What's Beyond It</h3>
+                        <p>Positively identify your target before firing. Bullets pass through walls, doors, and bodies. Know what's behind and around your target before you ever pull the trigger.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HANDLING -->
+    <section id="handling" class="guide-card">
+        <div class="card-header">
+            <div class="card-icon">✋</div>
+            <div class="card-header-text">
+                <h2>Safe Handling Habits</h2>
+                <p>Everyday practices that prevent the vast majority of accidents</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="sub-label">Every Time You Pick Up a Firearm</div>
+            <ul class="rule-list">
+                <li><span class="bullet">1</span><div><strong>Check the chamber.</strong> Visually and physically confirm the gun's condition — don't rely on memory or assumption.</div></li>
+                <li><span class="bullet">2</span><div><strong>Keep it pointed in a safe direction.</strong> A safe direction means a backstop that will actually stop a bullet — not just "away from people."</div></li>
+                <li><span class="bullet">3</span><div><strong>Be sure of your target and backstop.</strong> Identify what you're shooting at and what's beyond it before the gun ever comes up.</div></li>
+                <li><span class="bullet">4</span><div><strong>Use the right ammunition.</strong> Wrong caliber or damaged ammo can cause a dangerous malfunction. Inspect before loading.</div></li>
+                <li><span class="bullet">5</span><div><strong>Wear eye and ear protection.</strong> Every time you're on the range — no exceptions, no "just one shot."</div></li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>If You're New to Shooting</strong>
+                Get hands-on instruction from a qualified, NRA-certified instructor before handling a firearm on your own. Reading about safety and internalizing it through supervised practice are two very different things.
+            </div>
+
+            <div class="sub-label red">Never Do This</div>
+            <div class="gear-list">
+                <div class="gear-item no-go">
+                    <div class="gear-icon">🚫</div>
+                    <div class="gear-text">
+                        <strong>Mix Guns and Alcohol or Drugs</strong>
+                        <span>Never handle or shoot a firearm while impaired. No exceptions.</span>
+                    </div>
+                </div>
+                <div class="gear-item no-go">
+                    <div class="gear-icon">🚫</div>
+                    <div class="gear-text">
+                        <strong>"Check" if a Gun Is Loaded by Pulling the Trigger</strong>
+                        <span>Always treat it as loaded and clear it properly instead.</span>
+                    </div>
+                </div>
+                <div class="gear-item no-go">
+                    <div class="gear-icon">🚫</div>
+                    <div class="gear-text">
+                        <strong>Hand Someone a Firearm Without Clearing It Together</strong>
+                        <span>Open the action, show it's clear, and communicate before any hand-off.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STORAGE -->
+    <section id="storage" class="guide-card deep-top">
+        <div class="card-header">
+            <div class="card-icon">🔒</div>
+            <div class="card-header-text">
+                <h2>Safe Storage</h2>
+                <p>Secure, unloaded, and inaccessible to anyone who shouldn't have it</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <p>When a firearm isn't in use, it should be stored unloaded and locked, with ammunition stored separately. The right storage method depends on your living situation, whether children are in the home, and how quickly you need access for self-defense.</p>
+
+            <div class="storage-grid">
+                <div class="storage-card">
+                    <h3>🔐 Gun Safe</h3>
+                    <p>The most secure long-term option. Bolt it down. Best for multiple firearms or longer-term storage.</p>
+                </div>
+                <div class="storage-card">
+                    <h3>⚡ Quick-Access Lock Box</h3>
+                    <p>Biometric or keypad boxes give fast access for home-defense firearms while keeping them secure from children and unauthorized users.</p>
+                </div>
+                <div class="storage-card">
+                    <h3>🔗 Cable / Trigger Lock</h3>
+                    <p>A low-cost layer of security. Best combined with a locked container — not a substitute for one.</p>
+                </div>
+                <div class="storage-card">
+                    <h3>📦 Separate Ammo Storage</h3>
+                    <p>Store ammunition in a different location or container than the firearm itself whenever possible.</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <strong>New York State Requirement</strong>
+                Under New York law, if you live with someone who is prohibited from possessing a firearm, or if a child under 16 could reasonably gain access, firearms must be stored in a locked container or with a trigger lock when not in use. Know your local and county-specific storage requirements.
+            </div>
+        </div>
+    </section>
+
+    <!-- CHILD ACCESS PREVENTION -->
+    <section id="kids" class="guide-card red-top">
+        <div class="card-header">
+            <div class="card-icon">🧒</div>
+            <div class="card-header-text">
+                <h2>Child Access Prevention</h2>
+                <p>The single most important storage conversation a gun owner can have</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="dq-box">
+                <div class="dq-icon">⚠️</div>
+                <div>Curiosity, not malice, is almost always the cause when a child accesses an unsecured firearm. Storage — not a one-time talk — is what prevents it.</div>
+            </div>
+
+            <div class="sub-label">If There Are Children in or Visiting Your Home</div>
+            <ul class="rule-list">
+                <li><span class="bullet red">1</span><div><strong>Store unloaded and locked.</strong> Every time, with no exceptions for "just for tonight."</div></li>
+                <li><span class="bullet red">2</span><div><strong>Lock ammunition separately.</strong> A child should never be able to access a complete, working firearm.</div></li>
+                <li><span class="bullet red">3</span><div><strong>Talk to your kids directly.</strong> Teach them: if you see a gun, don't touch it — leave the area and tell an adult immediately.</div></li>
+                <li><span class="bullet red">4</span><div><strong>Ask before playdates.</strong> "Is there an unlocked gun in your house?" is a normal, responsible question to ask other parents — just like asking about a pool or pets.</div></li>
+                <li><span class="bullet red">5</span><div><strong>Keep keys and codes private.</strong> Lock boxes only work if the combination or key isn't somewhere a curious kid can find it.</div></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- TRANSPORT -->
+    <section id="transport" class="guide-card">
+        <div class="card-header">
+            <div class="card-icon">🚗</div>
+            <div class="card-header-text">
+                <h2>Transport in New York State</h2>
+                <p>Know the rules before you put a firearm in your vehicle</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <p>Transport laws are some of the most commonly misunderstood — and most commonly violated without intent. General guidance for New York State:</p>
+
+            <ul class="rule-list">
+                <li><span class="bullet">1</span><div><strong>Unloaded, in a locked container.</strong> Firearms should be transported unloaded and in a closed, locked case or container, ideally in the trunk or an area inaccessible from the passenger compartment.</div></li>
+                <li><span class="bullet">2</span><div><strong>Carry your permit.</strong> If you have a valid NYS pistol permit, carry it with you any time you're transporting or carrying a handgun.</div></li>
+                <li><span class="bullet">3</span><div><strong>Know your destination's laws.</strong> Other states and even other counties within NY can have different requirements. Research before you cross a line.</div></li>
+                <li><span class="bullet">4</span><div><strong>Ammunition rules vary.</strong> Some jurisdictions require ammo to be stored separately from the firearm during transport.</div></li>
+            </ul>
+
+            <div class="highlight-box red">
+                <strong>This Is General Guidance Only</strong>
+                Firearm transport and carry laws change and vary by jurisdiction. This is not legal advice. Confirm current requirements with your local pistol permit office or NYS Police before transporting a firearm anywhere.
+            </div>
+        </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section id="resources" class="guide-card">
+        <div class="card-header">
+            <div class="card-icon">📚</div>
+            <div class="card-header-text">
+                <h2>Additional Resources</h2>
+                <p>Trusted sources for deeper safety education</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="resource-cols">
+                <div class="resource-col">
+                    <h3>Safety Organizations</h3>
+                    <ul>
+                        <li><a href="https://gunsafetytips.org/" target="_blank" rel="noopener noreferrer">NRA Gun Safety Rules</a></li>
+                        <li><a href="https://projectchildsafe.org/" target="_blank" rel="noopener noreferrer">Project ChildSafe</a></li>
+                        <li><a href="https://www.nssf.org/safety/" target="_blank" rel="noopener noreferrer">NSSF Safety Resources</a></li>
+                    </ul>
+                </div>
+                <div class="resource-col">
+                    <h3>NYS-Specific</h3>
+                    <ul>
+                        <li><a href="https://troopers.ny.gov/firearms" target="_blank" rel="noopener noreferrer">NYS Police Firearms Info</a></li>
+                        <li><a href="nys-course.html">NYS Pistol Permit Course Hub</a></li>
+                        <li><a href="competition-safety-guide.html">Competition Safety Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT FOOTER -->
+    <div class="contact-footer">
+        <div class="footer-text">
+            <h3>Questions About Safety or Storage?</h3>
+            <p>Reach out anytime — happy to talk through your specific situation.</p>
+        </div>
+        <div class="contact-btns">
+            <a href="mailto:marcusarms@marcusarmed.com" class="contact-btn">✉️ Email</a>
+            <a href="sms:+17163528622" class="contact-btn">💬 Text</a>
+        </div>
+    </div>
+
+</main>
+
+</body>
+</html>
