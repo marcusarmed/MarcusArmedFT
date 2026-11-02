@@ -1437,19 +1437,14 @@
                     .gs-warn { border:1px solid rgba(226,66,32,.5); background:rgba(226,66,32,.12); color:#ffb4a3 !important; padding:.6rem .8rem; border-radius:4px; font-size:.88rem !important; margin-top:.75rem; }
                     .gs-link { display:inline-flex; align-items:center; gap:.5rem; margin-top:.9rem; font-family:'Barlow Condensed',sans-serif; font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:.85rem; color:var(--charcoal); background:var(--orange); padding:.6rem 1rem; border-radius:4px; text-decoration:none; }
                     .gs-visual { display:flex; align-items:center; justify-content:center; min-height:180px; }
-                    @media (max-width:768px){ .gs-visual { min-height:0; } .gs-big { font-size:3.2rem; } .gs-card { min-height:0; } }
+                    @media (max-width:768px){ .gs-visual { min-height:0; } .gs-card { min-height:0; } }
 
                     /* visuals */
-                    .gs-big { font-size:4.5rem; animation:gsFloat 3s ease-in-out infinite; }
-                    @keyframes gsFloat { 50% { transform:translateY(-10px) rotate(-4deg); } }
                     @keyframes gsPopIn { 70% { transform:scale(1.12); } to { opacity:1; transform:scale(1); } }
                     .gs-cmds { display:grid; gap:.45rem; width:100%; max-width:260px; }
                     .gs-cmd { font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:.06em; text-align:center; padding:.55rem; border-radius:4px; background:var(--charcoal-3); color:rgba(255,255,255,.3); border:1px solid rgba(255,255,255,.06); transition:all .3s; }
                     .gs-cmd.on { background:var(--orange); color:var(--charcoal); transform:scale(1.04); }
                     .gs-cmd.beep { background:var(--red); color:var(--white); }
-                    .gs-arc { width:220px; }
-                    .gs-arc .sweep { transform-origin:110px 120px; animation:gsSweep 3.2s ease-in-out infinite; }
-                    @keyframes gsSweep { 0%,100% { transform:rotate(-80deg); } 50% { transform:rotate(80deg); } }
                     .gs-hf { text-align:center; }
                     .gs-hf .num { font-family:'Oswald',sans-serif; font-size:3.4rem; color:var(--orange); line-height:1; }
                     .gs-hf .lbl { font-family:'Barlow Condensed',sans-serif; letter-spacing:.18em; text-transform:uppercase; font-size:.75rem; color:rgba(255,255,255,.5); margin-top:.3rem; }
@@ -1554,7 +1549,7 @@
                                 </ul>
                                 <p>Introduce yourself to the RO, Match Director and your squad.</p>
                             </div>
-                            <div class="gs-visual"><div class="gs-big">🛡️</div></div>
+                            <div class="gs-visual"><img class="gs-img" src="uspsa-step-4.webp" alt="Safe Table with an open gun case" width="640" height="640" loading="lazy"></div>
                         </div>
                         <!-- 5 -->
                         <div class="gs-panel" role="tabpanel">
@@ -1593,13 +1588,7 @@
                                     <div class="gs-cmd">Standby</div>
                                     <div class="gs-cmd">● Beep ●</div>
                                 </div>
-                                <svg class="gs-arc" viewBox="0 0 220 130" aria-hidden="true">
-                                    <path d="M10 120 A100 100 0 0 1 210 120 Z" fill="rgba(249,157,34,.1)" stroke="rgba(249,157,34,.4)"/>
-                                    <text x="110" y="40" text-anchor="middle" fill="#f99d22" font-family="Oswald" font-size="13" letter-spacing="2">DOWNRANGE</text>
-                                    <g class="sweep"><line x1="110" y1="120" x2="110" y2="30" stroke="#e8ddc9" stroke-width="3" stroke-linecap="round"/></g>
-                                    <circle cx="110" cy="120" r="6" fill="#e24220"/>
-                                    <text x="110" y="78" text-anchor="middle" fill="rgba(255,255,255,.7)" font-family="Oswald" font-size="22">180°</text>
-                                </svg>
+                                <img class="gs-img gs-img-sm" src="uspsa-step-6.webp" alt="Shooter engaging a target with the Range Officer running the timer" width="640" height="640" loading="lazy">
                             </div>
                         </div>
                         <!-- 7 -->
