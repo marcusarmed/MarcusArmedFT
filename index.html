@@ -341,6 +341,147 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
+        /* ── NY GUN LAW TICKER ── */
+        .law-ticker {
+            background: var(--charcoal-3);
+            border-bottom: 1px solid rgba(249,157,34,0.25);
+            display: flex;
+            align-items: stretch;
+            min-height: 56px;
+            overflow: hidden;
+        }
+        .law-ticker-label {
+            background: var(--red);
+            color: var(--white);
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0 0.9rem;
+            flex-shrink: 0;
+            line-height: 1.1;
+            clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+            padding-right: 1.4rem;
+        }
+        .law-ticker-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--orange);
+            flex-shrink: 0;
+            animation: lawPulse 1.6s ease-in-out infinite;
+        }
+        @keyframes lawPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%      { opacity: 0.35; transform: scale(0.7); }
+        }
+        .law-ticker-stage {
+            position: relative;
+            flex: 1;
+            min-width: 0;
+        }
+        .law-ticker-item {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.5rem 0.9rem;
+            color: var(--cream);
+            text-decoration: none;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: opacity 0.45s ease, transform 0.45s ease;
+            pointer-events: none;
+        }
+        .law-ticker-item.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .law-ticker-item.leaving {
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+        .law-ticker-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.15rem;
+            flex-shrink: 0;
+        }
+        .law-ticker-tag {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            background: var(--orange);
+            border-radius: 3px;
+            padding: 0.05rem 0.4rem;
+        }
+        .law-ticker-date {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(232,221,201,0.6);
+            white-space: nowrap;
+        }
+        .law-ticker-text {
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.85rem;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .law-ticker-item:hover .law-ticker-text { color: var(--white); text-decoration: underline; text-decoration-color: var(--orange); }
+        .law-ticker-nav {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            padding-right: 0.4rem;
+        }
+        .law-ticker-nav button {
+            background: none;
+            border: none;
+            color: var(--orange);
+            font-size: 1.1rem;
+            width: 30px; height: 36px;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .law-ticker-nav button:hover { color: var(--white); }
+        .law-ticker-note {
+            background: var(--charcoal-3);
+            color: rgba(232,221,201,0.45);
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.66rem;
+            text-align: center;
+            padding: 0.2rem 1rem 0.35rem;
+        }
+        @media (max-width: 640px) {
+            .law-ticker { min-height: 72px; }
+            .law-ticker-label { font-size: 0.68rem; padding: 0 1rem 0 0.6rem; }
+            .law-ticker-label span { max-width: 52px; }
+            .law-ticker-meta { display: none; }
+            .law-ticker-text { -webkit-line-clamp: 3; font-size: 0.8rem; }
+            .law-ticker-nav button { width: 26px; }
+        }
+        @media (min-width: 769px) {
+            .law-ticker-text { font-size: 0.92rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .law-ticker-dot { animation: none; }
+            .law-ticker-item { transition: none; }
+        }
+
         /* ── CREDENTIALS STRIP ── */
         .cred-strip {
             background: linear-gradient(90deg, var(--red) 0%, var(--orange) 100%);
@@ -1077,6 +1218,17 @@
         </div>
     </div>
 
+    <!-- NY GUN LAW UPDATE TICKER -->
+    <div class="law-ticker" id="lawTicker" aria-label="New York gun law updates">
+        <div class="law-ticker-label"><div class="law-ticker-dot"></div><span>NY Gun Law Updates</span></div>
+        <div class="law-ticker-stage" id="lawTickerStage" aria-live="polite"></div>
+        <div class="law-ticker-nav">
+            <button type="button" id="lawPrev" aria-label="Previous update">&#8249;</button>
+            <button type="button" id="lawNext" aria-label="Next update">&#8250;</button>
+        </div>
+    </div>
+    <div class="law-ticker-note">Headlines for awareness only — not legal advice. Tap a headline for the source.</div>
+
     <main>
 
         <!-- NYS 16 HOUR PISTOL PERMIT COURSE -->
@@ -1472,6 +1624,64 @@
             closeBtn.addEventListener('click', closeLinks);
             modal.addEventListener('click', function (e) { if (e.target === modal) closeLinks(); });
             document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLinks(); });
+        })();
+    </script>
+    <script>
+        (function () {
+            var FALLBACK = [{"date": "2026-10-21", "tag": "Signed", "text": "Francesco's Law signed — guns must be kept in a locked storage container when not in use, with tougher penalties if minors or unlicensed people get access.", "url": "https://governor.ny.gov/news/keeping-new-yorkers-safe-governor-hochul-signs-commonsense-gun-safety-legislation-reduce"}, {"date": "2026-10-21", "tag": "Signed", "text": "Ammo background checks expanded — purchases now blocked for anyone barred from owning rifles/shotguns or under a temporary or extreme risk protection order.", "url": "https://governor.ny.gov/news/keeping-new-yorkers-safe-governor-hochul-signs-commonsense-gun-safety-legislation-reduce"}, {"date": "2026-08-14", "tag": "Lawsuit", "text": "NRA, SAF & FPC sue in federal court (W.D.N.Y.) over NY's \"convertible pistol\" law — Firing Pin, LLC v. James.", "url": "https://www.nraila.org/articles/20260814/nra-files-lawsuit-challenging-new-york-s-glock-ban"}, {"date": "2026-05-27", "tag": "Budget", "text": "State budget signed: new handguns sold in NY must be designed so they can't be easily converted into machine guns (Glock-style pistols targeted).", "url": "https://www.everytown.org/press/new-york-shuts-down-the-plastic-pipeline-governor-hochul-and-lawmakers-pass-nation-leading-measures-to-stop-the-spread-of-diy-machine-guns-and-3d-printed-firearms-in-fy27-budget/"}, {"date": "2026-05-27", "tag": "Budget", "text": "3D printers sold in NY must include software that blocks printing guns and gun parts; a state task force will set the standards.", "url": "https://www.everytown.org/press/new-york-shuts-down-the-plastic-pipeline-governor-hochul-and-lawmakers-pass-nation-leading-measures-to-stop-the-spread-of-diy-machine-guns-and-3d-printed-firearms-in-fy27-budget/"}, {"date": "2025-04", "tag": "Courts", "text": "U.S. Supreme Court declined to hear the CCIA challenge (Antonyuk) — NY's sensitive-place carry restrictions remain in effect.", "url": "https://www.nbcnews.com/politics/supreme-court/supreme-court-rejects-challenge-new-york-gun-law-rcna199373"}];
+            var stage = document.getElementById('lawTickerStage');
+            var ticker = document.getElementById('lawTicker');
+            if (!stage) return;
+            var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            function fmt(d) {
+                var p = String(d || '').split('-');
+                if (p.length < 2) return d || '';
+                var m = MONTHS[parseInt(p[1], 10) - 1] || '';
+                return p.length >= 3 ? m + ' ' + parseInt(p[2], 10) + ', ' + p[0] : m + ' ' + p[0];
+            }
+            var els = [], idx = 0, timer = null, paused = false;
+            function build(items) {
+                items = items.slice().sort(function (a, b) { return String(b.date).localeCompare(String(a.date)); });
+                stage.innerHTML = '';
+                els = items.map(function (it) {
+                    var a = document.createElement('a');
+                    a.className = 'law-ticker-item';
+                    a.href = it.url || '#';
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    var meta = document.createElement('div'); meta.className = 'law-ticker-meta';
+                    var tag = document.createElement('span'); tag.className = 'law-ticker-tag'; tag.textContent = it.tag || 'Update';
+                    var date = document.createElement('span'); date.className = 'law-ticker-date'; date.textContent = fmt(it.date);
+                    meta.appendChild(tag); meta.appendChild(date);
+                    var txt = document.createElement('span'); txt.className = 'law-ticker-text';
+                    txt.textContent = (window.innerWidth <= 640 ? fmt(it.date) + ' — ' : '') + it.text;
+                    a.appendChild(meta); a.appendChild(txt);
+                    stage.appendChild(a);
+                    return a;
+                });
+                idx = 0;
+                if (els[0]) els[0].classList.add('active');
+                start();
+            }
+            function show(n) {
+                if (!els.length) return;
+                var cur = els[idx];
+                idx = (n + els.length) % els.length;
+                if (cur === els[idx]) return;
+                cur.classList.remove('active'); cur.classList.add('leaving');
+                setTimeout(function () { cur.classList.remove('leaving'); }, 460);
+                els[idx].classList.add('active');
+            }
+            function start() { clearInterval(timer); timer = setInterval(function () { if (!paused) show(idx + 1); }, 6000); }
+            document.getElementById('lawNext').addEventListener('click', function () { show(idx + 1); start(); });
+            document.getElementById('lawPrev').addEventListener('click', function () { show(idx - 1); start(); });
+            ticker.addEventListener('mouseenter', function () { paused = true; });
+            ticker.addEventListener('mouseleave', function () { paused = false; });
+            build(FALLBACK);
+            fetch('ny-law-updates.json?v=' + Date.now())
+                .then(function (r) { return r.ok ? r.json() : null; })
+                .then(function (d) { if (d && d.items && d.items.length) build(d.items); })
+                .catch(function () {});
         })();
     </script>
 </body>
