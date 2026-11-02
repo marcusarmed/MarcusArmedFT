@@ -341,6 +341,46 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
+        /* ── SHOOTER READY BUTTON ── */
+        .hero-ready {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.15rem;
+            margin-top: 1.5rem;
+            padding: 0.85rem 2.2rem 0.75rem;
+            background: var(--orange);
+            color: var(--charcoal);
+            text-decoration: none;
+            border-radius: 4px;
+            box-shadow: 0 6px 20px rgba(249,157,34,0.3);
+            animation: heroFadeIn 0.8s 0.3s ease-out both, readyPulse 2.4s 1.2s ease-in-out infinite;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .hero-ready:hover { background: var(--orange-2); transform: translateY(-2px); }
+        .hero-ready-title {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 1.35rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+        .hero-ready-sub {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+        @keyframes readyPulse {
+            0%, 100% { box-shadow: 0 6px 20px rgba(249,157,34,0.3), 0 0 0 0 rgba(249,157,34,0.45); }
+            50%      { box-shadow: 0 6px 20px rgba(249,157,34,0.3), 0 0 0 12px rgba(249,157,34,0); }
+        }
+        #gsWrap { scroll-margin-top: 90px; }
+        @media (prefers-reduced-motion: reduce) { .hero-ready { animation: none; } }
+
         /* ── NY GUN LAW TICKER ── */
         .law-ticker {
             background: var(--charcoal-3);
@@ -1197,6 +1237,10 @@
     <header class="hero">
         <div class="hero-inner">
             <img src="banner.png" alt="Marcus Armed — Professional Firearms Training" class="hero-banner">
+            <a href="#gsWrap" class="hero-ready">
+                <span class="hero-ready-title">Shooter Ready</span>
+                <span class="hero-ready-sub">My 1st Match</span>
+            </a>
         </div>
     </header>
 
@@ -1351,6 +1395,290 @@
             <div class="section-inner">
                 <div class="section-eyebrow reveal">Competitive Shooting</div>
                 <h2 class="section-title reveal reveal-delay-1">Hit the <span>Stage</span></h2>
+
+                <!-- ═══ GET STARTED IN USPSA (animated guide) ═══ -->
+                <style>
+                    .gs-wrap { margin-bottom: 2.75rem; }
+                    .gs-head { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:1rem; margin-bottom:1.25rem; }
+                    .gs-head h3 { font-family:'Oswald',sans-serif; font-size:clamp(1.3rem,3vw,1.75rem); text-transform:uppercase; letter-spacing:.04em; color:var(--white); line-height:1.1; }
+                    .gs-head h3 span { color:var(--orange); }
+                    .gs-head p { color:rgba(255,255,255,.6); font-size:.95rem; max-width:34rem; margin-top:.35rem; }
+                    .gs-goals { display:flex; gap:.5rem; flex-wrap:wrap; }
+                    .gs-goal { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; padding:.4rem .7rem; border-radius:3px; border:1px solid rgba(249,157,34,.35); color:var(--orange); opacity:0; transform:translateY(8px); animation:gsPop .5s forwards; }
+                    .gs-goal:nth-child(2){ animation-delay:.25s } .gs-goal:nth-child(3){ animation-delay:.5s }
+                    @keyframes gsPop { to { opacity:1; transform:none; } }
+
+                    .gs-track { position:relative; display:grid; grid-template-columns:repeat(7,1fr); gap:.35rem; margin-bottom:1rem; }
+                    .gs-rail { position:absolute; left:7.143%; right:7.143%; top:50%; height:3px; background:rgba(255,255,255,.08); transform:translateY(-50%); border-radius:2px; }
+                    .gs-rail-fill { position:absolute; left:0; top:0; bottom:0; width:0; background:linear-gradient(90deg,var(--orange),var(--red)); border-radius:2px; transition:width .6s cubic-bezier(.6,0,.2,1); }
+                    .gs-dot { position:relative; z-index:1; justify-self:center; width:42px; height:42px; border-radius:50%; border:2px solid rgba(255,255,255,.18); background:var(--charcoal-3); color:rgba(255,255,255,.55); font-family:'Oswald',sans-serif; font-weight:600; font-size:1rem; cursor:pointer; transition:all .35s; }
+                    .gs-dot.done { border-color:var(--orange); color:var(--orange); }
+                    .gs-dot.active { background:var(--orange); border-color:var(--orange); color:var(--charcoal); transform:scale(1.12); box-shadow:0 0 0 6px rgba(249,157,34,.18); animation:gsPulse 1.8s infinite; }
+                    @keyframes gsPulse { 50% { box-shadow:0 0 0 11px rgba(249,157,34,0); } }
+
+                    .gs-card { position:relative; background:var(--charcoal-2); border-radius:6px; border-left:4px solid var(--orange); box-shadow:0 4px 24px rgba(0,0,0,.25); overflow:hidden; min-height:300px; }
+                    .gs-timer { position:absolute; left:0; bottom:0; height:3px; width:0; background:var(--orange); opacity:.55; }
+                    .gs-timer.run { animation:gsTimer 9s linear forwards; }
+                    @keyframes gsTimer { to { width:100%; } }
+                    .gs-panel { display:none; padding:1.5rem 1.5rem 1.75rem; }
+                    .gs-panel.show { display:grid; gap:1.25rem; animation:gsIn .5s ease; }
+                    @media (min-width:769px){ .gs-panel.show { grid-template-columns:1.25fr 1fr; align-items:center; padding:2rem; } }
+                    @keyframes gsIn { from { opacity:0; transform:translateX(24px); } to { opacity:1; transform:none; } }
+                    .gs-step { font-family:'Barlow Condensed',sans-serif; font-weight:700; letter-spacing:.2em; font-size:.75rem; text-transform:uppercase; color:var(--orange); }
+                    .gs-panel h4 { font-family:'Oswald',sans-serif; font-size:1.45rem; text-transform:uppercase; color:var(--white); margin:.25rem 0 .6rem; letter-spacing:.03em; }
+                    .gs-panel p, .gs-panel li { color:rgba(255,255,255,.75); font-size:.95rem; line-height:1.55; }
+                    .gs-panel ul { list-style:none; display:grid; gap:.4rem; margin-top:.5rem; }
+                    .gs-panel li { padding-left:1.2rem; position:relative; opacity:0; transform:translateX(-10px); }
+                    .gs-panel.show li { animation:gsLi .45s forwards; }
+                    .gs-panel.show li:nth-child(2){animation-delay:.1s} .gs-panel.show li:nth-child(3){animation-delay:.2s} .gs-panel.show li:nth-child(4){animation-delay:.3s} .gs-panel.show li:nth-child(5){animation-delay:.4s} .gs-panel.show li:nth-child(6){animation-delay:.5s}
+                    @keyframes gsLi { to { opacity:1; transform:none; } }
+                    .gs-panel li::before { content:''; position:absolute; left:0; top:.55em; width:7px; height:7px; background:var(--orange); transform:rotate(45deg); }
+                    .gs-panel b { color:var(--white); }
+                    .gs-warn { border:1px solid rgba(226,66,32,.5); background:rgba(226,66,32,.12); color:#ffb4a3 !important; padding:.6rem .8rem; border-radius:4px; font-size:.88rem !important; margin-top:.75rem; }
+                    .gs-link { display:inline-flex; align-items:center; gap:.5rem; margin-top:.9rem; font-family:'Barlow Condensed',sans-serif; font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:.85rem; color:var(--charcoal); background:var(--orange); padding:.6rem 1rem; border-radius:4px; text-decoration:none; }
+                    .gs-visual { display:flex; align-items:center; justify-content:center; min-height:180px; }
+                    @media (max-width:768px){ .gs-visual { min-height:0; } .gs-big { font-size:3.2rem; } .gs-card { min-height:0; } }
+
+                    /* visuals */
+                    .gs-big { font-size:4.5rem; animation:gsFloat 3s ease-in-out infinite; }
+                    @keyframes gsFloat { 50% { transform:translateY(-10px) rotate(-4deg); } }
+                    @keyframes gsPopIn { 70% { transform:scale(1.12); } to { opacity:1; transform:scale(1); } }
+                    .gs-cmds { display:grid; gap:.45rem; width:100%; max-width:260px; }
+                    .gs-cmd { font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:.06em; text-align:center; padding:.55rem; border-radius:4px; background:var(--charcoal-3); color:rgba(255,255,255,.3); border:1px solid rgba(255,255,255,.06); transition:all .3s; }
+                    .gs-cmd.on { background:var(--orange); color:var(--charcoal); transform:scale(1.04); }
+                    .gs-cmd.beep { background:var(--red); color:var(--white); }
+                    .gs-arc { width:220px; }
+                    .gs-arc .sweep { transform-origin:110px 120px; animation:gsSweep 3.2s ease-in-out infinite; }
+                    @keyframes gsSweep { 0%,100% { transform:rotate(-80deg); } 50% { transform:rotate(80deg); } }
+                    .gs-hf { text-align:center; }
+                    .gs-hf .num { font-family:'Oswald',sans-serif; font-size:3.4rem; color:var(--orange); line-height:1; }
+                    .gs-hf .lbl { font-family:'Barlow Condensed',sans-serif; letter-spacing:.18em; text-transform:uppercase; font-size:.75rem; color:rgba(255,255,255,.5); margin-top:.3rem; }
+                    .gs-hf .eq { color:rgba(255,255,255,.75); margin-top:.75rem; font-size:.9rem; }
+                    .gs-zones { display:flex; gap:.35rem; justify-content:center; margin-top:.75rem; flex-wrap:wrap; }
+                    .gs-zones span { font-size:.78rem; padding:.25rem .5rem; border-radius:3px; background:var(--charcoal-3); color:rgba(255,255,255,.75); }
+                    .gs-zones .m { color:#ffb4a3; }
+
+                    .gs-img { display:block; width:100%; max-width:320px; height:auto; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,.35); }
+                    .gs-img-sm { max-width:220px; }
+                    .gs-panel.show .gs-img { animation:gsImgIn .7s cubic-bezier(.2,.8,.2,1) both, gsDrift 6s ease-in-out .7s infinite; }
+                    @keyframes gsImgIn { from { opacity:0; transform:scale(.88) rotate(-2deg); } to { opacity:1; transform:none; } }
+                    @keyframes gsDrift { 50% { transform:translateY(-8px) scale(1.02); } }
+                    @media (max-width:768px){ .gs-img { max-width:240px; } .gs-img-sm { max-width:180px; } }
+                    .gs-nav { display:flex; align-items:center; justify-content:space-between; gap:.75rem; margin-top:1rem; }
+                    .gs-nav button { font-family:'Barlow Condensed',sans-serif; font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:.85rem; background:transparent; color:var(--white); border:1.5px solid rgba(255,255,255,.2); border-radius:4px; padding:.55rem 1rem; cursor:pointer; }
+                    .gs-nav button:hover { border-color:var(--orange); color:var(--orange); }
+                    .gs-nav .gs-play { border-color:rgba(249,157,34,.4); color:var(--orange); }
+                    @media (max-width:480px){ .gs-dot { width:34px; height:34px; font-size:.85rem; } .gs-panel { padding:1.25rem; } }
+                    @media (prefers-reduced-motion:reduce){ .gs-wrap *, .gs-wrap *::before { animation:none !important; transition:none !important; } .gs-goal, .gs-panel li, .gs-img { opacity:1; transform:none; } }
+                </style>
+
+                <div class="gs-wrap reveal" id="gsWrap">
+                    <div class="gs-head">
+                        <div>
+                            <h3>Get Started in <span>USPSA</span></h3>
+                            <p>Seven steps from finding a match to your first scorecard. Read the full safety guide before you go — it's mandatory.</p>
+                        </div>
+                        <div class="gs-goals"><span class="gs-goal">1 · Be Safe</span><span class="gs-goal">2 · Avoid DQ</span><span class="gs-goal">3 · Have Fun</span></div>
+                    </div>
+
+                    <div class="gs-track" role="tablist" aria-label="Getting started steps">
+                        <div class="gs-rail"><div class="gs-rail-fill" id="gsFill"></div></div>
+                        <button class="gs-dot" role="tab" aria-label="Step 1">1</button>
+                        <button class="gs-dot" role="tab" aria-label="Step 2">2</button>
+                        <button class="gs-dot" role="tab" aria-label="Step 3">3</button>
+                        <button class="gs-dot" role="tab" aria-label="Step 4">4</button>
+                        <button class="gs-dot" role="tab" aria-label="Step 5">5</button>
+                        <button class="gs-dot" role="tab" aria-label="Step 6">6</button>
+                        <button class="gs-dot" role="tab" aria-label="Step 7">7</button>
+                    </div>
+
+                    <div class="gs-card">
+                        <!-- 1 -->
+                        <div class="gs-panel" role="tabpanel">
+                            <div>
+                                <div class="gs-step">Step 01 · Find a Match</div>
+                                <h4>Sign Up on PractiScore</h4>
+                                <p>PractiScore is where matches are listed, registered for and scored. Your results land here after every match.</p>
+                                <ul>
+                                    <li>Create a <b>free account</b> at practiscore.com or in the app</li>
+                                    <li>Search for matches near <b>Buffalo / WNY</b> and open the club's match page</li>
+                                    <li>Read the details — date, start time, round count, fees and club rules</li>
+                                    <li><b>Register</b> and choose your division (Carry Optics, Limited Optics, Production…)</li>
+                                    <li>Squad with someone you know if you can — first matches are easier with a friend</li>
+                                </ul>
+                                <a class="gs-link" href="https://practiscore.com" target="_blank" rel="noopener">Open PractiScore →</a>
+                            </div>
+                            <div class="gs-visual"><img class="gs-img" src="uspsa-step-1.webp" alt="Finding a match on a phone app" width="640" height="640" loading="lazy"></div>
+                        </div>
+                        <!-- 2 -->
+                        <div class="gs-panel" role="tabpanel">
+                            <div>
+                                <div class="gs-step">Step 02 · Know the Sport</div>
+                                <h4>Know What You're Getting Into</h4>
+                                <p>USPSA is hit factor competition: move through a course of fire, engage multiple targets, shoot from unconventional positions and reload on the clock — all with your finger on the frame between shots.</p>
+                                <ul>
+                                    <li>Built for <b>seasoned handgun shooters</b> attending their first action pistol match</li>
+                                    <li>Brand new to handguns? Keep renting range time and taking classes first</li>
+                                    <li>Reading the safety guide <b>in full</b> is mandatory before your first match</li>
+                                </ul>
+                                <a class="gs-link" href="competition-safety-guide.html">Read the Safety Guide →</a>
+                            </div>
+                            <div class="gs-visual"><img class="gs-img" src="uspsa-step-2.webp" alt="Overhead view of a competition stage" width="640" height="640" loading="lazy"></div>
+                        </div>
+                        <!-- 3 -->
+                        <div class="gs-panel" role="tabpanel">
+                            <div>
+                                <div class="gs-step">Step 03 · Gear Up</div>
+                                <h4>Pack the Range Bag</h4>
+                                <ul>
+                                    <li><b>Eyes + ears</b> — plugs, muffs or electronic</li>
+                                    <li><b>Safe, reliable semi-auto</b> — 9mm, .380, .40, .45, 10mm. No rimfire. NYS compliant</li>
+                                    <li><b>3–5 magazines</b> (10-round max in NYS) + <b>2–4 mag pouches</b></li>
+                                    <li><b>Rigid Kydex holster</b>, OWB or IWB</li>
+                                    <li><b>75–100 rounds</b>, a dedicated gun bag, a brass bag and clean sneakers</li>
+                                </ul>
+                                <p class="gs-warn">🚫 No pocket, sticky, soft or leather holsters. No exceptions.</p>
+                            </div>
+                            <div class="gs-visual"><img class="gs-img" src="uspsa-step-3.webp" alt="Match gear: eye and ear protection, belt, holster, mag pouches, range bag" width="640" height="640" loading="lazy"></div>
+                        </div>
+                        <!-- 4 -->
+                        <div class="gs-panel" role="tabpanel">
+                            <div>
+                                <div class="gs-step">Step 04 · Arrive</div>
+                                <h4>Check In &amp; Find the Safe Table</h4>
+                                <ul>
+                                    <li>Check in at the counter, pay <b>$10 cash</b> and complete the match waiver</li>
+                                    <li>Unload your carry gun at the <b>"Unload Here"</b> sign (or in your car)</li>
+                                    <li>The <b>Safe Table is the only place</b> to handle your gun — no live ammo there</li>
+                                    <li>Holster an unloaded pistol and leave it there until the RO says <b>"Make Ready"</b></li>
+                                </ul>
+                                <p>Introduce yourself to the RO, Match Director and your squad.</p>
+                            </div>
+                            <div class="gs-visual"><div class="gs-big">🛡️</div></div>
+                        </div>
+                        <!-- 5 -->
+                        <div class="gs-panel" role="tabpanel">
+                            <div>
+                                <div class="gs-step">Step 05 · Plan</div>
+                                <h4>Walk the Stage</h4>
+                                <p>After the safety meeting, the RO reads the Written Stage Brief. You get <b>5 minutes</b> to walk it — and you shoot each stage <b>once</b>.</p>
+                                <ul>
+                                    <li>Start position and hand / gun start</li>
+                                    <li>Round count and target count</li>
+                                    <li>Target order, movement path and reloads</li>
+                                    <li>Special rules — mandatory reload, strong / weak hand</li>
+                                    <li>Mentally rehearse the run</li>
+                                </ul>
+                            </div>
+                            <div class="gs-visual"><img class="gs-img" src="uspsa-step-5.webp" alt="Shooter walking a stage and planning target order" width="640" height="640" loading="lazy"></div>
+                        </div>
+                        <!-- 6 -->
+                        <div class="gs-panel" role="tabpanel">
+                            <div>
+                                <div class="gs-step">Step 06 · Shoot Safe</div>
+                                <h4>Know the Range Commands</h4>
+                                <ul>
+                                    <li><b>Make Ready</b> → load, hand on grip while you rehearse, hand off when ready</li>
+                                    <li><b>Are You Ready? → Standby → Beep</b> → run the stage</li>
+                                    <li><b>Unload &amp; Show Clear</b> → drop mag, lock slide open, show the chamber</li>
+                                    <li><b>STOP</b> → finger off the trigger, freeze, wait for the RO</li>
+                                    <li>Finger <b>outside the guard</b> on every move and reload</li>
+                                </ul>
+                                <p class="gs-warn">⚠️ Break the 180° — or point the muzzle at yourself or the RO — and it's an immediate DQ.</p>
+                            </div>
+                            <div class="gs-visual" style="flex-direction:column;gap:1rem;">
+                                <div class="gs-cmds" id="gsCmds">
+                                    <div class="gs-cmd">Make Ready</div>
+                                    <div class="gs-cmd">Are You Ready?</div>
+                                    <div class="gs-cmd">Standby</div>
+                                    <div class="gs-cmd">● Beep ●</div>
+                                </div>
+                                <svg class="gs-arc" viewBox="0 0 220 130" aria-hidden="true">
+                                    <path d="M10 120 A100 100 0 0 1 210 120 Z" fill="rgba(249,157,34,.1)" stroke="rgba(249,157,34,.4)"/>
+                                    <text x="110" y="40" text-anchor="middle" fill="#f99d22" font-family="Oswald" font-size="13" letter-spacing="2">DOWNRANGE</text>
+                                    <g class="sweep"><line x1="110" y1="120" x2="110" y2="30" stroke="#e8ddc9" stroke-width="3" stroke-linecap="round"/></g>
+                                    <circle cx="110" cy="120" r="6" fill="#e24220"/>
+                                    <text x="110" y="78" text-anchor="middle" fill="rgba(255,255,255,.7)" font-family="Oswald" font-size="22">180°</text>
+                                </svg>
+                            </div>
+                        </div>
+                        <!-- 7 -->
+                        <div class="gs-panel" role="tabpanel">
+                            <div>
+                                <div class="gs-step">Step 07 · Score &amp; Improve</div>
+                                <h4>Hit Factor Is King</h4>
+                                <p>Two rounds on every cardboard target unless the brief says otherwise. Points divided by time — speed <b>and</b> accuracy.</p>
+                                <ul>
+                                    <li>Wait for the RO to call the score before you paste</li>
+                                    <li>Verify your hits and <b>approve your score</b> on the tablet</li>
+                                    <li>Results hit <b>Practiscore</b> by dinner time</li>
+                                    <li>First match goal: be safe and shoot Alphas efficiently</li>
+                                </ul>
+                                <a class="gs-link" href="competition-safety-guide.html">Take the Safety Quiz →</a>
+                            </div>
+                            <div class="gs-visual" style="flex-direction:column;gap:1rem;">
+                                <img class="gs-img gs-img-sm" src="uspsa-step-7.webp" alt="Scored target and results tablet" width="640" height="640" loading="lazy">
+                                <div class="gs-hf">
+                                    <div class="num" id="gsHf">0.00</div>
+                                    <div class="lbl">Hit Factor</div>
+                                    <div class="eq">50 pts ÷ 6.25 sec</div>
+                                    <div class="gs-zones"><span>A · 5</span><span>C · 3</span><span>D · 1</span><span class="m">Miss · −10</span><span class="m">No-Shoot · −10</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gs-timer" id="gsTimer"></div>
+                    </div>
+
+                    <div class="gs-nav">
+                        <button type="button" id="gsPrev">← Back</button>
+                        <button type="button" class="gs-play" id="gsPlay">❚❚ Pause</button>
+                        <button type="button" id="gsNext">Next →</button>
+                    </div>
+                </div>
+
+                <script>
+                (function(){
+                    var wrap=document.getElementById('gsWrap'); if(!wrap) return;
+                    var dots=wrap.querySelectorAll('.gs-dot'), panels=wrap.querySelectorAll('.gs-panel');
+                    var fill=document.getElementById('gsFill'), timer=document.getElementById('gsTimer'), playBtn=document.getElementById('gsPlay');
+                    var reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                    var i=0, auto=!reduce, inView=false, t=null, cmdT=null, hfT=null;
+                    function cmds(){
+                        clearInterval(cmdT); var c=wrap.querySelectorAll('.gs-cmd'), k=0;
+                        c.forEach(function(e){e.className='gs-cmd';});
+                        cmdT=setInterval(function(){ c.forEach(function(e){e.className='gs-cmd';}); c[k].className='gs-cmd '+(k===3?'beep':'on'); k=(k+1)%4; },900);
+                    }
+                    function hf(){
+                        clearInterval(hfT); var el=document.getElementById('gsHf'), v=0, end=8.00;
+                        if(reduce){ el.textContent=end.toFixed(2); return; }
+                        hfT=setInterval(function(){ v+=0.16; if(v>=end){v=end;clearInterval(hfT);} el.textContent=v.toFixed(2); },30);
+                    }
+                    function show(n){
+                        i=(n+7)%7;
+                        panels.forEach(function(p,k){p.classList.toggle('show',k===i);});
+                        dots.forEach(function(d,k){d.classList.toggle('active',k===i);d.classList.toggle('done',k<i);d.setAttribute('aria-selected',k===i);});
+                        fill.style.width=(i/6*100)+'%';
+                        clearInterval(cmdT); clearInterval(hfT);
+                        if(i===5) cmds(); if(i===6) hf();
+                        restart();
+                    }
+                    function restart(){
+                        clearTimeout(t); timer.classList.remove('run'); void timer.offsetWidth;
+                        if(auto && inView){ timer.classList.add('run'); t=setTimeout(function(){show(i+1);},9000); }
+                    }
+                    function stop(){ auto=false; playBtn.textContent='▶ Play'; restart(); }
+                    dots.forEach(function(d,k){ d.addEventListener('click',function(){ stop(); show(k); }); });
+                    document.getElementById('gsPrev').addEventListener('click',function(){ stop(); show(i-1); });
+                    document.getElementById('gsNext').addEventListener('click',function(){ stop(); show(i+1); });
+                    playBtn.addEventListener('click',function(){ auto=!auto; playBtn.textContent=auto?'❚❚ Pause':'▶ Play'; restart(); });
+                    if('IntersectionObserver' in window){
+                        new IntersectionObserver(function(es){ inView=es[0].isIntersecting; restart(); },{threshold:.35}).observe(wrap);
+                    } else { inView=true; }
+                    if(reduce) playBtn.textContent='▶ Play';
+                    show(0);
+                })();
+                </script>
+                <!-- ═══ END GET STARTED IN USPSA ═══ -->
 
                 <div class="comp-grid">
 
