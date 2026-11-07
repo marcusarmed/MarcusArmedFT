@@ -382,6 +382,108 @@
         #gsWrap { scroll-margin-top: 90px; }
         @media (prefers-reduced-motion: reduce) { .hero-ready { animation: none; } }
 
+        /* ── MATCH TICKER (local PractiScore matches, full list on matches.html) ── */
+        .match-ticker {
+            background: var(--charcoal-3);
+            border-bottom: 1px solid rgba(249,157,34,0.25);
+            display: flex;
+            align-items: stretch;
+            min-height: 44px;
+            overflow: hidden;
+        }
+        .match-ticker[hidden] { display: none; }
+        .match-ticker-label {
+            background: var(--orange);
+            color: var(--charcoal);
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            padding: 0 1.3rem 0 0.9rem;
+            flex-shrink: 0;
+            white-space: nowrap;
+            text-decoration: none;
+            clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+        }
+        .match-ticker-view { flex: 1; min-width: 0; overflow: hidden; display: flex; align-items: center; }
+        .match-ticker-track {
+            display: flex;
+            width: max-content;
+            animation: matchTickerScroll var(--dur, 60s) linear infinite;
+        }
+        .match-ticker-track.idle { animation: none; }
+        .match-ticker:hover .match-ticker-track,
+        .match-ticker:focus-within .match-ticker-track { animation-play-state: paused; }
+        @keyframes matchTickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        .match-ticker-seg { display: flex; }
+        .match-ticker-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 1.2rem;
+            white-space: nowrap;
+            border-right: 1px solid rgba(232,221,201,0.12);
+            color: var(--cream);
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.88rem;
+        }
+        .match-ticker-tag {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            background: var(--cream);
+            border-radius: 3px;
+            padding: 0.1rem 0.4rem;
+        }
+        .match-ticker-item.open .match-ticker-tag { background: var(--orange); }
+        .match-ticker-item.upcoming .match-ticker-tag {
+            background: transparent;
+            color: rgba(232,221,201,0.7);
+            box-shadow: inset 0 0 0 1px rgba(232,221,201,0.35);
+        }
+        .match-ticker-club { color: rgba(232,221,201,0.6); }
+        .match-ticker-date,
+        .match-ticker-cd {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(232,221,201,0.6);
+        }
+        .match-ticker-empty {
+            padding: 0.6rem 1.2rem;
+            white-space: nowrap;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(232,221,201,0.6);
+        }
+        .match-ticker-all {
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+            flex-shrink: 0;
+            white-space: nowrap;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--orange);
+            text-decoration: none;
+        }
+        .match-ticker-all:hover { color: var(--white); }
+        @media (prefers-reduced-motion: reduce) {
+            .match-ticker-track { animation: none; }
+            .match-ticker-view { overflow-x: auto; }
+            .match-ticker-seg[aria-hidden="true"] { display: none; }
+        }
+
         /* ── NY GUN LAW TICKER ── */
         .law-ticker {
             background: var(--charcoal-3);
@@ -1213,6 +1315,15 @@
 </script>
 </head>
 <body>
+
+    <!-- MATCH TICKER: local PractiScore matches, full list on matches.html -->
+    <div class="match-ticker" id="matchTicker" role="region" aria-label="Local PractiScore matches">
+        <a class="match-ticker-label" href="matches.html">Local Matches</a>
+        <div class="match-ticker-view">
+            <div class="match-ticker-track idle"><span class="match-ticker-empty">Loading matches</span></div>
+        </div>
+        <a class="match-ticker-all" href="matches.html">Full Tracker →</a>
+    </div>
 
     <!-- MENU OVERLAY -->
     <div class="menu-overlay" id="menuOverlay"></div>
@@ -2061,5 +2172,7 @@
                 .catch(function () {});
         })();
     </script>
+    <script src="match-tracker.js"></script>
+    <script>MatchTracker.mountTicker(document.getElementById('matchTicker'));</script>
 </body>
 </html>

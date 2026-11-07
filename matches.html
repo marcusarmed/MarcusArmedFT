@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#f99d22">
+    <meta name="description" content="Upcoming PractiScore matches for the clubs Marcus follows in Western New York, plus USPSA national majors by area.">
+    <title>Match Tracker | Marcus Armed</title>
+    <link rel="canonical" href="https://marcusarmed.com/matches.html">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1D9JZN9C5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-F1D9JZN9C5');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: rgba(249, 157, 34, 0.2);
+        }
+
+        :root {
+            --charcoal:    #292c33;
+            --charcoal-3:  #1e2025;
+            --orange:      #f99d22;
+            --orange-2:    #faa83a;
+            --red:         #e24220;
+            --red-2:       #c23618;
+            --cream:       #e8ddc9;
+            --cream-2:     #f5f0e8;
+            --white:       #ffffff;
+            --text-dark:   #1a1a1a;
+            --text-muted:  #6b6b6b;
+            --line:        rgba(41, 44, 51, 0.14);
+        }
+
+        [hidden] { display: none !important; }
+        :focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background: var(--cream-2);
+            color: var(--text-dark);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── HEADER (same pattern as the other pages) ── */
+        header {
+            background: #3a3d42;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--orange);
+            color: var(--charcoal);
+            padding: 0.6rem 1.2rem;
+            border-radius: 24px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: background 0.2s;
+            min-height: 44px;
+        }
+
+        .back-btn:hover { background: var(--orange-2); }
+
+        .header-title { flex: 1; min-width: 200px; }
+
+        .header-eyebrow {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 0.15rem;
+        }
+
+        .header-title h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            font-weight: 700;
+            color: var(--cream);
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .stamp {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            color: rgba(232,221,201,0.7);
+        }
+
+        /* ── MAIN ── */
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 2.5rem;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .toggle {
+            display: inline-flex;
+            padding: 4px;
+            background: var(--charcoal);
+            border-radius: 999px;
+        }
+
+        .toggle button {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.55rem 1.1rem;
+            border: 0;
+            border-radius: 999px;
+            background: transparent;
+            color: var(--cream);
+            cursor: pointer;
+        }
+
+        .toggle button[aria-pressed="true"] { background: var(--orange); color: var(--charcoal); }
+
+        .field {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--charcoal);
+        }
+
+        select {
+            font: inherit;
+            font-size: 0.9rem;
+            padding: 0.45rem 0.6rem;
+            border: 1px solid rgba(41,44,51,0.3);
+            border-radius: 6px;
+            background: var(--white);
+            color: var(--text-dark);
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 290px;
+            gap: 1.25rem;
+            align-items: start;
+        }
+
+        @media (max-width: 860px) { .layout { grid-template-columns: 1fr; } }
+
+        .bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.6rem 1rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+        .chip {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.45rem 0.8rem;
+            border-radius: 999px;
+            border: 1px solid rgba(41,44,51,0.3);
+            background: var(--white);
+            color: var(--charcoal);
+            cursor: pointer;
+        }
+
+        .chip .n {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 500;
+            opacity: 0.6;
+            margin-left: 0.2rem;
+        }
+
+        .chip[aria-pressed="true"] {
+            background: var(--charcoal);
+            border-color: var(--charcoal);
+            color: var(--cream);
+        }
+
+        .pin-hint {
+            margin: 0 0 0.9rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .matches { list-style: none; display: grid; gap: 0.7rem; }
+
+        .group-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.2rem 0.8rem;
+            margin-top: 1.1rem;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+        }
+
+        .group-head:first-child { margin-top: 0; }
+
+        .group-sub {
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.82rem;
+            letter-spacing: 0;
+            text-transform: none;
+            color: var(--text-muted);
+        }
+
+        .match {
+            display: grid;
+            grid-template-columns: 6px minmax(0, 1fr) auto;
+            gap: 1rem;
+            padding: 0.9rem 1rem 0.9rem 0;
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            box-shadow: 0 1px 2px rgba(41,44,51,0.06);
+        }
+
+        .match.pinned { border-color: var(--red); box-shadow: 0 0 0 1px var(--red); }
+
+        .rail { background: #9a9ea5; border-radius: 6px 0 0 6px; }
+        .match.open .rail { background: var(--orange); }
+        .match.opening .rail { background: var(--charcoal); }
+
+        .club {
+            margin: 0 0 0.15rem;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.76rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .name {
+            margin: 0 0 0.55rem;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 500;
+            font-size: 1.2rem;
+            line-height: 1.2;
+            color: var(--charcoal);
+        }
+
+        .facts { margin: 0; display: flex; flex-wrap: wrap; gap: 0.3rem 1.2rem; }
+        .facts div { display: flex; align-items: baseline; gap: 0.4rem; }
+        .facts dt { font-size: 0.8rem; color: var(--text-muted); }
+        .facts dd {
+            margin: 0;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.98rem;
+            color: var(--text-dark);
+        }
+
+        .side {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.4rem;
+            text-align: right;
+        }
+
+        .pill {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.22rem 0.45rem;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+
+        .pill.open { background: var(--orange); color: var(--charcoal); }
+        .pill.opening { background: var(--charcoal); color: var(--cream); }
+        .pill.upcoming { border: 1px solid rgba(41,44,51,0.3); color: var(--text-muted); }
+
+        .count {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .side a { font-size: 0.85rem; font-weight: 600; color: var(--red-2); }
+
+        .pin {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 0.74rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            border: 1px solid rgba(41,44,51,0.35);
+            background: var(--white);
+            color: var(--charcoal);
+            cursor: pointer;
+        }
+
+        .pin:disabled { opacity: 0.45; cursor: not-allowed; }
+        .match.pinned .pin { background: var(--red); border-color: var(--red); color: var(--white); }
+
+        @media (max-width: 560px) {
+            .match { grid-template-columns: 6px minmax(0, 1fr); }
+            .side {
+                grid-column: 2;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                text-align: left;
+                gap: 0.5rem 0.8rem;
+            }
+        }
+
+        .empty {
+            padding: 1.2rem;
+            border: 1px dashed rgba(41,44,51,0.3);
+            border-radius: 6px;
+            background: var(--white);
+            color: var(--text-muted);
+        }
+
+        .panel {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 1rem 1.1rem;
+        }
+
+        .panel h2 {
+            margin: 0 0 0.6rem;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+        }
+
+        .clubs { list-style: none; }
+        .clubs li { padding: 0.6rem 0; border-top: 1px solid var(--line); }
+        .clubs li:first-child { border-top: 0; padding-top: 0; }
+        .clubs a { font-weight: 600; color: var(--red-2); text-decoration: none; }
+        .clubs a:hover { text-decoration: underline; }
+        .clubs .clubname { font-weight: 600; }
+        .clubs .sub { display: block; margin-top: 0.15rem; font-size: 0.82rem; color: var(--text-muted); }
+
+        .notes {
+            margin-top: 1.25rem;
+            max-width: 72ch;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .notes strong { color: var(--charcoal); }
+
+        footer {
+            background: var(--charcoal);
+            color: rgba(232,221,201,0.6);
+            text-align: center;
+            padding: 1.25rem;
+            font-size: 0.82rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="back-btn">← Home</a>
+            <div class="header-title">
+                <div class="header-eyebrow">PractiScore · USPSA</div>
+                <h1>Match Tracker</h1>
+            </div>
+            <p class="stamp" id="stamp">Loading listings</p>
+        </div>
+    </header>
+
+    <main>
+        <noscript><p class="notes">The match tracker needs JavaScript to load the listings.</p></noscript>
+
+        <div class="controls">
+            <div class="toggle" role="group" aria-label="Show local or national matches">
+                <button type="button" data-scope="local" aria-pressed="true">Local</button>
+                <button type="button" data-scope="national" aria-pressed="false">National</button>
+            </div>
+            <label class="field" id="areaField" hidden>Area
+                <select id="areaFilter"><option value="all">All areas</option></select>
+            </label>
+        </div>
+
+        <div class="layout">
+            <section aria-label="Matches">
+                <div class="bar">
+                    <div class="chips" role="group" aria-label="Filter by status">
+                        <button class="chip" type="button" data-status="all" aria-pressed="true">All <span class="n">0</span></button>
+                        <button class="chip" type="button" data-status="open" aria-pressed="false">Squadding open <span class="n">0</span></button>
+                        <button class="chip" type="button" data-status="opening" aria-pressed="false">Opening soon <span class="n">0</span></button>
+                        <button class="chip" type="button" data-status="upcoming" aria-pressed="false">Upcoming <span class="n">0</span></button>
+                    </div>
+                    <label class="field" id="clubField">Club
+                        <select id="clubFilter"><option value="all">All clubs</option></select>
+                    </label>
+                </div>
+                <p class="pin-hint" id="pinHint" aria-live="polite"></p>
+                <ol class="matches" id="matches"></ol>
+                <p class="empty" id="empty" hidden></p>
+            </section>
+
+            <aside class="panel" aria-labelledby="panelTitle">
+                <h2 id="panelTitle">Followed clubs</h2>
+                <ul class="clubs" id="clubList"></ul>
+            </aside>
+        </div>
+
+        <p class="notes"><strong>Statuses.</strong> Squadding open means registration is open now. Opening soon means registration opens later. Upcoming means the match is ahead and registration is closed or not listed. Dates marked ~ are estimates from an "opens in N days," "opens in N weeks," or "opens in N months" label, counted from the day the listing was copied in. Times use your browser's time zone, and the page refreshes every 30 seconds.</p>
+        <p class="notes">Local listings come from PractiScore club pages, and national majors come from the USPSA major matches list. Both are copied in by hand, so they can lag behind the source. Pin up to four matches in each list to keep them at the top. Pins are saved on this device only.</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Marcus Armed | Professional Firearms Training | NRA Certified Instructor</p>
+    </footer>
+
+    <script src="match-tracker.js"></script>
+    <script>
+    (function () {
+        'use strict';
+        var M = window.MatchTracker;
+        var WHEN_OPTS = { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' };
+        var state = { data: null, scope: 'local', area: 'all', status: 'all', club: 'all', items: [], pins: [], signature: null, loadError: null };
+
+        function $(id) { return document.getElementById(id); }
+        function fmtWhen(d) { return d.toLocaleString('en-US', WHEN_OPTS); }
+
+        // Viewer choices only (list, area, pins), kept in this browser. Storage may be blocked, so fail quietly.
+        function loadPref(key, fallback) {
+            try {
+                var v = window.localStorage.getItem(key);
+                return v == null ? fallback : v;
+            } catch (e) { return fallback; }
+        }
+        function savePref(key, value) {
+            try { window.localStorage.setItem(key, value); } catch (e) { /* storage unavailable */ }
+        }
+
+        // Pins: up to PIN_LIMIT per list (local and national), remembered in this browser.
+        function readPins() {
+            try {
+                var all = JSON.parse(loadPref('match-pins', '{}'));
+                return all && typeof all === 'object' ? all : {};
+            } catch (e) { return {}; }
+        }
+        function pinsFor(scope) {
+            var list = readPins()[scope];
+            return Array.isArray(list)
+                ? list.filter(function (k) { return typeof k === 'string'; }).slice(0, M.PIN_LIMIT)
+                : [];
+        }
+        function savePins(scope, keys) {
+            var all = readPins();
+            all[scope] = keys.slice(0, M.PIN_LIMIT);
+            savePref('match-pins', JSON.stringify(all));
+        }
+        // Stored pins that are still listed. Pins for matches that have passed or dropped off are removed.
+        function currentPins(now) {
+            var stored = pinsFor(state.scope);
+            if (!state.data) return stored;
+            var listed = {};
+            M.allItems(state.data, state.scope, now).forEach(function (it) { listed[M.itemKey(it)] = true; });
+            var live = stored.filter(function (k) { return listed[k]; });
+            if (live.length !== stored.length) savePins(state.scope, live);
+            return live;
+        }
+        function togglePin(key) {
+            var now = new Date();
+            var keys = currentPins(now).slice();
+            var at = keys.indexOf(key);
+            if (at !== -1) keys.splice(at, 1);
+            else if (keys.length < M.PIN_LIMIT) keys.push(key);
+            else return;
+            savePins(state.scope, keys);
+            renderRows(now);
+        }
+
+        function rowHTML(it, idx, now) {
+            var opensTxt = it.opens
+                ? (it.approx ? '~' + M.esc(M.fmtDate(it.opens)) : M.esc(fmtWhen(it.opens)))
+                : (it.status === 'open' ? 'Already open' : 'Not listed');
+            var key = M.itemKey(it);
+            var isPinned = state.pins.indexOf(key) !== -1;
+            var locked = !isPinned && state.pins.length >= M.PIN_LIMIT;
+            return '<li class="match ' + it.status + (isPinned ? ' pinned' : '') + '">' +
+                '<span class="rail" aria-hidden="true"></span>' +
+                '<div>' +
+                    '<p class="club">' + M.esc(it.clubName) + '</p>' +
+                    '<h3 class="name">' + M.esc(it.name) + '</h3>' +
+                    '<dl class="facts">' +
+                        '<div><dt>Match</dt><dd>' + M.esc(M.fmtDate(it.end)) + '</dd></div>' +
+                        '<div><dt>Reg opens</dt><dd>' + opensTxt + '</dd></div>' +
+                        '<div><dt>Reg closes</dt><dd>' + (it.closes ? M.esc(fmtWhen(it.closes)) : 'Not listed') + '</dd></div>' +
+                    '</dl>' +
+                '</div>' +
+                '<div class="side">' +
+                    '<span class="pill ' + it.status + '">' + M.STATUS[it.status].label + '</span>' +
+                    '<span class="count" data-cd="' + idx + '">' + M.esc(M.countdownText(it, now)) + '</span>' +
+                    '<button class="pin" type="button" data-key="' + M.esc(key) + '"' + (locked ? ' disabled title="Unpin a match to pin another"' : '') + '>' + (isPinned ? 'Unpin' : 'Pin') + '</button>' +
+                    (it.link ? '<a href="' + M.esc(it.link) + '">' + M.esc(it.linkLabel) + ' ↗</a>' : '') +
+                '</div>' +
+            '</li>';
+        }
+
+        function pinHeadHTML(count) {
+            return '<li class="group-head"><span class="group-title">Pinned</span><span class="group-sub">' +
+                count + (count === 1 ? ' match' : ' matches') + '</span></li>';
+        }
+
+        function areaHeadHTML(n, count) {
+            var title = n ? 'Area ' + n : 'Area not listed';
+            var states = n ? M.AREA_STATES[n].join(', ') : '';
+            return '<li class="group-head"><span class="group-title">' + M.esc(title) + '</span>' +
+                (states ? '<span class="group-sub">' + M.esc(states) + '</span>' : '') +
+                '<span class="group-sub">' + count + (count === 1 ? ' match' : ' matches') + '</span></li>';
+        }
+
+        function pinHint(count) {
+            var el = $('pinHint');
+            if (count >= M.PIN_LIMIT) el.textContent = 'Pinned ' + count + ' of ' + M.PIN_LIMIT + '. Unpin one to pin another.';
+            else if (count) el.textContent = 'Pinned ' + count + ' of ' + M.PIN_LIMIT + '. Pinned matches stay at the top of this list.';
+            else el.textContent = 'Pin up to ' + M.PIN_LIMIT + ' matches to keep them at the top of this list.';
+        }
+
+        function emptyMessage() {
+            if (state.loadError) return state.loadError;
+            if (state.scope === 'local') return 'No local matches are listed right now.';
+            var nat = state.data && Array.isArray(state.data.national) ? state.data.national.length : 0;
+            return nat ? 'No national majors in this area right now.' : 'No national majors are listed yet.';
+        }
+
+        function syncControls() {
+            var local = state.scope === 'local';
+            document.querySelectorAll('.toggle button').forEach(function (b) {
+                b.setAttribute('aria-pressed', String(b.getAttribute('data-scope') === state.scope));
+            });
+            $('clubField').hidden = !local;
+            $('areaField').hidden = local;
+        }
+
+        // The match list for the active scope. Pinned matches come first, under a Pinned heading.
+        function renderRows(now) {
+            var items = state.items;
+            var local = state.scope === 'local';
+            state.pins = currentPins(now);
+            var pinned = [];
+            var plain = [];
+            var byArea = {};
+            items.forEach(function (it, i) {
+                var statusOk = state.status === 'all' || it.status === state.status;
+                var clubOk = !local || state.club === 'all' || it.club === state.club;
+                if (!statusOk || !clubOk) return;
+                var html = rowHTML(it, i, now);
+                if (state.pins.indexOf(M.itemKey(it)) !== -1) { pinned.push(html); return; }
+                if (local) { plain.push(html); return; }
+                var k = it.area || 0;
+                (byArea[k] = byArea[k] || []).push(html);
+            });
+            var rows = pinned.length ? [pinHeadHTML(pinned.length)].concat(pinned) : [];
+            if (local) {
+                rows = rows.concat(plain);
+            } else {
+                Object.keys(byArea).map(Number).sort(function (a, b) { return (a || 99) - (b || 99); }).forEach(function (k) {
+                    rows.push(areaHeadHTML(k, byArea[k].length));
+                    rows = rows.concat(byArea[k]);
+                });
+            }
+            $('matches').innerHTML = rows.join('');
+            pinHint(state.pins.length);
+            var empty = $('empty');
+            if (rows.length) {
+                empty.hidden = true;
+            } else {
+                empty.textContent = items.length ? 'No matches fit these filters.' : emptyMessage();
+                empty.hidden = false;
+            }
+        }
+
+        function renderPanel(now) {
+            if (state.scope === 'local') {
+                $('panelTitle').textContent = 'Followed clubs';
+                var items = state.items;
+                $('clubList').innerHTML = M.CLUBS.map(function (c) {
+                    var mine = items.filter(function (it) { return it.club === c.slug; });
+                    var parts = [];
+                    ['open', 'opening', 'upcoming'].forEach(function (k) {
+                        var n = mine.filter(function (it) { return it.status === k; }).length;
+                        if (n) parts.push(n + ' ' + M.STATUS[k].label.toLowerCase());
+                    });
+                    var url = M.clubUrl(c.slug);
+                    var head = url
+                        ? '<a href="' + M.esc(url) + '">' + M.esc(c.name) + '</a>'
+                        : '<span class="clubname">' + M.esc(c.name) + '</span>';
+                    return '<li>' + head +
+                        '<span class="sub">' + M.esc(parts.length ? parts.join(', ') : 'None loaded') + '</span></li>';
+                }).join('');
+            } else {
+                $('panelTitle').textContent = 'Majors by USPSA area';
+                var nat = M.allItems(state.data, 'national', now);
+                var perArea = {};
+                nat.forEach(function (it) { if (it.area) perArea[it.area] = (perArea[it.area] || 0) + 1; });
+                var unlisted = nat.filter(function (it) { return !it.area; }).length;
+                $('clubList').innerHTML = Object.keys(M.AREA_STATES).map(function (n) {
+                    return '<li><span class="clubname">Area ' + n + '</span><span class="sub">' +
+                        M.esc(M.AREA_STATES[n].join(', ')) + ' · ' + (perArea[n] || 0) + ' active</span></li>';
+                }).join('') + (unlisted
+                    ? '<li><span class="clubname">Area not listed</span><span class="sub">' + unlisted + ' active</span></li>'
+                    : '');
+            }
+        }
+
+        function render(now) {
+            syncControls();
+            var counts = { all: state.items.length, open: 0, opening: 0, upcoming: 0 };
+            state.items.forEach(function (it) { counts[it.status] += 1; });
+            document.querySelectorAll('.chip').forEach(function (btn) {
+                var k = btn.getAttribute('data-status');
+                btn.setAttribute('aria-pressed', String(state.status === k));
+                btn.querySelector('.n').textContent = counts[k];
+            });
+            renderRows(now);
+            renderPanel(now);
+            var stamp = $('stamp');
+            var updated = state.data && (state.scope === 'local' ? state.data.updated : state.data.nationalUpdated);
+            if (state.loadError) stamp.textContent = state.loadError;
+            else if (updated) stamp.textContent = 'Listings as of ' + updated;
+            else stamp.textContent = 'Loading listings';
+        }
+
+        // Items for the active scope, narrowed to the chosen area for national majors.
+        function activeItems(now) {
+            var items = M.allItems(state.data, state.scope, now);
+            if (state.scope === 'national' && state.area !== 'all') {
+                items = items.filter(function (it) { return String(it.area) === String(state.area); });
+            }
+            return items;
+        }
+
+        function signatureOf(items) {
+            return items.map(function (it) { return it.club + '|' + it.name + '|' + it.status; }).join('\n');
+        }
+
+        function keyOf(items) {
+            return state.scope + '|' + state.area + '|' + signatureOf(items);
+        }
+
+        function refresh() {
+            var now = new Date();
+            state.items = activeItems(now);
+            state.signature = keyOf(state.items);
+            render(now);
+        }
+
+        // Full redraw only when the set, scope or area changes. Otherwise only the countdown text.
+        function tick() {
+            var now = new Date();
+            var items = activeItems(now);
+            if (keyOf(items) !== state.signature) { refresh(); return; }
+            state.items = items;
+            document.querySelectorAll('[data-cd]').forEach(function (el) {
+                var it = state.items[Number(el.getAttribute('data-cd'))];
+                if (it) el.textContent = M.countdownText(it, now);
+            });
+        }
+
+        function buildAreaOptions() {
+            var sel = $('areaFilter');
+            var areas = Object.keys(M.AREA_STATES);
+            sel.innerHTML = '<option value="all">All areas</option>' + areas.map(function (n) {
+                return '<option value="' + n + '">Area ' + n + '</option>';
+            }).join('');
+            if (state.area !== 'all' && areas.indexOf(String(state.area)) === -1) state.area = 'all';
+            sel.value = state.area;
+        }
+
+        function init() {
+            var sel = $('clubFilter');
+            M.CLUBS.forEach(function (c) {
+                var opt = document.createElement('option');
+                opt.value = c.slug;
+                opt.textContent = c.name;
+                sel.appendChild(opt);
+            });
+            sel.addEventListener('change', function () { state.club = sel.value; render(new Date()); });
+
+            $('areaFilter').addEventListener('change', function () {
+                state.area = $('areaFilter').value;
+                savePref('match-area', state.area);
+                refresh();
+            });
+
+            document.querySelectorAll('.toggle button').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    state.scope = btn.getAttribute('data-scope') === 'national' ? 'national' : 'local';
+                    savePref('match-scope', state.scope);
+                    refresh();
+                });
+            });
+
+            document.querySelectorAll('.chip').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    state.status = btn.getAttribute('data-status');
+                    render(new Date());
+                });
+            });
+
+            $('matches').addEventListener('click', function (e) {
+                var btn = e.target.closest ? e.target.closest('button[data-key]') : null;
+                if (btn && !btn.disabled) togglePin(btn.getAttribute('data-key'));
+            });
+
+            state.scope = loadPref('match-scope', 'local') === 'national' ? 'national' : 'local';
+            state.area = loadPref('match-area', 'all');
+            syncControls();
+
+            M.loadData()
+                .then(function (data) { state.data = data; })
+                .catch(function () {
+                    state.data = null;
+                    state.loadError = 'Could not load the match listings right now. Please try again later.';
+                })
+                .then(function () {
+                    buildAreaOptions();
+                    refresh();
+                    setInterval(tick, 30000);
+                });
+        }
+
+        init();
+    })();
+    </script>
+</body>
+</html>
