@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f99d22">
+<meta name="description" content="Step-by-step walkthrough of the Erie County pistol permit application: PPA-4R, PPA-Info, and NYS PPB-3, from qualifying through drop-off.">
+<title>Pistol Permit Application Walkthrough | Marcus Armed</title>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F1D9JZN9C5"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F1D9JZN9C5');
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* Styled to match the homepage step guide: charcoal cards, Oswald headings, Barlow body, orange accents. */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:rgba(249,157,34,.15)}
+:root{
+  --charcoal:#292c33;--charcoal-2:#32363f;--charcoal-3:#1e2025;
+  --orange:#f99d22;--orange-2:#faa83a;--red:#e24220;--white:#ffffff;
+  --line:rgba(255,255,255,.14);
+  --muted:rgba(255,255,255,.64);
+  --soft-orange:rgba(249,157,34,.14);
+  --soft-red:rgba(226,66,32,.12);
+  --red-line:rgba(226,66,32,.5);
+  --warn-text:#ffb4a3;
+}
+html,body{margin:0;background:var(--charcoal);color:rgba(255,255,255,.84);font:15px/1.55 'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--orange)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+[hidden]{display:none!important}
+
+.wrap{max-width:1120px;margin:0 auto;padding:20px 16px 40px}
+header{margin-bottom:4px}
+.back-btn{display:inline-flex;align-items:center;gap:.45rem;background:var(--orange);color:var(--charcoal);padding:.6rem 1.2rem;border-radius:24px;text-decoration:none;font-family:'Oswald',sans-serif;font-weight:600;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase}
+.back-btn:hover{background:var(--orange-2)}
+.eyebrow{margin-top:18px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange)}
+h1{margin:4px 0 8px;font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(1.6rem,3.6vw,2.4rem);line-height:1.1;letter-spacing:.03em;text-transform:uppercase;color:var(--white);text-wrap:balance}
+.sub{max-width:760px;color:var(--muted)}
+.notice{margin-top:14px;padding:.6rem .8rem;border:1px solid var(--red-line);border-radius:4px;background:var(--soft-red);color:var(--warn-text);font-size:.92rem}
+
+.rail{display:flex;gap:.45rem;overflow-x:auto;padding:18px 2px 10px}
+.rail button{flex:0 0 auto;min-width:42px;height:42px;padding:0 8px;border:2px solid rgba(255,255,255,.18);border-radius:50%;background:var(--charcoal-3);color:rgba(255,255,255,.6);font:600 1rem 'Oswald',sans-serif;cursor:pointer;transition:all .35s}
+.rail button.done{border-color:var(--orange);color:var(--orange)}
+.rail button[aria-current="step"]{background:var(--orange);border-color:var(--orange);color:var(--charcoal);box-shadow:0 0 0 6px rgba(249,157,34,.18)}
+.progress{height:3px;border-radius:2px;background:rgba(255,255,255,.08);overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--red));transition:width .6s cubic-bezier(.6,0,.2,1)}
+
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:16px;margin-top:16px;align-items:start}
+@media (max-width:860px){.layout{grid-template-columns:1fr}}
+.card{background:var(--charcoal-2);border-radius:6px;box-shadow:0 4px 24px rgba(0,0,0,.25)}
+.stage{overflow:hidden;border-left:4px solid var(--orange)}
+.scene{min-height:280px;padding:24px 20px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line)}
+.copy{padding:18px 22px 20px}
+.phase{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange)}
+.copy h2{margin:4px 0 10px;font-family:'Oswald',sans-serif;font-weight:600;font-size:1.5rem;line-height:1.2;letter-spacing:.03em;text-transform:uppercase;color:var(--white);text-wrap:balance}
+.copy ul{list-style:none;display:grid;gap:.4rem;margin:0;padding:0}
+.copy li{position:relative;padding-left:1.2rem;color:rgba(255,255,255,.82)}
+.copy li::before{content:'';position:absolute;left:0;top:.55em;width:7px;height:7px;background:var(--orange);transform:rotate(45deg)}
+.copy b{color:var(--white)}
+.copy a{color:var(--orange)}
+.watch{margin-top:14px;padding:.6rem .8rem;border:1px solid var(--red-line);border-radius:4px;background:var(--soft-red);color:var(--warn-text);font-size:.94rem}
+.watch b{color:var(--white)}
+.source{margin-top:12px;font-family:'Barlow Condensed',sans-serif;font-size:.9rem;letter-spacing:.03em;color:var(--muted)}
+.swap{animation:swap .45s ease both}
+
+@keyframes swap{from{opacity:0;transform:translateY(6px)}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}}
+@keyframes draw{from{stroke-dashoffset:24}}
+@keyframes draw2{from{stroke-dashoffset:100}}
+@keyframes grow{from{transform:scaleX(0)}}
+@keyframes flipit{from{transform:rotateY(0)}to{transform:rotateY(180deg)}}
+@keyframes pop{from{opacity:0;transform:scale(.4)}}
+@keyframes stampin{from{opacity:0;transform:scale(1.4)}}
+
+/* Checklist scene */
+.checks{list-style:none;margin:0;padding:0;width:min(460px,100%)}
+.checks li{display:flex;align-items:center;gap:12px;margin:8px 0;padding:9px 12px;border:1px solid var(--line);border-left:3px solid var(--orange);border-radius:4px;background:var(--charcoal-3);color:rgba(255,255,255,.88);animation:rise .4s backwards}
+.box{flex:0 0 22px;height:22px;display:grid;place-items:center;border:2px solid var(--orange);border-radius:4px}
+.box svg{width:14px;height:14px}
+.box path{fill:none;stroke:var(--orange);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;animation:draw .35s backwards}
+
+/* Document scene */
+.docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;width:min(660px,100%)}
+.doc{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-left:3px solid var(--orange);border-radius:4px;background:var(--charcoal-3);animation:rise .45s backwards}
+.badge{flex:0 0 auto;min-width:46px;height:46px;padding:0 6px;display:grid;place-items:center;border-radius:4px;background:var(--soft-orange);color:var(--orange);font-family:'Oswald',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.04em;text-align:center}
+.doc b{display:block;font-family:'Oswald',sans-serif;font-weight:500;font-size:1rem;letter-spacing:.03em;text-transform:uppercase;color:var(--white)}
+.doc small{font-size:.86rem;color:var(--muted)}
+
+/* Timeline scene */
+.tl{width:min(680px,100%);padding:0 6px}
+.tl-track{position:relative;height:10px;margin:76px 0;border-radius:99px;background:rgba(255,255,255,.12)}
+.tl-window{position:absolute;top:0;bottom:0;left:6.25%;width:87.5%;border-radius:99px;background:linear-gradient(90deg,var(--orange),var(--red));transform-origin:0 50%;animation:grow .9s .3s backwards}
+.tl-dot{position:absolute;top:50%;width:20px;height:20px;margin:-10px 0 0 -10px;border:3px solid var(--orange);border-radius:50%;background:var(--charcoal-3)}
+.tl-l{position:absolute;width:190px;font-size:.88rem;line-height:1.35;color:var(--muted)}
+.tl-l b{display:block;font-family:'Oswald',sans-serif;font-weight:500;font-size:1rem;letter-spacing:.03em;text-transform:uppercase;color:var(--white)}
+.tl-l.up{bottom:22px}
+.tl-l.down{top:22px}
+.tl-l.r{text-align:right;transform:translateX(-100%)}
+.tl-note{margin:0;text-align:center;font-size:.92rem;color:var(--muted)}
+
+/* Photo scene */
+.flip{perspective:900px;width:280px;height:184px}
+.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;animation:flipit 1.1s .9s both}
+.face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px;border:1px solid var(--line);border-top:3px solid var(--orange);border-radius:6px;background:var(--charcoal-3);box-shadow:0 10px 30px rgba(0,0,0,.35);backface-visibility:hidden}
+.face.back{transform:rotateY(180deg)}
+.face p{margin:0;font-size:.86rem;color:var(--muted)}
+.frame{width:84px;height:84px;display:grid;place-items:center;border:2px dashed var(--orange);border-radius:6px;color:var(--orange);font-family:'Oswald',sans-serif;font-size:1.2rem;font-weight:600}
+.line{width:80%;padding-bottom:4px;border-bottom:2px solid var(--white);text-align:center;font-family:'Oswald',sans-serif;font-size:1.05rem;letter-spacing:.03em;color:var(--white)}
+
+/* Form scene */
+.form{position:relative;width:min(740px,100%);padding:12px;border:1px solid var(--line);border-radius:6px;background:var(--charcoal-3)}
+.form-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 2px 10px}
+.form-head b{font-family:'Oswald',sans-serif;font-weight:500;font-size:.98rem;letter-spacing:.03em;text-transform:uppercase;color:var(--white)}
+.tag{padding:3px 9px;border-radius:3px;background:var(--soft-orange);color:var(--orange);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.form-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.fld{min-height:46px;padding:7px 9px;border:1px solid var(--line);border-radius:4px;background:var(--charcoal-2);transition:border-color .25s,box-shadow .25s}
+.fld.w2{grid-column:span 2}
+.fld.w3{grid-column:span 3}
+.fld.w4{grid-column:span 4}
+.fld.hot{border-color:var(--orange);box-shadow:0 0 0 3px var(--soft-orange)}
+.fld.official{background:repeating-linear-gradient(135deg,transparent 0 7px,rgba(255,255,255,.07) 7px 8px),var(--charcoal-2)}
+.fld.official.hot{border-color:var(--red);box-shadow:0 0 0 3px var(--soft-red)}
+.lab{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.84rem;letter-spacing:.02em;color:rgba(255,255,255,.76);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bars{display:flex;flex-direction:column;gap:5px;margin-top:8px}
+.bars i{display:block;width:88%;height:6px;border-radius:3px;background:rgba(255,255,255,.12)}
+.bars i+i{width:60%}
+.opts{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+.opts em{padding:2px 8px;border:1px solid rgba(255,255,255,.22);border-radius:3px;color:rgba(255,255,255,.72);font-size:.76rem;font-style:normal}
+.photo-ph{display:grid;place-items:center;width:58px;height:70px;margin:6px auto 0;border:2px dashed var(--orange);border-radius:4px;color:var(--orange);font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:.04em}
+.sig{position:relative;height:34px;margin-top:6px;border-bottom:1px solid var(--white)}
+.sig svg{display:block;width:100%;height:100%;overflow:visible}
+.sig path{fill:none;stroke:var(--orange);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:100;animation:draw2 .9s backwards}
+.stamp{display:grid;place-items:center;width:78px;height:78px;margin:4px auto 0;border:2px dashed var(--orange);border-radius:50%;color:var(--orange);font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:.04em;text-align:center;animation:stampin .5s backwards}
+.cursor{position:absolute;left:0;top:0;width:22px;height:22px;opacity:0;pointer-events:none;transition:transform .45s cubic-bezier(.3,.7,.2,1),opacity .3s}
+.cursor.on{opacity:1}
+.cursor svg{width:22px;height:22px;fill:var(--white);stroke:var(--charcoal);stroke-width:1.2;stroke-linejoin:round}
+
+/* Drop-off scene */
+.drop{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px}
+.drop-box{width:200px;padding:16px;border:1px solid var(--line);border-top:3px solid var(--orange);border-radius:4px;background:var(--charcoal-3);animation:rise .5s backwards}
+.drop-box.accent{background:var(--soft-orange);border-color:var(--orange)}
+.drop-box b{display:block;font-family:'Oswald',sans-serif;font-weight:500;font-size:1.05rem;letter-spacing:.03em;text-transform:uppercase;color:var(--white)}
+.drop-box small{font-size:.88rem;color:var(--muted)}
+.drop-arrow{font-size:26px;color:var(--orange);animation:rise .5s backwards}
+.drop-fee{display:flex;flex-direction:column;align-items:center;justify-content:center;width:104px;height:104px;border-radius:50%;background:var(--orange);color:var(--charcoal);font-family:'Oswald',sans-serif;font-size:2rem;font-weight:600;animation:pop .5s backwards}
+.drop-fee small{font-family:'Barlow Condensed',sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.04em}
+
+/* Packet sidebar */
+.packet{padding:16px 16px 8px}
+.packet h3{font-family:'Oswald',sans-serif;font-weight:500;font-size:1.1rem;letter-spacing:.03em;text-transform:uppercase;color:var(--white);margin:0 0 2px}
+.packet>p{margin:0 0 8px;font-size:.88rem;color:var(--muted)}
+.packet ol{margin:0;padding:0;list-style:none}
+.packet li{display:flex;align-items:flex-start;gap:10px;padding:8px 6px;border-top:1px solid var(--line);font-size:.94rem;color:rgba(255,255,255,.55)}
+.packet li.on{color:rgba(255,255,255,.92)}
+.packet li.now{background:var(--soft-orange);border-top-color:transparent;border-radius:4px}
+.packet .dot{flex:0 0 18px;height:18px;margin-top:2px;border:2px solid rgba(255,255,255,.28);border-radius:50%}
+.packet li.on .dot{background:var(--orange);border-color:var(--orange)}
+.packet small{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
+
+/* Controls */
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:16px}
+.btn{padding:.55rem 1rem;border:1.5px solid rgba(255,255,255,.22);border-radius:4px;background:transparent;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.92rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.btn:hover:not(:disabled){border-color:var(--orange);color:var(--orange)}
+.btn.primary{background:var(--orange);border-color:var(--orange);color:var(--charcoal)}
+.btn.primary:hover:not(:disabled){background:var(--orange-2);border-color:var(--orange-2);color:var(--charcoal)}
+.btn.ghost{border-color:transparent;color:rgba(255,255,255,.72)}
+.btn:disabled{opacity:.4;cursor:default}
+.counter{margin-left:auto;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.92rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-variant-numeric:tabular-nums}
+.foot{margin:20px 0 0;font-size:.88rem;color:var(--muted)}
+
+@media (max-width:600px){
+  .form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fld.w3,.fld.w4{grid-column:span 2}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a href="index.html" class="back-btn">← Back</a>
+    <div class="eyebrow">Training aid · unofficial</div>
+    <h1>Pistol Permit Application, Step by Step</h1>
+    <p class="sub">A walkthrough for a new applicant: the PPA-4R applicant form, the PPA-Info sheet, and the NYS PPB-3 pistol and revolver license application.</p>
+    <p class="notice">This is a training summary of the instructions in the uploaded bundle. It is not an official Erie County or New York document. The official forms and instructions control, and requirements can change.</p>
+  </header>
+
+  <nav class="rail" id="rail" aria-label="Steps"></nav>
+  <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+
+  <div class="layout">
+    <section class="card stage" aria-label="Walkthrough">
+      <div class="scene" id="scene"></div>
+      <div class="copy" id="copy">
+        <div class="phase" id="phase"></div>
+        <h2 id="title"></h2>
+        <ul id="bullets"></ul>
+        <div class="watch" id="watch-wrap"><b>Watch for:</b> <span id="watch"></span></div>
+        <div class="source" id="source"></div>
+      </div>
+    </section>
+
+    <aside class="card packet" aria-label="Packet builder">
+      <h3>Packet builder</h3>
+      <p>Each item checks off when you reach the step that adds it.</p>
+      <ol id="packet"></ol>
+    </aside>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="prev" type="button">← Back</button>
+    <button class="btn primary" id="play" type="button">Play</button>
+    <button class="btn" id="next" type="button">Next →</button>
+    <button class="btn ghost" id="replay" type="button">Replay scene</button>
+    <span class="counter" id="counter" aria-live="polite"></span>
+  </div>
+
+  <p class="foot">Built from the Erie County instructions and forms in the bundle (PPA-4, PPA-Info, PPB-3). Questions go to clerkhelp.erie.gov. This page is not legal advice.</p>
+</div>
+
+<script>
+const STEPS = [
+  {
+    phase: 'Before you start',
+    title: 'Check that you qualify',
+    scene: 'checks',
+    items: ['Age 21 or older', 'Citizenship or immigration proof, if needed', 'NYS driver’s license or non-driver ID', 'Social Security proof', 'Business Protection papers, if applying for that'],
+    bullets: [
+      'Applicants must be 21 or older.',
+      'Non-citizens need immigration documentation. U.S. citizens born outside the U.S. must prove citizenship.',
+      'Your NYS driver’s license or non-driver ID must show your current name (a married name, for example) and address.',
+      'Proof of Social Security number: a copy of your card, or a copy of a W-2 that shows the full number.',
+      'For Business Protection, bring a DBA or business certificate if you own the business, or a signed letter on company letterhead from management if you work there.'
+    ],
+    watch: 'Your name must match your ID exactly, including on the fingerprint appointment.',
+    source: 'Source: “Essential Information” in the instructions; PPA-Info'
+  },
+  {
+    phase: 'Before you start',
+    title: 'Get proof of firearms safety instruction',
+    scene: 'docs',
+    docs: [
+      ['CERT', 'Safe-handling course proof', 'NYS certified instructor, completed after 9/22'],
+      ['DD', 'DD-214 (alternative)', 'Only if it states firearms training or qualification']
+    ],
+    bullets: [
+      'Submit proof that you completed safe handling of firearms instruction from a NYS certified instructor.',
+      'The instructions say the course must be completed after 9/22.',
+      'A DD-214 can take the place of the course only if it states firearms training or qualification.',
+      'Law enforcement applicants show a government-issued ID and recent proof of qualification.'
+    ],
+    watch: 'This proof goes in with the application, so keep the certificate in your packet.',
+    source: 'Source: “Essential Information” in the instructions'
+  },
+  {
+    phase: 'Gather documents',
+    title: 'Gather ID, Social Security, and citizenship papers',
+    scene: 'docs',
+    docs: [
+      ['ID', 'NYS driver’s license or non-driver ID', 'Shows your current name and address'],
+      ['SSN', 'Social Security proof', 'Card copy, or W-2 with the full number'],
+      ['CIT', 'Citizenship proof', 'Only if you were born outside the U.S.'],
+      ['GC', 'Permanent resident card', 'I-551, if you are a permanent resident']
+    ],
+    bullets: [
+      'Bring a NYS driver’s license or non-driver ID with your current name and address.',
+      'Bring a copy of your Social Security card, or a copy of a W-2 with the full number.',
+      'Born outside the U.S.? Use one of the listed proofs: an unexpired U.S. passport or passport card, a naturalization certificate, a Certificate of Citizenship (N-560, N-561, N-645), or a Report of Birth Abroad (FS-240, DS-1350, F-545).',
+      'Permanent residents show a Permanent Resident Card (I-551, the “green card”).'
+    ],
+    watch: 'The list names specific documents. Check the exact name of a paper before assuming it qualifies.',
+    source: 'Source: “Essential Information”; PPA-Info (proof of citizenship)'
+  },
+  {
+    phase: 'Gather documents',
+    title: 'Get fingerprinted inside the window',
+    scene: 'timeline',
+    bullets: [
+      'Book at <a href="https://uenroll.identogo.com/workflows/151Z1G">uenroll.identogo.com/workflows/151Z1G</a>, or call 1-877-472-6915 (service code 151Z1G).',
+      'Be fingerprinted at least 48 hours before you submit your application.',
+      'Submit no more than 30 days after fingerprinting.',
+      'Use your name exactly as it appears on your NYS driver’s license or non-driver ID.'
+    ],
+    watch: 'Submitting more than 30 days after fingerprinting breaks the rule.',
+    source: 'Source: “Essential Information”; PPA-Info (fingerprinting)'
+  },
+  {
+    phase: 'Gather documents',
+    title: 'Get one 2×2 photo',
+    scene: 'photo',
+    bullets: [
+      'Submit one 2×2 photo, black-and-white or color, with your name printed on the back.',
+      'No selfies or amateur photos.',
+      'Get it at the Erie County Clerk’s Administrative Office for $10, or anywhere that takes passport photos.',
+      'The PPB-3 photo box asks for a full-face photo taken within 30 days.'
+    ],
+    watch: 'Check that your name is printed on the back before the photo goes in the packet.',
+    source: 'Source: “Essential Information”; PPB-3 (photo box)'
+  },
+  {
+    phase: 'Gather documents',
+    title: 'Collect court paperwork for every arrest',
+    scene: 'docs',
+    docs: [
+      ['COD', 'Certificate of Disposition', 'One for each arrest, from the court that heard it'],
+      ['SEAL', 'Unsealed disposition', 'Required for any sealed charge'],
+      ['LTR', 'Court letter', 'Only if a COD is no longer available']
+    ],
+    bullets: [
+      'Never arrested or charged? Nothing to collect here.',
+      'Get a Certificate of Disposition (COD) for each arrest, from the court where the case was heard.',
+      'Sealed charges must still be listed, and each needs an unsealed disposition from the court that handled the matter.',
+      'If no COD is available, get an original letter on court letterhead listing the current date, the date of the charge, the charge, the case number, the disposition date, and a statement that the COD is no longer available.'
+    ],
+    watch: 'Without a COD for every arrest, the office cannot accept the application.',
+    source: 'Source: PPB-3 instructions (arrest questions and CODs)'
+  },
+  {
+    phase: 'Gather documents',
+    title: 'Line up four character references',
+    scene: 'checks',
+    items: ['All four live in Erie County', 'Amherst or Aurora (Town): two in the required area', 'No family members or boyfriend or girlfriend', 'No references with an arrest record', 'Same four people on the PPA-4R and PPB-3', 'All four sign the PPB-3'],
+    bullets: [
+      'Name the same four people on the PPA-4R and the PPB-3.',
+      'If you live outside Amherst and Aurora (Town), all four references must live in Erie County.',
+      'If you live in Amherst, at least two references must live in Amherst. If you live in Aurora (Town), at least two must live in the Town of Aurora or the Village of East Aurora. The other two can live anywhere in Erie County.',
+      'References can’t be family members or a boyfriend or girlfriend. Each needs a full name, date of birth, full address, and phone numbers.',
+      'References must sign the PPB-3.'
+    ],
+    watch: 'The county office can’t make exceptions to the residence rules. An authorized person at the specific police department can.',
+    source: 'Source: PPA-4R and PPA-Info (character references)'
+  },
+  {
+    phase: 'Fill out the forms',
+    title: 'Complete the PPA-4R',
+    scene: 'form',
+    form: { title: 'PPA-4R · Applicant and character information', tag: 'Layout preview' },
+    fields: [
+      { k: 'text', l: 'Full name', w: 2 }, { k: 'text', l: 'Maiden name (if any)', w: 1 }, { k: 'text', l: 'Date of birth', w: 1 },
+      { k: 'text', l: 'Full address (street, city, state, zip)', w: 3 }, { k: 'text', l: 'Email', w: 1 },
+      { k: 'text', l: 'Home, cell, and work phone', w: 2 }, { k: 'text', l: 'Country of birth', w: 1 }, { k: 'text', l: 'Employer', w: 1 },
+      { k: 'text', l: 'Job title', w: 2 }, { k: 'text', l: 'Mailing address (if different)', w: 2 },
+      { k: 'yn', l: 'Other last names used?', w: 2 }, { k: 'yn', l: 'Children where handguns are stored or used?', w: 2 },
+      { k: 'yn', l: 'Active member of a bona fide gun club?', w: 2 }, { k: 'yn', l: 'Prior firearms or bow experience?', w: 2 },
+      { k: 'note', l: 'Four character references: names, DOB, addresses, phones', w: 4 },
+      { k: 'sign', l: 'Applicant signature and date', w: 3 }, { k: 'official', l: 'Official use only', w: 1 }
+    ],
+    bullets: [
+      'Fill in every requested field, including full addresses and dates of birth.',
+      'Answer the applicant questions: other last names used, children where handguns will be stored or used (with ages), gun club membership, and past firearms or bow experience.',
+      'Enter all four character references: name, date of birth, full address, and phone numbers.',
+      'Sign and date the acknowledgment at the bottom, which covers the mental-health information request and the FBI Privacy Act notice.',
+      'Leave the “Official use only” areas blank.'
+    ],
+    watch: 'The header lists “Date of Finger Prints” and “Police Agency,” but the instructions don’t say who fills them. Ask the clerk.',
+    source: 'Source: PPA-4R instructions (form must be Rev. 9/22 or later) and form'
+  },
+  {
+    phase: 'Fill out the forms',
+    title: 'PPB-3, page 1: personal information and license type',
+    scene: 'form',
+    form: { title: 'PPB-3 · Page 1, front', tag: 'Layout preview' },
+    fields: [
+      { k: 'official', l: 'Licensing office only: NYSID, license #, county, issue and expiration dates', w: 4 },
+      { k: 'text', l: 'Last name', w: 1 }, { k: 'text', l: 'First name', w: 1 }, { k: 'text', l: 'Middle name', w: 1 }, { k: 'text', l: 'Suffix', w: 1 },
+      { k: 'text', l: 'Physical street address', w: 2 }, { k: 'text', l: 'City, state, zip', w: 1 }, { k: 'text', l: 'Apt', w: 1 },
+      { k: 'text', l: 'Mailing address (if different)', w: 4 },
+      { k: 'text', l: 'Sex and date of birth', w: 2 }, { k: 'text', l: 'Height, weight, hair, eyes', w: 2 },
+      { k: 'text', l: 'Social Security number', w: 2 }, { k: 'text', l: 'Race', w: 1 }, { k: 'text', l: 'NY driver’s license or non-driver ID', w: 1 },
+      { k: 'check', l: 'Citizen of the U.S.', w: 1 }, { k: 'text', l: 'Primary phone', w: 1 }, { k: 'text', l: 'Secondary phone', w: 1 }, { k: 'text', l: 'Email', w: 1 },
+      { k: 'text', l: 'Employed by', w: 2 }, { k: 'text', l: 'Occupation', w: 1 }, { k: 'text', l: 'Nature of business', w: 1 },
+      { k: 'text', l: 'Business address', w: 4 },
+      { k: 'choice', l: 'License type (check one)', w: 2, o: ['Carry concealed', 'Possess on premises *', 'Possess or carry during employment *'] },
+      { k: 'yn', l: 'Semi-automatic rifle license?', w: 2 },
+      { k: 'note', l: 'Four references: last, first, MI, street address', w: 3 },
+      { k: 'sign', l: 'Reference signatures', w: 1 }
+    ],
+    bullets: [
+      'Complete every field. Anything that can’t be filled in must be handwritten or signed.',
+      'Leave the licensing-office box blank: NYSID, license number, county, and dates.',
+      'Fill in name, both addresses, sex, date of birth, height, weight, hair, eyes, Social Security number, race, NY license or non-driver ID, citizenship, phones, email, employer, occupation, and business address.',
+      'Check only one license type. The starred options also require the premises address or the employer name and address.',
+      'Answer the semi-automatic rifle question, then enter four references who sign the form.'
+    ],
+    watch: 'The Social Security number is required for recording. The form says leaving it out prevents the transaction from being recorded.',
+    source: 'Source: PPB-3 page 1'
+  },
+  {
+    phase: 'Fill out the forms',
+    title: 'PPB-3, page 2: carry-concealed sections',
+    scene: 'form',
+    form: { title: 'PPB-3 · Page 2', tag: 'Carry concealed only' },
+    fields: [
+      { k: 'text', l: 'Spouse or partner: name, maiden name, DOB', w: 3 }, { k: 'text', l: 'Phone', w: 1 },
+      { k: 'yn', l: 'Do minors live in the home?', w: 2 }, { k: 'choice', l: 'Minors: part time or full time', w: 2, o: ['Part time', 'Full time'] },
+      { k: 'note', l: 'Adults in the home, including adult children (up to three)', w: 4 },
+      { k: 'note', l: 'Social media accounts, current and former, past three years', w: 4 }
+    ],
+    bullets: [
+      'These sections apply only to Carry Concealed applications. Skip them if you are applying for another license type.',
+      'If applicable, enter your current spouse or partner: name, maiden name if any, date of birth, and phone.',
+      'Say whether minors live in the residence, and whether they are part time or full time.',
+      'List the adults living in the home, including adult children, with name, maiden name, date of birth, and phone.',
+      'List former and current social media accounts from the past three years.'
+    ],
+    watch: 'The social media question covers former accounts too, not only the ones you use now.',
+    source: 'Source: PPB-3 page 2 (“Marital Status and Relationships” and “Social Media Accounts”)'
+  },
+  {
+    phase: 'Fill out the forms',
+    title: 'PPB-3, page 3: eligibility questions and arrests',
+    scene: 'form',
+    form: { title: 'PPB-3 · Page 3', tag: 'Answer every item' },
+    fields: [
+      { k: 'yn', l: 'Ever arrested, summoned, charged, or indicted? (sealed included)', w: 4 },
+      { k: 'text', l: 'Arrest date', w: 1 }, { k: 'text', l: 'Police agency', w: 1 }, { k: 'text', l: 'Charge', w: 1 }, { k: 'text', l: 'Disposition date', w: 1 },
+      { k: 'text', l: 'Disposition court', w: 2 }, { k: 'text', l: 'Disposition', w: 2 },
+      { k: 'yn', l: 'Fugitive from justice?', w: 2 }, { k: 'yn', l: 'Unlawful drug user or addicted?', w: 2 },
+      { k: 'yn', l: 'Alien unlawfully in the U.S.?', w: 2 }, { k: 'yn', l: 'Admitted alien without a 922(y)(2) exception?', w: 2 },
+      { k: 'yn', l: 'Discharged under dishonorable conditions?', w: 2 }, { k: 'yn', l: 'Renounced U.S. citizenship?', w: 2 },
+      { k: 'yn', l: 'Ever suffered any mental illness?', w: 2 }, { k: 'yn', l: 'Ever involuntarily committed?', w: 2 },
+      { k: 'yn', l: 'Pistol or rifle license ever revoked?', w: 2 }, { k: 'yn', l: 'Firearms suspension or ineligibility order?', w: 2 },
+      { k: 'yn', l: 'Guardian appointed for lack of capacity?', w: 2 }, { k: 'yn', l: 'Assault 3rd, misdemeanor DWI, or menacing 3rd in 5 years (carry concealed)', w: 2 },
+      { k: 'yn', l: 'Federal firearms prohibition (carry concealed)', w: 2 }, { k: 'yn', l: 'Under 21 only: honorable military discharge?', w: 2 },
+      { k: 'text', l: 'Explain any “yes” answer', w: 4 }
+    ],
+    bullets: [
+      'Answer “yes” if you were ever directed to appear before a judge (anything from an ordinance to a felony), handcuffed and taken to jail, fingerprinted and photographed for a criminal matter or DWI, or ordered to surrender on a warrant.',
+      'The arrest question excludes traffic infractions. Sealed arrests must be listed.',
+      'For each arrest, fill in the date, police agency, charge, disposition date, court, and disposition.',
+      'Answer every yes or no item. Explain any “yes” answer in the explain box.',
+      'Two items apply only to Carry Concealed: the Assault 3rd, misdemeanor DWI, or menacing 3rd question, and the federal prohibition question.'
+    ],
+    watch: 'Leaving out any charge, including a dismissed or sealed one, is sufficient cause to deny the application.',
+    source: 'Source: PPB-3 page 3 and the arrest rules in the instructions'
+  },
+  {
+    phase: 'Sign and submit',
+    title: 'PPB-3, page 4: oath, photo, and signatures',
+    scene: 'form',
+    form: { title: 'PPB-3 · Page 4', tag: 'Sign before a notary' },
+    fields: [
+      { k: 'photo', l: 'Full-face photo, taken within 30 days', w: 1 },
+      { k: 'note', l: 'Warnings and conditions: read every line', w: 3 },
+      { k: 'sign', l: 'Applicant signature, made before the notary', w: 2 },
+      { k: 'stamp', l: 'Notary or Commissioner of Deeds', w: 1 },
+      { k: 'text', l: 'Handguns, only if authorized at issue', w: 1 },
+      { k: 'official', l: 'Fingerprints, investigation report, licensing officer', w: 4 }
+    ],
+    bullets: [
+      'Place a full-face photo taken within 30 days in the photo box.',
+      'Read the warnings. Knowingly giving false information is a crime. The license isn’t valid in New York City, covers only the pistol or revolver described, and can be revoked.',
+      'Sign in front of a notary public or Commissioner of Deeds. The application isn’t valid unless sworn.',
+      'Confirm that all four references have signed.',
+      'If the licensing officer authorizes possession at issue, list handguns only, not semi-automatic rifles.',
+      'Leave the fingerprint, investigation, and licensing officer sections blank.'
+    ],
+    watch: 'The PPB-3 must be the original, double-sided form. Photocopies won’t be accepted.',
+    source: 'Source: PPB-3 page 4 and the instructions'
+  },
+  {
+    phase: 'Sign and submit',
+    title: 'Drop off in person and pay the $20 fee',
+    scene: 'drop',
+    bullets: [
+      'Applications must be dropped off in person.',
+      'A non-refundable $20 Pistol Permit Processing Fee is charged when you submit.',
+      'Before you go, check the packet: original PPB-3, PPA-4R, four signed references, ID and Social Security proof, safety course proof, citizenship proof if needed, COD or court letters, the 2×2 photo, and Business Protection papers if applicable.',
+      'Check the timing: at least 48 hours after fingerprinting, and no more than 30 days after.'
+    ],
+    watch: 'The bundle doesn’t list a drop-off address. Questions go to clerkhelp.erie.gov.',
+    source: 'Source: “Essential Information”; the instructions footer'
+  },
+  {
+    phase: 'Sign and submit',
+    title: 'Final check before you go',
+    scene: 'checks',
+    items: ['Age 21 or older, with ID and Social Security proof', 'Safety course proof', 'Citizenship or immigration proof, if needed', 'Fingerprints 48+ hours before, within 30 days', '2×2 photo with name on back', 'COD for each arrest, or court letter', 'Four references: rules met and signed', 'PPA-4R complete, signed, and dated', 'Original double-sided PPB-3, signed before a notary', 'Business papers, if applicable', '$20 fee, and drop-off in person'],
+    bullets: [
+      'Run down the list. Missing forms, incomplete instructions, or misinformation may lead to delay or denial.',
+      'Check form versions: the PPA-4R must be Rev. 9/22 or later, and the PPB-3 must be Rev. 8/22 or later.'
+    ],
+    watch: 'Photocopies of the PPB-3 won’t be accepted.',
+    source: 'Source: all sections above'
+  }
+];
+
+const PACKET = [
+  { s: 1, t: 'Business Protection papers, if applying for that' },
+  { s: 2, t: 'Safety course proof (or a qualifying DD-214)' },
+  { s: 3, t: 'NYS driver’s license or non-driver ID' },
+  { s: 3, t: 'Social Security proof: card copy or W-2' },
+  { s: 3, t: 'Citizenship or permanent resident proof, if needed' },
+  { s: 4, t: 'Fingerprints done 2 to 30 days before you submit' },
+  { s: 5, t: '2×2 photo with name on back' },
+  { s: 6, t: 'COD for each arrest, or court letter' },
+  { s: 7, t: 'Four references who meet the rules' },
+  { s: 8, t: 'PPA-4R, completed and signed' },
+  { s: 9, t: 'Original double-sided PPB-3, every page completed' },
+  { s: 12, t: 'PPB-3 signed in front of a notary' },
+  { s: 13, t: '$20 fee, paid in person at drop-off' }
+];
+
+const reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+const $ = (sel) => document.querySelector(sel);
+let idx = 0;
+let playing = false;
+let dwell = 6000;
+let timers = [];
+let autoT = null;
+
+function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+function clearTimers() { timers.forEach((t) => clearTimeout(t)); timers = []; clearTimeout(autoT); }
+
+function setCopy(s) {
+  const c = $('#copy');
+  c.classList.remove('swap');
+  void c.offsetWidth;
+  c.classList.add('swap');
+  $('#phase').textContent = s.phase;
+  $('#title').textContent = s.title;
+  const ul = $('#bullets');
+  ul.innerHTML = '';
+  s.bullets.forEach((b) => {
+    const li = document.createElement('li');
+    li.innerHTML = b;
+    ul.appendChild(li);
+  });
+  $('#watch-wrap').hidden = !s.watch;
+  $('#watch').textContent = s.watch || '';
+  $('#source').textContent = s.source || '';
+}
+
+function renderScene(s) {
+  const el = $('#scene');
+  el.innerHTML = '';
+  const builders = { checks: sceneChecks, docs: sceneDocs, timeline: sceneTimeline, photo: scenePhoto, form: sceneForm, drop: sceneDrop };
+  return builders[s.scene](el, s);
+}
+
+function sceneChecks(el, s) {
+  const ul = document.createElement('ul');
+  ul.className = 'checks';
+  s.items.forEach((text, i) => {
+    const li = document.createElement('li');
+    li.style.animationDelay = (i * 0.3) + 's';
+    const box = document.createElement('span');
+    box.className = 'box';
+    box.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" style="animation-delay:' + (i * 0.3 + 0.35) + 's"/></svg>';
+    const label = document.createElement('span');
+    label.textContent = text;
+    li.append(box, label);
+    ul.appendChild(li);
+  });
+  el.appendChild(ul);
+  return s.items.length * 300 + 600;
+}
+
+function sceneDocs(el, s) {
+  const wrap = document.createElement('div');
+  wrap.className = 'docs';
+  s.docs.forEach(([badge, title, sub], i) => {
+    const card = document.createElement('div');
+    card.className = 'doc';
+    card.style.animationDelay = (i * 0.25) + 's';
+    const b = document.createElement('span');
+    b.className = 'badge';
+    b.textContent = badge;
+    const t = document.createElement('div');
+    const h = document.createElement('b');
+    h.textContent = title;
+    const p = document.createElement('small');
+    p.textContent = sub;
+    t.append(h, p);
+    card.append(b, t);
+    wrap.appendChild(card);
+  });
+  el.appendChild(wrap);
+  return s.docs.length * 250 + 500;
+}
+
+function sceneTimeline(el) {
+  el.innerHTML =
+    '<div class="tl">' +
+      '<div class="tl-track">' +
+        '<div class="tl-window"></div>' +
+        '<i class="tl-dot" style="left:0%"></i>' +
+        '<i class="tl-dot" style="left:6.25%"></i>' +
+        '<i class="tl-dot" style="left:93.75%"></i>' +
+        '<div class="tl-l up" style="left:0%"><b>Day 0</b>Fingerprints taken</div>' +
+        '<div class="tl-l down" style="left:6.25%"><b>Day 2</b>Earliest you can submit (48 hours)</div>' +
+        '<div class="tl-l up r" style="left:93.75%"><b>Day 30</b>Last day to submit</div>' +
+      '</div>' +
+      '<p class="tl-note">Submit anywhere inside the shaded window. Outside it, the rule isn’t met.</p>' +
+    '</div>';
+  return 1600;
+}
+
+function scenePhoto(el) {
+  el.innerHTML =
+    '<div class="flip"><div class="flip-inner">' +
+      '<div class="face"><div class="frame">2×2</div><p>Full face, no selfies</p></div>' +
+      '<div class="face back"><div class="line">Your name, printed</div><p>Printed on the back</p></div>' +
+    '</div></div>';
+  return 2200;
+}
+
+function sceneDrop(el) {
+  el.innerHTML =
+    '<div class="drop">' +
+      '<div class="drop-box"><b>Packet</b><small>PPA-4R, PPB-3, photo, COD, references</small></div>' +
+      '<div class="drop-arrow" style="animation-delay:.5s">→</div>' +
+      '<div class="drop-box accent" style="animation-delay:.8s"><b>In person</b><small>Drop-off only</small></div>' +
+      '<div class="drop-fee" style="animation-delay:1.4s">$20<small>non-refundable</small></div>' +
+    '</div>';
+  return 2400;
+}
+
+function sceneForm(el, s) {
+  const f = s.form;
+  const wrap = document.createElement('div');
+  wrap.className = 'form';
+  const head = document.createElement('div');
+  head.className = 'form-head';
+  const title = document.createElement('b');
+  title.textContent = f.title;
+  const tag = document.createElement('span');
+  tag.className = 'tag';
+  tag.textContent = f.tag;
+  head.append(title, tag);
+  const grid = document.createElement('div');
+  grid.className = 'form-grid';
+  const cursor = document.createElement('div');
+  cursor.className = 'cursor';
+  cursor.setAttribute('aria-hidden', 'true');
+  cursor.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 2l14 9-6 1.5L9 19z"/></svg>';
+  wrap.append(head, grid, cursor);
+
+  const stepMs = Math.max(260, Math.min(520, 6000 / s.fields.length));
+  const cells = [];
+  s.fields.forEach((d, i) => {
+    const fe = document.createElement('div');
+    fe.className = 'fld w' + d.w + (d.k === 'official' ? ' official' : '');
+    const lab = document.createElement('div');
+    lab.className = 'lab';
+    lab.textContent = d.l;
+    fe.appendChild(lab);
+    const start = 300 + i * stepMs;
+    let extra = '';
+    switch (d.k) {
+      case 'text':
+      case 'note':
+        extra = '<div class="bars"><i></i><i></i></div>';
+        break;
+      case 'yn':
+        extra = '<div class="opts"><em>Yes</em><em>No</em></div>';
+        break;
+      case 'check':
+        extra = '<div class="opts"><em>☐</em></div>';
+        break;
+      case 'choice':
+        extra = '<div class="opts">' + d.o.map((o) => '<em>' + o + '</em>').join('') + '</div>';
+        break;
+      case 'official':
+        extra = '<div class="opts"><em>Leave blank</em></div>';
+        break;
+      case 'photo':
+        extra = '<div class="photo-ph">photo</div>';
+        break;
+      case 'sign':
+        extra = '<div class="sig"><svg viewBox="0 0 200 34" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" style="animation-delay:' + (start + 150) + 'ms" d="M4 26C20 4 30 30 46 14S70 6 84 22S110 30 124 12S150 8 164 24S186 20 196 10"/></svg></div>';
+        break;
+      case 'stamp':
+        extra = '<div class="stamp" style="animation-delay:' + (start + 100) + 'ms">Notary seal</div>';
+        break;
+    }
+    fe.insertAdjacentHTML('beforeend', extra);
+    grid.appendChild(fe);
+    cells.push(fe);
+  });
+  el.appendChild(wrap);
+
+  function moveCursor(fe) {
+    const p = wrap.getBoundingClientRect();
+    const r = fe.getBoundingClientRect();
+    cursor.style.transform = 'translate(' + (r.right - p.left - 26) + 'px,' + (r.top - p.top + 6) + 'px)';
+    cursor.classList.add('on');
+  }
+
+  if (!reduced) {
+    cells.forEach((fe, i) => later(() => {
+      cells.forEach((x) => x.classList.remove('hot'));
+      fe.classList.add('hot');
+      moveCursor(fe);
+    }, 300 + i * stepMs));
+    later(() => {
+      cells.forEach((x) => x.classList.remove('hot'));
+      cursor.classList.remove('on');
+    }, 300 + cells.length * stepMs);
+  }
+  return 300 + cells.length * stepMs + 600;
+}
+
+function go(i) {
+  clearTimers();
+  idx = Math.max(0, Math.min(STEPS.length - 1, i));
+  const s = STEPS[idx];
+  setCopy(s);
+  dwell = renderScene(s) + 2600;
+  renderPacket();
+  updateRail();
+  $('#counter').textContent = 'Step ' + (idx + 1) + ' of ' + STEPS.length;
+  $('#progress').style.width = ((idx + 1) / STEPS.length * 100) + '%';
+  $('#prev').disabled = idx === 0;
+  $('#next').disabled = idx === STEPS.length - 1;
+  if (playing) queueNext();
+}
+
+function queueNext() {
+  if (!playing) return;
+  clearTimeout(autoT);
+  autoT = setTimeout(() => {
+    if (idx < STEPS.length - 1) go(idx + 1);
+    else pause();
+  }, dwell);
+}
+
+function play() {
+  if (idx === STEPS.length - 1) go(0);
+  playing = true;
+  $('#play').textContent = 'Pause';
+  queueNext();
+}
+
+function pause() {
+  playing = false;
+  clearTimeout(autoT);
+  $('#play').textContent = 'Play';
+}
+
+function buildRail() {
+  const rail = $('#rail');
+  STEPS.forEach((s, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = String(i + 1);
+    b.title = s.title;
+    b.setAttribute('aria-label', 'Step ' + (i + 1) + ': ' + s.title);
+    b.addEventListener('click', () => { pause(); go(i); });
+    rail.appendChild(b);
+  });
+}
+
+function updateRail() {
+  [...$('#rail').children].forEach((b, i) => {
+    b.classList.toggle('done', i < idx);
+    if (i === idx) b.setAttribute('aria-current', 'step');
+    else b.removeAttribute('aria-current');
+  });
+}
+
+function renderPacket() {
+  const cur = idx + 1;
+  const ol = $('#packet');
+  ol.innerHTML = '';
+  PACKET.forEach((p) => {
+    const li = document.createElement('li');
+    if (p.s <= cur) li.classList.add('on');
+    if (p.s === cur) li.classList.add('now');
+    const dot = document.createElement('span');
+    dot.className = 'dot';
+    const txt = document.createElement('div');
+    const sm = document.createElement('small');
+    sm.textContent = 'Step ' + p.s;
+    txt.append(sm, p.t);
+    li.append(dot, txt);
+    ol.appendChild(li);
+  });
+}
+
+$('#prev').addEventListener('click', () => { pause(); go(idx - 1); });
+$('#next').addEventListener('click', () => { pause(); go(idx + 1); });
+$('#play').addEventListener('click', () => (playing ? pause() : play()));
+$('#replay').addEventListener('click', () => go(idx));
+document.addEventListener('keydown', (e) => {
+  if (e.altKey || e.ctrlKey || e.metaKey) return;
+  if (e.key === 'ArrowRight') { pause(); go(idx + 1); }
+  if (e.key === 'ArrowLeft') { pause(); go(idx - 1); }
+});
+
+buildRail();
+go(0);
+</script>
+</body>
+</html>
